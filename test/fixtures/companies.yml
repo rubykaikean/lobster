@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: companies
+#
+#  id                  :integer          not null, primary key
+#  name                :string
+#  registration_number :string(15)
+#  address             :text
+#  phone_number        :string(15)
+#  fax_number          :string(15)
+#  type_id             :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  logo_file_name      :string
+#  logo_content_type   :string
+#  logo_file_size      :integer
+#  logo_updated_at     :datetime
+#
+
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Estatekitkat
+  registration_number: o123456
+  address: Blok C 888 Lebuh Emas Satu
+  phone_number: 0162347899
+  fax_number: 046677898
+
+two:
+  name: OutSquare
+  registration_number: 0988877
+  address: Blok C 998 Lebuh Emas Dua
+  phone_number: 0198877666
+  fax_number: 047788999
