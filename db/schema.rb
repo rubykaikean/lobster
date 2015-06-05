@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526033050) do
+ActiveRecord::Schema.define(version: 20150603080716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(version: 20150526033050) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "slug"
   end
+
+  add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -43,6 +46,70 @@ ActiveRecord::Schema.define(version: 20150526033050) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "lots", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "product_id"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
+  add_index "lots", ["slug"], name: "index_lots_on_slug", unique: true, using: :btree
+
+  create_table "phases", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "status_id"
+    t.integer  "project_id"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "phases", ["project_id"], name: "index_phases_on_project_id", using: :btree
+  add_index "phases", ["slug"], name: "index_phases_on_slug", unique: true, using: :btree
+
+  create_table "product_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "product_id"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "product_types", ["product_id"], name: "index_product_types_on_product_id", using: :btree
+  add_index "product_types", ["slug"], name: "index_product_types_on_slug", unique: true, using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "type_id"
+    t.text     "description"
+    t.integer  "status_id"
+    t.integer  "phase_id"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "products", ["phase_id"], name: "index_products_on_phase_id", using: :btree
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "status_id"
+    t.integer  "company_id"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
+  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "display_name"

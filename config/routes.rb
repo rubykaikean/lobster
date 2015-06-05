@@ -1,8 +1,23 @@
 Rails.application.routes.draw do
+
+  resources :lots
+
+  resources :product_types
+
+  resources :products
+
+  resources :phases
+
+  resources :projects
+
   mount RailsEmailPreview::Engine, at: 'emails'
+
   resources :companies
-  devise_for :users
+
+  devise_for :users, :controllers => { :registrations => :registrations }
+
   resources :users
+  
   root 'dashboard#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

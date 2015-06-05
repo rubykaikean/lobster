@@ -15,6 +15,11 @@
 #  logo_content_type   :string
 #  logo_file_size      :integer
 #  logo_updated_at     :datetime
+#  slug                :string
+#
+# Indexes
+#
+#  index_companies_on_slug  (slug) UNIQUE
 #
 
 require "test_helper"

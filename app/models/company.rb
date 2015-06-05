@@ -15,6 +15,11 @@
 #  logo_content_type   :string
 #  logo_file_size      :integer
 #  logo_updated_at     :datetime
+#  slug                :string
+#
+# Indexes
+#
+#  index_companies_on_slug  (slug) UNIQUE
 #
 
 class Company < ActiveRecord::Base
@@ -24,6 +29,7 @@ class Company < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   has_many :users
+  has_many :projects
 
   has_attached_file :logo, 
           #:styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
@@ -40,6 +46,7 @@ class Company < ActiveRecord::Base
     ["Developer", DEVELOPER],
     ["Agency", AGENCY]
   ].freeze
+
 
 
 end
