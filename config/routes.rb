@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
+  resources :admins
+
   resources :lots
 
   resources :product_types
