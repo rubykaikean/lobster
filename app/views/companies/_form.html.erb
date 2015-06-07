@@ -1,53 +1,49 @@
-<%= form_for(@company) do |c| %>
-  <!-- <%#if @company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%#= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-      <ul>
-      <%# @company.errors.full_messages.each do |message| %>
-        <li><%#= message %></li>
-      <%# end %>
-      </ul>
-    </div>
-  <%# end %> -->
-
-
+<%#= form_for(@company) do |c| %>
+  <h3 class="page-header text-overflow"><u>Company Detail</u></h3>
   <div class="form-group">
-    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Email</label>
+    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Name:</label>
     <div class="col-sm-6">
-      <%= c.text_field :name, :class=>"form-control"  %>
+      <%= text_field_tag :name, nil, name: "company[name]" , class: "form-control", :placeholder => "Enter Name"  %>
     </div>
   </div>
 
   <div class="form-group">
     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Address</label>
     <div class="col-sm-6">
-      <%= c.text_field :address, :class=>"form-control" %>
+      <%= text_field_tag :address, nil, name: "company[address]" , class: "form-control", :placeholder => "Enter Address" %>
     </div>
   </div>
   
   <div class="form-group">
     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Registration Number</label>
     <div class="col-sm-6">
-      <%= c.text_field :registration_number, :class=>"form-control"  %>
+      <%= text_field_tag :registration_number, nil, name: "company[registration_number]" , class: "form-control", :placeholder => "Enter Registration Number" %>
     </div>
   </div>
 
   <div class="form-group">
     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Phone Number</label>
     <div class="col-sm-6">
-      <%= c.text_field :phone_number, :class=>"form-control"  %>
+      <%= text_field_tag :phone_number, nil, name: "company[phone_number]" , class: "form-control", :placeholder => "Enter Phone Number" %>
     </div>
   </div>
   
   <div class="form-group">
     <label for="demo-is-inputnormal" class="col-sm-3 control-label">Fax Number</label>
     <div class="col-sm-6">
-      <%= c.text_field :fax_number, :class=>"form-control" %>
+      <%= text_field_tag :fax_number, nil, name: "company[fax_number]" , class: "form-control", :placeholder => "Enter Fax Number" %>
     </div>
   </div>
 
-<% end %>
+  <div class="form-group">
+    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Type</label>
+    <div class="col-sm-6">
+      <label class="form-radio form-normal active"><input type="radio" value="1" name="type_id"> Developer </label>
+      <label class="form-radio form-normal"><input type="radio" value="2" name="type_id"> Agency </label>
+    </div>
+  </div>  
+
+<%# end %>
 
 
            
