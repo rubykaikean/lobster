@@ -1,58 +1,52 @@
-<%= form_for(@company) do |f| %>
-  <% if @company.errors.any? %>
+<%= form_for(@company) do |c| %>
+  <!-- <%#if @company.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+      <h2><%#= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
 
       <ul>
-      <% @company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      <%# @company.errors.full_messages.each do |message| %>
+        <li><%#= message %></li>
+      <%# end %>
       </ul>
     </div>
-  <% end %>
+  <%# end %> -->
 
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="control-label">Name</label>
-          <%= f.text_field :name, :class=>"form-control" %>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="control-label">Registration Number</label>
-          <%= f.text_field :registration_number, :class=>"form-control" %>    
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="control-label">Address</label>
-          <%= f.text_area :address, :class=>"form-control" %>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label class="control-label">Phone Number</label>
-          <%= f.text_field :phone_number, :id=>"demo-inline-inputmail", :class=>"form-control" %>
-        </div>
-      </div>
+  <div class="form-group">
+    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Email</label>
+    <div class="col-sm-6">
+      <%= c.text_field :name, :class=>"form-control"  %>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <label class="control-label">Fax Number</label>
-          <%= f.text_field :fax_number, :id=>"demo-inline-inputmail", :class=>"form-control" %>
-        </div>
-      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Address</label>
+    <div class="col-sm-6">
+      <%= c.text_field :address, :class=>"form-control" %>
     </div>
-  </div> <!-- panel-body -->
-      <!-- <div class="panel-footer text-right">
-        <%#= f.submit %>
-      </div> -->
+  </div>
+  
+  <div class="form-group">
+    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Registration Number</label>
+    <div class="col-sm-6">
+      <%= c.text_field :registration_number, :class=>"form-control"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Phone Number</label>
+    <div class="col-sm-6">
+      <%= c.text_field :phone_number, :class=>"form-control"  %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Fax Number</label>
+    <div class="col-sm-6">
+      <%= c.text_field :fax_number, :class=>"form-control" %>
+    </div>
+  </div>
+
 <% end %>
 
 

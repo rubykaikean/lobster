@@ -49,21 +49,34 @@
               </div>
               <div class="col-xs-4">
                 <div class="form-group text-right">
-                <button class="btn btn-success text-uppercase" type="submit">Sign In</button>
+                <button class="btn btn-success text-uppercase" type="submit" >Sign In</button>
                 </div>
               </div>
             </div>
-            <div class="mar-btm"><em>- or -</em></div>
+            <div class="row">
+              <div class="pad-ver">
+              <div class="col-xs-6 text-left">
+                <a href="<%= new_user_password_path %>" class="btn-link mar-rgt">Forgot password ?</a>     
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group text-right">
+                  <a href="<%= new_user_registration_path %>" class="btn-link mar-lft">Create a new account</a>
+                </div>
+              </div>
+            </div>
+            </div>
+            <!-- <div class="mar-btm"><em>- or -</em></div>
             <button class="btn btn-primary btn-lg btn-block" type="button">
               <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-            </button>
+            </button> -->
           <% end %>
         </div>
       </div>
-      <div class="pad-ver">
-        <a href="pages-password-reminder.html" class="btn-link mar-rgt">Forgot password ?</a>
-        <a href="pages-register.html" class="btn-link mar-lft">Create a new account</a>
-      </div>
+      <%#= link_to "Forgot your password?", new_password_path(:user) %>
+      <!-- <div class="pad-ver">
+        <a href="<%#= new_user_password_path %>" class="btn-link mar-rgt">Forgot password ?</a>
+        <a href="<%#= new_user_registration_path %>" class="btn-link mar-lft">Create a new account</a>
+      </div> -->
 </div>
 
 <%#= render "devise/shared/links" %>
