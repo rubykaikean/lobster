@@ -1,16 +1,42 @@
+<!-- PASSWORD RESETTING FORM -->
+		<!--===================================================-->
+		<div class="cls-content">
+			<div class="cls-content-sm panel">
+				<div class="panel-body">
+					<p class="pad-btm">Enter your email address to recover your password. </p>
+					<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+					<%= devise_error_messages! %>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+								<input type="email" class="form-control" placeholder="Email">
+							</div>
+						</div>
+						<div class="form-group text-right">
+							<button class="btn btn-success text-uppercase" type="submit">Reset Password</button>
+						</div>
+					<% end %>
+				</div>
+			</div>
+			<div class="pad-ver">
+				<a href="<%= new_user_session_path %>" class="btn-link mar-rgt">Back to Login</a>
+			</div>
+		</div>
+		<!--===================================================-->
+<!-- 
 <h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<%#= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%#= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%#= f.label :email %><br />
+    <%#= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%#= f.submit "Send me reset password instructions" %>
   </div>
-<% end %>
+<%# end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %> -->

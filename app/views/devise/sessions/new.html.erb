@@ -1,4 +1,11 @@
-<div class="cls-content">
+<!-- LOGIN FORM -->
+    <!--===================================================-->
+    <div class="cls-content">
+    <% if flash[:alert] %>
+      <div style="margin-top:0px;">
+        <%= flash[:alert]  %>
+      </div>
+    <% end %>
       <div class="cls-content-sm panel">
         <div class="panel-body">
           <p class="pad-btm">Sign In to your account</p>
@@ -6,38 +13,26 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                <%= f.email_field :email, autofocus: true, :class=>"form-control", :placeholder => "Email" %>
+                <input type="text" class="form-control" placeholder="Username">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                <%= f.password_field :password, autocomplete: "off", :class=>"form-control", :placeholder => "Password" %>
+                <input type="password" class="form-control" placeholder="Password">
               </div>
             </div>
             <div class="row">
               <div class="col-xs-8 text-left checkbox">
-                <label class="form-checkbox form-icon">
+                <!-- <label class="form-checkbox form-icon">
                 <input type="checkbox"> Remember me
-                </label>
+                </label> -->
               </div>
               <div class="col-xs-4">
                 <div class="form-group text-right">
-                <button class="btn btn-success text-uppercase" type="submit" >Sign In</button>
+                <button class="btn btn-success text-uppercase" type="submit">Sign In</button>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="pad-ver">
-              <div class="col-xs-6 text-left">
-                <a href="<%= new_user_password_path %>" class="btn-link mar-rgt">Forgot password ?</a>     
-              </div>
-              <div class="col-xs-6">
-                <div class="form-group text-right">
-                  <a href="<%= new_user_registration_path %>" class="btn-link mar-lft">Create a new account</a>
-                </div>
-              </div>
-            </div>
             </div>
             <!-- <div class="mar-btm"><em>- or -</em></div>
             <button class="btn btn-primary btn-lg btn-block" type="button">
@@ -46,11 +41,9 @@
           <% end %>
         </div>
       </div>
-      <%#= link_to "Forgot your password?", new_password_path(:user) %>
-      <!-- <div class="pad-ver">
-        <a href="<%#= new_user_password_path %>" class="btn-link mar-rgt">Forgot password ?</a>
-        <a href="<%#= new_user_registration_path %>" class="btn-link mar-lft">Create a new account</a>
-      </div> -->
-</div>
-
-<%#= render "devise/shared/links" %>
+      <div class="pad-ver">
+        <a href="<%= new_user_password_path %>" class="btn-link mar-rgt">Forgot password ?</a>
+       <!--  <a href="pages-register.html" class="btn-link mar-lft">Create a new account</a> -->
+      </div>
+    </div>
+    <!--===================================================-->
