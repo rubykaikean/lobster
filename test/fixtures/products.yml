@@ -1,0 +1,36 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  type_id     :integer
+#  description :text
+#  status_id   :integer
+#  phase_id    :integer
+#  slug        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_products_on_phase_id  (phase_id)
+#  index_products_on_slug      (slug) UNIQUE
+#
+
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  type_id: 1
+  description: MyText
+  status_id: 1
+  phase_id: 1
+
+two:
+  name: MyString
+  type_id: 1
+  description: MyText
+  status_id: 1
+  phase_id: 1

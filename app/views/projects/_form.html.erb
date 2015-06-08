@@ -1,0 +1,55 @@
+<div class="cls-content">
+      <div class="cls-content-lg panel">
+        <div class="panel-body">
+          <div class="form-horizontal">
+          <%= form_for(@project) do |f| %>
+
+            <div class="panel-heading">
+                <h3 class="panel-title"><u>New Project</u></h3>
+            </div>
+            <hr>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name:</label>
+                <div class="col-sm-6">
+                  <%= f.text_field :name, :placeholder=>"Enter Name", :class=>"form-control"  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Description:</label>
+                <div class="col-sm-6">
+                  <%= f.text_field :description, :placeholder=>"Enter Description", :class=>"form-control"  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Status:</label>
+                <div class="col-sm-6">
+                  <%= f.text_field :status_id, :class=>"form-control" %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name:</label>
+                <div class="col-sm-6">
+                  <label><%= current_user.company_id rescue'-' %></label>
+                  <%#= f.select :company_id, Company.order(:name).collect {|c| [c.name, c.id]}, {prompt: "Select a Company"}, data: { "native-menu"=>"true", "data-live-search"=>"true", "data-width"=>"100%" }, :class=>"selectpicker" %>
+                </div>
+              </div>
+                 
+                <div class="row">
+                  <div class="col-xs-11 text-left">
+                    <%= f.submit "Submit", :class=>"btn btn-info btn-lg pull-right" %>
+                  </div>
+                  <div class="col-xs-1">
+                    <div class="form-group text-right">
+                    <button class="btn btn-warning btn-lg" type="reset">Reset</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
