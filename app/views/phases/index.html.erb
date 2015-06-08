@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Phases</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Project</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @phases.each do |phase| %>
+      <tr>
+        <td><%= phase.name %></td>
+        <td><%= phase.description %></td>
+        <td><%= phase.status_id %></td>
+        <td><%= phase.project_id %></td>
+        <td><%= link_to 'Show', phase, :class=>"btn btn-small btn-warning" %>
+        <%= link_to 'Edit', edit_phase_path(phase), :class=>"btn btn-small btn-info"  %>
+        <%= link_to 'Destroy', phase, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Phase', new_phase_path %>
