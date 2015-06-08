@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
+  devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
   resources :admins
 
   resources :lots

@@ -23,8 +23,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'ember-rails'
-gem 'ember-source', '~> 1.11.1'
+#gem 'ember-rails'
+#gem 'ember-source', '~> 1.11.1'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0'
 gem "paperclip", "~> 4.2"

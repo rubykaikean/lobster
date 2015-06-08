@@ -40,9 +40,10 @@ class User < ActiveRecord::Base
 
   belongs_to :company
 
-  SUPER_ADMIN = 1
-  ADMIN = 2
-  STAFF = 3
+  validates :display_name, presence: true, uniqueness: true
+
+  ADMIN = 1
+  STAFF = 2
 
   TYPE_OPTIONS = [
     ["Admin", ADMIN],
@@ -70,10 +71,6 @@ class User < ActiveRecord::Base
 
   def domain_name
   	email.split("@").last.split(".").first rescue nil
-  end
-
-  def is_super_admin?
-    type_id == SUPER_ADMIN
   end
 
   def is_admin?

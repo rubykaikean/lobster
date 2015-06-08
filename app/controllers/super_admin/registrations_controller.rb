@@ -1,5 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
-  layout "devise"
+class SuperAdmin::RegistrationsController < Devise::RegistrationsController
 
 	def new
 		# @company = Company.new

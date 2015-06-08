@@ -1,6 +1,6 @@
-class SessionsController < Devise::SessionsController
+class SuperAdmin::SessionsController < Devise::SessionsController
 	prepend_before_action :require_no_authentication, only: [ :new, :create ]
-	#before_filter :configure_permitted_parameters, if: :devise_controller?
+	before_action :configure_permitted_parameters
   # skip_before_action :verify_authenticity_token
   layout "devise"
 
@@ -20,10 +20,10 @@ class SessionsController < Devise::SessionsController
 
   protected
 
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.for(:sign_in) do |u|
-  #     u.permit(:login, :email, :password)
-  #   end
-  # end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_in) do |u|
+      u.permit(:email, :password)
+    end
+  end
 
 end

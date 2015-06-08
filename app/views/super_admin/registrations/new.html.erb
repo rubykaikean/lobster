@@ -49,11 +49,17 @@
         <div class="panel-body">
           <%= render '/companies/form' %>
           <hr>
-          <h3 class="page-header text-overflow"><u>Personal sign up</u></h3>
+          <h3 class="page-header text-overflow"><u>Create an administrator</u></h3>
           <div class="form-group">
             <label for="demo-is-inputnormal" class="col-sm-3 control-label">Email</label>
             <div class="col-sm-6">
               <%= f.email_field :email, autofocus: true, :class=>"form-control", :placeholder => "Email" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="demo-is-inputnormal" class="col-sm-3 control-label">Display name</label>
+            <div class="col-sm-6">
+              <%= f.email_field :display_name, :class=>"form-control", :placeholder => "Display name" %>
             </div>
           </div>
           <div class="form-group">
