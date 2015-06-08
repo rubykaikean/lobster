@@ -23,6 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
 				render :action => "new"
 			end
 		else
+			logger.info "Error company message"
 			flash[:alert] = "Errors.."
 			render :action => "new"
 		end

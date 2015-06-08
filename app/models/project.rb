@@ -26,4 +26,10 @@ class Project < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
+  def self.project_create_phase(phase)
+  	phase.times do |num|
+  		phases.create!(name: "Phase #{num}")
+  	end
+  end
+
 end

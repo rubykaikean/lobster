@@ -1,3 +1,4 @@
+<%#= render :text => params %>
 <div class="cls-content">
       <div class="cls-content-lg panel">
         <div class="panel-body">
@@ -24,31 +25,49 @@
               <div class="form-group">
                 <label class="col-sm-3 control-label">Status:</label>
                 <div class="col-sm-6">
-                  <%= f.text_field :status_id, :class=>"form-control" %>
+                  <% if params[:action] == "new" %>
+                    <%= f.text_field :status_id, :class=>"form-control", :value=>"1" %>
+                  <% else %>
+                    <label class="form-radio form-normal"><input type="radio" value="1" name="status_id"> Status 1</label>
+                    <label class="form-radio form-normal"><input type="radio" value="2" name="status_id"> Status 2</label>
+                  <% end %>
                 </div>
               </div>
 
+              <% if user_signed_in? %>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Name:</label>
                 <div class="col-sm-6">
                   <label><%= current_user.company_id rescue'-' %></label>
+                  <div><%= f.text_field :company_id, :value => current_user.company_id %></div>
                   <%#= f.select :company_id, Company.order(:name).collect {|c| [c.name, c.id]}, {prompt: "Select a Company"}, data: { "native-menu"=>"true", "data-live-search"=>"true", "data-width"=>"100%" }, :class=>"selectpicker" %>
                 </div>
               </div>
-                 
-                <div class="row">
-                  <div class="col-xs-11 text-left">
-                    <%= f.submit "Submit", :class=>"btn btn-info btn-lg pull-right" %>
-                  </div>
-                  <div class="col-xs-1">
-                    <div class="form-group text-right">
-                    <button class="btn btn-warning btn-lg" type="reset">Reset</button>
-                    </div>
+              <% end %>
+
+              <div class="form-group chosen-container chosen-container-multi" stlye="width:100%;">
+                <label class="col-sm-3 control-label">No of Phase:</label>
+                <div class="col-sm-6" class="search-field">
+                  <select data-placeholder="Select a Number", class="form-control" name="project[no_phase]">
+                    <option>Select an option.</option>
+                    <% (0..9).each_with_index do |index| %>
+                      <option><%= index + 1 %></option>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-11 text-left">
+                  <%= f.submit "Submit", :class=>"btn btn-info pull-right" %>
+                </div>
+                <div class="col-xs-1">
+                  <div class="form-group text-right">
+                  <button class="btn btn-warning" type="reset">Reset</button>
                   </div>
                 </div>
+              </div>
             </div>
             <% end %>
-
           </div>
         </div>
       </div>

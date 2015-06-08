@@ -20,7 +20,7 @@ class ProductType < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :name, :use => :slugged
   
-	belongs_to :products
+	belongs_to :product
 
 	validates :name, presence: true, uniqueness: true
 
