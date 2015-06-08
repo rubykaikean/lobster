@@ -1,45 +1,4 @@
 
-<!-- <div class="row">
-  <div class="col-sm-12">
-    <div class="panel">
-      <div class="panel-heading">
-          <h3 class="panel-title">Sign Up</h3>
-      </div>
-      <%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%#= devise_error_messages! %>
-      <div class="form-inline">
-        <div>
-          <%#= render '/companies/form' %>
-        </div>
-
-        <div class="form-group">
-          <%#= f.label :email %><br />
-          <%#= f.email_field :email, autofocus: true %>
-        </div>
-
-        <div class="form-group">
-          <%#= f.label :password %>
-          <%# if @validatable %>
-          <em>(<%#= @minimum_password_length %> characters minimum)</em>
-          <%# end %><br />
-          <%#= f.password_field :password, autocomplete: "off" %>
-        </div>
-
-        <div class="form-group">
-          <%#= f.label :password_confirmation %><br />
-          <%#= f.password_field :password_confirmation, autocomplete: "off" %>
-        </div>
-        <div class="panel-footer text-right">
-          <button class="btn btn-info" type="submit" name="commit" value="Sign Up">Sign Up</button>
-        </div>
-      </div>
-      <%# end %>
-    </div>
-  </div>
-</div> --> <!-- row -->
-
-<%#= render "devise/shared/links" %>
-
 <div class="form-horizontal">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
