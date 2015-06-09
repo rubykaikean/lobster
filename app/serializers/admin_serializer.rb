@@ -24,5 +24,5 @@
 #
 
 class AdminSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :display_name, :email
 end

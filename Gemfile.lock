@@ -242,6 +242,8 @@ GEM
     pg (0.18.1)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
+    puma (2.11.3)
+      rack (>= 1.1, < 2.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -345,6 +347,7 @@ DEPENDENCIES
   minitest-rails-capybara
   paperclip (~> 4.2)
   pg
+  puma
   rails (= 4.2.1)
   rails_email_preview (~> 0.2.29)
   ransack!
