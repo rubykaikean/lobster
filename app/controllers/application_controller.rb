@@ -16,11 +16,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_is_admin?
   def current_user_is_admin?
-    if user_signed_in?
-      current_user.is_admin?
-    else
-      false
-    end
+    current_user && current_user.is_admin?
   end
 
   def authenticate_admin_and_user!

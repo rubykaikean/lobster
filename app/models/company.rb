@@ -47,6 +47,13 @@ class Company < ActiveRecord::Base
     ["Agency", AGENCY]
   ].freeze
 
-
+  def type
+    case type_id
+    when DEVELOPER
+      "Developer"
+    when AGENCY
+      "Agency"
+    end
+  end
 
 end

@@ -15,6 +15,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+
+    @phase = Phase.where("project_id = ?", @project.id)
+    # render :text => @phase.to_json
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -33,13 +36,16 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    # render :text => params[:project][:no_phase].to_i.class
     @project = Project.new(project_params)
-
+    a = params[:project][:no_phase].to_i
     respond_to do |format|
       if @project.save
+        Project.project_create_phase(a)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created }
       else
+        logger.info "Error render :new"
         format.html { render action: 'new' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -63,6 +69,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    # render :text => params
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url }
@@ -70,14 +77,28 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def update_phase
+    project_phase_params.each do |id, content|
+      phase = Phase.find id
+      phase.name = content[:name]
+      phase.status_id = content[:status_id]
+      phase.save!
+    end
+    redirect_to :back, notice: "Phase update successfully."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = Project.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description, :status_id, :company_id)
+    end
+
+    def project_phase_params
+      params.require(:phase).permit!
     end
 end

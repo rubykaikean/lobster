@@ -25,9 +25,19 @@
 									<!--Category name-->
 									<li class="list-header">Components</li>
 						
+						      <% if is_super_admin? %>
+						        <!--Menu list item-->
+										<li>
+											<a href="<%= companies_path %>">
+												<i class="fa fa-briefcase"></i>
+												<span class="menu-title">Client</span>
+												<!-- <i class="arrow"></i> -->
+											</a>
+										</li>
+						      <% end %>
 									<!--Menu list item-->
 									<li>
-										<a href="#">
+										<a href="<%= projects_path %>">
 											<i class="fa fa-briefcase"></i>
 											<span class="menu-title">Project</span>
 											<!-- <i class="arrow"></i> -->
@@ -37,16 +47,29 @@
 									<!--Category name-->
 									<li class="list-header">Management</li>
 						
-									<!--Menu list item-->
-									<li>
-										<a href="<%= users_path %>">
-											<i class="fa fa-plug"></i>
-											<span class="menu-title">
-												User
-												<!-- <span class="label label-mint pull-right">New</span> -->
-											</span>
-										</a>
-									</li>
+									<% if is_super_admin? %>
+									  <!--Menu list item-->
+										<li>
+											<a href="<%= admins_path %>">
+												<i class="fa fa-plug"></i>
+												<span class="menu-title">
+													Admin
+													<!-- <span class="label label-mint pull-right">New</span> -->
+												</span>
+											</a>
+										</li>
+									<% else %>
+										<!--Menu list item-->
+										<li>
+											<a href="<%= users_path %>">
+												<i class="fa fa-plug"></i>
+												<span class="menu-title">
+													User
+													<!-- <span class="label label-mint pull-right">New</span> -->
+												</span>
+											</a>
+										</li>
+									<% end %>
 								</ul>
 
 							</div>

@@ -1,49 +1,105 @@
-<%#= form_for(@company) do |c| %>
-  <h3 class="page-header text-overflow"><u>Company Detail</u></h3>
+<%= form_for(@company, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
+
   <div class="form-group">
-    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Name:</label>
-    <div class="col-sm-6">
-      <%= text_field_tag :name, nil, name: "company[name]" , class: "form-control", :placeholder => "Enter Name"  %>
+    <label class="col-md-3 control-label" for="company_name">Name</label>
+    <div class="col-md-9">
+      <input type="text" id="company_name" name="company[name]" class="form-control" placeholder="Company name" value="<%= @company.name %>">
+      <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
 
   <div class="form-group">
-    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Address</label>
-    <div class="col-sm-6">
-      <%= text_field_tag :address, nil, name: "company[address]" , class: "form-control", :placeholder => "Enter Address" %>
+    <label class="col-md-3 control-label" for="company_registration_number">Registration No</label>
+    <div class="col-md-9">
+      <input type="text" id="company_registration_number" name="company[registration_number]" class="form-control" placeholder="Company registration number" value="<%= @company.registration_number %>">
+      <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
+
+  <!--Textarea-->
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="company_address">Address</label>
+    <div class="col-md-9">
+      <textarea id="company_address" name="company[address]" rows="9" class="form-control" placeholder=""><%= @company.address %></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="company_phone_number">Phone Number</label>
+    <div class="col-md-9">
+      <input type="text" id="company_phone_number" name="company[phone_number]" class="form-control" placeholder="Company phone number" value="<%= @company.phone_number %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="company_fax_number">Fax Number</label>
+    <div class="col-md-9">
+      <input type="text" id="company_fax_number" name="company[fax_number]" class="form-control" placeholder="Company fax number" value="<%= @company.fax_number %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+    <div class="form-group pad-ver">
+      <label class="col-md-3 control-label">Type</label>
+      <div class="col-md-9">
+        <div class="radio">
+
+
+          <!-- Inline radio buttons -->
+         <label class="form-radio form-normal active"><input type="radio" name="company_type_id" <%= @company.type_id == 1 ? "checked" : nil %> value="1"> Developer</label>
+          <label class="form-radio form-normal"><input type="radio" name="company_type_id" <%= @company.type_id == 2 ? "checked" : nil %> value="2"> Agency</label>
+
+        </div>
+      </div>
+    </div>
+
+    <% if @company.new_record? %>
+      <div class="panel-heading">
+        <h3 class="panel-title">Create administrator login</h3>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="company_email">Email</label>
+        <div class="col-md-9">
+          <input type="email" id="company_email" name="company_email" class="form-control" placeholder="email" value="<%= @user.email%>">
+          <!-- <small class="help-block">This is a help text</small> -->
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="company_password">Password</label>
+        <div class="col-md-9">
+          <input type="password" id="company_password" name="company_password" class="form-control" placeholder="password" >
+          <!-- <small class="help-block">This is a help text</small> -->
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="company_password_confirmation">Password Confirmation</label>
+        <div class="col-md-9">
+          <input type="password" id="company_password_confirmation" name="company_password_confirmation" class="form-control" placeholder="password confirmation" >
+          <!-- <small class="help-block">This is a help text</small> -->
+        </div>
+      </div>
+
+    <% end %>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+
+<script type="text/javascript">
   
-  <div class="form-group">
-    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Registration Number</label>
-    <div class="col-sm-6">
-      <%= text_field_tag :registration_number, nil, name: "company[registration_number]" , class: "form-control", :placeholder => "Enter Registration Number" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Phone Number</label>
-    <div class="col-sm-6">
-      <%= text_field_tag :phone_number, nil, name: "company[phone_number]" , class: "form-control", :placeholder => "Enter Phone Number" %>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Fax Number</label>
-    <div class="col-sm-6">
-      <%= text_field_tag :fax_number, nil, name: "company[fax_number]" , class: "form-control", :placeholder => "Enter Fax Number" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="demo-is-inputnormal" class="col-sm-3 control-label">Type</label>
-    <div class="col-sm-6">
-      <label class="form-radio form-normal active"><input type="radio" value="1" name="type_id"> Developer </label>
-      <label class="form-radio form-normal"><input type="radio" value="2" name="type_id"> Agency </label>
-    </div>
-  </div>  
-
-<%# end %>
+  $("#back_btn").click(function(e){
+    e.preventDefault();
+    window.location.href='<%= companies_path %>';
+  });
+</script>
 
 
            

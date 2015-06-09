@@ -1,22 +1,58 @@
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+	
+<h3 class="panel-title"><strong>Projects Detail</strong></h3>
+	<div class="panel">
+		<div class="panel-body">
+			<p>
+			  <strong>Name:</strong>
+			  <%= @project.name %>
+			</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+			<p>
+			  <strong>Description:</strong>
+			  <%= @project.description %>
+			</p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @project.status_id %>
-</p>
+			<p>
+			  <strong>Status:</strong>
+			  <%= @project.status_id %>
+			</p>
 
-<p>
-  <strong>Company:</strong>
-  <%= @project.company_id %>
-</p>
-
-<%#= link_to 'Edit', edit_project_path(@project) %>
-<%#= link_to 'Back', projects_path %>
+			<p>
+			  <strong>Company:</strong>
+			  <%= @project.company_id %>
+			</p>
+		</div>
+	</div>
+<%= link_to "create a phase", new_phase_path(:id => @project.id), :class=>"btn btn-default" %>
+<hr>
+<div class="panel">
+	<%= form_tag update_phase_projects_path do %>
+			<table class="table table-bordered">
+				<tr>
+					<th>No.</th>
+					<th>Name</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+				<% @phase.each_with_index do |p, index| %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td>
+						<%= text_field_tag "phase[#{p.id}][name]", p.name, :class=>"form-control" %>
+					</td>
+					<td>
+						<%= radio_button_tag "phase[#{p.id}][status_id]", 1 %> Avaiable
+						<%= radio_button_tag "phase[#{p.id}][status_id]", 2 %> Pending
+					</td>
+					<td>
+						<%= link_to 'Add Product', new_product_path(:id => p.id), :class=>"btn btn-small btn-default" %>
+						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning " %>
+			      <%= link_to 'Edit', edit_phase_path(p), :class=>"btn btn-small btn-info "  %>
+			    </td>
+					</td>
+				</tr>
+				<% end %>
+			</table>
+			<%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+		<% end %>
+</div>

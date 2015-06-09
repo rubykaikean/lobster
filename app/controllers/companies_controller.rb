@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :authenticate_super_admin!
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies
@@ -24,6 +25,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    @user = User.new
   end
 
   # GET /companies/1/edit
@@ -34,21 +36,32 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
+    @company.type_id = params[:company_type_id]
 
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
-        format.json { render json: @company, status: :created }
+    @user = User.new(email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin")
+
+      if @company.valid? && @user.valid?
+        if @company.save
+          @user.company_id = @company.id
+          @user.save!
+          redirect_to @company, notice: 'Company was successfully created.'
+        else
+          flash.now[:alert] =  @company.errors.full_messages.join("<br>")
+          render action: 'new'
+        end
       else
-        format.html { render action: 'new' }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+        msg = ""
+        msg << @company.errors.full_messages.join("<br>") if @company.errors.any?
+        msg << @user.errors.full_messages.join("<br>") if @user.errors.any?
+        flash.now[:alert] = msg
+        render action: 'new'
       end
-    end
   end
 
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
+    @company.type_id = params[:company_type_id]
     respond_to do |format|
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }

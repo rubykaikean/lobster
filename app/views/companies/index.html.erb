@@ -1,35 +1,64 @@
-<p id="notice"><%= notice %></p>
+<div class="row" id="content_div">
+  <div class="col-lg-7">
 
-  <h1><u>Company List</u><%= link_to 'New Company', new_company_path, :class=>"btn btn-small btn-info pull-right" %></h1>
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="panel-control">
+          <a class="fa fa-question-circle fa-lg fa-fw unselectable add-tooltip" href="#" data-original-title="<h4 class='text-thin'>Information</h4><p style='width:150px'>Click on the client name for more detail.</p>" data-html="true" title=""></a>
+        </div>
+        <h3 class="panel-title">Client</h3>
+      </div>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Registration number</th>
-      <th>Address</th>
-      <th>Phone number</th>
-      <th>Fax number</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+      <div class="panel-body">
+        <div class="pad-btm form-inline">
+          <div class="row">
+            <div class="col-sm-6 table-toolbar-left">
+              <button id="add_client_btn" class="btn btn-purple btn-labeled fa fa-plus">
+                New Client
+              </button>
+              <!-- <div class="btn-group btn-group">
+                <button class="btn btn-default"><i class="fa fa-exclamation-circle"></i></button>
+                <button class="btn btn-default"><i class="fa fa-trash"></i></button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Registration No.</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
 
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= company.registration_number %></td>
-        <td><%= company.address %></td>
-        <td><%= company.phone_number %></td>
-        <td><%= company.fax_number %></td>
-        <td><%= link_to 'Show', company, :class=>"btn btn-small btn-warning" %>
-        <%= link_to 'Edit', edit_company_path(company), :class=>"btn btn-small btn-info" %>
-        <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-small btn-danger" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <tbody>
+              <% @companies.each do |company| %>
+                <tr>
+                  <td><%= company.name %></td>
+                  <td><%= company.registration_number %></td>
+                  <td class="text-center"><%= company.type %></td>
+                  <td class="text-center"><%= link_to 'Show', company, :class=>"btn btn-small btn-warning" %>
+                  <%#= link_to 'Edit', edit_company_path(company), :class=>"btn btn-small btn-info" %>
+                  <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+      </div>
+    </div>
 
-<br>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+  $("#add_client_btn").click(function() {
+    window.location.href='<%= new_company_path %>';
+  });
+</script>
 
 

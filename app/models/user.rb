@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
 
   belongs_to :company
 
-  validates :display_name, presence: true, uniqueness: true
+  validates :display_name, presence: true
+  validates :display_name, uniqueness: { scope: :company_id }
 
   ADMIN = 1
   STAFF = 2
@@ -52,8 +53,7 @@ class User < ActiveRecord::Base
 
   def slug_candidates
   	[ 
-  		slug_name,
-      :display_name
+  		slug_name
   	 ]
   end
 

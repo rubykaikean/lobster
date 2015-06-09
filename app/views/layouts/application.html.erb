@@ -67,7 +67,7 @@
 
 	-->
 	<%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 
 </head>
@@ -95,6 +95,7 @@
 			<!--CONTENT CONTAINER-->
 			<!--===================================================-->
 			<div id="content-container">
+			  <%= render "/layouts/notification"  %>
 				
 				<!--Page Title-->
 				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -850,6 +851,10 @@
 	<!--Specify page [ SAMPLE ]-->
 	<script src="/js/demo/dashboard.js"></script>
 
+  <script type="text/javascript">
+  	vph = $(window).height();
+    $("#content_div").css({"min-height": vph + "px"});
+  </script>
 	
 	<!--
 

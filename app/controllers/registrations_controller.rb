@@ -14,21 +14,6 @@ class RegistrationsController < Devise::RegistrationsController
 		# @company = Company.new(company_params)
 		# @company.type_id = params[:type_id]
 
-		# self.resource = user
-		# if @company.save
-		# 	user.company_id = @company.id
-		# 	if user.save 
-		# 		sign_up(resource_name, resource)
-		# 		redirect_to root_url, notice: "Successfully sign up."
-		# 	else
-		# 		logger.info {resource.errors.full_messages}
-		# 		flash[:alert] = "#{resource.errors.full_messages}"
-		# 		render :action => "new"
-		# 	end
-		# else
-		# 	flash[:alert] = "Errors.."
-		# 	render :action => "new"
-		# end
     raise ActionController::RoutingError.new('Not Found')
   end
 

@@ -1,5 +1,10 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row" id="content_div">
+  <div class="col-lg-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Client detail</h3>
+      </div>
+       <div style="padding: 10px;">
 <p>
   <strong>Name:</strong>
   <%= @company.name %>
@@ -24,6 +29,14 @@
   <strong>Fax number:</strong>
   <%= @company.fax_number %>
 </p>
+<p>
+  <strong>Type:</strong>
+  <%= @company.type %>
+</p>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to 'Edit', edit_company_path(@company), :class=>"btn btn-small btn-warning" %>
+<%= link_to 'Back', companies_path, :class=>"btn btn-small btn-warning" %>
+      </div>
+    </div>
+  </div>
+</div>

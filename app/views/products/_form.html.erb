@@ -1,37 +1,75 @@
-<%= form_for(@product) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-      <% @product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+<div class="cls-content">
+      <div class="cls-content-lg panel">
+        <div class="panel-body">
+          <div class="form-horizontal">
+          <%= form_for(@product) do |f| %>
+
+            <div class="panel-heading">
+              <h3 class="panel-title"><u>New Product</u></h3>
+            </div>
+            <hr>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Phase Name:</label>
+                <div class="col-sm-6">
+                  <%= Phase.find(params[:id]).name %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name:</label>
+                <div class="col-sm-6">
+                  <%= f.text_field :name, :placeholder=>"Enter Name", :class=>"form-control"  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Type:</label>
+                <div class="col-sm-6">
+                  <%= f.radio_button :type_id, 1 %> Landed
+                  <%= f.radio_button :type_id, 2 %> Highrise
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Description:</label>
+                <div class="col-sm-6">
+                  <%= f.text_field :description, :placeholder=>"Enter Description", :class=>"form-control"  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Status:</label>
+                <div class="col-sm-6">
+                  <%= f.text_field :status_id, :class=>"form-control" %>
+                </div>
+              </div>
+
+              <div style="display:none;">
+                    <%= f.text_field :phase_id, :value=> params[:id] %>
+              </div>
+              <!-- <div class="form-group chosen-container chosen-container-multi" stlye="width:100%;">
+                <label class="col-sm-3 control-label">No of Phase:</label>
+                <div class="col-sm-6" class="search-field">
+                  <select data-placeholder="Select a Number", class="form-control" name="project[no_phase]">
+                    <option>Select an option.</option>
+                    <%# (0..9).each_with_index do |index| %>
+                      <option><%#= index + 1 %></option>
+                    <%# end %>
+                  </select>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col-xs-11 text-left">
+                  <%= f.submit "Submit", :class=>"btn btn-info pull-right" %>
+                </div>
+                <div class="col-xs-1">
+                  <div class="form-group text-right">
+                  <button class="btn btn-warning" type="reset">Reset</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :type_id %><br>
-    <%= f.number_field :type_id %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :status_id %><br>
-    <%= f.number_field :status_id %>
-  </div>
-  <div class="field">
-    <%= f.label :phase_id %><br>
-    <%= f.number_field :phase_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
