@@ -45,7 +45,7 @@
 						<%= radio_button_tag "phase[#{p.id}][status_id]", 2 %> Pending
 					</td>
 					<td>
-						<%= link_to 'Add Project', new_project_path(:id => p.id), :class=>"btn btn-small btn-default" %>
+						<%= link_to 'Add Product', new_product_path(:id => p.id), :class=>"btn btn-small btn-default" %>
 						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning " %>
 			      <%= link_to 'Edit', edit_phase_path(p), :class=>"btn btn-small btn-info "  %>
 			    </td>
