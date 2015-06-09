@@ -9,10 +9,17 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  helper_method :is_super_admin?
   def is_super_admin?
-    unless current_user.is_super_admin?
-      flash[:alert] = "Only Super Admin can access the section."
-      redirect_to root_url
+    admin_signed_in? && current_admin
+  end
+
+  helper_method :current_user_is_admin?
+  def current_user_is_admin?
+    if user_signed_in?
+      current_user.is_admin?
+    else
+      false
     end
   end
 
@@ -20,6 +27,13 @@ class ApplicationController < ActionController::Base
     unless user_signed_in? || admin_signed_in?
       flash[:alert] = "You need to sign in first before continue."
       redirect_to new_user_session_path
+    end
+  end
+
+  def authenticate_super_admin!
+    unless admin_signed_in?
+      flash[:alert] = "You need to sign in as supermin before continue."
+      redirect_to new_admin_session_path
     end
   end
 

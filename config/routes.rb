@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions  }
 
   resources :users
+
+  get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   
   root 'dashboard#index'
 

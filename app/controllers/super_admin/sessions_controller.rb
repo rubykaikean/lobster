@@ -20,6 +20,10 @@ class SuperAdmin::SessionsController < Devise::SessionsController
 
   protected
 
+  def after_sign_in_path_for(admin)
+    supermin_board_path
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) do |u|
       u.permit(:email, :password)
