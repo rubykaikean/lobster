@@ -15,6 +15,7 @@ class PhasesController < ApplicationController
   # GET /phases/1
   # GET /phases/1.json
   def show
+    @product = Product.where("phase_id = ?", @phase.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @phase }
@@ -73,7 +74,7 @@ class PhasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_phase
-      @phase = Phase.find(params[:id])
+      @phase = Phase.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
