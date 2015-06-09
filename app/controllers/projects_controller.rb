@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   def show
 
     @phase = Phase.where("project_id = ?", @project.id)
-    #render :text => @phase.to_json
+    # render :text => @phase.to_json
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -69,16 +69,22 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    render :text => params
-    # @project.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to projects_url }
-    #   format.json { head :no_content }
-    # end
+    # render :text => params
+    @project.destroy
+    respond_to do |format|
+      format.html { redirect_to projects_url }
+      format.json { head :no_content }
+    end
   end
 
   def update_phase
-    render :text => params
+    project_phase_params.each do |id, content|
+      phase = Phase.find id
+      phase.name = content[:name]
+      phase.status_id = content[:status_id]
+      phase.save!
+    end
+    redirect_to :back, notice: "Phase update successfully."
   end
 
   private
@@ -90,5 +96,9 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description, :status_id, :company_id)
+    end
+
+    def project_phase_params
+      params.require(:phase).permit!
     end
 end
