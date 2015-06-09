@@ -33,7 +33,7 @@ gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'exception_notification'
 gem 'kaminari'
 gem 'rails_email_preview', '~> 0.2.29'
-
+gem 'annotate', '~> 2.6.6'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -54,7 +54,6 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem "minitest-rails"
-  gem 'annotate', '~> 2.6.6'
 end
 
 group :test do
