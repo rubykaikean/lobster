@@ -7,10 +7,16 @@
           <%= form_for(@product) do |f| %>
 
             <div class="panel-heading">
-              <h3 class="panel-title"><u>New Project</u></h3>
+              <h3 class="panel-title"><u>New Product</u></h3>
             </div>
             <hr>
             <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Phase Name:</label>
+                <div class="col-sm-6">
+                  <%= Phase.find(params[:id]).name %>
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label">Name:</label>
                 <div class="col-sm-6">
@@ -33,16 +39,13 @@
               <div class="form-group">
                 <label class="col-sm-3 control-label">Status:</label>
                 <div class="col-sm-6">
-                  <%# if params[:action] == "new" %>
-                    <%= f.text_field :status_id, :class=>"form-control" %>
-                  <%# else %>
-                    <!-- <label class="form-radio form-normal"><input type="radio" value="1" name="status_id"> Status 1</label>
-                    <label class="form-radio form-normal"><input type="radio" value="2" name="status_id"> Status 2</label> -->
-                  <%# end %>
+                  <%= f.text_field :status_id, :class=>"form-control" %>
                 </div>
               </div>
 
-            
+              <div style="display:none;">
+                    <%= f.text_field :phase_id, :value=> params[:id] %>
+              </div>
               <!-- <div class="form-group chosen-container chosen-container-multi" stlye="width:100%;">
                 <label class="col-sm-3 control-label">No of Phase:</label>
                 <div class="col-sm-6" class="search-field">
