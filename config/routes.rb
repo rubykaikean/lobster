@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :phases
 
-  resources :projects
+  resources :projects do
+    collection do
+      post "update_phase"
+    end
+  end
 
   mount RailsEmailPreview::Engine, at: 'emails'
 

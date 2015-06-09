@@ -15,8 +15,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @phase = Phase.where("project_id = ?", @project.id)
 
+    @phase = Phase.where("project_id = ?", @project.id)
+    #render :text => @phase.to_json
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -74,6 +75,10 @@ class ProjectsController < ApplicationController
     #   format.html { redirect_to projects_url }
     #   format.json { head :no_content }
     # end
+  end
+
+  def update_phase
+    render :text => params
   end
 
   private
