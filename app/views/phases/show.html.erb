@@ -25,8 +25,10 @@
 </div>
 <%= link_to "Create Product", new_product_path(:id => @phase.id), :class=>"btn btn-default" %>
 <hr>
+<%= form_tag update_product_phases_path do %>
 <div class="panel">
-	<%= form_tag do %>
+	<div class="panel-body">
+	<div class="table-responsive">
 			<table class="table table-bordered">
 				<tr>
 					<th>Product</th>
@@ -37,11 +39,32 @@
 				<% @product.each_with_index do |p, index| %>
 				<tr>
 					<td><%= text_field_tag "product[#{p.id}][name]", p.name, :class=>"form-control" %></td>
-					<td><%= p.type_id %></td>
-					<td><%= p.status_id %></td>
+					<td>
+						<label>
+							<input type="radio" name="product[#{p.id}][type_id]" <%= p.type_id == 1 ? "checked" : nil %> value="1">
+							Landed
+		        </label>
+		        <label>
+		        	<input type="radio" name="product[#{p.id}][type_id]" <%= p.type_id == 2 ? "checked" : nil %> value="2">
+		          Highrise
+		        </label>
+					</td>
+					<td>
+						<label>
+							<input type="radio" name="product[#{p.id}][status_id]" <%= p.status_id == 1 ? "checked" : nil %> value="1">
+							Avaiable
+		        </label>
+		        <label>
+		        	<input type="radio" name="product[#{p.id}][status_id]" <%= p.status_id == 2 ? "checked" : nil %> value="2">
+		          Pending
+		        </label>
+						<%#= radio_button_tag "phase[#{p.id}][status_id]", 1 %>
+						<%#= radio_button_tag "phase[#{p.id}][status_id]", 2 %>
+					</td>
 					<td>
 						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning " %>
 			      <%= link_to 'Edit', edit_product_path(p), :class=>"btn btn-small btn-info "  %>
+			      <%= link_to 'Generate Lot', generate_lot_products_path(:id => p.id) ,:class=>"btn btn-small btn-default" %>
 			    </td>
 					</td>
 				</tr>
@@ -49,7 +72,8 @@
 
 				
 			</table>
-			<%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
-		<% end %>
+		</div>
+		<%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+	</div>
 </div>
-
+<% end %>

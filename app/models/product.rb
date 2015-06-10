@@ -30,4 +30,17 @@ class Product < ActiveRecord::Base
 
 	LANDED = 1
 	HIGHRISE = 2
+
+	def product_title
+		"product - #{self.name} - #{product_type}" 
+	end
+
+	def product_type
+		if self.type_id == 1
+			"Landed"
+		elsif self.type_id == 2
+			"Highrise"
+		end
+	end
+
 end

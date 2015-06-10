@@ -25,6 +25,7 @@
 	</div>
 <%= link_to "create a phase", new_phase_path(:id => @project.id), :class=>"btn btn-default" %>
 <hr>
+<h3 class="panel-title"><strong>Phase List</strong></h3>
 <div class="panel">
 	<%= form_tag update_phase_projects_path do %>
 			<table class="table table-bordered">
@@ -47,7 +48,7 @@
 					<td>
 						<%= link_to 'Add Product', new_product_path(:id => p.id), :class=>"btn btn-small btn-default" %>
 						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning " %>
-			      <%= link_to 'Edit', edit_phase_path(p), :class=>"btn btn-small btn-info "  %>
+			      <%#= link_to 'Edit', edit_phase_path(p), :class=>"btn btn-small btn-info "  %>
 			    </td>
 					</td>
 				</tr>

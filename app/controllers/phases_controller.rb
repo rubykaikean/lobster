@@ -71,6 +71,17 @@ class PhasesController < ApplicationController
     end
   end
 
+  def update_product
+    # render :text => params
+    product_phase_params.each do |id, content|
+      product = Product.find id
+      product.name = content[:name]
+      product.type_id = content[:type_id]
+      product.save!
+    end
+    redirect_to :back, notice: "Product update successfully."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_phase
@@ -80,5 +91,9 @@ class PhasesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def phase_params
       params.require(:phase).permit(:name, :description, :status_id, :project_id, :no_phase)
+    end
+
+    def product_phase_params
+      params.require(:product).permit!
     end
 end

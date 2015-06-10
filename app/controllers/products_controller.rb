@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :generate_lot]
 
   # GET /products
   # GET /products.json
@@ -70,6 +70,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def generate_lot
+    # render :text => params
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -80,4 +85,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :type_id, :description, :status_id, :phase_id)
     end
+
+   
 end

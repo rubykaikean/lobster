@@ -1,35 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-7">
 
-<h1>Listing Products</h1>
+      <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-control">
+                <a class="fa fa-question-circle fa-lg fa-fw unselectable add-tooltip" href="#" data-original-title="<h4 class='text-thin'>Information</h4><p style='width:150px'>Click on the project name for more detail.</p>" data-html="true" title=""></a>
+              </div>
+              <h3 class="panel-title">Products</h3>
+        </div>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Phase</th>
-      <th></th>
-    </tr>
-  </thead>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @products.each do |product| %>
+                  <tr>
+                    <td><%= link_to(product.name, product) %></td>
+                    <td><%= product.type_id %></td>
+                    <td><%= product.description %></td>
+                    <td><%= product.status_id %></td>
+                    <td>
+                      <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= edit_product_path(product) %>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
+                      
+                      <a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%= product_path(product) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div> <!-- table responsive-->
+        </div>
+      </div>
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.type_id %></td>
-        <td><%= product.description %></td>
-        <td><%= product.status_id %></td>
-        <td><%= product.phase_id %></td>
-        <td><%= link_to 'Show', product, :class=>"btn btn-small btn-warning" %>
-        <%= link_to 'Edit', edit_product_path(product), :class=>"btn btn-small btn-info" %>
-        <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_product_path %>
+  </div>
+</div>
+ 

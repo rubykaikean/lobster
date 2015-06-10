@@ -38,10 +38,10 @@ class ProjectsController < ApplicationController
   def create
     # render :text => params[:project][:no_phase].to_i.class
     @project = Project.new(project_params)
-    a = params[:project][:no_phase].to_i
+    num_phase = params[:project][:no_phase].to_i
     respond_to do |format|
       if @project.save
-        Project.project_create_phase(a)
+        @project.project_create_phase(num_phase)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created }
       else

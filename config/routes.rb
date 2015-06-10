@@ -7,9 +7,17 @@ Rails.application.routes.draw do
 
   resources :product_types
 
-  resources :products
+  resources :products do 
+    collection do 
+      get "generate_lot"
+    end
+  end
 
-  resources :phases
+  resources :phases do 
+    collection do 
+      post "update_product"
+    end
+  end
 
   resources :projects do
     collection do

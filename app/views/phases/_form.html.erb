@@ -1,47 +1,57 @@
+<%= form_for(@phase, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
-<!-- <div class="cls-content"> -->
-  <div class="cls-content-lg panel">
-    <div class="panel-body">
-      <div class="form-horizontal">
-        <%= form_for(@phase) do |f| %>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">Project Name:</label>
-                <div class="col-sm-6">
-                  <%= Project.find(params[:id]).name %>
-                </div>
-              </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Name:</label>
-              <div class="col-sm-6">
-                <%= f.text_field :name, :placeholder=>"Enter Name", :class=>"form-control" %>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Description:</label>
-              <div class="col-sm-6">
-                <%= f.text_field :description, :placeholder=>"Enter Description", :class=>"form-control" %>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">Status:</label>
-              <div class="col-sm-6">
-              <% if params[:action] == "new" %>
-                <%= f.text_field :status_id, :class=>"form-control", :value=>"1" %>
-              <% else %>
-                <label class="form-radio form-normal"><input type="radio" value="1" name="status_id">Variable</label>
-                <label class="form-radio form-normal"><input type="radio" value="2" name="status_id">Pending</label>
-              <% end %>
-              </div>
-            </div>
-          <div style="display:none;"><%= f.number_field :project_id, :value=> params[:id], :class=>"form-control" %>
-          </div>
-          <br>
-          <%= f.submit "Submit Phase", :class=>"btn btn-default" %>
-        <% end %>
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="project_name">Project Name :</label>
+      <div class="col-md-9">
+        <%= Project.find(params[:id]).name %>
+        <div style="display:none;">
+        <%= f.number_field :project_id, :value=> params[:id], :class=>"form-control" %>
+        </div>
       </div>
     </div>
-  </div>
-<!-- </div> -->
+
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="phase_name">Phase Name: </label>
+      <div class="col-md-9">
+        <input type="text" id="phase_name" name="phase[name]" class="form-control" placeholder="Phase name" value="<%= @phase.name %>">
+        <!-- <small class="help-block">This is a help text</small> -->
+      </div>
+    </div>
+        
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="phase_description">Description: </label>
+      <div class="col-md-9">
+        <input type="text" id="phase_description" name="phase[description]" class="form-control" placeholder="Phase description" value="<%= @phase.description %>">
+        <!-- <small class="help-block">This is a help text</small> -->
+      </div>
+    </div>
+
+    <div class="form-group pad-ver">
+      <label class="col-md-3 control-label">Status</label>
+      <div class="col-md-9">
+        <div class="radio">
+          <!-- Inline radio buttons -->
+          <label class="form-radio form-normal active"><input type="radio" name="phase_status_id" <%= @phase.status_id == 1 ? "checked" : nil %> value="1">Variable</label>
+          <label class="form-radio form-normal"><input type="radio" name="phase_status_id" <%= @phase.status_id == 2 ? "checked" : nil %> value="2"> Pending</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+  
+  $("#back_btn").click(function(e){
+    e.preventDefault();
+    window.location.href='<%= phases_path %>';
+  });
+</script>
+      
