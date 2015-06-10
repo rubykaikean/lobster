@@ -1,0 +1,51 @@
+<div class="row" id="content_div">
+	<div class="col-lg-6">
+		<div class="panel">
+			<div class="panel-heading">
+				<h3 class="panel-title"><%= @product.product_title %></h3>
+			</div>
+
+			<div class="panel-body">
+			<%= form_tag generate_lot_products_path do %>
+			
+				<div class="form-group">
+			    <label class="col-md-3 control-label" for="lob_no">No. of Lot to Generate: </label>
+			    <div class="col-md-9">
+			      <%= text_field_tag "lob_no", class: "form-control" %>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label class="col-md-3 control-label" for="lob_type">Type: </label>
+			    <div class="col-md-9">
+			      <%= radio_button_tag "lob_type", 1 ,:class=>"form-control" %>
+			      <%= radio_button_tag "lob_type", 2 ,:class=>"form-control" %>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label class="col-md-3 control-label" for="lob_type">Prepend Title: </label>
+			    <div class="col-md-9">
+			      <%= text_field_tag "prepend_title", :class=>"form-control" %>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label class="col-md-3 control-label" for="lob_type">Starting Number: </label>
+			    <div class="col-md-9">
+			      <%= text_field_tag "prepend_title", :class=>"form-control" %>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label class="col-md-12 control-label" for="lob_type">
+			    	Prepend Title will be added into the name of each lot with the number when generate.
+			    </label>
+			  </div>
+
+			  <%= submit_tag "Generate Lot" %>
+			<% end %>
+			</div>
+    </div>
+  </div>
+</div>
