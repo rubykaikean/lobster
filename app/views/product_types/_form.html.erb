@@ -1,29 +1,44 @@
-<%= form_for(@product_type) do |f| %>
-  <% if @product_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product_type.errors.count, "error") %> prohibited this product_type from being saved:</h2>
+<%= form_for(@product_type, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
-      <ul>
-      <% @product_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_type_product_id">Product</label>
+    <div class="col-md-9">
+      <%= Product.find(params[:id]).name %>
+      <input type="text" name="product_type[product_id]" value="<%= params[:id] %>" style="display:none;"></input>
+      <input type="text" name="phase_id" value="<%= params[:phase_id] %>" style="display:none;"></input>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_type_name">Name</label>
+    <div class="col-md-9">
+      <input type="text" id="product_type_name" name="product_type[name]" class="form-control" placeholder="Product Type name" value="<%= @product_type.name %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_type_description">Description</label>
+    <div class="col-md-9">
+      <input type="text" id="product_type_description" name="product_type[description]" class="form-control" placeholder="Product Type description" value="<%= @product_type.name %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :product_id %><br>
-    <%= f.number_field :product_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        </div>
+      </div>
+    </div>
 <% end %>
+
+<script type="text/javascript">
+  
+  $("#back_btn").click(function(e){
+    e.preventDefault();
+    window.location.href='<%= phase_path(params[:phase_id]) %>';
+  });
+</script>
