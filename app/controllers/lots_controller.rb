@@ -4,6 +4,7 @@ class LotsController < ApplicationController
   # GET /lots
   # GET /lots.json
   def index
+    @product = Product.find(params[:product_id])
     @lots = Lot.all
 
     respond_to do |format|
@@ -15,6 +16,7 @@ class LotsController < ApplicationController
   # GET /lots/1
   # GET /lots/1.json
   def show
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @lot }

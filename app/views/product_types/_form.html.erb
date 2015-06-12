@@ -3,9 +3,9 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_type_product_id">Product</label>
     <div class="col-md-9">
-      <%= Product.find(params[:id]).name %>
-      <input type="text" name="product_type[product_id]" value="<%= params[:id] %>" style="display:none;"></input>
-      <input type="text" name="phase_id" value="<%= params[:phase_id] %>" style="display:none;"></input>
+      <%= Product.find(id).name %>
+      <input type="text" name="product_type[product_id]" value="<%= id %>" style="display:none;"></input>
+      <!-- <input type="text" name="phase_id" value="<%= params[:phase_id] %>" style="display:none;"></input> -->
     </div>
   </div>
 
@@ -37,8 +37,8 @@
 
 <script type="text/javascript">
   
-  $("#back_btn").click(function(e){
-    e.preventDefault();
-    window.location.href='<%= phase_path(params[:phase_id]) %>';
-  });
+//   $("#back_btn").click(function(e){
+//     e.preventDefault();
+//     window.location.href='<%#= phase_path(params[:phase_id]) %>';
+//   });
 </script>

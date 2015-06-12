@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Lots</h1>
 
 <table>
   <thead>
@@ -8,7 +5,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Product</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -18,15 +15,13 @@
         <td><%= lot.name %></td>
         <td><%= lot.description %></td>
         <td><%= lot.product_id %></td>
-        <td><%= link_to 'Show', lot %></td>
-        <td><%= link_to 'Edit', edit_lot_path(lot) %></td>
-        <td><%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Show', lot %>
+          <%= link_to 'Edit', edit_lot_path(lot) %>
+          <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Lot', new_lot_path %>
 

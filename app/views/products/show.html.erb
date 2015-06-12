@@ -27,12 +27,14 @@
       </p>
     </div>
   </div>
-  <%= link_to "Create Lot", new_lot_path(:id => @product.id), :class=>"btn btn-default" %>
-  <%= link_to "Lot List", lot_path(:id => @product.id), :class=>"btn btn-default" %>
+  <%= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
+  <button data-target="#generate_lot" data-toggle="modal" class="btn btn-primary">Generate Lot</button>
+  <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Product Type</button>
   <hr>
 
   <h3 class="panel-title"><strong>Product Types List</strong></h3>
   <div class="panel">
+    <div class="panel-body">
   <%= form_tag do %>
       <table class="table table-bordered">
         <tr>
@@ -47,12 +49,57 @@
           <td>
             <%= text_field_tag "product[#{p.id}][name]", p.name, :class=>"form-control" %>
           </td>
-          <td></td>
-          <td></td>
+          <td>
+            <%= text_field_tag "product[#{p.id}][description]", p.description, :class=>"form-control" %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', product_type_path(p, :product_id => @product.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
           </td>
         </tr>
         <% end %>
       </table>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
     <% end %>
+  </div>
+
+
+
+  <div class="modal fade" id="new_product_type" role="dialog" tabindex="-1" aria-labelledby="new_product_type" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Product Type</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "/product_types/form", :id => @product.id  %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="generate_lot" role="dialog" tabindex="-1" aria-labelledby="generate_lot" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Generate Lot (<%= @product.product_title %>)</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "/products/generate_lot", :product_id => @product.id  %>
+        </div>
+      </div>
+    </div>
   </div>

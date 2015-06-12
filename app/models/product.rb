@@ -32,15 +32,27 @@ class Product < ActiveRecord::Base
 	HIGHRISE = 2
 
 	def product_title
-		"product - #{self.name} - #{product_type}" 
+		"#{self.name} - #{product_type}" 
 	end
 
 	def product_type
-		if self.type_id == 1
+		if self.type_id == LANDED
 			"Landed"
-		elsif self.type_id == 2
+		elsif self.type_id == HIGHRISE
 			"Highrise"
 		end
+	end
+
+	def self.auto_create_lot(product)
+		product[:lot_no].to_i.times do |p|
+			product[:start_number]
+			p = p + 1
+			# lots.create!(name: "#{product[:prepend_title]}-#{product[:start_number]}", product_id: product[:product_id])
+		end
+		product.times do |p, index|
+			puts index + 1
+		end
+
 	end
 
 end

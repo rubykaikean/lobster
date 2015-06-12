@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :product_types
 
   resources :products do 
-    collection do 
-      get "generate_lot"
+    collection do
+      post "create_lot"
     end
   end
 
