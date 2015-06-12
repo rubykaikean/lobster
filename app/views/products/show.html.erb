@@ -28,33 +28,27 @@
     </div>
   </div>
   <%= link_to "Create Lot", new_lot_path(:id => @product.id), :class=>"btn btn-default" %>
+  <%= link_to "Lot List", lot_path(:id => @product.id), :class=>"btn btn-default" %>
   <hr>
 
-  <h3 class="panel-title"><strong>Lots List</strong></h3>
+  <h3 class="panel-title"><strong>Product Types List</strong></h3>
   <div class="panel">
   <%= form_tag do %>
       <table class="table table-bordered">
         <tr>
           <th>No.</th>
           <th>Name</th>
-          <th>Status</th>
+          <th>Desription</th>
           <th>Action</th>
         </tr>
-        <% @product.lots.each_with_index do |p, index| %>
+        <% @product.product_types.each_with_index do |p, index| %>
         <tr>
           <td><%= index + 1 %></td>
           <td>
-            <%#= text_field_tag "phase[#{p.id}][name]", p.name, :class=>"form-control" %>
+            <%= text_field_tag "product[#{p.id}][name]", p.name, :class=>"form-control" %>
           </td>
-          <td>
-            <%#= radio_button_tag "phase[#{p.id}][status_id]", 1 %> 
-            <%#= radio_button_tag "phase[#{p.id}][status_id]", 2 %> 
-          </td>
-          <td>
-            <%#= link_to 'Add Product', new_product_path(:id => p.id), :class=>"btn btn-small btn-default" %>
-            <%#= link_to 'Detail', p, :class=>"btn btn-small btn-warning " %>
-            <%#= link_to 'Edit', edit_phase_path(p), :class=>"btn btn-small btn-info "  %>
-          </td>
+          <td></td>
+          <td></td>
           </td>
         </tr>
         <% end %>

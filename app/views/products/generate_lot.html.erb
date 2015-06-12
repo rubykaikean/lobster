@@ -6,41 +6,45 @@
 			</div>
 
 			<div class="panel-body">
-			<%= form_tag generate_lot_products_path do %>
+			<%= form_tag generate_lot_products_path, :class => 'panel-body form-horizontal form-padding' do %>
 			
 				<div class="form-group">
 			    <label class="col-md-3 control-label" for="lob_no">No. of Lot to Generate: </label>
 			    <div class="col-md-9">
-			      <%= text_field_tag "lob_no", class: "form-control" %>
+			      <%= text_field_tag "lob_no",nil, class: "form-control" %>
 			    </div>
 			  </div>
 
-			  <div class="form-group">
-			    <label class="col-md-3 control-label" for="lob_type">Type: </label>
-			    <div class="col-md-9">
-			      <%= radio_button_tag "lob_type", 1 ,:class=>"form-control" %>
-			      <%= radio_button_tag "lob_type", 2 ,:class=>"form-control" %>
-			    </div>
-			  </div>
+			  <div class="form-group pad-ver">
+      <label class="col-md-3 control-label">Type</label>
+      <div class="col-md-9">
+          <!-- Inline radio buttons -->
+        <select class="selectpicker">
+					<option>Select An Option</option>
+					<% @ProductType.order(:name).each do |f| %>
+					<option value="<%= f.id %>"><%= f.name %></option>
+					<% end %>
+				</select>
+      </div>
+    </div>
 
 			  <div class="form-group">
 			    <label class="col-md-3 control-label" for="lob_type">Prepend Title: </label>
 			    <div class="col-md-9">
-			      <%= text_field_tag "prepend_title", :class=>"form-control" %>
+			      <%= text_field_tag "prepend_title", nil, class:"form-control" %>
 			    </div>
 			  </div>
 
 			  <div class="form-group">
 			    <label class="col-md-3 control-label" for="lob_type">Starting Number: </label>
 			    <div class="col-md-9">
-			      <%= text_field_tag "prepend_title", :class=>"form-control" %>
+			      <%= text_field_tag "prepend_title", nil, class:"form-control" %>
 			    </div>
 			  </div>
 
 			  <div class="form-group">
-			    <label class="col-md-12 control-label" for="lob_type">
-			    	Prepend Title will be added into the name of each lot with the number when generate.
-			    </label>
+			    <label class="col-md-3 control-label" for="lob_type"></label>
+			    <div class="cl-md-9">Prepend Title will be added into the name of each lot with the number when generate.</div>
 			  </div>
 
 			  <%= submit_tag "Generate Lot" %>

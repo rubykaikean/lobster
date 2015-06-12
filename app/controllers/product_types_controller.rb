@@ -34,10 +34,10 @@ class ProductTypesController < ApplicationController
   # POST /product_types.json
   def create
     @product_type = ProductType.new(product_type_params)
-
+    
     respond_to do |format|
       if @product_type.save
-        format.html { redirect_to @product_type, notice: 'Product type was successfully created.' }
+        format.html { redirect_to phase_path(params[:phase_id]), notice: 'Product type was successfully created.' }
         format.json { render json: @product_type, status: :created }
       else
         format.html { render action: 'new' }

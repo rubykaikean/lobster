@@ -24,6 +24,7 @@
 	</div>
 </div>
 <%= link_to "Create Product", new_product_path(:id => @phase.id), :class=>"btn btn-default" %>
+
 <hr>
 <%= form_tag update_product_phases_path do %>
 <div class="panel">
@@ -40,14 +41,12 @@
 				<tr>
 					<td><%= text_field_tag "product[#{p.id}][name]", p.name, :class=>"form-control" %></td>
 					<td>
-						<label>
-							<input type="radio" name="product[#{p.id}][type_id]" <%= p.type_id == 1 ? "checked" : nil %> value="1">
-							Landed
-		        </label>
-		        <label>
-		        	<input type="radio" name="product[#{p.id}][type_id]" <%= p.type_id == 2 ? "checked" : nil %> value="2">
-		          Highrise
-		        </label>
+						<select class="selectpicker">
+							<option>Select An Option</option>
+							<% ProductType.where("product_id = ?", p.id).each do |t| %>
+								<option value="<%= t.id %>"><%= t.name %></option>
+							<% end %>
+						</select>
 					</td>
 					<td>
 						<label>
@@ -58,12 +57,10 @@
 		        	<input type="radio" name="product[#{p.id}][status_id]" <%= p.status_id == 2 ? "checked" : nil %> value="2">
 		          Pending
 		        </label>
-						<%#= radio_button_tag "phase[#{p.id}][status_id]", 1 %>
-						<%#= radio_button_tag "phase[#{p.id}][status_id]", 2 %>
 					</td>
 					<td>
-						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning " %>
-			      <%= link_to 'Edit', edit_product_path(p), :class=>"btn btn-small btn-info "  %>
+						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning" %>
+						<%= link_to "Create Type", new_product_type_path(:id => p.id, :phase_id => @phase.id), :class=>"btn btn-small btn-info" %>
 			      <%= link_to 'Generate Lot', generate_lot_products_path(:id => p.id) ,:class=>"btn btn-small btn-default" %>
 			    </td>
 					</td>
