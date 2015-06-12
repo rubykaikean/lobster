@@ -15,6 +15,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product_type = ProductType.new
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
@@ -24,6 +26,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+
   end
 
   # GET /products/1/edit
@@ -70,9 +73,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  def generate_lot
-    # render :text => params
-    
+  def create_lot
+    render :text => params
+    # Product.auto_create_lot(product_params)
+    # redirect_to product_path(:id => params[:product][:product_id])
   end
 
   private

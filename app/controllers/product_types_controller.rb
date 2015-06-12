@@ -15,6 +15,7 @@ class ProductTypesController < ApplicationController
   # GET /product_types/1
   # GET /product_types/1.json
   def show
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product_type }
@@ -34,10 +35,10 @@ class ProductTypesController < ApplicationController
   # POST /product_types.json
   def create
     @product_type = ProductType.new(product_type_params)
-    
+
     respond_to do |format|
       if @product_type.save
-        format.html { redirect_to phase_path(params[:phase_id]), notice: 'Product type was successfully created.' }
+        format.html { redirect_to product_path(:id => params[:product_type][:product_id] ), notice: 'Product type was successfully created.' }
         format.json { render json: @product_type, status: :created }
       else
         format.html { render action: 'new' }
@@ -63,9 +64,10 @@ class ProductTypesController < ApplicationController
   # DELETE /product_types/1
   # DELETE /product_types/1.json
   def destroy
+    product_id = params[:product_id]
     @product_type.destroy
     respond_to do |format|
-      format.html { redirect_to product_types_url }
+      format.html { redirect_to product_path(:id => product_id)}
       format.json { head :no_content }
     end
   end
@@ -73,7 +75,7 @@ class ProductTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_type
-      @product_type = ProductType.find(params[:id])
+      @product_type = ProductType.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
