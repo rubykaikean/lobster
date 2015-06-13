@@ -16,20 +16,20 @@
     </div>
 
     <div class="form-group pad-ver">
-      <label class="col-md-3 control-label">Status</label>
+      <label class="col-md-3 control-label">Status :</label>
       <div class="col-md-9">
         <div class="radio">
-        <label class="form-radio form-normal active"><input type="radio" name="project_status_id" <%= @project.status_id == 1 ? "checked" : nil %> value="1">Status 1
+        <label class="form-radio form-normal active"><input type="radio" name="project_status_id" <%= @project.status_id == 1 ? "checked" : nil %> value="1">Active
         </label>
         <label class="form-radio form-normal"><input type="radio" name="project_status_id" <%= @project.status_id == 2 ? "checked" : nil %> value="2">
-          Status 2
+        Suspended
         </label>
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="project_description">No.:</label>
+      <label class="col-sm-3 control-label" for="project_description">No. of phase:</label>
       <div class="col-sm-9">
         <select data-placeholder="Select a Number", class="form-control" name="project[no_phase]">
           <option>Select an option.</option>
@@ -41,15 +41,15 @@
     </div>
 
     <% if user_signed_in? %>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Name:</label>
-        <div class="col-sm-6">
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Name:</label>
+      <div class="col-sm-6">
           <label><%= current_user.company_id rescue'-' %></label>
           <div><%= f.text_field :company_id, :value => current_user.company_id %></div>
-          <%#= f.select :company_id, Company.order(:name).collect {|c| [c.name, c.id]}, {prompt: "Select a Company"}, data: { "native-menu"=>"true", "data-live-search"=>"true", "data-width"=>"100%" }, :class=>"selectpicker" %>
         </div>
-      </div>
+    </div>
     <% end %>
+    
 
     
     <div class="panel-footer">

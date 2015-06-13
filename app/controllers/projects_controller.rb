@@ -77,7 +77,19 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def update_project
+    # render :text => params
+    project_params.each do |id, content|
+      project = Project.find id
+      project.name = content[:name]
+      project.status_id = content[:status_id]
+      project.update!
+    end
+    redirect_to :back, notice: "Product update successfully."
+  end
+
   def update_phase
+    # render :text => params
     project_phase_params.each do |id, content|
       phase = Phase.find id
       phase.name = content[:name]
@@ -101,4 +113,5 @@ class ProjectsController < ApplicationController
     def project_phase_params
       params.require(:phase).permit!
     end
+
 end

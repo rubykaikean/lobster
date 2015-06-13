@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     collection do
+      post "update_project"
       post "update_phase"
     end
   end
