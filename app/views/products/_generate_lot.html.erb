@@ -1,0 +1,55 @@
+
+		<div class="panel">
+
+			<div class="panel-body">
+			<%= form_tag create_lot_products_path, :class => 'panel-body form-horizontal form-padding' do %>
+			
+				<div class="form-group">
+			    <label class="col-md-3 control-label" for="lot_no">No. of Lot to Generate: </label>
+			    <div class="col-md-9">
+			    	<input type="text" name="product[product_id]" value="<%= product_id %>" style="display:none;"></input>
+			      <%= text_field_tag "product[lot_no]",nil, class: "form-control" %>
+			    </div>
+			  </div>
+
+			  <div class="form-group pad-ver">
+      <label class="col-md-3 control-label">Type</label>
+      <div class="col-md-9">
+          <!-- Inline radio buttons -->
+        <select class="selectpicker" name="product[type_id]">
+					<option>Select An Option</option>
+					<option value="1">Landed</option>
+					<option value="2">Highrise</option>
+				</select>
+      </div>
+    </div>
+
+			  <div class="form-group">
+			    <label class="col-md-3 control-label" for="lob_type">Prepend Title: </label>
+			    <div class="col-md-9">
+			      <%= text_field_tag "product[prepend_title]", nil, class: "form-control" %>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label class="col-md-3 control-label" for="lob_type">Starting Number: </label>
+			    <div class="col-md-9">
+			    	<%= number_field_tag "product[start_number]", nil, class: "form-control" %>
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <div class="cl-md-12">Prepend Title will be added into the name of each lot with the number when generate.</div>
+			  </div>
+
+			  <div class="panel-footer">
+			    <div class="row">
+			      <div class="col-sm-9 col-sm-offset-3">
+			        <button class="btn btn-info btn-labeled fa fa-user fa-lg" name="commit" type="submit">Generate Lot</button>
+			        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+			      </div>
+			    </div>
+			  </div>
+			<% end %>
+			</div>
+    </div>

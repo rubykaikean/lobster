@@ -1,0 +1,28 @@
+<%= form_for(@company_setting, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="company_setting_name">Company Name:</label>
+    <div class="col-md-9">
+      <!-- <%#= Company.find(params[:company_id]).name %>
+      <input type="text" name="company_setting[name]" class="form-control" value="<%#= params[:company_id] %>" style="display:none;"> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="company_setting_allow_multiple_booking">Allow Multiple Booking</label>
+    <div class="col-md-9">
+      <label class="form-checkbox form-normal form-primary active">
+        <input type="checkbox" id="company_setting_allow_multiple_booking" name="company[allow_multiple_booking]" value="<%= @company_setting.allow_multiple_booking %>"> 
+      </label>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        </div>
+      </div>
+    </div>
+<% end %>
