@@ -34,6 +34,7 @@ class ProductTypesController < ApplicationController
   # POST /product_types
   # POST /product_types.json
   def create
+    # render :text => params
     @product_type = ProductType.new(product_type_params)
 
     respond_to do |format|

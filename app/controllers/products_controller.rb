@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :generate_lot]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -74,9 +74,10 @@ class ProductsController < ApplicationController
   end
 
   def create_lot
-    render :text => params
-    # Product.auto_create_lot(product_params)
-    # redirect_to product_path(:id => params[:product][:product_id])
+    # render :text => lot_params
+    @product = Product.find(lot_params[:product_id])
+    @product.auto_create_lot(lot_params)
+    redirect_to product_path(@product)
   end
 
   private
@@ -90,5 +91,8 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:name, :type_id, :description, :status_id, :phase_id)
     end
 
+    def lot_params
+      params.require(:product).permit!
+    end
    
 end

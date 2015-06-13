@@ -20,9 +20,9 @@ class Lot < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :name, :use => :slugged
 
-	belongs_to :product_id
+	belongs_to :product
 
-	validates :name, presence: true, uniqueness: true
+	# validates :name, presence: true, uniqueness: true
 
 
 end

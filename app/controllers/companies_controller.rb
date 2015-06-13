@@ -16,6 +16,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+
+    # @company_setting = CompanySetting.where("company_id = ?", params[:id]).first
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @company }
@@ -83,6 +85,17 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def update_company_setting
+    # render :text => params
+    company_setting_id = CompanySetting.where("company_id = ?", setting_params[:company_id]).first
+    if company_setting_id.present?
+      company_setting_id.update(:allow_multiple_booking => setting_params[:allow_multiple_booking], :company_id => setting_params[:company_id] )      
+    else
+      CompanySetting.create!(:allow_multiple_booking => setting_params[:allow_multiple_booking], :company_id => setting_params[:company_id])
+    end
+    redirect_to company_path(setting_params[:company_id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
@@ -91,6 +104,10 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :registration_number, :address, :phone_number, :fax_number, :type_id, :slug)
+      params.require(:company).permit(:name, :registration_number, :address, :phone_number, :fax_number, :type_id, :parent_id,:slug)
+    end
+
+    def setting_params
+      params.require(:company_setting).permit!
     end
 end

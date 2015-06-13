@@ -57,7 +57,7 @@
 						  <% Company.all.each do |company| %>
 								<tr>
 									<td><%= link_to(company.name, company) %></td>
-									<td class="text-center"><span class="label label-table label-success"><%= company.status_id %></span></td>
+									<td class="text-center"><span class="label label-table label-success"><%= company.try(:status_id) %></span></td>
 									<td class="text-right">
 										<a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= edit_company_path(company) %>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
 										<a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%= company_path(company) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a>
