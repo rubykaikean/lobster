@@ -43,16 +43,14 @@ class Product < ActiveRecord::Base
 		end
 	end
 
-	def self.auto_create_lot(product)
-		product[:lot_no].to_i.times do |p|
-			product[:start_number]
-			p = p + 1
-			# lots.create!(name: "#{product[:prepend_title]}-#{product[:start_number]}", product_id: product[:product_id])
+	def auto_create_lot(lot)
+		title = lot[:prepend_title]
+		num = lot[:start_number].to_i
+		lot[:lot_no].to_i.times do |p|
+			
+			lots.create!(name: "#{title}-#{num}")
+			num += 1
 		end
-		product.times do |p, index|
-			puts index + 1
-		end
-
 	end
 
 end

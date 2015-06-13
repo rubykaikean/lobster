@@ -16,10 +16,12 @@
 #  logo_file_size      :integer
 #  logo_updated_at     :datetime
 #  slug                :string
+#  parent_id           :integer
 #
 # Indexes
 #
-#  index_companies_on_slug  (slug) UNIQUE
+#  index_companies_on_parent_id  (parent_id)
+#  index_companies_on_slug       (slug) UNIQUE
 #
 
 class Company < ActiveRecord::Base
@@ -27,9 +29,11 @@ class Company < ActiveRecord::Base
   friendly_id :name, :use => :slugged
 
   validates :name, presence: true, uniqueness: true
+  # validates :display_name, uniqueness: { scope: :company_id }
 
   has_many :users
   has_many :projects
+  has_one :company_setting
 
   has_attached_file :logo, 
           #:styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",

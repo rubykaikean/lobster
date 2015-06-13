@@ -16,10 +16,12 @@
 #  logo_file_size      :integer
 #  logo_updated_at     :datetime
 #  slug                :string
+#  parent_id           :integer
 #
 # Indexes
 #
-#  index_companies_on_slug  (slug) UNIQUE
+#  index_companies_on_parent_id  (parent_id)
+#  index_companies_on_slug       (slug) UNIQUE
 #
 
 class CompanySerializer < ActiveModel::Serializer

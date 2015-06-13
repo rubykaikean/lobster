@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609183549) do
+ActiveRecord::Schema.define(version: 20150613041458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,20 @@ ActiveRecord::Schema.define(version: 20150609183549) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "slug"
+    t.integer  "parent_id"
   end
 
+  add_index "companies", ["parent_id"], name: "index_companies_on_parent_id", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
+
+  create_table "company_settings", force: :cascade do |t|
+    t.integer  "company_id"
+    t.boolean  "allow_multiple_booking"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "company_settings", ["company_id"], name: "index_company_settings_on_company_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -131,6 +142,24 @@ ActiveRecord::Schema.define(version: 20150609183549) do
 
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
+
+  create_table "sales", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "product_id"
+    t.integer  "lot_unit_id"
+    t.integer  "phase_id"
+    t.integer  "user_id"
+    t.integer  "status_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sales", ["lot_unit_id"], name: "index_sales_on_lot_unit_id", using: :btree
+  add_index "sales", ["phase_id"], name: "index_sales_on_phase_id", using: :btree
+  add_index "sales", ["product_id"], name: "index_sales_on_product_id", using: :btree
+  add_index "sales", ["project_id"], name: "index_sales_on_project_id", using: :btree
+  add_index "sales", ["status_id"], name: "index_sales_on_status_id", using: :btree
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "display_name"
