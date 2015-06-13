@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @company_setting.company_id %>
+</p>
+
+<p>
+  <strong>Allow multple booking:</strong>
+  <%= @company_setting.allow_multple_booking %>
+</p>
+
+<%= link_to 'Edit', edit_company_setting_path(@company_setting) %> |
+<%= link_to 'Back', company_settings_path %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Company Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Allow multiple booking</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company_settings.each do |company_setting| %>
+      <tr>
+        <td><%= company_setting.company_id %></td>
+        <td><%= company_setting.allow_multiple_booking %></td>
+        <td><%= link_to 'Show', company_setting %></td>
+        <td><%= link_to 'Edit', edit_company_setting_path(company_setting) %></td>
+        <td><%= link_to 'Destroy', company_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company setting', new_company_setting_path %>
