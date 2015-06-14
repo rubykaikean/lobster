@@ -1,5 +1,6 @@
 class PhasesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_project_owner!
   before_action :set_phase, only: [:show, :edit, :update, :destroy]
 
   # GET /phases
@@ -84,6 +85,7 @@ class PhasesController < ApplicationController
       product.type_id = content[:type_id]
       product.status_id = content[:status_id]
       product.is_published = content[:is_published]
+      product.company_id = current_user.company_id if product.company_id.blank?
       product.save!
     end
     redirect_to :back, notice: "Product update successfully."

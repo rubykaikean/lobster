@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :reservations
   resources :buyers
   resources :company_settings 
 

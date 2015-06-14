@@ -33,6 +33,26 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_project_owner!
+    company = current_user.company
+    if company.type_id == Company::DEVELOPER
+      unless current_user.type_id == User::ADMIN
+        flash[:alert] = "You need to sign in as an admin before continue."
+        return redirect_to root_path
+      end
+    else
+      if company.parent_id.to_i > 0
+        flash[:alert] = "You need to sign in as a developer admin before continue."
+        return redirect_to root_path
+      else
+        unless current_user.type_id == User::ADMIN
+          flash[:alert] = "You need to sign in as an admin before continue."
+          return redirect_to root_path
+        end
+      end
+    end
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password) }
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:display_name, :email, :type_id, :company_id, :password, :password_confirmation) }

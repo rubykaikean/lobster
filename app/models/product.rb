@@ -12,11 +12,13 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  is_published :boolean          default(FALSE)
+#  company_id   :integer
 #
 # Indexes
 #
-#  index_products_on_phase_id  (phase_id)
-#  index_products_on_slug      (slug) UNIQUE
+#  index_products_on_company_id  (company_id)
+#  index_products_on_phase_id    (phase_id)
+#  index_products_on_slug        (slug) UNIQUE
 #
 
 class Product < ActiveRecord::Base
@@ -25,9 +27,11 @@ class Product < ActiveRecord::Base
   # friendly_id :name, :use => :slugged
 
 	belongs_to :phase
+	belongs_to :company
 	has_many :lots, dependent: :destroy
 	has_many :product_types, dependent: :destroy
 
+  validates :company_id, presence: true, allow_nil: true
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }
 
 	LANDED = 1

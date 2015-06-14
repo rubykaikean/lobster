@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_project_owner!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
@@ -40,6 +41,7 @@ class ProductsController < ApplicationController
   def create
     
     @product = Product.new(product_params)
+    @product.company_id = current_user.company_id
     @product.status_id = Product::AVAILABLE
     respond_to do |format|
       if @product.save

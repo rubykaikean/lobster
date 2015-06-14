@@ -12,11 +12,13 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  is_published :boolean          default(FALSE)
+#  company_id   :integer
 #
 # Indexes
 #
-#  index_products_on_phase_id  (phase_id)
-#  index_products_on_slug      (slug) UNIQUE
+#  index_products_on_company_id  (company_id)
+#  index_products_on_phase_id    (phase_id)
+#  index_products_on_slug        (slug) UNIQUE
 #
 
 class ProductSerializer < ActiveModel::Serializer

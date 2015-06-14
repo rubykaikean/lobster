@@ -1,5 +1,6 @@
 class CompanySettingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_project_owner!
   before_action :set_company_setting, only: [:edit, :update, :destroy]
 
   # GET /company_settings
