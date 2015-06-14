@@ -27,6 +27,18 @@ class Phase < ActiveRecord::Base
 
   # validates :name, presence: true
 
+  VARIABLE = 1
+  PENDING = 2
+
+  def status
+    case status_id
+    when VARIABLE
+      "Variable"
+    when PENDING
+      "Pending"
+    end
+  end
+
   def slug_candidates
     [ 
       slug_name

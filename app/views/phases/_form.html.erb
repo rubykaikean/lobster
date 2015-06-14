@@ -16,27 +16,26 @@
     <div class="form-group">
       <label class="col-md-3 control-label" for="phase_description">Description: </label>
       <div class="col-md-9">
-        <input type="text" id="phase_description" name="phase[description]" class="form-control" placeholder="Phase description" value="<%= @phase.description %>">
+        <textarea id="phase_description" name="phase[description]" class="form-control" placeholder="Phase description" value="<%= @phase.description %>"></textarea>
         <!-- <small class="help-block">This is a help text</small> -->
       </div>
     </div>
 
-    <div class="form-group pad-ver">
+    <!-- <div class="form-group pad-ver">
       <label class="col-md-3 control-label">Status</label>
       <div class="col-md-9">
         <div class="radio">
-          <!-- Inline radio buttons -->
-          <label class="form-radio form-normal active"><input type="radio" name="phase_status_id" <%= @phase.status_id == 1 ? "checked" : nil %> value="1">Variable</label>
-          <label class="form-radio form-normal"><input type="radio" name="phase_status_id" <%= @phase.status_id == 2 ? "checked" : nil %> value="2"> Pending</label>
+          
+          <label class="form-radio form-normal active"><input type="radio" name="phase_status_id" <%#= @phase.status_id == 1 ? "checked" : nil %> value="1">Variable</label>
+          <label class="form-radio form-normal"><input type="radio" name="phase_status_id" <%#= @phase.status_id == 2 ? "checked" : nil %> value="2"> Pending</label>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="panel-footer">
       <div class="row">
         <div class="col-sm-9 col-sm-offset-3">
           <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
         </div>
       </div>
     </div>

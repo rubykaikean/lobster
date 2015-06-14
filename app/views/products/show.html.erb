@@ -35,17 +35,15 @@
   <h3 class="panel-title"><strong>Product Types List</strong></h3>
   <div class="panel">
     <div class="panel-body">
-      <%= form_tag do %>
+      <%= form_tag update_product_phases_path do %>
       <table class="table table-bordered">
         <tr>
-          <th>No.</th>
           <th>Name</th>
           <th>Desription</th>
           <th>Action</th>
         </tr>
         <% @product.product_types.each_with_index do |p, index| %>
         <tr>
-          <td><%= index + 1 %></td>
           <td>
             <%= text_field_tag "product[#{p.id}][name]", p.name, :class=>"form-control" %>
           </td>

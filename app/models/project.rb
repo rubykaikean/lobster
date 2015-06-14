@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
 
   def create_bulk_phases(phase)
   	phase.to_i.times do |num|
-  		phases.create!(name: "Phase #{num}")
+  		phases.create!(name: "Phase #{num}", status_id: ACTIVE)
   	end
   end
 

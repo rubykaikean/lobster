@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
 
   resources :company_settings 
+
   resources :sales
+
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
+ 
   resources :admins
+
   devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions  }
+  
   resources :users
+
   resources :lots
+
   resources :product_types
+
   resources :products do 
     collection do
       post "create_lot"

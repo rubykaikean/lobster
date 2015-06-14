@@ -36,11 +36,12 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    
     @product = Product.new(product_params)
-
+    # render :text => @product
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to phase_path(product_params[:phase_id]), notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created }
       else
         format.html { 
@@ -78,6 +79,7 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   def create_lot
     # render :text => lot_params

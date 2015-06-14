@@ -27,7 +27,7 @@ class Product < ActiveRecord::Base
 	has_many :lots, dependent: :destroy
 	has_many :product_types, dependent: :destroy
 
-	validates :name, presence: true, uniqueness: { scope: :phase_id }
+	# validates :name, presence: true, uniqueness: { scope: :phase_id }
 
 	LANDED = 1
 	HIGHRISE = 2

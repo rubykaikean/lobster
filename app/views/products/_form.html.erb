@@ -1,12 +1,9 @@
 <%= form_for(@product, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
-  <div class="form-group">
-    <label class="col-md-3 control-label">Phase Name</label>
-  
-    <div class="col-md-9"><p class="form-control-static"> <%= @phase.try(:name) %></p></div>
-      <%= f.hidden_field :phase_id %>
-  </div>
-
+  <%#= render :text => phase_id %>
+  <% if phase_id %>
+    <%= f.hidden_field :phase_id, value: phase_id %>
+  <% end %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_name">Name</label>
     <div class="col-md-9">
@@ -18,26 +15,18 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_description">Description:</label>
     <div class="col-md-9">
-      <input type="text" id="product_description" name="product[description]" class="form-control" placeholder="Product Description" value="<%= @product.description %>">
-      <!-- <small class="help-block">This is a help text</small> -->
+      <textarea id="product_description" name="product[description]" class="form-control" placeholder="Product Description" value="<%= @product.description %>"></textarea>
     </div>
   </div>
 
   <div class="form-group pad-ver">
       <label class="col-md-3 control-label">Type</label>
       <div class="col-md-9">
-        <div class="radio">
-      <label class="form-radio form-normal active"><input type="radio" name="product_type_id" <%= @product.type_id == 1 ? "checked" : nil %> value="1"> Landed</label>
-      <label class="form-radio form-normal"><input type="radio" name="product_type_id" <%= @product.type_id == 2 ? "checked" : nil %> value="2"> Highrise</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="product_status_id">Status id:</label>
-    <div class="col-md-9">
-      <input type="text" id="product_status_id" name="product[status_id]" class="form-control" placeholder="Product Status ID" value="<%= @product.status_id %>">
-      <!-- <small class="help-block">This is a help text</small> -->
+        <select data-placeholder="Select a Number", class="selectpicker" name="product[type_id]">
+          <option>Select an option.</option>
+          <option value="1">Landed</option>
+          <option value="2">Highrise</option>
+        </select>
     </div>
   </div>
 

@@ -1,4 +1,4 @@
-
+<%#= render :text => params.to_json %>
 <h3 class="panel-title"><strong>Phase Detail</strong></h3>
 <div class="panel">
 	<div class="panel-body">
@@ -8,23 +8,18 @@
 		</p>
 
 		<p>
-		  <strong>Description:</strong>
-		  <%= @phase.description %>
-		</p>
-
-		<p>
 		  <strong>Status:</strong>
-		  <%= @phase.status_id %>
+		  <%= @phase.status %>
 		</p>
 
-		<p>
+<!-- 		<p>
 		  <strong>Project:</strong>
-		  <%= @phase.project.name %>
-		</p>
+		  <%#= @phase.project.name %>
+		</p> -->
 	</div>
 </div>
-<%= link_to "Create Product", new_product_path(:id => @phase.id), :class=>"btn btn-default" %>
-
+<%#= link_to "Create Product", new_product_path(:id => @phase.id), :class=>"btn btn-default" %>
+	<button data-target="#new_product" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">New Product</button>
 <hr>
 <%= form_tag update_product_phases_path do %>
 <div class="panel">
@@ -37,26 +32,16 @@
 					<th>Status</th>
 					<th>Action</th>
 				</tr>
-				<% @product.each_with_index do |p, index| %>
+				<% @product_list.order(:name).each_with_index do |p, index| %>
 				<tr>
 					<td><%= text_field_tag "product[#{p.id}][name]", p.name, :class=>"form-control" %></td>
 					<td>
-						<select class="selectpicker">
-							<option>Select An Option</option>
-							<% ProductType.where("product_id = ?", p.id).each do |t| %>
-								<option value="<%= t.id %>"><%= t.name %></option>
-							<% end %>
-						</select>
+						<%= radio_button_tag "product[#{p.id}][type_id]", 1, p.type_id == 1 ? "checked" : nil %> Landed
+						<%= radio_button_tag "product[#{p.id}][type_id]", 2, p.type_id == 2 ? "checked" : nil %> Highrise
 					</td>
 					<td>
-						<label>
-							<input type="radio" name="product[#{p.id}][status_id]" <%= p.status_id == 1 ? "checked" : nil %> value="1">
-							Avaiable
-		        </label>
-		        <label>
-		        	<input type="radio" name="product[#{p.id}][status_id]" <%= p.status_id == 2 ? "checked" : nil %> value="2">
-		          Pending
-		        </label>
+						<%= radio_button_tag "product[#{p.id}][status_id]", 1, p.status_id == 1 ? "checked" : nil %> Avaiable
+						<%= radio_button_tag "product[#{p.id}][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Pending
 					</td>
 					<td>
 						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning" %>
@@ -73,3 +58,24 @@
 	</div>
 </div>
 <% end %>
+
+
+	<div class="modal fade" id="new_product" role="dialog" tabindex="-1" aria-labelledby="new_product" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">New Product</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render :partial => "/products/form", :locals => { :phase_id => @phase.id } %>
+        </div>
+      </div>
+    </div>
+  </div>

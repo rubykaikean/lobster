@@ -15,7 +15,8 @@ class PhasesController < ApplicationController
   # GET /phases/1
   # GET /phases/1.json
   def show
-    @product = Product.where("phase_id = ?", @phase.id)
+    @product = Product.new
+    @product_list = Product.where("phase_id = ?", @phase.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @phase }
@@ -35,10 +36,10 @@ class PhasesController < ApplicationController
   # POST /phases.json
   def create
     @phase = Phase.new(phase_params)
-
+    @phase.status_id = Phase::VARIABLE
     respond_to do |format|
       if @phase.save
-        format.html { redirect_to @phase, notice: 'Phase was successfully created.' }
+        format.html { redirect_to project_path(params[:phase][:project_id]), notice: 'Phase was successfully created.' }
         format.json { render json: @phase, status: :created }
       else
         format.html { render action: 'new' }
@@ -64,19 +65,21 @@ class PhasesController < ApplicationController
   # DELETE /phases/1
   # DELETE /phases/1.json
   def destroy
+    # render :text => params
     @phase.destroy
     respond_to do |format|
-      format.html { redirect_to phases_url }
+      format.html { redirect_to project_path(:id => params[:project_id]) }
       format.json { head :no_content }
     end
   end
 
   def update_product
-    # render :text => params
+    # render :text => product_phase_params
     product_phase_params.each do |id, content|
       product = Product.find id
       product.name = content[:name]
       product.type_id = content[:type_id]
+      product.status_id = content[:status_id]
       product.save!
     end
     redirect_to :back, notice: "Product update successfully."
