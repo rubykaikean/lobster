@@ -66,8 +66,9 @@
 									  <%= company.status %></span>
 									</td>
 									<td class="text-right">
-										<a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= super_admin_company_path(company) %>" data-original-title="Show" data-container="body"><i class="fa fa-pencil"></i></a>
-										<!-- <a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%= company_path(company) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a> -->
+									  <%= link_to 'Show', super_admin_company_path(company), :class=>"btn btn-small btn-warning" %>
+										<!-- <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%#= super_admin_company_path(company) %>" data-original-title="Show" data-container="body"><i class="fa fa-pencil"></i></a> -->
+										<!-- <a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%#= company_path(company) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a> -->
 									</td>
 								</tr>
 							<% end %>

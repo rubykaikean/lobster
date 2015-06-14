@@ -71,12 +71,12 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--End user table-->
 
-		    <div class="panel">
+<!-- 		<div class="panel">
         <div class="panel-heading">
           <h3 class="panel-title">Setting</h3>
         </div>
-        <%= form_tag update_setting_company_path(@company) do %>
-        <%= hidden_field_tag "from_dashboard", true  %>
+        <%#= form_tag update_setting_company_path(@company) do %>
+        <%#= hidden_field_tag "from_dashboard", true  %>
         <div class="panel-body">
             <div class="form-group">
               <div class="col-md-12">
@@ -86,10 +86,10 @@
                     <td>Allow Multiple Booking per unit</td>
                     <td>
                       <label>
-                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @setting.try(:allow_multiple_booking) == true ? "checked" : nil %> value="true"> Yes
+                        <input type="radio" name="company_setting[allow_multiple_booking]" <%#= @setting.try(:allow_multiple_booking) == true ? "checked" : nil %> value="true"> Yes
                       </label>
                       <label>
-                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @setting.try(:allow_multiple_booking) == false ? "checked" : nil %> value="false"> No
+                        <input type="radio" name="company_setting[allow_multiple_booking]" <%#= @setting.try(:allow_multiple_booking) == false ? "checked" : nil %> value="false"> No
                       </label>
                     </td>
                   </tr>
@@ -97,10 +97,10 @@
                 </div>
             </div>
           </div>
-          <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+          <%#= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
         </div>
-        <% end %>
-    </div>
+        <%# end %>
+    </div> -->
 
 	</div>
 </div>

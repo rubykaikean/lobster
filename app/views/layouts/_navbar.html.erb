@@ -410,7 +410,13 @@
 
 								<!-- Dropdown footer -->
 								<div class="pad-all text-right">
-									<a href="<%= destroy_admin_session_path %>" data-method="delete" class="btn btn-primary">
+								  <% if admin_signed_in? %>
+								    <% signout_path = destroy_admin_session_path  %>
+								  <% else %>
+								    <% signout_path = destroy_user_session_path  %>
+								  <% end %>
+
+									<a href="<%= signout_path %>" data-method="delete" class="btn btn-primary">
 										<i class="fa fa-sign-out fa-fw"></i> Logout
 									</a>
 								</div>
