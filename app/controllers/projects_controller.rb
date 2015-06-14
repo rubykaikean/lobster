@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @project = Project.new
-    @projects = Project.all
+    @projects = current_user.company.projects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = current_user.company.projects.new
   end
 
   # GET /projects/1/edit
@@ -38,9 +38,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     # render :text => params[:project][:no_phase].to_i.class
-    @project = Project.new(project_params)
+    @project = current_user.company.projects.new(project_params)
     @project.status_id = Project::ACTIVE
-    @project.company_id = current_user.company_id
     num_phase = params[:project][:no_phase].to_i
     respond_to do |format|
       if @project.save
@@ -110,7 +109,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.friendly.find(params[:id])
+      @project = current_user.company.projects.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
