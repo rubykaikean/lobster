@@ -18,11 +18,20 @@
 
 class Lot < ActiveRecord::Base
 	extend FriendlyId
-  friendly_id :name, :use => :slugged
+  friendly_id :slug_candidates, use: :slugged
 
 	belongs_to :product
 
 	# validates :name, presence: true, uniqueness: true
 
+  def slug_candidates
+    [ 
+      slug_name
+     ]
+  end
+  
+  def slug_name
+    "#{name} of #{product.name}"
+  end
 
 end

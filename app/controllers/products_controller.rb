@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = current_user.company.products
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,7 +89,7 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.friendly.find(params[:id])
+      @product = current_user.company.products.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
