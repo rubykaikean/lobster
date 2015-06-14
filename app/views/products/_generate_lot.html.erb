@@ -18,8 +18,9 @@
           <!-- Inline radio buttons -->
         <select class="selectpicker" name="product[type_id]">
 					<option>Select An Option</option>
-					<option value="1">Landed</option>
-					<option value="2">Highrise</option>
+					<% @product.product_types.order(:name).each do |t| %>
+						<option value="<%= t.id %>" ><%= t.name %></option>
+					<% end %>
 				</select>
       </div>
     </div>

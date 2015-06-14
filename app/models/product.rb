@@ -56,10 +56,11 @@ class Product < ActiveRecord::Base
 
 	def auto_create_lot(lot)
 		title = lot[:prepend_title]
+		type_id = lot[:type_id].to_i
 		num = lot[:start_number].to_i
 		lot[:lot_no].to_i.times do |p|
 			
-			lots.create!(name: "#{title}-#{num}")
+			lots.create!(name: "#{title}-#{num}", product_type_id: type_id)
 			num += 1
 		end
 	end
