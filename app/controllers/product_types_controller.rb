@@ -67,10 +67,10 @@ class ProductTypesController < ApplicationController
   # DELETE /product_types/1
   # DELETE /product_types/1.json
   def destroy
-    product_id = params[:product_id]
+    product = @product_type.product
     @product_type.destroy
     respond_to do |format|
-      format.html { redirect_to product_path(:id => product_id)}
+      format.html { redirect_to product_path(product)}
       format.json { head :no_content }
     end
   end

@@ -40,7 +40,7 @@ class PhasesController < ApplicationController
     @phase.status_id = Phase::AVAILABLE
     respond_to do |format|
       if @phase.save
-        format.html { redirect_to project_path(params[:phase][:project_id]), notice: 'Phase was successfully created.' }
+        format.html { redirect_to project_path(@phase.project), notice: 'Phase was successfully created.' }
         format.json { render json: @phase, status: :created }
       else
         format.html { render action: 'new' }
@@ -67,9 +67,11 @@ class PhasesController < ApplicationController
   # DELETE /phases/1.json
   def destroy
     # render :text => params
+    project = @phase.project
     @phase.destroy
+
     respond_to do |format|
-      format.html { redirect_to project_path(:id => params[:project_id]) }
+      format.html { redirect_to project_path(project) }
       format.json { head :no_content }
     end
   end

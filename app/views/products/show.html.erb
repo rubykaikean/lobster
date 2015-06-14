@@ -47,7 +47,7 @@
             <%= text_field_tag "product_type[#{p.id}][description]", p.description, :class=>"form-control" %>
           </td>
           <td class="text-center">
-            <%= link_to 'Destroy', product_type_path(p, :product_id => @product.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
+            <%= link_to 'Destroy', product_type_path(p), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
           </td>
         </tr>
         <% end %>
@@ -91,7 +91,7 @@
 
         <!--Modal body-->
         <div class="modal-body">
-          <%= render :partial => "/product_types/form", :locals => { :product_id => @product.id } %>
+          <%= render :partial => "/product_types/form", :locals => { :product => @product } %>
         </div>
       </div>
     </div>

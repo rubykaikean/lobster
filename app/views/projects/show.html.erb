@@ -44,7 +44,7 @@
 					<td class="text-center">
 						<%#= link_to 'Add Product', new_product_path(:id => p.id), :class=>"btn btn-small btn-default" %>
 						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning" %>
-						<%= link_to "Delete", phase_path(p, :project_id => @project.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
+						<%= link_to "Delete", phase_path(p), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
 			    </td>
 				</tr>
 				<% end %>
