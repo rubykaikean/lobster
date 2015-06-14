@@ -43,6 +43,8 @@ class Company < ActiveRecord::Base
   
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
+  after_create :generate_setting
+
   DEVELOPER = 1
   AGENCY    = 2
 
@@ -57,6 +59,14 @@ class Company < ActiveRecord::Base
       "Developer"
     when AGENCY
       "Agency"
+    end
+  end
+
+  private
+
+  def generate_setting
+    unless company_setting.present?
+      company_setting.create
     end
   end
 

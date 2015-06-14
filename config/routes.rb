@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
 
   resources :company_settings 
-
   resources :sales
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
   resources :admins
-
   resources :lots
-
   resources :product_types
-
   resources :products do 
     collection do
       post "create_lot"
@@ -31,8 +27,8 @@ Rails.application.routes.draw do
   mount RailsEmailPreview::Engine, at: 'emails'
 
   resources :companies do
-    collection do
-      post "update_company_setting"
+    member do
+      post "update_setting"
     end
   end
 

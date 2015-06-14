@@ -4,7 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  company_id             :integer
-#  allow_multiple_booking :boolean
+#  allow_multiple_booking :boolean          default(TRUE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

@@ -81,4 +81,13 @@ class User < ActiveRecord::Base
     type_id == STAFF
   end
 
+  def type
+    case type_id
+    when ADMIN
+      "Admin"
+    when STAFF
+      "Staff"
+    end
+  end
+
 end

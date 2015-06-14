@@ -2,12 +2,9 @@
 
   <div class="form-group">
     <label class="col-md-3 control-label">Phase Name</label>
-    <div class="col-md-9">
-      <%= Phase.find(params[:id]).name %>
-      <div style="display:none;">
-        <%= f.text_field :phase_id, :value=> params[:id] %>
-      </div>
-    </div>
+  
+    <div class="col-md-9"><p class="form-control-static"> <%= @phase.try(:name) %></p></div>
+      <%= f.hidden_field :phase_id %>
   </div>
 
   <div class="form-group">

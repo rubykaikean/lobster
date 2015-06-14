@@ -35,45 +35,79 @@
             <%= @company.type %>
           </p>
 
-          <%= link_to 'Edit', edit_company_path(@company), :class=>"btn btn-small btn-warning" %>
+          <%= link_to 'Edit', edit_company_path(@company), :class=>"btn btn-small btn-info" %>
           <%= link_to 'Back', companies_path, :class=>"btn btn-small btn-warning" %>
       </div>
     </div>
-    
-    <hr>
+
+        <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">User</h3>
+        </div>
+       
+        <div class="panel-body">
+            <div class="form-group">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Display Name</th>
+                      <th>Email</th>
+                      <th class="text-center">Type</th>
+                      <!-- <th class="text-center">Action</th> -->
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @company.users.each do |user| %>
+                    <tr>
+                      <td><%= user.display_name %></td>
+                      <td><%= user.email %></td>
+                      <td class="text-center"><%= user.type %></td>
+                     <!--  <td class="text-center">
+                        <%#= link_to 'Show', user, :class=>"btn btn-small btn-warning" %>
+                        <%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %></td> -->
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <div class="panel">
         <div class="panel-heading">
-          <h3 class="panel-title">Company Setting</h3>
+          <h3 class="panel-title">Setting</h3>
         </div>
-        <%= form_tag update_company_setting_companies_path do %>
+        <%= form_tag update_setting_company_path(@company) do %>
         <div class="panel-body">
             <div class="form-group">
               <div class="col-md-12">
                 <div class="table-responsive">
                 <table class="table table-bordered">
                   <tr>
-                    <td>Allow Multiper Booking</td>
+                    <td>Allow Multiple Booking per unit</td>
                     <td>
                       <label>
-                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @company.company_setting.try(:allow_multiple_booking) == true ? "checked" : nil %> value="true"> Yes
+                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @setting.try(:allow_multiple_booking) == true ? "checked" : nil %> value="true"> Yes
                       </label>
                       <label>
-                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @company.company_setting.try(:allow_multiple_booking) == false ? "checked" : nil %> value="false"> No
+                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @setting.try(:allow_multiple_booking) == false ? "checked" : nil %> value="false"> No
                       </label>
                     </td>
                   </tr>
                 </table>
-                </div>
-              <div style="display:none;">
-                <%= text_field_tag "company_setting[company_id]", nil, value: @company.id, :class=>"form-control" %>
                 </div>
             </div>
           </div>
           <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
         </div>
         <% end %>
-      </div>
+    </div>
+
     </div>
   </div>
 </div>

@@ -25,8 +25,8 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
-
+    @phase = Phase.find(params[:id])
+    @product = @phase.products.new
   end
 
   # GET /products/1/edit
@@ -43,7 +43,10 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created }
       else
-        format.html { render action: 'new' }
+        format.html { 
+          flash.now[:alert] =  @product.errors.full_messages.join("<br>")
+          render action: 'new'
+           }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +60,10 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { 
+          flash.now[:alert] =  @product.errors.full_messages.join("<br>")
+          render action: 'edit' 
+        }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end

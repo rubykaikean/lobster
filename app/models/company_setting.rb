@@ -4,7 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  company_id             :integer
-#  allow_multiple_booking :boolean
+#  allow_multiple_booking :boolean          default(TRUE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -14,8 +14,6 @@
 #
 
 class CompanySetting < ActiveRecord::Base
-	# extend FriendlyId
-	# friendly_id :company_id, :use => :slugged
 	belongs_to :company
 
 end

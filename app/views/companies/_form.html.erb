@@ -97,7 +97,11 @@
   
   $("#back_btn").click(function(e){
     e.preventDefault();
-    window.location.href='<%= companies_path %>';
+    <% if @company.new_record? %>
+      window.location.href='<%= companies_path %>';
+    <% else %>
+      window.location.href='<%= company_path(@company) %>';
+    <% end %>
   });
 </script>
 
