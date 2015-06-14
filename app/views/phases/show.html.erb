@@ -44,7 +44,11 @@
 						<%= radio_button_tag "product[#{p.id}][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Pending
 					</td>
 					<td class="text-center">
-						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning" %>
+					  <% if p.type_id == 1 %>
+						  <%= link_to 'Detail', p, :class=>"btn btn-small btn-warning" %>
+						<% else %>
+						  <%= link_to 'Detail', "#", :class=>"btn btn-small btn-warning", onclick: "alert('The feature is upgrading.');" %>
+						<% end %>
 						<%= link_to "Delete", product_path(p), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
 			    </td>
 					</td>
