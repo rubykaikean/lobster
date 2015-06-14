@@ -11,22 +11,24 @@
     <div class="form-group">
       <label class="col-sm-3 control-label" for="project_description">Description:</label>
       <div class="col-sm-9">
-        <input type="text" id="project_descrption" name="project[description]" class="form-control" placeholder="Project Description" value="<%= @project.description %>">
+        <textarea id="project_descrption" name="project[description]" class="form-control" placeholder="Project Description" value="<%= @project.description %>"></textarea>
       </div>
     </div>
 
-    <div class="form-group pad-ver">
-      <label class="col-md-3 control-label">Status :</label>
-      <div class="col-md-9">
-        <div class="radio">
-        <label class="form-radio form-normal active"><input type="radio" name="project_status_id" <%= @project.status_id == 1 ? "checked" : nil %> value="1">Active
-        </label>
-        <label class="form-radio form-normal"><input type="radio" name="project_status_id" <%= @project.status_id == 2 ? "checked" : nil %> value="2">
-        Suspended
-        </label>
+    <% unless params[:action] == "new" %>
+      <div class="form-group pad-ver">
+        <label class="col-md-3 control-label">Status :</label>
+        <div class="col-md-9">
+          <div class="radio">
+          <label class="form-radio form-normal active"><input type="radio" name="project_status_id" <%= @project.status_id == 1 ? "checked" : nil %> value="1">Active
+          </label>
+          <label class="form-radio form-normal"><input type="radio" name="project_status_id" <%= @project.status_id == 2 ? "checked" : nil %> value="2">
+          Suspended
+          </label>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="form-group">
       <label class="col-sm-3 control-label" for="project_description">No. of phase:</label>
@@ -38,18 +40,7 @@
           <% end %>
         </select>
       </div>
-    </div>
-
-    <% if user_signed_in? %>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Name:</label>
-      <div class="col-sm-6">
-          <label><%= current_user.company_id rescue'-' %></label>
-          <div><%= f.text_field :company_id, :value => current_user.company_id %></div>
-        </div>
-    </div>
-    <% end %>
-    
+    </div>   
 
     
     <div class="panel-footer">

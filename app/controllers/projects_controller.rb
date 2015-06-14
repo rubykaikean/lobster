@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @project = Project.new
     @projects = Project.all
 
     respond_to do |format|
@@ -15,8 +16,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-
-    @phase = Phase.where("project_id = ?", @project.id)
+    @phase = Phase.new
+    @phase_list = Phase.where("project_id = ?", @project.id)
     # render :text => @phase.to_json
     respond_to do |format|
       format.html # show.html.erb
@@ -84,11 +85,11 @@ class ProjectsController < ApplicationController
 
   def update_project
     # render :text => params
-    project_params.each do |id, content|
+    update_project_params.each do |id, content|
       project = Project.find id
       project.name = content[:name]
       project.status_id = content[:status_id]
-      project.update!
+      project.save!
     end
     redirect_to :back, notice: "Product update successfully."
   end
@@ -117,6 +118,10 @@ class ProjectsController < ApplicationController
 
     def project_phase_params
       params.require(:phase).permit!
+    end
+
+    def update_project_params
+      params.require(:update_project).permit!
     end
 
 end

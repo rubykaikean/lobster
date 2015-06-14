@@ -14,9 +14,7 @@
           <div class="pad-btm form-inline">
           <div class="row">
             <div class="col-sm-6 table-toolbar-left">
-              <button id="add_project_btn" class="btn btn-purple btn-labeled fa fa-plus">
-                New Project
-              </button>
+              <button data-target="#new_project" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">New Project</button>
               <!-- <div class="btn-group btn-group">
                 <button class="btn btn-default"><i class="fa fa-exclamation-circle"></i></button>
                 <button class="btn btn-default"><i class="fa fa-trash"></i></button>
@@ -29,43 +27,31 @@
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <th>No.</th>
                   <th>Name</th>
                   <th>Status</th>
-                  <th>Company</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <% @projects.each_with_index do |p, index| %>
                   <tr>
-                    <td><%#= render :text => p.to_json %></td>
                     <td>
-                      <%= text_field_tag "project[#{p.id}][name]", p.name, :class=>"form-control" %>
+                      <%= text_field_tag "update_project[#{p.id}][name]", p.name, :class=>"form-control" %>
                     </td>
                     <td>
-                      <label>
-                        <input type="radio" name="project[<%= p.id %>][status_id]" <%= p.status_id == 1 ? "checked" : nil %> value="1">
-                        Active
-                      </label>
-                      <label>
-                        <input type="radio" name="project[<%= p.id %>][status_id]" <%= p.status_id == 2 ? "checked" : nil %> value="2">
-                        Suspended
-                      </label>
+                      <%= radio_button_tag "update_project[#{p.id}][status_id]", 1, p.status_id == 1 ? "checked" : nil %> Active
+                      <%= radio_button_tag "update_project[#{ p.id }][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Suspended
                     </td>
                     <td>
-                      <%= text_field_tag "project[#{p.id}][company_id]", p.company_id, :class=>"form-control" %>
-                    </td>
-                    <td>
-                      <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= project_path(p) %>" data-original-title="Show" data-container="body"><i class="fa fa-pencil"></i></a>
-                      
-                      <a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%= project_path(p) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a>
+                     <%= link_to "Detail", project_path(p), :class=>"btn btn-warning btn-small" %> 
+                     
+                     <%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
                     </td>
                   </tr>
                 <% end %>
               </tbody>
             </table> 
-            un-complete>>><%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+            <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
             <% end %>
           </div> <!-- table responsive-->
         </div>
@@ -74,9 +60,29 @@
   </div>
 </div>
 
+    <div class="modal fade" id="new_project" role="dialog" tabindex="-1" aria-labelledby="new_project" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">New Projects</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script type="text/javascript">
   
-  $("#add_project_btn").click(function() {
-    window.location.href='<%= new_project_path %>';
-  });
+  // $("#add_project_btn").click(function() {
+  //   window.location.href='<%= new_project_path %>';
+  // });
 </script>
