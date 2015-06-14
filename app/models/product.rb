@@ -31,9 +31,19 @@ class Product < ActiveRecord::Base
 
 	LANDED = 1
 	HIGHRISE = 2
+	AVAILABLE = 1
+  PENDING = 2
 
 	def title
 		"#{name} - #{type}" 
+	end
+
+	def status
+		if self.status_id == AVAILABLE
+			"Available"
+		elsif self.type_id == PENDING
+			"Pending"
+		end
 	end
 
 	def type

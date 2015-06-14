@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
   def create
     
     @product = Product.new(product_params)
-    # render :text => @product
+    @product.status_id = Product::AVAILABLE
     respond_to do |format|
       if @product.save
         format.html { redirect_to phase_path(product_params[:phase_id]), notice: 'Product was successfully created.' }
@@ -74,9 +74,10 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    # render :text => params
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url }
+      format.html { redirect_to phase_path(:id => params[:phase_id]) }
       format.json { head :no_content }
     end
   end

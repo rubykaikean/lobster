@@ -9,6 +9,7 @@
   </div> -->
   <%= f.hidden_field :product_id, value: product.id  %>
 
+
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_type_name">Name</label>
     <div class="col-md-9">
@@ -20,7 +21,7 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_type_description">Description</label>
     <div class="col-md-9">
-      <input type="text" id="product_type_description" name="product_type[description]" class="form-control" placeholder="Product type description" value="<%= @product_type.description %>">
+      <textarea id="product_type_description" name="product_type[description]" class="form-control" placeholder="Product Type description" value="<%= @product_type.name %>"></textarea>
       <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>

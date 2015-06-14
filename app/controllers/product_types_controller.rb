@@ -75,6 +75,17 @@ class ProductTypesController < ApplicationController
     end
   end
 
+  def update_product_type
+    # render :text => update_product_type_params
+    update_product_type_params.each do |id, content|
+      product_type = ProductType.find id
+      product_type.name = content[:name]
+      product_type.description = content[:description]
+      product_type.save!
+    end
+    redirect_to :back, notice: "Product Type update successfully."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_type
@@ -84,5 +95,9 @@ class ProductTypesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_type_params
       params.require(:product_type).permit(:name, :description, :product_id)
+    end
+
+    def update_product_type_params
+      params.require(:product_type).permit!
     end
 end
