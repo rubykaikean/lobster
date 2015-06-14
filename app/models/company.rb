@@ -29,12 +29,11 @@ class Company < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
 
-  validates :name, presence: true, uniqueness: true
-  # validates :display_name, uniqueness: { scope: :company_id }
+  validates :name, presence: true, uniqueness: { scope: :parent_id }
 
-  has_many :users
-  has_many :projects
-  has_one :company_setting
+  has_many :users, dependent: :destroy
+  has_many :projects, dependent: :destroy
+  has_one :company_setting, dependent: :destroy
 
   has_attached_file :logo, 
           #:styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
@@ -81,6 +80,10 @@ class Company < ActiveRecord::Base
 
   def is_suspended
     status_id == SUSPENDED
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
   end
 
   private

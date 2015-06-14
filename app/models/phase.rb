@@ -19,13 +19,26 @@
 
 class Phase < ActiveRecord::Base
 	extend FriendlyId
-  friendly_id :name, :use => :slugged
+  friendly_id :slug_candidates, use: :slugged
+  # friendly_id :name, :use => :slugged
 
   belongs_to :project
-  has_many   :products
+  has_many   :products, dependent: :destroy
 
   # validates :name, presence: true
 
+  def slug_candidates
+    [ 
+      slug_name
+     ]
+  end
+  
+  def slug_name
+    "#{name} of #{project.name}"
+  end
 
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 
 end

@@ -20,22 +20,23 @@
 
 class Product < ActiveRecord::Base
 	extend FriendlyId
-  friendly_id :name, :use => :slugged
+	friendly_id :slug_candidates, use: :slugged
+  # friendly_id :name, :use => :slugged
 
 	belongs_to :phase
-	has_many :lots
-	has_many :product_types
+	has_many :lots, dependent: :destroy
+	has_many :product_types, dependent: :destroy
 
-	validates :name, presence: true, uniqueness: true
+	validates :name, presence: true, uniqueness: { scope: :phase_id }
 
 	LANDED = 1
 	HIGHRISE = 2
 
-	def product_title
-		"#{self.name} - #{product_type}" 
+	def title
+		"#{name} - #{type}" 
 	end
 
-	def product_type
+	def type
 		if self.type_id == LANDED
 			"Landed"
 		elsif self.type_id == HIGHRISE
@@ -52,5 +53,19 @@ class Product < ActiveRecord::Base
 			num += 1
 		end
 	end
+
+	def slug_candidates
+  	[ 
+  		slug_name
+  	 ]
+  end
+
+	def slug_name
+		"#{name} in #{phase.slug_name}"
+	end
+
+	def should_generate_new_friendly_id?
+    name_changed?
+  end
 
 end

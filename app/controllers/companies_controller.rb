@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_super_admin!
-  before_action :set_company, only: [:show, :edit, :update, :destroy, :update_setting]
+  before_action :authenticate_user!
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :update_setting, :update_profile]
 
   # GET /companies
   # GET /companies.json
@@ -75,6 +75,19 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def update_profile
+    respond_to do |format|
+      if @company.update(company_params)
+        format.html {  flash[:notice] = 'Company profile was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { flash[:alert] = @company.errors.full_messages.join("<br>") }
+        format.json { render json: @company.errors, status: :unprocessable_entity }
+      end
+    end
+    redirect_to root_path
+  end
+
   # DELETE /companies/1
   # DELETE /companies/1.json
   def destroy
@@ -88,8 +101,9 @@ class CompaniesController < ApplicationController
   def update_setting
     # render :text => params
     @setting = @company.company_setting
+    flash[:notice] = "Setting was updated successfully."
     @setting.update(:allow_multiple_booking => setting_params[:allow_multiple_booking] )
-    redirect_to company_path(@company)
+    redirect_to root_path
   end
 
   private

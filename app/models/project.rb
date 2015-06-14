@@ -19,12 +19,13 @@
 
 class Project < ActiveRecord::Base
 	extend FriendlyId
-  friendly_id :name, :use => :slugged
+  friendly_id :slug_candidates, use: :slugged
+  # friendly_id :name, :use => :slugged
 
   belongs_to :company
-  has_many   :phases
+  has_many   :phases, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :company_id }
 
   ACTIVE = 1
   SUSPENDED = 2
@@ -36,6 +37,18 @@ class Project < ActiveRecord::Base
   	end
   end
 
+  def is_active?
+    status_id == ACTIVE
+  end
+
+  def is_suspended?
+    status_id == SUSPENDED
+  end
+
+  def is_closed?
+    status_id == CLOSED
+  end
+
   def status
     case status_id
     when ACTIVE
@@ -45,6 +58,20 @@ class Project < ActiveRecord::Base
     when CLOSED
       "Closed"
     end
+  end
+
+  def slug_candidates
+    [ 
+      slug_name
+     ]
+  end
+
+  def slug_name
+    "#{company.name}-#{name}"
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
   end
 
 end

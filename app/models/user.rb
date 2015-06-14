@@ -90,4 +90,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def should_generate_new_friendly_id?
+    email_changed?
+  end
+
 end

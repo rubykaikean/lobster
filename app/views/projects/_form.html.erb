@@ -15,20 +15,22 @@
       </div>
     </div>
 
-    <% unless params[:action] == "new" %>
-      <div class="form-group pad-ver">
+
+    <%# unless params[:action] == "new" %>
+      <!-- <div class="form-group pad-ver">
         <label class="col-md-3 control-label">Status :</label>
         <div class="col-md-9">
           <div class="radio">
-          <label class="form-radio form-normal active"><input type="radio" name="project_status_id" <%= @project.status_id == 1 ? "checked" : nil %> value="1">Active
+          <label class="form-radio form-normal active"><input type="radio" name="project_status_id" <%#= @project.status_id == 1 ? "checked" : nil %> value="1">Active
           </label>
-          <label class="form-radio form-normal"><input type="radio" name="project_status_id" <%= @project.status_id == 2 ? "checked" : nil %> value="2">
+          <label class="form-radio form-normal"><input type="radio" name="project_status_id" <%#= @project.status_id == 2 ? "checked" : nil %> value="2">
           Suspended
           </label>
           </div>
         </div>
-      </div>
-    <% end %>
+      </div> -->
+    <%# end %>
+
 
     <div class="form-group">
       <label class="col-sm-3 control-label" for="project_description">No. of phase:</label>
@@ -40,8 +42,12 @@
           <% end %>
         </select>
       </div>
+<<<<<<< HEAD
     </div>   
 
+=======
+    </div>
+>>>>>>> c1fa6e3fae51a9bd79f361427c1401aa37200e3e
     
     <div class="panel-footer">
       <div class="row">

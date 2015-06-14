@@ -39,6 +39,8 @@ class ProjectsController < ApplicationController
   def create
     # render :text => params[:project][:no_phase].to_i.class
     @project = Project.new(project_params)
+    @project.status_id = Project::ACTIVE
+    @project.company_id = current_user.company_id
     num_phase = params[:project][:no_phase].to_i
     respond_to do |format|
       if @project.save
