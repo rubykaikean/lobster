@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_user, only: [:show, :edit, :update_member, :destroy]
 
   # GET /users
   # GET /users.json
   def index
     @company = current_user.company
     @users = @company.users
+    @agents = []
+    @company.agencies.each do |agency|
+      @agents << agency.users  
+    end
+    @agents.flatten!
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +32,7 @@ class UsersController < ApplicationController
   def new
     @company = current_user.company
     @user = @company.users.new
+    @agencies = @company.agencies
   end
 
   # GET /users/1/edit
@@ -34,16 +41,22 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  def create
+  def create_member
+    @company = current_user.company
     @user = User.new(user_params)
-    @user.company_id = current_user.company_id
+    @user.company_id = current_user.company_id if @user.company_id.blank?
+    @user.type_id = params[:user_type_id]
 
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created }
       else
-        format.html { render action: 'new' }
+        format.html { 
+          @agencies = @company.agencies
+          flash[:alert] = @user.errors.full_messages.join("<br>")
+          render action: 'new' 
+        }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -51,13 +64,18 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
-  def update
+  def update_member
+    @company = current_user.company
+    @user.type_id = params[:user_type_id]
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { 
+          @agencies = @company.agencies
+          flash[:alert] = @user.errors.full_messages.join("<br>")
+          render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -76,12 +94,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @company = current_user.company
-      @user = @company.users.friendly.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:display_name, :type_id, :company_id)
+      params.require(:user).permit(:display_name, :type_id, :company_id, :email, :password, :password_confirmation)
     end
 end

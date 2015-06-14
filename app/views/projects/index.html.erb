@@ -28,8 +28,8 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,11 +38,11 @@
                     <td>
                       <%= text_field_tag "update_project[#{p.id}][name]", p.name, :class=>"form-control" %>
                     </td>
-                    <td>
+                    <td class="text-center">
                       <%= radio_button_tag "update_project[#{p.id}][status_id]", 1, p.status_id == 1 ? "checked" : nil %> Active
                       <%= radio_button_tag "update_project[#{ p.id }][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Suspended
                     </td>
-                    <td>
+                    <td class="text-center">
                      <%= link_to "Detail", project_path(p), :class=>"btn btn-warning btn-small" %> 
                      
                      <%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
