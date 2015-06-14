@@ -31,6 +31,8 @@ class Product < ActiveRecord::Base
 
 	LANDED = 1
 	HIGHRISE = 2
+	AVAILABLE = 1
+  PENDING = 2
 
 	def title
 		"#{name} - #{type}" 
