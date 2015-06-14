@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :buyers
   resources :company_settings 
 
   resources :sales

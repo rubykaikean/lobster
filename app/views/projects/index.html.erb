@@ -29,6 +29,7 @@
                 <tr>
                   <th>Name</th>
                   <th class="text-center">Status</th>
+                  <!-- <th class="text-center">Published</th> -->
                   <th class="text-center">Action</th>
                 </tr>
               </thead>
@@ -43,9 +44,11 @@
                       <%= radio_button_tag "update_project[#{ p.id }][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Suspended 
                       <%= radio_button_tag "update_project[#{ p.id }][status_id]", 3, p.status_id == 3 ? "checked" : nil %> Closed 
                     </td>
+                   <!--  <td class="text-center">
+                      <%#= p.is_published? ? "Yes" : "No"  %>
+                    </td> -->
                     <td class="text-center">
                      <%= link_to "Detail", project_path(p), :class=>"btn btn-warning btn-small" %> 
-                     
                      <%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
                     </td>
                   </tr>

@@ -83,6 +83,7 @@ class PhasesController < ApplicationController
       product.name = content[:name]
       product.type_id = content[:type_id]
       product.status_id = content[:status_id]
+      product.is_published = content[:is_published]
       product.save!
     end
     redirect_to :back, notice: "Product update successfully."

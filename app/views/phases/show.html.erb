@@ -31,6 +31,7 @@
 					<th>Product</th>
 					<th class="text-center">Type</th>
 					<th class="text-center">Status</th>
+					<th class="text-center">Published</th>
 					<th class="text-center">Action</th>
 				</tr>
 				</thead>
@@ -46,6 +47,10 @@
 					<td class="text-center">
 						<%= radio_button_tag "product[#{p.id}][status_id]", 1, p.status_id == 1 ? "checked" : nil %> Avaiable
 						<%= radio_button_tag "product[#{p.id}][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Pending
+					</td>
+					<td class="text-center">
+					  <%= hidden_field_tag "product[#{p.id}][is_published]", false %>
+						<%= check_box_tag "product[#{p.id}][is_published]", true, p.is_published? ? "checked" : nil %> Yes
 					</td>
 					<td class="text-center">
 					  <% if p.type_id == 1 %>

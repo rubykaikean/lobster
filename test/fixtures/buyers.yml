@@ -1,0 +1,44 @@
+# == Schema Information
+#
+# Table name: buyers
+#
+#  id                    :integer          not null, primary key
+#  full_name             :string
+#  ic_number             :string
+#  address               :text
+#  mobile_contact_number :string
+#  home_contact_number   :string
+#  office_contact_number :string
+#  email                 :string
+#  status_id             :integer
+#  sale_id               :integer
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+# Indexes
+#
+#  index_buyers_on_sale_id  (sale_id)
+#
+
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  full_name: MyString
+  ic_number: MyString
+  address: MyText
+  mobile_contact_number: MyString
+  home_contact_number: MyString
+  office_contact_number: MyString
+  email: MyString
+  status_id: 1
+
+two:
+  full_name: MyString
+  ic_number: MyString
+  address: MyText
+  mobile_contact_number: MyString
+  home_contact_number: MyString
+  office_contact_number: MyString
+  email: MyString
+  status_id: 1

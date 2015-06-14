@@ -1,0 +1,35 @@
+h1 Listing buyers
+
+table
+  thead
+    tr
+      th Full name
+      th Ic number
+      th Address
+      th Mobile contact number
+      th Home contact number
+      th Office contact number
+      th Email
+      th Status
+      th
+      th
+      th
+
+  tbody
+    - @buyers.each do |buyer|
+      tr
+        td = buyer.full_name
+        td = buyer.ic_number
+        td = buyer.address
+        td = buyer.mobile_contact_number
+        td = buyer.home_contact_number
+        td = buyer.office_contact_number
+        td = buyer.email
+        td = buyer.status_id
+        td = link_to 'Show', buyer
+        td = link_to 'Edit', edit_buyer_path(buyer)
+        td = link_to 'Destroy', buyer, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Buyer', new_buyer_path

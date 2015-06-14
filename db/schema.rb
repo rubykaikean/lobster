@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614081750) do
+ActiveRecord::Schema.define(version: 20150614173233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20150614081750) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["slug"], name: "index_admins_on_slug", unique: true, using: :btree
+
+  create_table "buyers", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "ic_number"
+    t.text     "address"
+    t.string   "mobile_contact_number"
+    t.string   "home_contact_number"
+    t.string   "office_contact_number"
+    t.string   "email"
+    t.integer  "status_id"
+    t.integer  "sale_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "buyers", ["sale_id"], name: "index_buyers_on_sale_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -127,8 +143,9 @@ ActiveRecord::Schema.define(version: 20150614081750) do
     t.integer  "status_id"
     t.integer  "phase_id"
     t.string   "slug"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "is_published", default: false
   end
 
   add_index "products", ["phase_id"], name: "index_products_on_phase_id", using: :btree
@@ -140,8 +157,9 @@ ActiveRecord::Schema.define(version: 20150614081750) do
     t.integer  "status_id"
     t.integer  "company_id"
     t.string   "slug"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "is_published", default: false
   end
 
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree

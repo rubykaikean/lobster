@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Full name:
+  = @buyer.full_name
+p
+  strong Ic number:
+  = @buyer.ic_number
+p
+  strong Address:
+  = @buyer.address
+p
+  strong Mobile contact number:
+  = @buyer.mobile_contact_number
+p
+  strong Home contact number:
+  = @buyer.home_contact_number
+p
+  strong Office contact number:
+  = @buyer.office_contact_number
+p
+  strong Email:
+  = @buyer.email
+p
+  strong Status:
+  = @buyer.status_id
+
+= link_to 'Edit', edit_buyer_path(@buyer)
+'|
+= link_to 'Back', buyers_path
