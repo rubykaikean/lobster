@@ -22,14 +22,14 @@ class ApplicationController < ActionController::Base
   def authenticate_admin_and_user!
     unless user_signed_in? || admin_signed_in?
       flash[:alert] = "You need to sign in first before continue."
-      redirect_to new_user_session_path
+      return redirect_to new_user_session_path
     end
   end
 
   def authenticate_super_admin!
     unless admin_signed_in?
       flash[:alert] = "You need to sign in as supermin before continue."
-      redirect_to new_admin_session_path
+      return redirect_to new_admin_session_path
     end
   end
 
