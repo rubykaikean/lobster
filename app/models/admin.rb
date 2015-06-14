@@ -34,4 +34,8 @@ class Admin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :display_name, presence: true, uniqueness: true
+
+  def should_generate_new_friendly_id?
+    display_name_changed?
+  end
 end

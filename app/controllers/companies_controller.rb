@@ -101,8 +101,9 @@ class CompaniesController < ApplicationController
   def update_setting
     # render :text => params
     @setting = @company.company_setting
+    flash[:notice] = "Setting was updated successfully."
     @setting.update(:allow_multiple_booking => setting_params[:allow_multiple_booking] )
-    redirect_to company_path(@company)
+    redirect_to root_path
   end
 
   private

@@ -82,6 +82,10 @@ class Company < ActiveRecord::Base
     status_id == SUSPENDED
   end
 
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
+
   private
 
   def generate_setting

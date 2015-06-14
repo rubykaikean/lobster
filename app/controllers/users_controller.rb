@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @company = current_user.company
+    @users = @company.users
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,7 +24,8 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    @company = current_user.company
+    @user = @company.users.new
   end
 
   # GET /users/1/edit
@@ -34,6 +36,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.company_id = current_user.company_id
 
     respond_to do |format|
       if @user.save
@@ -73,7 +76,8 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.friendly.find(params[:id])
+      @company = current_user.company
+      @user = @company.users.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614022335) do
+ActiveRecord::Schema.define(version: 20150614081750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,11 +85,14 @@ ActiveRecord::Schema.define(version: 20150614022335) do
     t.text     "description"
     t.integer  "product_id"
     t.string   "slug"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "product_type_id"
+    t.integer  "status_id",       default: 1
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
+  add_index "lots", ["product_type_id"], name: "index_lots_on_product_type_id", using: :btree
   add_index "lots", ["slug"], name: "index_lots_on_slug", unique: true, using: :btree
 
   create_table "phases", force: :cascade do |t|
