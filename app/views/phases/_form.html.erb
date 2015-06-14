@@ -1,11 +1,12 @@
-<%= form_for(@phase, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
+<%= form_for(@phase, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
+  
     <div class="form-group">
       <label class="col-md-3 control-label" for="project_name">Project Name :</label>
       <div class="col-md-9">
-        <%= Project.find(params[:id]).name %>
+        <%= Project.find(project_id).name %>
         <div style="display:none;">
-        <%= f.number_field :project_id, :value=> params[:id], :class=>"form-control" %>
+        <%= f.number_field :project_id, :value => params[:project_id], :class=>"form-control" %>
         </div>
       </div>
     </div>
