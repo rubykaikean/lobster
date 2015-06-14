@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :sales
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
   resources :admins
+  devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions  }
+  resources :users
   resources :lots
   resources :product_types
   resources :products do 
@@ -33,12 +35,15 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions  }
-
-  resources :users
-
-  get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
+  namespace :super_admin do
+    resources :companies do
+      member do
+        post "update_setting"
+      end
+    end
+  end
   
+  get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   root 'dashboard#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

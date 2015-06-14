@@ -17,6 +17,7 @@
 #  logo_updated_at     :datetime
 #  slug                :string
 #  parent_id           :integer
+#  status_id           :integer          default(1)
 #
 # Indexes
 #
@@ -48,6 +49,9 @@ class Company < ActiveRecord::Base
   DEVELOPER = 1
   AGENCY    = 2
 
+  ACTIVE = 1
+  SUSPENDED = 2
+
   TYPE_OPTIONS = [
     ["Developer", DEVELOPER],
     ["Agency", AGENCY]
@@ -60,6 +64,23 @@ class Company < ActiveRecord::Base
     when AGENCY
       "Agency"
     end
+  end
+
+  def status
+    case status_id
+    when ACTIVE
+      "Active"
+    when SUSPENDED
+      "Suspended"
+    end
+  end
+
+  def is_active?
+    status_id == ACTIVE
+  end
+
+  def is_suspended
+    status_id == SUSPENDED
   end
 
   private

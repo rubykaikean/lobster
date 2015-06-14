@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613145848) do
+ActiveRecord::Schema.define(version: 20150614022335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,14 +44,15 @@ ActiveRecord::Schema.define(version: 20150613145848) do
     t.string   "phone_number",        limit: 15
     t.string   "fax_number",          limit: 15
     t.integer  "type_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "slug"
     t.integer  "parent_id"
+    t.integer  "status_id",                      default: 1
   end
 
   add_index "companies", ["parent_id"], name: "index_companies_on_parent_id", using: :btree

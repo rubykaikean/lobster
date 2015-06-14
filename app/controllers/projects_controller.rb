@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
     num_phase = params[:project][:no_phase].to_i
     respond_to do |format|
       if @project.save
-        @project.project_create_phase(num_phase)
+        @project.create_bulk_phases(num_phase)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created }
       else

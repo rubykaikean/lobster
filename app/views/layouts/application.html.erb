@@ -168,8 +168,11 @@
 					</div>
 					<!--================================-->
 					<!--End shortcut buttons-->
-
-        <%= render "/layouts/menu"  %>
+				<% if is_super_admin? %>
+          <%= render "/layouts/supermin_menu"  %>
+        <% else %>
+          <%= render "/layouts/menu"  %>
+        <% end %>
 
 				</div>
 			</nav>

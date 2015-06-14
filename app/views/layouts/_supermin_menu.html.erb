@@ -11,7 +11,7 @@
 						
 									<!--Menu list item-->
 									<li class="active-link">
-										<a href="/">
+										<a href="<% supermin_board_path %>">
 											<i class="fa fa-dashboard"></i>
 											<span class="menu-title">
 												<strong>Dashboard</strong>
@@ -23,8 +23,18 @@
 									<li class="list-divider"></li>
 						
 									<!--Category name-->
-									<li class="list-header">Components</li>
+									<!-- <li class="list-header">Components</li> -->
 						
+						     
+						        <!--Menu list item-->
+										<!-- <li>
+											<a href="<%= companies_path %>">
+												<i class="fa fa-briefcase"></i>
+												<span class="menu-title">Client</span>
+												 <i class="arrow"></i>
+											</a>
+										</li> -->
+						     
 									<!--Menu list item-->
 								<!-- 	<li>
 										<a href="<%= projects_path %>">
@@ -36,16 +46,19 @@
 						
 									<!--Category name-->
 									<li class="list-header">Management</li>
-										<!--Menu list item-->
+						
+									
+									  <!--Menu list item-->
 										<li>
-											<a href="<%= users_path %>">
+											<a href="<%= admins_path %>">
 												<i class="fa fa-plug"></i>
 												<span class="menu-title">
-													User
+													Admin
 													<!-- <span class="label label-mint pull-right">New</span> -->
 												</span>
 											</a>
 										</li>
+								
 								</ul>
 
 							</div>

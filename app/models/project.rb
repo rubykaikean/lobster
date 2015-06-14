@@ -26,10 +26,25 @@ class Project < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  def project_create_phase(phase)
-  	phase.times do |num|
+  ACTIVE = 1
+  SUSPENDED = 2
+  CLOSED = 3
+
+  def create_bulk_phases(phase)
+  	phase.to_i.times do |num|
   		phases.create!(name: "Phase #{num}")
   	end
+  end
+
+  def status
+    case status_id
+    when ACTIVE
+      "Active"
+    when SUSPENDED
+      "Suspended"
+    when CLOSED
+      "Closed"
+    end
   end
 
 end

@@ -17,6 +17,7 @@
 #  logo_updated_at     :datetime
 #  slug                :string
 #  parent_id           :integer
+#  status_id           :integer          default(1)
 #
 # Indexes
 #

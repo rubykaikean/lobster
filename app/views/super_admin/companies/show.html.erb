@@ -35,8 +35,8 @@
             <%= @company.type %>
           </p>
 
-          <%= link_to 'Edit', edit_company_path(@company), :class=>"btn btn-small btn-info" %>
-          <%= link_to 'Back', companies_path, :class=>"btn btn-small btn-warning" %>
+          <%= link_to 'Edit', edit_super_admin_company_path(@company), :class=>"btn btn-small btn-info" %>
+          <%= link_to 'Back', super_admin_companies_path, :class=>"btn btn-small btn-warning" %>
       </div>
     </div>
 
@@ -120,7 +120,7 @@
         <div class="panel-heading">
           <h3 class="panel-title">Setting</h3>
         </div>
-        <%= form_tag update_setting_company_path(@company) do %>
+        <%= form_tag update_setting_super_admin_company_path(@company) do %>
         <div class="panel-body">
             <div class="form-group">
               <div class="col-md-12">

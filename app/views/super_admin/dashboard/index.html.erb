@@ -56,11 +56,18 @@
 						<tbody>
 						  <% Company.all.each do |company| %>
 								<tr>
-									<td><%= link_to(company.name, company) %></td>
-									<td class="text-center"><span class="label label-table label-success"><%= company.try(:status_id) %></span></td>
+									<td><%= link_to(company.name, super_admin_company_path(company)) %></td>
+									<td class="text-center">
+									<% if company.is_active? %>
+									  <span class="label label-table label-success">
+									  <% else %>
+									  <span class="label label-table label-danger">
+									  <% end %>
+									  <%= company.status %></span>
+									</td>
 									<td class="text-right">
-										<a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= edit_company_path(company) %>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
-										<a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%= company_path(company) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a>
+										<a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= super_admin_company_path(company) %>" data-original-title="Show" data-container="body"><i class="fa fa-pencil"></i></a>
+										<!-- <a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%= company_path(company) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a> -->
 									</td>
 								</tr>
 							<% end %>
