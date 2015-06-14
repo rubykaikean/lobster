@@ -6,5 +6,9 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    product = Product.friendly.find params[:id]
+    @lots = product.lots
   end
+
+
 end
