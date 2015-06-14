@@ -1,11 +1,11 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_company, only: [:show, :edit, :update, :destroy, :update_setting, :update_profile]
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :update_setting]
 
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = current_user.company.agencies
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    @company = Company.new
+    @company = current_user.company.agencies.new
     @user = User.new
   end
 
@@ -37,8 +37,8 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    @company = Company.new(company_params)
-    @company.type_id = params[:company_type_id]
+    @company = current_user.company.agencies.new(company_params)
+    @company.type_id = Company::AGENCY
 
     @user = User.new(email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin")
     @user.type_id = User::ADMIN
@@ -63,7 +63,6 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
-    @company.type_id = params[:company_type_id]
     respond_to do |format|
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
@@ -76,6 +75,7 @@ class CompaniesController < ApplicationController
   end
 
   def update_profile
+    @company = current_user.company
     respond_to do |format|
       if @company.update(company_params)
         format.html {  flash[:notice] = 'Company profile was successfully updated.' }
@@ -109,7 +109,7 @@ class CompaniesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
-      @company = Company.friendly.find(params[:id])
+      @company = current_user.company.agencies.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

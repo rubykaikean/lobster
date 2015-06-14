@@ -34,6 +34,7 @@ class Company < ActiveRecord::Base
   has_many :users, dependent: :destroy
   has_many :projects, dependent: :destroy
   has_one :company_setting, dependent: :destroy
+  has_many :agencies, class_name: "Company", foreign_key: "parent_id"
 
   has_attached_file :logo, 
           #:styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
@@ -89,8 +90,8 @@ class Company < ActiveRecord::Base
   private
 
   def generate_setting
-    unless company_setting.present?
-      company_setting.create
+    unless company_setting.present? && parent_id > 0
+      create_company_setting
     end
   end
 

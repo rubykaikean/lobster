@@ -1,4 +1,5 @@
 class LotsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_lot, only: [:show, :edit, :update, :destroy]
 
   # GET /lots

@@ -2,7 +2,7 @@
   <div class="col-lg-6">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">Client detail</h3>
+        <h3 class="panel-title">Agency detail</h3>
       </div>
 
       <div class="panel-body">
@@ -76,74 +76,6 @@
             </div>
           </div>
         </div>
-    </div>
- 
-    <div class="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title">Project</h3>
-        </div>
-       
-        <div class="panel-body">
-            <div class="form-group">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Project Name</th>
-                      <th>Description</th>
-                      <th class="text-center">Status</th>
-                      <!-- <th class="text-center">Action</th> -->
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                  <% @company.projects.each do |project| %>
-                    <tr>
-                      <td><%= project.name %></td>
-                      <td><%= project.description %></td>
-                      <td class="text-center"><%= project.status %></td>
-                     <!--  <td class="text-center">
-                        <%#= link_to 'Show', user, :class=>"btn btn-small btn-warning" %>
-                        <%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %></td> -->
-                    </tr>
-                  <% end %>
-                  </tbody>
-                </table>
-                </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div class="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title">Setting</h3>
-        </div>
-        <%= form_tag update_setting_company_path(@company) do %>
-        <div class="panel-body">
-            <div class="form-group">
-              <div class="col-md-12">
-                <div class="table-responsive">
-                <table class="table table-bordered">
-                  <tr>
-                    <td>Allow Multiple Booking per unit</td>
-                    <td>
-                      <label>
-                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @setting.try(:allow_multiple_booking) == true ? "checked" : nil %> value="true"> Yes
-                      </label>
-                      <label>
-                        <input type="radio" name="company_setting[allow_multiple_booking]" <%= @setting.try(:allow_multiple_booking) == false ? "checked" : nil %> value="false"> No
-                      </label>
-                    </td>
-                  </tr>
-                </table>
-                </div>
-            </div>
-          </div>
-          <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
-        </div>
-        <% end %>
     </div>
 
     </div>
