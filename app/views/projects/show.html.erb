@@ -42,8 +42,8 @@
 						<%= text_field_tag "phase[#{p.id}][name]", p.name, :class=>"form-control" %>
 					</td>
 					<td>
-						<%= radio_button_tag "phase[#{p.id}][status_id]", 1 %> Avaiable
-						<%= radio_button_tag "phase[#{p.id}][status_id]", 2 %> Pending
+						<%= radio_button_tag "phase[#{p.id}][status_id]", 1, p.status_id == 1 ? "checked" : nil %> Avaiable
+						<%= radio_button_tag "phase[#{p.id}][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Pending
 					</td>
 					<td>
 						<%#= link_to 'Add Product', new_product_path(:id => p.id), :class=>"btn btn-small btn-default" %>
