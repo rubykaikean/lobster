@@ -1,19 +1,29 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Display name:</strong>
-  <%= @user.display_name %>
-</p>
+<h3 class="panel-title"><strong>User Detail</strong></h3>
+<div class="panel">
+	<div class="panel-body">
+		<p>
+		  <strong>Display Name:</strong>
+		  <%= @user.display_name %>
+		</p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @user.type_id %>
-</p>
+		<p>
+		  <strong>Email:</strong>
+		  <%= @user.email %>
+		</p>
 
-<p>
-  <strong>Company:</strong>
-  <%= @user.company_id %>
-</p>
+		<p>
+		  <strong>Type:</strong>
+		  <%= @user.type %>
+		</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+		<p>
+		  <strong>Agency:</strong>
+		  <%= @user.company.name %>
+		</p>
+	</div>
+</div>
+
+
+<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-small btn-info" %>
+<%= link_to 'Back', users_path, class: "btn btn-small btn-warning" %>

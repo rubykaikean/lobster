@@ -5,7 +5,14 @@ Rails.application.routes.draw do
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
   resources :admins
   devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions  }
-  resources :users
+  resources :users do
+    collection do
+      post "create_member"
+    end
+    member do
+      patch "update_member"
+    end
+  end
   resources :lots
   resources :product_types
   resources :products do 
