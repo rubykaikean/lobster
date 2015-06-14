@@ -7,8 +7,8 @@
 				<div class="form-group">
 			    <label class="col-md-3 control-label" for="lot_no">No. of Lot to Generate: </label>
 			    <div class="col-md-9">
-			    	<input type="text" name="product[product_id]" value="<%= product_id %>" style="display:none;"></input>
-			      <%= text_field_tag "product[lot_no]",nil, class: "form-control" %>
+			    	<input type="hidden" name="product[product_id]" value="<%= @product.id %>"></input>
+			      <%= text_field_tag "product[lot_no]", nil, class: "form-control" %>
 			    </div>
 			  </div>
 
@@ -47,7 +47,7 @@
 			    <div class="row">
 			      <div class="col-sm-9 col-sm-offset-3">
 			        <button class="btn btn-info btn-labeled fa fa-user fa-lg" name="commit" type="submit">Generate Lot</button>
-			        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+			        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg back_btn" type="reset">Back</button>
 			      </div>
 			    </div>
 			  </div>

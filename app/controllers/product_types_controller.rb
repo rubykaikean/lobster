@@ -44,7 +44,11 @@ class ProductTypesController < ApplicationController
         format.html { redirect_to @product_type.product, notice: 'Product type was successfully created.' }
         format.json { render json: @product_type, status: :created }
       else
-        format.html { render action: 'new' }
+        format.html { 
+          @product = @product_type.product
+          flash[:alert] =  @product_type.errors.full_messages.join("<br>")
+          redirect_to :back
+        }
         format.json { render json: @product_type.errors, status: :unprocessable_entity }
       end
     end

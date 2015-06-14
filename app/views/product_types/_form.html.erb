@@ -7,7 +7,7 @@
       <input type="text" name="phase_id" value="<%#= params[:phase_id] %>" style="display:none;"></input>
     </div>
   </div> -->
-  <%= f.hidden_field :product_id, value: product.id  %>
+  <%= f.hidden_field :product_id, value: @product.id  %>
 
 
   <div class="form-group">
@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-sm-9 col-sm-offset-3">
           <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg back_btn" type="reset">Back</button>
         </div>
       </div>
     </div>
@@ -38,8 +38,8 @@
 
 <script type="text/javascript">
   
-  $("#back_btn").click(function(e){
+  $(".back_btn").click(function(e){
     e.preventDefault();
-    window.location.href='<%#= product_path(product) %>';
+    window.location.href='<%#= product_path(@product) %>';
   });
 </script>

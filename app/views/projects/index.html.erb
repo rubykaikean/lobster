@@ -33,7 +33,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% @projects.each_with_index do |p, index| %>
+                <% @projects.each do |p| %>
                   <tr>
                     <td>
                       <%= text_field_tag "update_project[#{p.id}][name]", p.name, :class=>"form-control" %>
@@ -51,7 +51,7 @@
                 <% end %>
               </tbody>
             </table> 
-            <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+            <%= submit_tag "Update", :class=>"btn btn-primary pull-right" if @projects.any? %>
             <% end %>
           </div> <!-- table responsive-->
         </div>

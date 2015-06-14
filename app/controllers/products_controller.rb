@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product_types = @product.product_types
     @product_type = ProductType.new
 
     respond_to do |format|
