@@ -89,6 +89,7 @@ class ProductsController < ApplicationController
     # render :text => lot_params
     @product = Product.find(lot_params[:product_id])
     @product.auto_create_lot(lot_params)
+    flash[:notice] = "Lots has been generated successfully."
     redirect_to product_path(@product)
   end
 

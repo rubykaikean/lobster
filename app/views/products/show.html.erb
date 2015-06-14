@@ -76,6 +76,7 @@
           <tr>
             <th>Name</th>
             <th class="text-center">Type</th>
+            <th class="text-center">Status</th>
             <th class="text-center">Action</th>
           </tr>
         </thead>
@@ -85,6 +86,7 @@
             <tr>
               <td><%= lot.name %></td>
               <td class="text-center"><%= lot.product_type.try(:name) %></td>
+              <td class="text-center"><%= lot.status %></td>
               <td class="text-center">
               <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
               </td>

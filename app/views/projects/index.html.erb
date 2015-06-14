@@ -39,8 +39,9 @@
                       <%= text_field_tag "update_project[#{p.id}][name]", p.name, :class=>"form-control" %>
                     </td>
                     <td class="text-center">
-                      <%= radio_button_tag "update_project[#{p.id}][status_id]", 1, p.status_id == 1 ? "checked" : nil %> Active
-                      <%= radio_button_tag "update_project[#{ p.id }][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Suspended
+                      <%= radio_button_tag "update_project[#{p.id}][status_id]", 1, p.status_id == 1 ? "checked" : nil %> Active 
+                      <%= radio_button_tag "update_project[#{ p.id }][status_id]", 2, p.status_id == 2 ? "checked" : nil %> Suspended 
+                      <%= radio_button_tag "update_project[#{ p.id }][status_id]", 3, p.status_id == 3 ? "checked" : nil %> Closed 
                     </td>
                     <td class="text-center">
                      <%= link_to "Detail", project_path(p), :class=>"btn btn-warning btn-small" %> 
