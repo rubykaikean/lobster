@@ -40,7 +40,7 @@
         <tr>
           <th>Name</th>
           <th>Desription</th>
-          <th>Action</th>
+          <th class="text-center">Action</th>
         </tr>
         <% @product.product_types.each_with_index do |p, index| %>
         <tr>
@@ -50,7 +50,7 @@
           <td>
             <%= text_field_tag "product[#{p.id}][description]", p.description, :class=>"form-control" %>
           </td>
-          <td>
+          <td class="text-center">
             <%= link_to 'Destroy', product_type_path(p, :product_id => @product.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
           </td>
         </tr>
@@ -76,7 +76,7 @@
 
         <!--Modal body-->
         <div class="modal-body">
-          <%= render "/product_types/form", :id => @product.id  %>
+          <%= render partial: "/product_types/form", locals: {:product => @product}  %>
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ class PhasesController < ApplicationController
   # POST /phases.json
   def create
     @phase = Phase.new(phase_params)
-    @phase.status_id = Phase::VARIABLE
+    @phase.status_id = Phase::AVAILABLE
     respond_to do |format|
       if @phase.save
         format.html { redirect_to project_path(params[:phase][:project_id]), notice: 'Phase was successfully created.' }

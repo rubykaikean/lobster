@@ -15,18 +15,18 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Type</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th class="text-center">Type</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <% @products.each do |product| %>
                   <tr>
                     <td><%= link_to(product.name, product) %></td>
-                    <td><%= product.type_id %></td>
-                    <td><%= product.status_id %></td>
-                    <td>
+                    <td class="text-center"><%= product.type %></td>
+                    <td class="text-center"><%= product.status %></td>
+                    <td class="text-center">
                       <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= edit_product_path(product) %>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
                       
                       <a class="btn btn-xs btn-danger add-tooltip"  data-toggle="tooltip" href="<%= product_path(product) %>" data-original-title="Delete" data-method="delete" data-confirm="Are you sure?" data-container="body"><i class="fa fa-times"></i></a>

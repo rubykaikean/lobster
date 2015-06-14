@@ -17,7 +17,7 @@
                   <th>Name</th>
                   <th>Status</th>
                   <th>Company</th>
-                  <th>Action</th>
+                  <th class="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,8 +26,8 @@
                   <tr>
                     <td><%= link_to(phase.name, phase) %></td>
                     <td><%= phase.status_id %></td>
-                    <td><%= phase.project_id %></td>
-                    <td>
+                    <td><%= phase.project.name %></td>
+                    <td class="text-center">
                       <a class="btn btn-xs btn-default add-tooltip" data-toggle="tooltip" href="<%= phase_path(phase) %>" data-original-title="Edit" data-container="body"><i class="fa fa-pencil"></i></a>
 
                       

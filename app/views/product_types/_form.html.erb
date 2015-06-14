@@ -1,18 +1,18 @@
 <%= form_for(@product_type, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
-
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label class="col-md-3 control-label" for="product_type_product_id">Product</label>
     <div class="col-md-9">
-      <%= Product.find(id).name %>
-      <input type="text" name="product_type[product_id]" value="<%= id %>" style="display:none;"></input>
-      <!-- <input type="text" name="phase_id" value="<%#= params[:phase_id] %>" style="display:none;"></input> -->
+      <%#= Product.find(id).name %>
+      <input type="text" name="product_type[product_id]" value="<%#= id %>" style="display:none;"></input>
+      <input type="text" name="phase_id" value="<%#= params[:phase_id] %>" style="display:none;"></input>
     </div>
-  </div>
+  </div> -->
+  <%= f.hidden_field :product_id, value: product.id  %>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_type_name">Name</label>
     <div class="col-md-9">
-      <input type="text" id="product_type_name" name="product_type[name]" class="form-control" placeholder="Product Type name" value="<%= @product_type.name %>">
+      <input type="text" id="product_type_name" name="product_type[name]" class="form-control" placeholder="Product type name" value="<%= @product_type.name %>">
       <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
@@ -20,7 +20,7 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_type_description">Description</label>
     <div class="col-md-9">
-      <input type="text" id="product_type_description" name="product_type[description]" class="form-control" placeholder="Product Type description" value="<%= @product_type.name %>">
+      <input type="text" id="product_type_description" name="product_type[description]" class="form-control" placeholder="Product type description" value="<%= @product_type.description %>">
       <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
@@ -37,8 +37,8 @@
 
 <script type="text/javascript">
   
-//   $("#back_btn").click(function(e){
-//     e.preventDefault();
-//     window.location.href='<%#= phase_path(params[:phase_id]) %>';
-//   });
+  $("#back_btn").click(function(e){
+    e.preventDefault();
+    window.location.href='<%#= product_path(product) %>';
+  });
 </script>

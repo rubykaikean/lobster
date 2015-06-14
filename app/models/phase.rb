@@ -27,13 +27,13 @@ class Phase < ActiveRecord::Base
 
   # validates :name, presence: true
 
-  VARIABLE = 1
+  AVAILABLE = 1
   PENDING = 2
 
   def status
     case status_id
-    when VARIABLE
-      "Variable"
+    when AVAILABLE
+      "Available"
     when PENDING
       "Pending"
     end
