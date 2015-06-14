@@ -8,7 +8,7 @@
 
       <p>
         <strong>Type:</strong>
-        <%= @product.type_id %>
+        <%= @product.type %>
       </p>
 
       <p>
@@ -18,13 +18,9 @@
 
       <p>
         <strong>Status:</strong>
-        <%= @product.status_id %>
+        <%= @product.status %>
       </p>
 
-      <p>
-        <strong>Phase:</strong>
-        <%= @product.phase_id %>
-      </p>
     </div>
   </div>
   <%= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
@@ -35,7 +31,7 @@
   <h3 class="panel-title"><strong>Product Types List</strong></h3>
   <div class="panel">
     <div class="panel-body">
-      <%= form_tag update_product_phases_path do %>
+      <%= form_tag update_product_type_product_types_path do %>
       <table class="table table-bordered">
         <tr>
           <th>Name</th>
@@ -45,10 +41,10 @@
         <% @product.product_types.each_with_index do |p, index| %>
         <tr>
           <td>
-            <%= text_field_tag "product[#{p.id}][name]", p.name, :class=>"form-control" %>
+            <%= text_field_tag "product_type[#{p.id}][name]", p.name, :class=>"form-control" %>
           </td>
           <td>
-            <%= text_field_tag "product[#{p.id}][description]", p.description, :class=>"form-control" %>
+            <%= text_field_tag "product_type[#{p.id}][description]", p.description, :class=>"form-control" %>
           </td>
           <td>
             <%= link_to 'Destroy', product_type_path(p, :product_id => @product.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
@@ -58,28 +54,6 @@
       </table>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
     <% end %>
-  </div>
-
-
-
-  <div class="modal fade" id="new_product_type" role="dialog" tabindex="-1" aria-labelledby="new_product_type" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!--Modal header-->
-        <div class="modal-header">
-          <button data-dismiss="modal" class="close" type="button">
-          <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Product Type</h4>
-        </div>
-
-        <!--Modal body-->
-        <div class="modal-body">
-          <%= render "/product_types/form", :id => @product.id  %>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="modal fade" id="generate_lot" role="dialog" tabindex="-1" aria-labelledby="generate_lot" aria-hidden="true">
@@ -97,6 +71,26 @@
         <!--Modal body-->
         <div class="modal-body">
           <%= render "/products/generate_lot", :product_id => @product.id  %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new_product_type" role="dialog" tabindex="-1" aria-labelledby="new_product_type" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Product Type</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render :partial => "/product_types/form", :locals => { :product_id => @product.id } %>
         </div>
       </div>
     </div>

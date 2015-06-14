@@ -21,7 +21,11 @@ Rails.application.routes.draw do
 
   resources :lots
 
-  resources :product_types
+  resources :product_types do 
+    collection do 
+      post "update_product_type"
+    end
+  end
 
   resources :products do 
     collection do

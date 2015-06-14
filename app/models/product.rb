@@ -38,6 +38,14 @@ class Product < ActiveRecord::Base
 		"#{name} - #{type}" 
 	end
 
+	def status
+		if self.status_id == AVAILABLE
+			"Available"
+		elsif self.type_id == PENDING
+			"Pending"
+		end
+	end
+
 	def type
 		if self.type_id == LANDED
 			"Landed"

@@ -45,7 +45,7 @@
 					</td>
 					<td>
 						<%= link_to 'Detail', p, :class=>"btn btn-small btn-warning" %>
-						<%#= link_to "Create Type", new_product_type_path(:id => p.id, :phase_id => @phase.id), :class=>"btn btn-small btn-info" %>
+						<%= link_to "Delete", product_path(p, :phase_id => @phase.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
 			    </td>
 					</td>
 				</tr>
