@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :reservations
+  resources :reservations do 
+    collection do
+      get "book_lot"
+    end
+  end
   resources :buyers
   resources :company_settings 
 
@@ -21,7 +25,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :lots
+  resources :lots do 
+    collection do
+      post "update_lot"
+    end
+  end
 
   resources :product_types do 
     collection do 
