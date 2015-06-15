@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :product_settings
   resources :reservations do 
     collection do
       get "book_lot"

@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Allow multiple booking:
+  = @product_setting.allow_multiple_booking
+
+= link_to 'Edit', edit_product_setting_path(@product_setting)
+'|
+= link_to 'Back', product_settings_path

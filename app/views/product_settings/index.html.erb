@@ -1,0 +1,21 @@
+h1 Listing product_settings
+
+table
+  thead
+    tr
+      th Allow multiple booking
+      th
+      th
+      th
+
+  tbody
+    - @product_settings.each do |product_setting|
+      tr
+        td = product_setting.allow_multiple_booking
+        td = link_to 'Show', product_setting
+        td = link_to 'Edit', edit_product_setting_path(product_setting)
+        td = link_to 'Destroy', product_setting, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Product setting', new_product_setting_path

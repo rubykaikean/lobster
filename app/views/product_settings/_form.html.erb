@@ -1,0 +1,12 @@
+= form_for @product_setting do |f|
+  - if @product_setting.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@product_setting.errors.count, "error")} prohibited this product_setting from being saved:"
+      ul
+        - @product_setting.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :allow_multiple_booking
+    = f.check_box :allow_multiple_booking
+  .actions = f.submit
