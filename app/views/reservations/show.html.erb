@@ -23,10 +23,7 @@
 					<td class="text-center"><%= lot.product_type.name %></td>
 					<td class="text-center"><%= lot.status %></td>
 					<td>
-						<!-- <button data-target="#book_lot" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">Book It</button> -->
-						<% if lot %>
-							<%= link_to "Book It", book_lot_reservations_path(:id => lot.id), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
-						<% end %>
+						<button data-target="#book_lot" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">Book It</button>
 					</td>
 				</tr>
 				
