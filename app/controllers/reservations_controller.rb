@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
 
   def show
     product = Product.friendly.find params[:id]
-    @lots = product.lots
+    @lots = product.lots.order(:name)
 
   end
 

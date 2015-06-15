@@ -1,7 +1,7 @@
 <%#= debug @lots  %>
+<div class="row" id="content_div">
+  <div class="col-lg-7">
 
-	
-<hr>
 <%#= form_tag do %>
 <div class="panel">
 	<div class="panel-body">
@@ -9,6 +9,7 @@
 			<table class="table table-striped table-hover">
 			  <thead>
 				<tr>
+				  <th>ID</th>
 					<th class="text-center">Unit Name</th>
 					<th class="text-center">Unit Type</th>
 					<th class="text-center">Status</th>
@@ -16,9 +17,10 @@
 				</tr>
 				</thead>
 				<tbody>
-				<% @lots.order(:name).each do |lot| %>
+				<% @lots.each do |lot| %>
 				
 				<tr>
+				  <td class="text-center"><%= lot.id %></td>
 					<td class="text-center"><%= lot.name %></td>
 					<td class="text-center"><%= lot.product_type.name %></td>
 					<td class="text-center"><%= lot.status %></td>
@@ -59,3 +61,6 @@
       </div>
     </div>
   </div>
+
+  </div>
+</div>
