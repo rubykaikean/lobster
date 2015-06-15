@@ -24,7 +24,7 @@
 					<td class="text-center"><%= lot.status %></td>
 					<td>
 						<!-- <button data-target="#book_lot" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">Book It</button> -->
-						<%= link_to "Book It", book_lot_reservations_path(:id => lot.id), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
+						<%#= link_to "Book It", book_lot_reservations_path(:id => lot.id), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
 					</td>
 				</tr>
 				
@@ -55,7 +55,7 @@
         <!--Modal body-->
         <div class="modal-body">
           
-         <%= render "form" %>
+         <%#= render "form" %>
         </div>
       </div>
     </div>
