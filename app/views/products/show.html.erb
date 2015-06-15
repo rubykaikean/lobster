@@ -80,13 +80,33 @@
             <th class="text-center">Action</th>
           </tr>
         </thead>
-
+        <%= form_tag update_lot_lots_path do %>
         <tbody>
           <% @product.lots.each do |lot| %>
             <tr>
-              <td><%= lot.name %></td>
-              <td class="text-center"><%= lot.product_type.try(:name) %></td>
-              <td class="text-center"><%= lot.status %></td>
+              <td>
+                <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
+              </td>
+              <td class="text-center">
+                <%= lot.product_type.name %>
+                <br>
+                <!-- <select class="selectpicker" name="update_lot[#{lot.product_type_id}][product_type_id]">
+                  <option>Select An Option</option>
+                  <%# @product.product_types.each do |t| %>
+                    <%# if lot.product_type_id %>
+                      <option value="<%#= lot.product_type_id %>" selected><%#= lot.product_type.name %></option>
+                    <%# else %>
+                      <option value="<%#= t.id %>"><%#= t.name %></option>
+                    <%# end %>
+                  <%# end %>
+                </select> -->
+                <%#= text_field_tag "update_lot[#{lot.id}][product_type.name]", lot.product_type.name, :class=>"form-control" %>
+              </td>
+              <td class="text-center">
+                <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 1, lot.status_id == 1 ? "checked" : nil %> Available
+                <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 2, lot.status_id == 2 ? "checked" : nil %> Reserved
+                <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 3, lot.status_id == 3 ? "checked" : nil %> Sold
+              </td>
               <td class="text-center">
               <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
               </td>
@@ -94,6 +114,8 @@
           <% end %>
         </tbody>
       </table>
+      <%= submit_tag "Update", :class=>"btn btn-primary pull-right" if @product.lots.any? %>
+      <% end %>
     </div>
   </div>
 

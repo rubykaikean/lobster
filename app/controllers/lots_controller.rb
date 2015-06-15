@@ -73,6 +73,21 @@ class LotsController < ApplicationController
     end
   end
 
+  def update_lot
+    # render :text => params
+    update_lot_params.each do |id, content|
+      lot = Lot.find id
+      lot.name = content[:name]
+      lot.status_id = content[:status_id]
+      lot.save!
+    end
+    redirect_to :back, notice: "Lot update successfully."
+  end
+
+  def book_lot
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lot
@@ -82,5 +97,9 @@ class LotsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
       params.require(:lot).permit(:name, :description, :product_id)
+    end
+
+    def update_lot_params
+      params.require(:update_lot).permit!
     end
 end
