@@ -47,7 +47,7 @@ class CompaniesController < ApplicationController
       if @company.valid? && @user.valid?
         if @company.save
           @user.company_id = @company.id
-          @user.save!
+          @user.save
           redirect_to @company, notice: 'Company was successfully created.'
         else
           flash.now[:alert] =  @company.errors.full_messages.join("<br>")

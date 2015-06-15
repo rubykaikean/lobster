@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
   validates :display_name, presence: true
   validates :display_name, uniqueness: { scope: :company_id }
-  validates :company, presence: true
+  # validates :company, presence: true
 
   ADMIN = 1
   STAFF = 2
