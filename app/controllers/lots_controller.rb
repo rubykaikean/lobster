@@ -66,9 +66,10 @@ class LotsController < ApplicationController
   # DELETE /lots/1
   # DELETE /lots/1.json
   def destroy
+    
     @lot.destroy
     respond_to do |format|
-      format.html { redirect_to lots_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

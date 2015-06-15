@@ -77,7 +77,7 @@
             <th>Name</th>
             <th class="text-center">Type</th>
             <th class="text-center">Status</th>
-            <th class="text-center">Action</th>
+            <!-- <th class="text-center">Action</th> -->
           </tr>
         </thead>
         <%= form_tag update_lot_lots_path do %>
@@ -107,9 +107,9 @@
                 <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 2, lot.status_id == 2 ? "checked" : nil %> Reserved
                 <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 3, lot.status_id == 3 ? "checked" : nil %> Sold
               </td>
-              <td class="text-center">
-              <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
-              </td>
+              <!-- <td class="text-center"> -->
+              <%#= link_to 'Destroy', lots_path(lot), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
+              <!-- </td> -->
             </tr>
           <% end %>
         </tbody>
