@@ -30,9 +30,12 @@ class Product < ActiveRecord::Base
 	belongs_to :company
 	has_many :lots, dependent: :destroy
 	has_many :product_types, dependent: :destroy
+	has_one  :product_setting, dependent: :destroy
+  has_many :sales
 
   validates :company_id, presence: true, allow_nil: true
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }
+	after_create :generate_setting
 
 	LANDED = 1
 	HIGHRISE = 2
@@ -83,6 +86,14 @@ class Product < ActiveRecord::Base
 
 	def should_generate_new_friendly_id?
     name_changed?
+  end
+
+  private
+
+  def generate_setting
+    unless product_setting.present?
+      create_product_setting
+    end
   end
 
 end

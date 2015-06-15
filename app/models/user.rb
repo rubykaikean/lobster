@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :company
+  has_many :sales
 
   validates :display_name, presence: true
   validates :display_name, uniqueness: { scope: :company_id }

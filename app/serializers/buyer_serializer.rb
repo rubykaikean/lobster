@@ -10,14 +10,8 @@
 #  home_contact_number   :string
 #  office_contact_number :string
 #  email                 :string
-#  status_id             :integer
-#  sale_id               :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#
-# Indexes
-#
-#  index_buyers_on_sale_id  (sale_id)
 #
 
 class BuyerSerializer < ActiveModel::Serializer
