@@ -20,6 +20,9 @@ class ProductsController < ApplicationController
     @product_types = @product.product_types
     @product_type = ProductType.new
 
+    @q = @product.lots.ransack(params[:q])
+    @lots = @q.result(distinct: true)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
