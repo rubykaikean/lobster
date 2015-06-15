@@ -79,8 +79,9 @@ class LotsController < ApplicationController
     update_lot_params.each do |id, content|
       lot = Lot.find id
       lot.name = content[:name]
-      lot.status_id = content[:status_id]
-      lot.save!
+      lot.product_type_id = content[:product_type_id]
+      # lot.status_id = content[:status_id]
+      lot.save
     end
     redirect_to :back, notice: "Lot update successfully."
   end

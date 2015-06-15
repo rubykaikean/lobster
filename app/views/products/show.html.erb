@@ -74,6 +74,7 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Name</th>
             <th class="text-center">Type</th>
             <th class="text-center">Status</th>
@@ -82,30 +83,32 @@
         </thead>
         <%= form_tag update_lot_lots_path do %>
         <tbody>
-          <% @product.lots.each do |lot| %>
+          <% @product.lots.order(:name).each do |lot| %>
             <tr>
+              <td><%= lot.id  %></td>
               <td>
                 <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
               </td>
               <td class="text-center">
-                <%= lot.product_type.name %>
-                <br>
-                <!-- <select class="selectpicker" name="update_lot[#{lot.product_type_id}][product_type_id]">
+                <%#= lot.product_type.name %>
+                
+                <select class="selectpicker" name="update_lot[<%= lot.id %>][product_type_id]">
                   <option>Select An Option</option>
-                  <%# @product.product_types.each do |t| %>
-                    <%# if lot.product_type_id %>
-                      <option value="<%#= lot.product_type_id %>" selected><%#= lot.product_type.name %></option>
-                    <%# else %>
-                      <option value="<%#= t.id %>"><%#= t.name %></option>
-                    <%# end %>
-                  <%# end %>
-                </select> -->
+                  <% @product.product_types.each do |t| %>
+                    <% if t.id == lot.product_type_id %>
+                      <option value="<%= t.id %>" selected><%= t.name %></option>
+                    <% else %>
+                      <option value="<%= t.id %>"><%= t.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
                 <%#= text_field_tag "update_lot[#{lot.id}][product_type.name]", lot.product_type.name, :class=>"form-control" %>
               </td>
               <td class="text-center">
-                <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 1, lot.status_id == 1 ? "checked" : nil %> Available
-                <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 2, lot.status_id == 2 ? "checked" : nil %> Reserved
-                <%= radio_button_tag "update_lot[#{lot.id}][status_id]", 3, lot.status_id == 3 ? "checked" : nil %> Sold
+                <%= lot.status  %>
+                <!-- <%#= radio_button_tag "update_lot[#{lot.id}][status_id]", 1, lot.status_id == 1 ? "checked" : nil %> Available -->
+                <!-- <%#= radio_button_tag "update_lot[#{lot.id}][status_id]", 2, lot.status_id == 2 ? "checked" : nil %> Reserved -->
+                <!-- <%#= radio_button_tag "update_lot[#{lot.id}][status_id]", 3, lot.status_id == 3 ? "checked" : nil %> Sold -->
               </td>
               <!-- <td class="text-center"> -->
               <%#= link_to 'Destroy', lots_path(lot), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
