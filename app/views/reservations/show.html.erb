@@ -16,15 +16,17 @@
 				</tr>
 				</thead>
 				<tbody>
-				<% @lots.each do |lot| %>
+				<% @lots.order(:name).each do |lot| %>
 				
 				<tr>
 					<td class="text-center"><%= lot.name %></td>
-					<td class="text-center"><%= lot.product_type_id %></td>
+					<td class="text-center"><%= lot.product_type.name %></td>
 					<td class="text-center"><%= lot.status %></td>
 					<td>
 						<!-- <button data-target="#book_lot" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">Book It</button> -->
-						<%#= link_to "Book It", book_lot_reservations_path(:id => lot.id), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
+						<% if lot %>
+							<%= link_to "Book It", book_lot_reservations_path(:id => lot.id), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
+						<% end %>
 					</td>
 				</tr>
 				
