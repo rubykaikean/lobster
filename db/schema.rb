@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150615161347) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,10 +97,17 @@ ActiveRecord::Schema.define(version: 20150615161347) do
     t.text     "description"
     t.integer  "product_id"
     t.string   "slug"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "product_type_id"
-    t.integer  "status_id",       default: 1
+    t.integer  "status_id",               default: 1
+    t.integer  "land_area_square_meter",  default: 0
+    t.integer  "land_area_square_feet",   default: 0
+    t.integer  "extra_land_square_meter", default: 0
+    t.integer  "extra_land_square_feet",  default: 0
+    t.integer  "premium"
+    t.integer  "extra_land_price",        default: 0
+    t.integer  "selling_price",           default: 0
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
@@ -121,13 +127,26 @@ ActiveRecord::Schema.define(version: 20150615161347) do
   add_index "phases", ["project_id"], name: "index_phases_on_project_id", using: :btree
   add_index "phases", ["slug"], name: "index_phases_on_slug", unique: true, using: :btree
 
+  create_table "product_settings", force: :cascade do |t|
+    t.integer  "product_id"
+    t.boolean  "allow_multiple_booking", default: false
+    t.boolean  "use_product_type_info",  default: true
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
   create_table "product_types", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "product_id"
     t.string   "slug"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "land_area_square_meter",  default: 0
+    t.integer  "land_area_square_feet",   default: 0
+    t.integer  "extra_land_square_meter", default: 0
+    t.integer  "extra_land_square_feet",  default: 0
+    t.integer  "extra_land_price",        default: 0
   end
 
   add_index "product_types", ["product_id"], name: "index_product_types_on_product_id", using: :btree
