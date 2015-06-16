@@ -38,6 +38,7 @@
           <tr>
             <th>Name</th>
             <th class="text-center">Type</th>
+            <th class="text-center">Price</th>
             <th class="text-center">Status</th>
             <!-- <th class="text-center">Action</th> -->
           </tr>
@@ -64,6 +65,9 @@
                 </select>
                 <%#= text_field_tag "update_lot[#{lot.id}][product_type.name]", lot.product_type.name, :class=>"form-control" %>
               </td>
+              <td class="text-center">
+                <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
+              <td>
               <td class="text-center">
                 <%= lot.status  %>
               </td>

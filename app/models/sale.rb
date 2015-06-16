@@ -15,8 +15,9 @@
 #  downpayment            :integer
 #  downpayment_percentage :integer
 #  downpayment_type       :integer
-#  cash_bank_loan         :string
+#  bank_loan              :string
 #  spa                    :string
+#  booking_fee            :integer
 #
 # Indexes
 #
