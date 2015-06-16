@@ -14,9 +14,18 @@ class ApplicationController < ActionController::Base
     admin_signed_in? && current_admin
   end
 
-  helper_method :current_user_is_admin?
-  def current_user_is_admin?
-    current_user && current_user.is_admin?
+  helper_method :is_admin?
+  def is_admin?
+    if current_user && current_user.company.parent_id.to_i == 0
+      current_user.is_admin?
+    else
+      return false
+    end
+  end
+
+  helper_method :is_staff?
+  def is_staff?
+    current_user && !current_user.is_admin?
   end
 
   def authenticate_admin_and_user!

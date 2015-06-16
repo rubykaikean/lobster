@@ -171,7 +171,11 @@
 				<% if is_super_admin? %>
           <%= render "/layouts/supermin_menu"  %>
         <% else %>
-          <%= render "/layouts/menu"  %>
+          <% if is_admin? %>
+            <%= render "/layouts/admin_menu"  %>
+          <% else %>
+            <%= render "/layouts/staff_menu"  %>
+          <% end %>
         <% end %>
 
 				</div>
