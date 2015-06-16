@@ -8,16 +8,25 @@ class ReservationsController < ApplicationController
   def show
     product = Product.friendly.find params[:id]
     @lots = product.lots.order(:name)
+  end
+
+  def new
+    # render :text => params
+    # @lot = Lot.friendly.find(params[:format])
 
   end
 
-  def book_lot
-  	# render :text => params
-  	lot = Lot.find(params[:id])
-  	lot.status_id = 2
-  	lot.save!
-  	redirect_to :back, notice: "Lot Booked successfully."
+  def create_lot
+  	render :text => buyer_params
+    # @lot = Lot.find(buyer_params[:lot_id])
+    # @lot.create_buyer_sale(buyer_params)
   end
 
+
+  private
+
+  def buyer_params
+    params.require(:buyer).permit!
+  end
 
 end

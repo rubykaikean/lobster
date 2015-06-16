@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
   resources :product_settings
-  resources :reservations do 
+  resources :reservations do
     collection do
-      get "book_lot"
+      get "new"
+      post "create_lot"
     end
   end
+  
   resources :buyers
   resources :company_settings 
 

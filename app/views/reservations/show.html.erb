@@ -3,64 +3,62 @@
   <div class="col-lg-7">
 
 <%#= form_tag do %>
-<div class="panel">
-	<div class="panel-body">
-	<div class="table-responsive">
-			<table class="table table-striped table-hover">
-			  <thead>
-				<tr>
-				  <th>ID</th>
-					<th class="text-center">Unit Name</th>
-					<th class="text-center">Unit Type</th>
-					<th class="text-center">Status</th>
-					<th class="text-center">Action</th>
-				</tr>
-				</thead>
-				<tbody>
-				<% @lots.each do |lot| %>
-				
-				<tr>
-				  <td class="text-center"><%= lot.id %></td>
-					<td class="text-center"><%= lot.name %></td>
-					<td class="text-center"><%= lot.product_type.name %></td>
-					<td class="text-center"><%= lot.status %></td>
-					<td class="text-center">
-						<button data-target="#book_lot" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">Book Now</button>
-					</td>
-				</tr>
-				
-				<% end %>
-				</tbody>
+			<div class="panel">
+				<div class="panel-body">
+				<div class="table-responsive">
+						<table class="table table-striped table-hover">
+						  <thead>
+							<tr>
+								<th class="text-center">Unit Name</th>
+								<th class="text-center">Unit Type</th>
+								<th class="text-center">Status</th>
+								<th class="text-center">Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<% @lots.each do |lot| %>
+							
+							<tr>
+								<td class="text-center"><%= lot.name %></td>
+								<td class="text-center"><%= lot.product_type.name %></td>
+								<td class="text-center"><%= lot.status %></td>
+								<td class="text-center">
+									<!-- <button data-target="#book_lot<%= lot.id %>" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">Book Now</button> -->
+								<%= link_to "Book It!", new_reservation_path(), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
+								</td>
+							</tr>
+							
+							
 
-				
-			</table>
-		</div>
-		<%#= submit_tag("Update", :class=>"btn btn-primary pull-right") if @lots.any? %>
-	</div>
-</div>
-<%# end %>
+							<% end %>
+							</tbody>
 
-
-	<div class="modal fade" id="book_lot" role="dialog" tabindex="-1" aria-labelledby="book_lot" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!--Modal header-->
-        <div class="modal-header">
-          <button data-dismiss="modal" class="close" type="button">
-          <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Enter Buyer Detail</h4>
-        </div>
-
-        <!--Modal body-->
-        <div class="modal-body">
-          123
-         <%#= render "form" %>
-        </div>
-      </div>
-    </div>
-  </div>
-
+							
+						</table>
+					</div>
+				</div>
+			</div>
   </div>
 </div>
+
+<div class="modal fade" id="book_lot<%#= lot.id %>" role="dialog" tabindex="-1" aria-labelledby="book_lot" aria-hidden="true">
+						    <div class="modal-dialog">
+						      <div class="modal-content">
+
+						        <div class="modal-header">
+						          <button data-dismiss="modal" class="close" type="button">
+						          <span aria-hidden="true">&times;</span>
+						          </button>
+						          <h4 class="modal-title">Enter Buyer Detail </h4>
+						        </div>
+						        
+						        <div class="modal-body">
+						         
+						         <%#= render partial: "form",  :locals => { :id => lot.id } %>
+						        </div>
+
+
+						        
+						      </div>
+						    </div>
+						  </div>

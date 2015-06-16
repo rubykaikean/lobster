@@ -12,8 +12,19 @@
 #  email                 :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  gender                :integer
+#  age                   :integer
+#  region                :string
+#  race                  :string
+#  sources               :string
 #
 
 class Buyer < ActiveRecord::Base
-  belongs_to :sale
+  has_many :sales
+
+
+  def create_buyer_sale(lot)
+  		
+  end
+
 end
