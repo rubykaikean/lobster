@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614180952) do
+ActiveRecord::Schema.define(version: 20150615161347) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,13 +46,9 @@ ActiveRecord::Schema.define(version: 20150614180952) do
     t.string   "home_contact_number"
     t.string   "office_contact_number"
     t.string   "email"
-    t.integer  "status_id"
-    t.integer  "sale_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
-
-  add_index "buyers", ["sale_id"], name: "index_buyers_on_sale_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -176,8 +173,10 @@ ActiveRecord::Schema.define(version: 20150614180952) do
     t.integer  "status_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "buyer_id"
   end
 
+  add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree
   add_index "sales", ["lot_unit_id"], name: "index_sales_on_lot_unit_id", using: :btree
   add_index "sales", ["phase_id"], name: "index_sales_on_phase_id", using: :btree
   add_index "sales", ["product_id"], name: "index_sales_on_product_id", using: :btree

@@ -32,119 +32,37 @@
   <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Product Type</button>
   <hr>
 
-  <h3 class="panel-title"><strong>Product Types List</strong></h3>
-  <div class="panel">
-    <div class="panel-body">
-      <%= form_tag update_product_type_product_types_path do %>
-      <table class="table table-striped table-hover">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th class="text-center">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <% @product_types.each do |p| %>
-        
-        <tr>
-          <td>
-            <%= text_field_tag "product_type[#{p.id}][name]", p.name, :class=>"form-control" %>
-          </td>
-          <td>
-            <%= text_field_tag "product_type[#{p.id}][description]", p.description, :class=>"form-control" %>
-          </td>
-          <td class="text-center">
-            <%= link_to 'Destroy', product_type_path(p), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
-          </td>
-        </tr>
-        
-        <% end %>
-        </tbody>
-      </table>
-      <%= submit_tag "Update", :class=>"btn btn-primary pull-right" if @product_types.any? %>
-      <% end %>
-    </div>
-  </div>
-
-  <h3 class="panel-title"><strong>Lot List</strong></h3>
-  <div class="panel">
-    <div class="panel-body">
-      <div class="panel-title"><strong>Search</strong></div>
-      <div class="row">
-        <%= search_form_for @q, url: product_path(@product) do |f| %>
-
-        <table class="table">
-          <tr>
-            <td>Name: </td>
-            <td><%= f.search_field :name_cont, :placeholder => "Search Name", :class => "form-control"%>
-            </td>
-            <td>Type: </td>
-            <td>
-              <select id="q_product_type_id_eq" name="q[product_type_id_eq]" class="selectpicker">
-                <option value="">All Type</option>
-                <% @product_types.each do |pro| %>
-                  <option value="<%= pro.id %>"><%= pro.name %></option>
-                <% end %>
-              </select>
-            </td>
-          </tr>
+  <div class="tab-base">
           
-          <tr>
-            <td><%#= render :text => params %></td>
-            <td></td>
-            <td></td>
-            <td><%= f.submit "Search", :class=>"btn btn-default" %></td>
-          </tr>
-        <% end %>
-      </div>
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th class="text-center">Type</th>
-            <th class="text-center">Status</th>
-            <!-- <th class="text-center">Action</th> -->
-          </tr>
-        </thead>
-        <%= form_tag update_lot_lots_path do %>
-        <tbody>
-          <% @lots.order(:name).each do |lot| %>
-            <tr>
-              <td>
-                <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
-              </td>
-              <td class="text-center">
-                <%#= lot.product_type.name %>
-                
-                <select class="selectpicker" name="update_lot[<%= lot.id %>][product_type_id]">
-                  <option>Select An Option</option>
-                  <% @product.product_types.each do |t| %>
-                    <% if t.id == lot.product_type_id %>
-                      <option value="<%= t.id %>" selected><%= t.name %></option>
-                    <% else %>
-                      <option value="<%= t.id %>"><%= t.name %></option>
-                    <% end %>
-                  <% end %>
-                </select>
-                <%#= text_field_tag "update_lot[#{lot.id}][product_type.name]", lot.product_type.name, :class=>"form-control" %>
-              </td>
-              <td class="text-center">
-                <%= lot.status  %>
-              </td>
-              <!-- <td class="text-center"> -->
-              <%#= link_to 'Destroy', lots_path(lot), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
-              <!-- </td> -->
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= submit_tag "Update", :class=>"btn btn-primary pull-right" if @product.lots.any? %>
-      <% end %>
-    </div>
-  </div>
+    <!--Nav Tabs-->
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a data-toggle="tab" href="#product_type-tab">Product type list <!-- <span class="badge badge-purple">27</span> --></a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#lot-tab">Lot list</a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#product_setting-tab">Product Setting</a>
+      </li>
+      
+    </ul>
 
+    <!--Tabs Content-->
+   <div class="tab-content">
+     <%= render "/products/product_type_tab"  %>
+     <%= render "/products/lot_tab"  %>
+     <%= render "/products/product_setting_tab"  %>
+   </div>
+  </div>
+              <!--===================================================-->
+              <!--End Default Tabs (Left Aligned)-->
+          
+
+  <!-- <h3 class="panel-title"><strong>Product Types List</strong></h3> -->
+  
+  <!-- <h3 class="panel-title"><strong>Lot List</strong></h3> -->
+ 
 
   <div class="modal fade" id="generate_lot" role="dialog" tabindex="-1" aria-labelledby="generate_lot" aria-hidden="true">
     <div class="modal-dialog">

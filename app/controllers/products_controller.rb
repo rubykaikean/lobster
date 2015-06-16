@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   def show
     @product_types = @product.product_types
     @product_type = ProductType.new
+    @setting = @product.product_setting || @product.create_product_setting
 
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true)
