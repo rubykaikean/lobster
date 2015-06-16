@@ -12,6 +12,11 @@
 #  email                 :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  gender                :integer
+#  age                   :integer
+#  region                :string
+#  race                  :string
+#  sources               :string
 #
 
 class BuyerSerializer < ActiveModel::Serializer

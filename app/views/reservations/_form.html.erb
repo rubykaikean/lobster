@@ -1,0 +1,94 @@
+
+
+<%= form_tag create_lot_reservations_path,:class => "panel-body form-horizontal form-padding" do %>
+	<% if @lot %>
+    <%= hidden_field_tag "buyer[lot_id]", nil, value: @lot.id %>
+  <% end %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_name">Name: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_name" name="buyer[name]" class="form-control" placeholder="Name" value="">
+	  </div>
+	</div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_ic_number">IC number: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_address">Address</label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_address" name="buyer[address]" class="form-control" placeholder="Address" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_age">Age: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_age" name="buyer[age]" class="form-control" placeholder="Age" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_region">Region: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_region" name="buyer[region]" class="form-control" placeholder="Region" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_race">Race: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_race" name="buyer[race]" class="form-control" placeholder="Race" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Contact Number: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_home_contact_number"></label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_home_contact_number" name="buyer[home_contact_number]" class="form-control" placeholder="Home Contact Number" value="">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_office_contact_number"></label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_office_contact_number" name="buyer[office_contact_number]" class="form-control" placeholder="Office Contact Number" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_sources">Where did you get sources from?: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="newspaper? internet?" value="">
+    </div>
+  </div>
+
+  
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
+        <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+
+
+  
+

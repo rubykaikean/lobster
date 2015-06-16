@@ -2,16 +2,21 @@
 #
 # Table name: sales
 #
-#  id          :integer          not null, primary key
-#  project_id  :integer
-#  product_id  :integer
-#  lot_unit_id :integer
-#  phase_id    :integer
-#  user_id     :integer
-#  status_id   :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  buyer_id    :integer
+#  id                     :integer          not null, primary key
+#  project_id             :integer
+#  product_id             :integer
+#  lot_unit_id            :integer
+#  phase_id               :integer
+#  user_id                :integer
+#  status_id              :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  buyer_id               :integer
+#  downpayment            :integer
+#  downpayment_percentage :integer
+#  downpayment_type       :integer
+#  cash_bank_loan         :string
+#  spa                    :string
 #
 # Indexes
 #
@@ -28,4 +33,8 @@ class Sale < ActiveRecord::Base
   belongs_to :buyers
   belongs_to :user
   belongs_to :product
+
+
+  
+
 end
