@@ -8,17 +8,17 @@
 				<table class="table table-bordered">
 					<tr>
 						<td class="text-center">Name TP: </td>
-						<td class="text-center"><%#= @lot.name %></td>
+						<td class="text-center"><%= @lot.name %></td>
 					</tr>
 				
 					<tr>
 						<td class="text-center">Lot Type: </td>
-						<td class="text-center"><%#= @lot.product_type.name %></td>
+						<td class="text-center"><%= @lot.product_type.name %></td>
 					</tr>
 
 					<tr>
 						<td class="text-center">Selling Price: </td>
-						<td class="text-center"><%#= @lot.try(:price) %></td>
+						<td class="text-center"><%= @lot.try(:price) %></td>
 					</tr>
 
 				</table>

@@ -12,7 +12,7 @@ class ReservationsController < ApplicationController
 
   def new
     # render :text => params
-    # @lot = Lot.friendly.find(params[:format])
+    @lot = Lot.friendly.find(params[:lot_id])
 
   end
 

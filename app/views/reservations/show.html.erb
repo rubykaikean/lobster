@@ -24,7 +24,7 @@
 								<td class="text-center"><%= lot.status %></td>
 								<td class="text-center">
 									<!-- <button data-target="#book_lot<%= lot.id %>" data-toggle="modal" class="btn btn-purple btn-labeled fa fa-plus">Book Now</button> -->
-								<%= link_to "Book It!", new_reservation_path(), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
+								<%= link_to "Book It!", new_reservation_path(:lot_id => lot.id), :class=>"btn btn-purple btn-labeled fa fa-plus" %>
 								</td>
 							</tr>
 							
