@@ -76,41 +76,51 @@ class Lot < ActiveRecord::Base
     name_changed?
   end
 
-  # def create_buyer(lot, user_id)
-  #   buyer = Buyer.new
-  #   buyer.full_name = lot[:name]
-  #   buyer.ic_number = lot[:ic_number]
-  #   buyer.address = lot[:address]
-  #   buyer.email = 
-  #   buyer.gender =
-  #   buyer.age =
-  #   buyer.region =
-  #   buyer.race =
-  #   buyer.sources =
-  #   buyer.mobile_contact_number = lot[:]
-  #   buyer.home_contact_number =
-  #   buyer.office_contact_number =
+  def create_buyer(lot, user_id)
     
-  #   buyer.save!
-  # end
+    @user_id = user_id
+    buyer = Buyer.new
+    buyer.full_name = lot[:name]
+    buyer.ic_number = lot[:ic_number]
+    buyer.address = lot[:address]
+    buyer.email = lot[:email]
+    buyer.gender = lot[:gender]
+    buyer.age = lot[:age]
+    buyer.region = lot[:region]
+    buyer.race = lot[:race]
+    buyer.sources = lot[:sources]
+    buyer.mobile_contact_number = lot[:mobile_contact_number]
+    buyer.home_contact_number = lot[:home_contact_number]
+    buyer.office_contact_number = lot[:office_contact_number]
+    @booking_fee = lot[:booking_fee]
 
-  # def create_sale(lot, user_id)
-  #   sale = Sales.new
-  #   sale.project_id 
-  #   sale.product_id
-  #   sale.lot_unit_id
-  #   sale.phase_id
-  #   sale.user_id = user_id
-  #   sale.status_id 
-  #   sale.buyer_id
-  #   sale.downpayment
-  #   sale.downpayment_percentage
-  #   sale.downpayment_type
-  #   sale.bank_loan
-  #   sale.spa
-  #   create_buyer_record
-  #   redirect_to reservation_path(buyer_params[:lot_id]), flash[:notice] = "Lot has been reserved"
-  # end
+    buyer.save!
+    @buyer_id = buyer.id
+    create_sale
+  end
+
+  def create_sale
+    sale = Sale.new
+    sale.project_id = product.phase.project_id
+    sale.product_id = product_id
+    sale.lot_unit_id = self.id
+    sale.phase_id = product.phase_id
+    sale.user_id = @user_id
+    sale.booking_fee = @booking_fee
+    # sale.status_id = 
+    sale.buyer_id = @buyer_id
+    # sale.downpayment
+    # sale.downpayment_percentage
+    # sale.downpayment_type
+    # sale.bank_loan
+    # sale.spa
+    sale.save!
+    change_lot_status
+  end
+
+  def change_lot_status
+    
+  end
 
   
 

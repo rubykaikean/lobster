@@ -17,11 +17,14 @@ class ReservationsController < ApplicationController
   end
 
   def create_lot
-  	render :text => buyer_params
 
-    # @lot = Lot.find(buyer_params[:lot_id])
-    # @lot.create_buyer(buyer_params, current_user.id)
-    
+  	# render :text => params[:buyer][:lot_id]
+    @lot = Lot.find(buyer_params["lot_id"])
+    @lot.create_buyer(buyer_params, current_user.id)
+    @lot.status_id = 2
+    @lot.save!
+    redirect_to reservation_path(@lot.product)
+    flash[:notice] = "Lot has been reserved"
   end
 
 
