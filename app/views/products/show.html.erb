@@ -37,10 +37,10 @@
     <!--Nav Tabs-->
     <ul class="nav nav-tabs">
       <li class="active">
-        <a data-toggle="tab" href="#product_type-tab">Product type list <!-- <span class="badge badge-purple">27</span> --></a>
+        <a data-toggle="tab" href="#lot-tab">Lot list</a>
       </li>
       <li>
-        <a data-toggle="tab" href="#lot-tab">Lot list</a>
+        <a data-toggle="tab" href="#product_type-tab">Product type list <!-- <span class="badge badge-purple">27</span> --></a>
       </li>
       <li>
         <a data-toggle="tab" href="#product_setting-tab">Product Setting</a>
@@ -50,9 +50,9 @@
 
     <!--Tabs Content-->
    <div class="tab-content">
-     <%= render "/products/product_type_tab"  %>
-     <%= render "/products/lot_tab"  %>
-     <%= render "/products/product_setting_tab"  %>
+      <%= render "/products/lot_tab"  %>
+      <%= render "/products/product_type_tab"  %>
+      <%= render "/products/product_setting_tab"  %>
    </div>
   </div>
               <!--===================================================-->
