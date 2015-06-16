@@ -2,23 +2,23 @@
 	<div class="col-lg-6">
 		<div class="panel">
 			<div class="panel-heading">
-				<h3 class="panel-title">Book Lot Unit</h3>
+				<h3 class="panel-title">Lot detail</h3>
 			</div>
 			<div class="panel-body">
 				<table class="table table-bordered">
 					<tr>
-						<td class="text-center">Name TP: </td>
+						<td>TP No: </td>
 						<td class="text-center"><%= @lot.name %></td>
 					</tr>
 				
 					<tr>
-						<td class="text-center">Lot Type: </td>
+						<td>Lot Type: </td>
 						<td class="text-center"><%= @lot.product_type.name %></td>
 					</tr>
 
 					<tr>
-						<td class="text-center">Selling Price: </td>
-						<td class="text-center"><%= @lot.selling_price %></td>
+						<td>Selling Price: </td>
+						<td class="text-center">RM <%= number_with_precision(@lot.selling_price, precision: 0, separator: ".", delimiter: ",")  %></td>
 					</tr>
 
 				</table>

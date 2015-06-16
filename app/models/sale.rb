@@ -31,11 +31,10 @@
 #
 
 class Sale < ActiveRecord::Base
-  belongs_to :buyers
+  belongs_to :buyer
   belongs_to :user
   belongs_to :product
-
-
-  
+  belongs_to :phase
+  belongs_to :project
 
 end

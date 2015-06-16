@@ -17,6 +17,11 @@
 #  region                :string
 #  race                  :string
 #  sources               :string
+#  slug                  :string
+#
+# Indexes
+#
+#  index_buyers_on_slug  (slug) UNIQUE
 #
 
 require "test_helper"

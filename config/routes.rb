@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   resources :product_settings
   resources :reservations do
-    collection do
-      # get "new_lot"
+    member do
       post "create_lot"
+      get "buyer"
     end
   end
   

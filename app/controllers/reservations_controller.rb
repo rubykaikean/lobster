@@ -6,25 +6,40 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    product = Product.friendly.find params[:id]
-    @lots = product.lots.order(:name)
+    @product = Product.friendly.find params[:id]
+    @lots = @product.lots.order(:name)
   end
 
-  def new
+  def buyer
     # render :text => params
-    @lot = Lot.friendly.find(params[:lot_id])
-
+    @lot = Lot.friendly.find(params[:id])
+    if @lot.is_available?
+      @lot.status_id = Lot::RESERVED
+      @lot.save
+      @sale = Sale.new
+      @sale.lot_unit_id = @lot.id
+      @sale.product_id = @lot.product_id
+      @sale.phase_id = @lot.product.phase_id
+      @sale.project_id = @lot.product.phase.project_id
+      @sale.user_id = current_user.id
+      @buyer = Buyer.create
+      @sale.buyer_id = @buyer.id
+      @sale.status_id = 1
+      @sale.save
+    else
+      flash[:alert] = "Lot #{@lot.name} is not available for booking."
+      redirect_to reservation_path(@lot.product)
+    end
   end
 
   def create_lot
-
-  	# render :text => params[:buyer][:lot_id]
-    @lot = Lot.find(buyer_params["lot_id"])
-    @lot.create_buyer(buyer_params, current_user.id)
-    @lot.status_id = 2
-    @lot.save!
+    @lot = Lot.find(params[:lot_id])
+    buyer = Buyer.friendly.find(params[:id])
+    buyer.update(buyer_params)
+    sale = Sale.find(params[:sale_id])
+    sale.update(booking_fee: params[:booking_fee])
+    flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{buyer.full_name}."
     redirect_to reservation_path(@lot.product)
-    flash[:notice] = "Lot has been reserved"
   end
 
 
