@@ -62,6 +62,17 @@ class Lot < ActiveRecord::Base
     end
   end
 
+  def background_css_name
+    case status_id
+    when AVAILABLE
+      "bg-mint"
+    when RESERVED
+      "bg-danger"
+    when SOLD
+      "bg-primary"
+    end
+  end
+
   def slug_candidates
     [ 
       slug_name
@@ -116,5 +127,6 @@ class Lot < ActiveRecord::Base
     # sale.spa
     sale.save!
   end
+
 
 end

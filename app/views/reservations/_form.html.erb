@@ -1,13 +1,14 @@
 
 
-<%= form_tag create_lot_reservations_path,:class => "panel-body form-horizontal form-padding" do %>
-	<% if @lot %>
-    <%= hidden_field_tag "buyer[lot_id]", nil, value: @lot.id %>
-  <% end %>
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_name">Name: </label>
+<%= form_tag create_lot_reservation_path(@buyer), :class => "panel-body form-horizontal form-padding" do %>
+
+    <%= hidden_field_tag "lot_id", nil, value: @lot.id %>
+    <%= hidden_field_tag "sale_id", nil, value: @sale.id %>
+
+   <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_full_name">Full name: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_name" name="buyer[name]" class="form-control" placeholder="Name" value="">
+      <input type="text" id="buyer_name" name="buyer[full_name]" class="form-control" placeholder="Full name" value="">
 	  </div>
 	</div>
 
@@ -19,7 +20,7 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_ic_number">IC number: </label>
+    <label class="col-md-3 control-label" for="buyer_ic_number">IC Number: </label>
     <div class="col-md-9">
       <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="">
     </div>
@@ -84,16 +85,16 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_sources">Where did you get sources from?: </label>
+    <label class="col-md-3 control-label" for="buyer_sources">How did you hear about us? </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="newspaper? internet?" value="">
+      <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="Newspaper? Internet?" value="">
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_booking_fee">Booking Fee: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_booking_fee" name="buyer[booking_fee]" class="form-control" placeholder="Booking Fee" value="">
+      <input type="text" id="booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="">
     </div>
   </div>  
 
@@ -146,6 +147,14 @@
   </div>
 
 <% end %>
+
+<script type="text/javascript">
+  
+  $("#back_btn").click(function(e){
+    e.preventDefault();
+      window.location.href='<%= reservation_path(@lot.product) %>';
+  });
+</script>
 
 
 

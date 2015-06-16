@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616174335) do
+
+ActiveRecord::Schema.define(version: 20150616182640) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +54,10 @@ ActiveRecord::Schema.define(version: 20150616174335) do
     t.string   "region"
     t.string   "race"
     t.string   "sources"
+    t.string   "slug"
   end
+
+  add_index "buyers", ["slug"], name: "index_buyers_on_slug", unique: true, using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -138,6 +143,7 @@ ActiveRecord::Schema.define(version: 20150616174335) do
     t.boolean  "use_product_type_info",  default: true
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "unit_per_row",           default: 5
   end
 
   create_table "product_types", force: :cascade do |t|

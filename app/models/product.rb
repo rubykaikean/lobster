@@ -36,6 +36,7 @@ class Product < ActiveRecord::Base
   validates :company_id, presence: true, allow_nil: true
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }
 	after_create :generate_setting
+  after_find :generate_setting
 
 	LANDED = 1
 	HIGHRISE = 2

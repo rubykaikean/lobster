@@ -8,6 +8,7 @@
 #  use_product_type_info  :boolean          default(TRUE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  unit_per_row           :integer          default(5)
 #
 
 class ProductSetting < ActiveRecord::Base

@@ -17,14 +17,20 @@
 #  region                :string
 #  race                  :string
 #  sources               :string
+#  slug                  :string
+#
+# Indexes
+#
+#  index_buyers_on_slug  (slug) UNIQUE
 #
 
 class Buyer < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
+  
   has_many :sales
 
+  # validates :full_name, :ic_number
 
-  
-
-  
 
 end
