@@ -107,7 +107,7 @@ class Lot < ActiveRecord::Base
     sale.phase_id = product.phase_id
     sale.user_id = @user_id
     sale.booking_fee = @booking_fee
-    # sale.status_id = 
+    sale.status_id = 1
     sale.buyer_id = @buyer_id
     # sale.downpayment
     # sale.downpayment_percentage
@@ -115,13 +115,6 @@ class Lot < ActiveRecord::Base
     # sale.bank_loan
     # sale.spa
     sale.save!
-    change_lot_status
   end
-
-  def change_lot_status
-    
-  end
-
-  
 
 end
