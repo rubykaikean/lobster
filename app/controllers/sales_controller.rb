@@ -6,7 +6,8 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    @q = Sale.ransack(params[:q])
+    @sales = @q.result(distinct: true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -72,6 +73,21 @@ class SalesController < ApplicationController
     end
   end
 
+  def confirm_sales
+    # render :text => confirm_sale_params
+    Sale.confirm_sale(confirm_sale_params)
+    redirect_to sales_path, :notice => "Setting successfully updated"
+  end
+
+  def reject_sales
+    # render :text => confirm_sale_params
+    s = Sale.find(confirm_sale_params[:sale_id])
+    s.status_id = 3
+    s.reject_reason = confirm_sale_params[:reject_reason]
+    s.save!
+    redirect_to sales_path, :notice => "Setting successfully updated"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sale
@@ -80,6 +96,10 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:project_id, :product_id, :lot_unit_id, :phase_id, :user_id, :status_id, :downpayment, :downpayment_percentage ,:down_payment_type, :cash_bank_loan, :spa)
+      params.require(:sale).permit(:project_id, :product_id, :lot_unit_id, :phase_id, :user_id, :status_id, :downpayment, :downpayment_percentage ,:down_payment_type, :cash_bank_loan, :spa, :reject_reason)
+    end
+
+    def confirm_sale_params
+      params.require(:sale).permit!
     end
 end

@@ -8,7 +8,7 @@
 #  lot_unit_id            :integer
 #  phase_id               :integer
 #  user_id                :integer
-#  status_id              :integer
+#  status_id              :integer          default(1)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  buyer_id               :integer
@@ -18,6 +18,7 @@
 #  bank_loan              :string
 #  spa                    :string
 #  booking_fee            :integer
+#  reject_reason          :string
 #
 # Indexes
 #

@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   resources :buyers
   resources :company_settings 
 
-  resources :sales
+  resources :sales do
+    collection do
+      post "confirm_sales"
+      post "reject_sales"
+    end
+  end
 
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
  
