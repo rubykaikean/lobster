@@ -76,4 +76,42 @@ class Lot < ActiveRecord::Base
     name_changed?
   end
 
+  # def create_buyer(lot, user_id)
+  #   buyer = Buyer.new
+  #   buyer.full_name = lot[:name]
+  #   buyer.ic_number = lot[:ic_number]
+  #   buyer.address = lot[:address]
+  #   buyer.email = 
+  #   buyer.gender =
+  #   buyer.age =
+  #   buyer.region =
+  #   buyer.race =
+  #   buyer.sources =
+  #   buyer.mobile_contact_number = lot[:]
+  #   buyer.home_contact_number =
+  #   buyer.office_contact_number =
+    
+  #   buyer.save!
+  # end
+
+  # def create_sale(lot, user_id)
+  #   sale = Sales.new
+  #   sale.project_id 
+  #   sale.product_id
+  #   sale.lot_unit_id
+  #   sale.phase_id
+  #   sale.user_id = user_id
+  #   sale.status_id 
+  #   sale.buyer_id
+  #   sale.downpayment
+  #   sale.downpayment_percentage
+  #   sale.downpayment_type
+  #   sale.bank_loan
+  #   sale.spa
+  #   create_buyer_record
+  #   redirect_to reservation_path(buyer_params[:lot_id]), flash[:notice] = "Lot has been reserved"
+  # end
+
+  
+
 end

@@ -18,9 +18,10 @@ class ReservationsController < ApplicationController
 
   def create_lot
   	render :text => buyer_params
+
     # @lot = Lot.find(buyer_params[:lot_id])
-    # @lot.create_buyer_sale(buyer_params)
-    redirect_to reservation_path(buyer_params[:lot_id])
+    # @lot.create_buyer(buyer_params, current_user.id)
+    
   end
 
 

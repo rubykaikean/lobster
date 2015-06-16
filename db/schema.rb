@@ -201,8 +201,9 @@ ActiveRecord::Schema.define(version: 20150616074542) do
     t.integer  "downpayment"
     t.integer  "downpayment_percentage"
     t.integer  "downpayment_type"
-    t.string   "cash_bank_loan"
+    t.string   "bank_loan"
     t.string   "spa"
+    t.integer  "booking_fee"
   end
 
   add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree

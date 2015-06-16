@@ -23,8 +23,8 @@ class Buyer < ActiveRecord::Base
   has_many :sales
 
 
-  def create_buyer_sale(lot)
-  		
-  end
+  
+
+  
 
 end
