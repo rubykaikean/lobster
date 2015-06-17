@@ -1,5 +1,19 @@
 
 <div id="product_setting-tab" class="tab-pane fade">
-    <h4 class="text-thin">setting</h4>
-     product setting form
+    <h4 class="text-thin">Setting</h4>
+     <div class="panel">
+    <div class="panel-body">
+      <%= form_tag update_setting_product_path(@setting) do %>
+       <div class="form-group">
+        <label class="col-md-3 control-label" for="setting_unit_per_row">Unit per row</label>
+        <div class="col-md-9">
+          <label class="form-checkbox form-normal form-primary active">
+            <input type="checkbox" id="setting_unit_per_row" name="setting[unit_per_row]" value="<%= @setting.unit_per_row %>"> 
+          </label>
+        </div>
+      </div>
+      <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+      <% end %>
+    </div>
+  </div>
 </div>

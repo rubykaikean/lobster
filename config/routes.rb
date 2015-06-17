@@ -49,6 +49,9 @@ Rails.application.routes.draw do
     collection do
       post "create_lot"
     end
+    member do
+      post "update_setting"
+    end
   end
 
   resources :phases do 

@@ -99,6 +99,13 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
+  def update_setting
+    setting = ProductSetting.find(params[:id])
+    setting.update(setting_params)
+    flash[:notice] = "Setting has been saved."
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -112,6 +119,10 @@ class ProductsController < ApplicationController
 
     def lot_params
       params.require(:product).permit!
+    end
+
+    def setting_params
+      params.require(:setting).permit(:unit_per_row)
     end
    
 end
