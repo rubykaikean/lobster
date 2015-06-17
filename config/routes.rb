@@ -7,6 +7,12 @@ Rails.application.routes.draw do
       get "buyer"
     end
   end
+
+  resources :reports do
+    collection do
+      get "summary_report"
+    end
+  end
   
   resources :buyers
   resources :company_settings 
