@@ -1,4 +1,4 @@
-<%= form_tag confirm_sales_sales_path({:class => 'panel-body form-horizontal form-padding'})  do %>
+<%= form_tag confirm_sales_sales_path, {:class => 'panel-body form-horizontal form-padding'}  do %>
   <input type="hidden" name="sale[sale_id]" value="<%= sale_id %>">
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment">DownPayment(RM):</label>
@@ -14,33 +14,32 @@
       <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="Enter DownPayment percentage" value="">
     </div>
   </div>
-
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_downpayment_type">Payment Type: </label>
+    <div class="col-md-9">
+      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Enter Down Payment Type" value="">
+    </div>
+  </div>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Enter Bank Loan Type" value="">
+      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Enter Bank Loan" value="">
     </div>
   </div>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_downpayment_type">Down Payment Type: </label>
-    <div class="col-md-9">
-      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Enter DownPayment Type" value="">
-    </div>
-  </div>
-
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_spa">SPA: </label>
     <div class="col-md-9">
       <input type="text" id="sale_spa" name="sale[spa]" class="form-control" placeholder="Enter SPA" value="">
     </div>
   </div>
-  <br>
+
+
   <div class="form-group">
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">
+          <br>
         <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        <!-- <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button> -->
       </div>
     </div>
   </div>

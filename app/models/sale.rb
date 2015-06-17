@@ -54,37 +54,33 @@ class Sale < ActiveRecord::Base
     end
   end
 
-  def self.confirm_sale(params)
-    @sale_id = params[:sale_id]
-    s = Sale.find(params[:sale_id])
-    s.status_id = 2
-    s.downpayment = params[:downpayment]
-    s.downpayment_percentage = params[:downpayment_percentage]
-    s.bank_loan = params[:bank_loan]
-    s.downpayment_type = params[:downpayment_type]
-    s.spa = params[:spa]
-    Sale.reject_sale_same_record(s)
-    s.save!
-    Sale.lot_unit_sold
-  end
-
-  def self.lot_unit_sold
-    a = Sale.find(@sale_id)
-    lot = Lot.find(a.lot_unit_id)
-    lot.status_id = 3
-    lot.save!
-  end
-
-  def self.reject_sale_same_record(s)
-    p = Sale.where("lot_unit_id = ?", s.lot_unit_id)
-    if p
-      p.each do |t|
-        if t.status_id = 1
-          t.status_id = 3
-          t.save!
-        end
-      end
+  def self.confirm_sale(confirm_params)
+    s = Sale.find(confirm_params[:sale_id])
+    s.status_id = COMPLETED
+    s.downpayment = confirm_params[:downpayment]
+    s.downpayment_percentage = confirm_params[:downpayment_percentage]
+    s.bank_loan = confirm_params[:bank_loan]
+    s.downpayment_type = confirm_params[:downpayment_type]
+    s.spa = confirm_params[:spa]
+    
+    if s.save
+      # Sale.reject_sale_same_record(s)
+      lot = Lot.find(s.lot_unit_id)
+      lot.status_id = Lot::SOLD
+      lot.save
     end
   end
+
+  # def self.reject_sale_same_record(s)
+  #   p = Sale.where("lot_unit_id = ?", s.lot_unit_id)
+  #   if p
+  #     p.each do |t|
+  #       if t.status_id = 1
+  #         t.status_id = 3
+  #         t.save!
+  #       end
+  #     end
+  #   end
+  # end
 
 end

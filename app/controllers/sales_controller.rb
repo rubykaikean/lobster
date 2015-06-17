@@ -76,16 +76,20 @@ class SalesController < ApplicationController
   def confirm_sales
     # render :text => confirm_sale_params
     Sale.confirm_sale(confirm_sale_params)
-    redirect_to sales_path, :notice => "Setting successfully updated"
+    redirect_to sales_path, notice: "Sale has been confirmed."
   end
 
   def reject_sales
     # render :text => confirm_sale_params
     s = Sale.find(confirm_sale_params[:sale_id])
-    s.status_id = 3
+    s.status_id = Sale::REJECTED
     s.reject_reason = confirm_sale_params[:reject_reason]
-    s.save!
-    redirect_to sales_path, :notice => "Setting successfully updated"
+    if s.save
+      lot = Lot.find(s.lot_unit_id)
+      lot.status_id = Lot::AVAILABLE
+      lot.save
+    end
+    redirect_to sales_path, notice: "Sale has been rejected."
   end
 
   private

@@ -1,18 +1,18 @@
-<%= form_tag reject_sales_sales_path({:class => 'panel-body form-horizontal form-padding'})  do %>
+<%= form_tag reject_sales_sales_path, {:class => 'panel-body form-horizontal form-padding'}  do %>
   <input type="hidden" name="sale[sale_id]" value="<%= sale_id %>">
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_reject_reason">Reject Reason:</label>
     <div class="col-md-9">
-      <input type="text" id="sale_reject_reason" name="sale[reject_reason]" class="form-control" placeholder="Enter Reject Reason" value="">
+      <input type="text" id="sale_reject_reason" name="sale[reject_reason]" class="form-control" placeholder="Reject Reason" value="">
       <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
-
   <div class="form-group">
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">
+        <br>
         <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        <!-- <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button> -->
       </div>
     </div>
   </div>

@@ -45,14 +45,11 @@
               <th>Agency</th>
               <th class="text-center">Agent</th>
               <th class="text-center">Purchaser</th>
-              <th class="text-center">Price</th>
-              <th class="text-center">Type</th>
+              
+              <th class="text-center">Product</th>
               <th class="text-center">Lot</th>
-              <th class="text-center">Age</th>
-              <th class="text-center">Race</th>
-              <th class="text-center">Region</th>
-              <th class="text-center">Sources</th>
-              <th class="text-center">Action/Remark<th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Action<th>
             </tr>
           </thead>
 
@@ -62,18 +59,16 @@
                 <td><%= sale.user.company.name %></td>
                 <td class="text-center"><%= sale.user.email %></td>
                 <td class="text-center"><%= sale.buyer.full_name %></td>
+                
                 <td class="text-center">
-                  <%= Lot.find_by(:id => sale.lot_unit_id).selling_price %>
-                </td>
-                <td class="text-center">
-                  <%= Lot.find_by(:id => sale.lot_unit_id).product_type.name %></td>
+                  <%= Lot.find_by(:id => sale.lot_unit_id).product.name %></td>
                 <td class="text-center">
                   <%= Lot.find_by(:id => sale.lot_unit_id).name %>
                 </td>
-                <td class="text-center"><%= sale.buyer.age %></td>
-                <td class="text-center"><%= sale.buyer.race %></td>
-                <td class="text-center"><%= sale.buyer.region %></td>
-                <td class="text-center"><%= sale.buyer.sources %></td>
+                <td class="text-center">
+                  <%= Lot.find_by(:id => sale.lot_unit_id).selling_price %>
+                </td>
+        
                 <td class="text-center">
                 <% if sale.status_id == Sale::PENDING %>
                   <% if current_user.is_admin? %>
@@ -84,8 +79,8 @@
                     
                   <% end %>
                 <% elsif sale.status_id == Sale::REJECTED %>
-                  <%= sale.reject_reason %>
-                <% else %>
+                  The sale has been rejected due to <%= sale.reject_reason %>
+                <% elsif sale.status_id == Sale::COMPLETED %>
                   This unit successfully Sold by agent
                 <% end %>
                 </td>
@@ -121,7 +116,7 @@
                     <button data-dismiss="modal" class="close" type="button">
                     <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Confirm Sale</h4>
+                    <h4 class="modal-title">Reject Sale</h4>
                   </div>
 
                   <!--Modal body-->
