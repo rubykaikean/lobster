@@ -104,7 +104,7 @@ class Lot < ActiveRecord::Base
     buyer.home_contact_number = lot[:home_contact_number]
     buyer.office_contact_number = lot[:office_contact_number]
     @booking_fee = lot[:booking_fee]
-
+    
     buyer.save!
     @buyer_id = buyer.id
     create_sale

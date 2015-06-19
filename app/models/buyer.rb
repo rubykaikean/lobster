@@ -13,15 +13,18 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  gender                :integer
-#  age                   :integer
-#  region                :string
-#  race                  :string
-#  sources               :string
 #  slug                  :string
+#  is_bumi_putera        :boolean          default(FALSE)
+#  sources_type_id       :integer
+#  race                  :integer
+#  age                   :integer
+#  region_id             :integer
 #
 # Indexes
 #
-#  index_buyers_on_slug  (slug) UNIQUE
+#  index_buyers_on_region_id        (region_id)
+#  index_buyers_on_slug             (slug) UNIQUE
+#  index_buyers_on_sources_type_id  (sources_type_id)
 #
 
 class Buyer < ActiveRecord::Base
@@ -29,8 +32,26 @@ class Buyer < ActiveRecord::Base
   friendly_id :full_name, use: :slugged
   
   has_many :sales
+  belongs_to :sources_type
+  belongs_to :region
 
-  # validates :full_name, :ic_number
+  CHINESE = 1
+  BUMIPUTERA = 2
+  INDIAN = 3
+  OTHER = 4
+
+  def race
+  	case race_id
+  	when CHINESE
+  		"chinese"
+  	when BUMIPUTERA
+  		"bumiputera"
+  	when INDIAN
+  		"indian"
+  	when OTHER
+  		"other"
+  	end
+  end
 
 
 end

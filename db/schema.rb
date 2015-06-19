@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616182640) do
+ActiveRecord::Schema.define(version: 20150619094949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150616182640) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "slug"
+    t.string   "username"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -45,17 +46,20 @@ ActiveRecord::Schema.define(version: 20150616182640) do
     t.string   "home_contact_number"
     t.string   "office_contact_number"
     t.string   "email"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "gender"
-    t.integer  "age"
-    t.string   "region"
-    t.string   "race"
-    t.string   "sources"
     t.string   "slug"
+    t.boolean  "is_bumi_putera",        default: false
+    t.integer  "sources_type_id"
+    t.integer  "race"
+    t.integer  "age"
+    t.integer  "region_id"
   end
 
+  add_index "buyers", ["region_id"], name: "index_buyers_on_region_id", using: :btree
   add_index "buyers", ["slug"], name: "index_buyers_on_slug", unique: true, using: :btree
+  add_index "buyers", ["sources_type_id"], name: "index_buyers_on_sources_type_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -86,6 +90,18 @@ ActiveRecord::Schema.define(version: 20150616182640) do
   end
 
   add_index "company_settings", ["company_id"], name: "index_company_settings_on_company_id", using: :btree
+
+  create_table "floor_plans", force: :cascade do |t|
+    t.integer  "project_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "floor_plans", ["project_id"], name: "index_floor_plans_on_project_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -192,6 +208,12 @@ ActiveRecord::Schema.define(version: 20150616182640) do
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sales", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "product_id"
@@ -219,6 +241,24 @@ ActiveRecord::Schema.define(version: 20150616182640) do
   add_index "sales", ["status_id"], name: "index_sales_on_status_id", using: :btree
   add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
+  create_table "site_plans", force: :cascade do |t|
+    t.integer  "project_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "site_plans", ["project_id"], name: "index_site_plans_on_project_id", using: :btree
+
+  create_table "sources_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "display_name"
     t.integer  "type_id"
@@ -236,6 +276,7 @@ ActiveRecord::Schema.define(version: 20150616182640) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "username"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

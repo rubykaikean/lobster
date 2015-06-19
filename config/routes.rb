@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :regions
+  resources :sources_types
+  resources :site_plans
+  resources :floor_plans
   resources :product_settings
   resources :reservations do
     member do
