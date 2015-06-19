@@ -17,6 +17,7 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  slug                   :string
+#  username               :string
 #
 # Indexes
 #

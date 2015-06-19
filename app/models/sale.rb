@@ -71,16 +71,4 @@ class Sale < ActiveRecord::Base
     end
   end
 
-  # def self.reject_sale_same_record(s)
-  #   p = Sale.where("lot_unit_id = ?", s.lot_unit_id)
-  #   if p
-  #     p.each do |t|
-  #       if t.status_id = 1
-  #         t.status_id = 3
-  #         t.save!
-  #       end
-  #     end
-  #   end
-  # end
-
 end
