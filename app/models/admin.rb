@@ -27,7 +27,7 @@
 
 class Admin < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :display_name, :use => :slugged
+  friendly_id :display_name, use: :slugged
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -1,21 +1,41 @@
-<%= form_for(@admin) do |f| %>
-  <% if @admin.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+<%= form_for(@admin, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
-      <ul>
-      <% @admin.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="admin_email">Email</label>
+    <div class="col-md-9">
+      <input type="text" id="admin_email" name="admin[email]" class="form-control" placeholder="Email" value="<%= @admin.email %>" <%= @admin.new_record? ? nil : "disabled" %>>
+      <!-- <small class="help-block">This is a help text</small> -->
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+ <div class="form-group">
+    <label class="col-md-3 control-label" for="admin_display_name">Display Name</label>
+    <div class="col-md-9">
+      <input type="text" id="admin_display_name" name="admin[display_name]" class="form-control" placeholder="Display name" value="<%= @admin.display_name %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+
+ <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        </div>
+      </div>
+    </div>
 <% end %>
+
+<script type="text/javascript">
+  
+  $("#back_btn").click(function(e){
+    e.preventDefault();
+    <% if @admin.new_record? %>
+      window.location.href='<%= admins_path %>';
+    <% else %>
+      window.location.href='<%= admin_path(@admin) %>';
+    <% end %>
+  });
+</script>
