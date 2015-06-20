@@ -44,21 +44,41 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_age">Age: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_age" name="buyer[age]" class="form-control" placeholder="Age" value="">
+      <!-- <input type="text" id="buyer_age" name="buyer[age]" class="form-control" placeholder="Age" value=""> -->
+    <select class="selectpicker" name="buyer[age_id]">
+      <option>Select An Option<option>
+      <option value="1">18-30</option>
+      <option value="2">34-40</option>
+      <option value="3">41-50</option>
+      <option value="4">51-60</option>
+      <option value="5">61 & above</option>
+    </select>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_region">Region: </label>
+    <label class="col-md-3 control-label" for="buyer_region_id">Region: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_region" name="buyer[region]" class="form-control" placeholder="Region" value="">
+      <!-- <input type="text" id="buyer_region" name="buyer[region]" class="form-control" placeholder="Region" value=""> -->
+      <select class="selectpicker" name="buyer[region_id]">
+        <option>Select An Option<option>
+        <% Region.each do |p| %>
+          <option value="<%= p.id %>"><%= p.name %></option>
+        <% end %>
+      </select>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_race">Race: </label>
+    <label class="col-md-3 control-label" for="buyer_race_id">Race: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_race" name="buyer[race]" class="form-control" placeholder="Race" value="">
+    <select class="selectpicker" name="buyer[race_id]">
+      <option>Select An Option<option>
+      <option value="1">Chinese</option>
+      <option value="2">Bumiputera</option>
+      <option value="3">Indian</option>
+      <option value="4">Other</option>
+    </select>
     </div>
   </div>
 
@@ -66,14 +86,12 @@
     <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Contact Number: </label>
     <div class="col-md-9">
       <input type="text" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="">
-      <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_home_contact_number"></label>
     <div class="col-md-9">
       <input type="text" id="buyer_home_contact_number" name="buyer[home_contact_number]" class="form-control" placeholder="Home Contact Number" value="">
-      <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
 
@@ -85,9 +103,15 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_sources">How did you hear about us? </label>
+    <label class="col-md-3 control-label" for="buyer_sources_type_id">How did you hear about us? </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="Newspaper? Internet?" value="">
+     <!--  <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="Newspaper? Internet?" value=""> -->
+     <select class="selectpicker" name="buyer[sources_type_id]">
+        <option>Select An Option<option>
+        <% SourcesType.each do |p| %>
+          <option value="<%= p.id %>"><%= p.name %></option>
+        <% end %>
+      </select>
     </div>
   </div>
 
@@ -96,7 +120,14 @@
     <div class="col-md-9">
       <input type="text" id="booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="">
     </div>
-  </div>  
+  </div>
+  
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_is_bumi_putera">Bumi Putera: </label>
+    <div class="col-md-9">
+      <%= check_box_tag "buyer[is_bumi_putera]", true, nil %>
+    </div>
+  </div>
 
   <!-- <div class="panel-heading">
     <h4>Transaction Detail</h4>

@@ -39,10 +39,11 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
+    # render :text => params
     @company = current_user.company.agencies.new(company_params)
     @company.type_id = Company::AGENCY
 
-    @user = User.new(email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin")
+    @user = User.new(email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin", username: params[:username])
     @user.type_id = User::ADMIN
       if @company.valid? && @user.valid?
         if @company.save

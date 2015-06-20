@@ -37,10 +37,11 @@ class SuperAdmin::CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
+
     @company = Company.new(company_params)
     @company.type_id = params[:company_type_id]
 
-    @user = User.new(email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin")
+    @user = User.new(email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin", username: params[:company_username])
     @user.type_id = User::ADMIN
       if @company.valid? && @user.valid?
         if @company.save
@@ -100,7 +101,7 @@ class SuperAdmin::CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :registration_number, :address, :phone_number, :fax_number, :type_id, :parent_id,:slug)
+      params.require(:company).permit(:name, :registration_number, :address, :phone_number, :fax_number, :type_id, :parent_id,:slug, :username)
     end
 
     def setting_params

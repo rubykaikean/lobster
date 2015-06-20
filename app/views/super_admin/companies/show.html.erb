@@ -53,6 +53,7 @@
                   <thead>
                     <tr>
                       <th>Display Name</th>
+                      <th>Username</th>
                       <th>Email</th>
                       <th class="text-center">Type</th>
                       <!-- <th class="text-center">Action</th> -->
@@ -63,6 +64,7 @@
                   <% @company.users.each do |user| %>
                     <tr>
                       <td><%= user.display_name %></td>
+                      <td><%= user.username %></td>
                       <td><%= user.email %></td>
                       <td class="text-center"><%= user.type %></td>
                      <!--  <td class="text-center">

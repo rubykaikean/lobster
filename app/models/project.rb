@@ -25,6 +25,8 @@ class Project < ActiveRecord::Base
 
   belongs_to :company
   has_many   :phases, dependent: :destroy
+  has_many   :site_plan, dependent: :destroy
+  has_many   :floor_plan, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :company_id }
 

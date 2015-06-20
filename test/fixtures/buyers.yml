@@ -13,15 +13,18 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  gender                :integer
-#  age                   :integer
-#  region                :string
-#  race                  :string
-#  sources               :string
 #  slug                  :string
+#  is_bumi_putera        :boolean          default(FALSE)
+#  sources_type_id       :integer
+#  race                  :integer
+#  age                   :integer
+#  region_id             :integer
 #
 # Indexes
 #
-#  index_buyers_on_slug  (slug) UNIQUE
+#  index_buyers_on_region_id        (region_id)
+#  index_buyers_on_slug             (slug) UNIQUE
+#  index_buyers_on_sources_type_id  (sources_type_id)
 #
 
 # Read about fixtures at
