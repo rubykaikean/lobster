@@ -45,7 +45,7 @@
     <label class="col-md-3 control-label" for="buyer_age">Age: </label>
     <div class="col-md-9">
       <!-- <input type="text" id="buyer_age" name="buyer[age]" class="form-control" placeholder="Age" value=""> -->
-    <select class="selectpicker" name="buyer[age_id]">
+    <select class="selectpicker" name="buyer[age]">
       <option>Select An Option<option>
       <option value="1">18-30</option>
       <option value="2">34-40</option>
@@ -62,7 +62,7 @@
       <!-- <input type="text" id="buyer_region" name="buyer[region]" class="form-control" placeholder="Region" value=""> -->
       <select class="selectpicker" name="buyer[region_id]">
         <option>Select An Option<option>
-        <% Region.each do |p| %>
+        <% @region.each do |p| %>
           <option value="<%= p.id %>"><%= p.name %></option>
         <% end %>
       </select>
@@ -70,12 +70,12 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_race_id">Race: </label>
+    <label class="col-md-3 control-label" for="buyer_race">Race: </label>
     <div class="col-md-9">
-    <select class="selectpicker" name="buyer[race_id]">
+    <select class="selectpicker" name="buyer[race]" id="buyer_race">
       <option>Select An Option<option>
       <option value="1">Chinese</option>
-      <option value="2">Bumiputera</option>
+      <option value="2">Melayu</option>
       <option value="3">Indian</option>
       <option value="4">Other</option>
     </select>
@@ -108,7 +108,7 @@
      <!--  <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="Newspaper? Internet?" value=""> -->
      <select class="selectpicker" name="buyer[sources_type_id]">
         <option>Select An Option<option>
-        <% SourcesType.each do |p| %>
+        <% @sourcestype.each do |p| %>
           <option value="<%= p.id %>"><%= p.name %></option>
         <% end %>
       </select>
@@ -118,56 +118,18 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_booking_fee">Booking Fee: </label>
     <div class="col-md-9">
-      <input type="text" id="booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="">
+      <input type="text" id="buyer_booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="">
     </div>
   </div>
   
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_is_bumi_putera">Bumi Putera: </label>
     <div class="col-md-9">
-      <%= check_box_tag "buyer[is_bumi_putera]", true, nil %>
+      <input name="buyer[is_bumi_putera]" type="checkbox" value="true" />
     </div>
   </div>
 
-  <!-- <div class="panel-heading">
-    <h4>Transaction Detail</h4>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_down_payment">DownPayment(RM)</label>
-    <div class="col-md-9">
-      <input type="text" id="buyer_down_payment" name="buyer[down_payment]" class="form-control" placeholder="Down Payment" value="">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_down_payment_percentage">DownPayment(%)</label>
-    <div class="col-md-9">
-      <input type="text" id="buyer_down_payment_percentage" name="buyer[down_payment_percentage]" class="form-control" placeholder="Down Payment(%)" value="">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_down_payment_type">DownPayment Type</label>
-    <div class="col-md-9">
-      <input type="text" id="buyer_down_payment_type" name="buyer[down_payment_type]" class="form-control" placeholder="Down Payment Type" value="">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_cash_bank_loan">Cash/Bank Loan</label>
-    <div class="col-md-9">
-      <input type="text" id="buyer_cash_bank_loan" name="buyer[cash_bank_loan]" class="form-control" placeholder="Cash/Bank Loan" value="">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_cash_bank_loan">SPA</label>
-    <div class="col-md-9">
-      <input type="text" id="buyer_cash_bank_loan" name="buyer[spa]" class="form-control" placeholder="SPA" value="">
-    </div>
-  </div>
- -->
+  
   <div class="panel-footer">
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">
@@ -183,7 +145,7 @@
   
 //   $("#back_btn").click(function(e){
 //     e.preventDefault();
-//       window.location.href='<%= reservation_path(@lot.product) %>';
+//       window.location.href='<%#= reservation_path(@lot.product) %>';
 //   });
 // </script>
 -->

@@ -87,6 +87,10 @@ class Lot < ActiveRecord::Base
     name_changed?
   end
 
+  def bumi_putera_price
+    
+  end
+
   def create_buyer(lot, user_id)
     
     @user_id = user_id

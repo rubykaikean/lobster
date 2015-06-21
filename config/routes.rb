@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :email_settings
   resources :regions
   resources :sources_types
   resources :site_plans
@@ -60,6 +61,7 @@ Rails.application.routes.draw do
       post "create_lot"
     end
     member do
+      post "update_email_setting"
       post "update_setting"
     end
   end

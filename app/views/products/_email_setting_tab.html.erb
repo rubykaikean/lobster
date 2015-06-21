@@ -1,0 +1,17 @@
+<div id="email_setting-tab" class="tab-pane fade">
+    <h4 class="text-thin">Setting</h4>
+     <div class="panel">
+    <div class="panel-body">
+      <%= form_tag update_email_setting_product_path(@email) do %>
+      <div class="form-group">
+    <!-- <label class="col-md-3 control-label" for="setting_unit_per_row">Unit per row</label> -->
+    <!-- <div class="col-md-9">
+      <input type="text" id="setting_unit_per_row" name="setting[unit_per_row]" class="form-control" placeholder="Unit per row" value="<%#= @email.unit_per_row %>">
+    </div> -->
+  </div>
+  <br>
+      <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+      <% end %>
+    </div>
+  </div>
+</div>
