@@ -79,6 +79,7 @@ class LotsController < ApplicationController
     update_lot_params.each do |id, content|
       lot = Lot.find id
       lot.name = content[:name]
+      lot.row_key = content[:row_key]
       lot.selling_price = content[:selling_price]
       lot.product_type_id = content[:product_type_id]
       lot.save

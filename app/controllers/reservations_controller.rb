@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
 
   def show
     @product = Product.friendly.find params[:id]
-    @lots = @product.lots.order(:name)
+    @lots = @product.lots.order("row_key, name").group_by {|lot| lot.row_key }
   end
 
   def buyer

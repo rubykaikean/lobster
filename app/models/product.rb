@@ -66,12 +66,14 @@ class Product < ActiveRecord::Base
 
 	def auto_create_lot(lot)
 		title = lot[:prepend_title]
-		type_id = lot[:type_id].to_i
-		num = lot[:start_number].to_i
-		lot[:lot_no].to_i.times do |p|
-			
-			lots.create!(name: "#{title}-#{num}", product_type_id: type_id)
-			num += 1
+		target_type_id = lot[:type_id].to_i
+		starting_number = lot[:start_number].to_i
+    quantity = lot[:lot_no].to_i
+    target_row_key = lot[:row_key].to_i
+    ending_number = starting_number + quantity
+		while starting_number < ending_number do
+			lots.create(name: "#{title}-#{starting_number}", product_type_id: target_type_id, row_key: target_row_key)
+			starting_number += 1
 		end
 	end
 
