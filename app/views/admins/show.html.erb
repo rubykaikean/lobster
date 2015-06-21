@@ -1,9 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="row" id="content_div">
+  <div class="col-lg-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Admin detail</h3>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @admin.name %>
-</p>
+      <div class="panel-body">
+          <p>
+            <strong>Display Name:</strong>
+            <%= @admin.display_name %>
+          </p>
 
-<%= link_to 'Edit', edit_admin_path(@admin) %> |
-<%= link_to 'Back', admins_path %>
+          <p>
+            <strong>Email:</strong>
+            <%= @admin.email %>
+          </p>
+
+
+          <%= link_to 'Edit', edit_admin_path(@admin), :class=>"btn btn-small btn-info" %>
+          <%= link_to 'Back', admins_path, :class=>"btn btn-small btn-warning" %>
+      </div>
+    </div>
