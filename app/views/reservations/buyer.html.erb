@@ -13,7 +13,7 @@
 				
 					<tr>
 						<td>Lot Type: </td>
-						<td class="text-center"><%= @lot.product_type.name %></td>
+						<td class="text-center"><%= @lot.product_type.try(:name) %></td>
 					</tr>
 
 					<tr>

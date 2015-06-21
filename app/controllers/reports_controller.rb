@@ -3,8 +3,7 @@ class ReportsController < ApplicationController
 	# layout false, only:[:summary_report]
 
 	def summary_report
-		# render :text => params
-		#@completed_sales = Sale.where("status_id = ?", 2)
+		@sales = Sale.all
 	end
 
 end

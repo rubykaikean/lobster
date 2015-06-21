@@ -78,6 +78,6 @@ class ProductSettingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_setting_params
-      params.require(:product_setting).permit(:allow_multiple_booking)
+      params.require(:product_setting).permit(:allow_multiple_booking, :bumi_putera_discount_rate)
     end
 end

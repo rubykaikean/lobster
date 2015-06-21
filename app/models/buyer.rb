@@ -14,7 +14,6 @@
 #  updated_at            :datetime         not null
 #  gender                :integer
 #  slug                  :string
-#  is_bumi_putera        :boolean          default(FALSE)
 #  sources_type_id       :integer
 #  race                  :integer
 #  age                   :integer
@@ -40,18 +39,7 @@ class Buyer < ActiveRecord::Base
   INDIAN = 3
   OTHER = 4
 
-  # def race
-  # 	case race.to_i
-  # 	when CHINESE
-  # 		"chinese"
-  # 	when BUMIPUTERA
-  # 		"bumiputera"
-  # 	when INDIAN
-  # 		"indian"
-  # 	when OTHER
-  # 		"other"
-  # 	end
-  # end
+
 
 
 end

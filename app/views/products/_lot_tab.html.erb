@@ -39,8 +39,8 @@
             <th>Name</th>
             <th class="text-center">Type</th>
             <th class="text-center">Price</th>
+            <th class="text-center">Bumi Putera Unit</th>
             <th class="text-center">Status</th>
-            <!-- <th class="text-center">Action</th> -->
           </tr>
         </thead>
         
@@ -51,8 +51,6 @@
                 <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
               </td>
               <td class="text-center">
-                <%#= lot.product_type.name %>
-                
                 <select class="selectpicker" name="update_lot[<%= lot.id %>][product_type_id]">
                   <option>Select An Option</option>
                   <% @product.product_types.each do |t| %>
@@ -63,17 +61,16 @@
                     <% end %>
                   <% end %>
                 </select>
-                <%#= text_field_tag "update_lot[#{lot.id}][product_type.name]", lot.product_type.name, :class=>"form-control" %>
               </td>
               <td class="text-center">
                 <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
+              </td>
               <td>
+                <%= check_box_tag "update_lot[#{lot.id}][is_bumi_putera_unit]" ,true ,lot.is_bumi_putera_unit == true ? "checked" : nil %>
+              </td>
               <td class="text-center">
                 <%= lot.status  %>
               </td>
-              <!-- <td class="text-center"> -->
-              <%#= link_to 'Destroy', lots_path(lot), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
-              <!-- </td> -->
             </tr>
           <% end %>
         </tbody>
