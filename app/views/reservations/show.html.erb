@@ -3,7 +3,7 @@
 
 			<div class="panel">
 				<div class="panel-body">
-					<div class="col-lg-5 text-lg-right">
+					<div class="col-lg-5 text-lg-left">
 						<a href="<%= site_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Site Plan</button></a>
 						<a href="<%= floor_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Floor Plan</button></a>
 						<% if @product.e_brochure_url.present? %>
@@ -66,9 +66,8 @@
 						</table>
 					</div>
 
-				</div>
+				</div> <!-- panel body -->
 
-				</div>
-			</div>
+			</div> <!-- panel -->
   </div>
-</div>
+</div>  <!-- row -->

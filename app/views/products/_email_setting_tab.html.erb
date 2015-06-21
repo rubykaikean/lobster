@@ -1,5 +1,4 @@
 <div id="email_setting-tab" class="tab-pane fade">
-    <h4 class="text-thin">Email Setting</h4>
       <%= form_tag update_email_setting_product_path(@email),({:class => "panel-body form-horizontal form-padding"}) do %>
       <%= hidden_field_tag :product_id, nil, :value => @product.id %>
       <div class="form-group">
@@ -9,20 +8,24 @@
         </div>
       </div>
 
+
       <div class="form-group">
       <label class="col-md-2 control-label" for="setting_email_subject">subject</label>
         <div class="col-md-10">
-        <textarea id="setting_email_subject" name="setting_email[subject]" class="form-control" value="<%= @email.subject %>">
-        </textarea>
+        <input type="text" id="setting_email_subject" name="setting_email[subject]" class="form-control" placeholder="Subject" value="<%= @email.subject %>">
+       
         </div>
       </div>
+
 
       <div class="form-group">
       <label class="col-md-2 control-label" for="setting_email_body">Body</label>
         <div class="col-md-10">
-        <input type="text" id="setting_email_body" name="setting_email[body]" class="form-control" placeholder="Body" value="<%= @email.body %>">
+         <textarea id="setting_email_body" name="setting_email[body]" rows="10" class="form-control"><%= @email.body %></textarea>
         </div>
       </div>
+
+      
 
       
   <br>
