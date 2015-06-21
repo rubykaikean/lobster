@@ -30,9 +30,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
- 
-  resources :admins
-
   devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions  }
 
   resources :users do
@@ -89,6 +86,7 @@ Rails.application.routes.draw do
   end
 
   namespace :super_admin do
+    resources :admins
     resources :companies do
       member do
         post "update_setting"

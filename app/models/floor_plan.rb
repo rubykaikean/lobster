@@ -17,4 +17,14 @@
 #
 
 class FloorPlan < ActiveRecord::Base
+  belongs_to :product
+  has_attached_file :image,
+                    # :styles => {:large => "500x500>", :medium => "300x300>", :thumb => "100x100>" },
+                    #:default_url => ActionController::Base.helpers.asset_path('wechat/missing.jpg'),
+                    #:processors => [:thumbnail, :paperclip_optimizer],
+                    :path => "floor_plans/:id/:filename"
+                    #:url  => "/system/:attachment/:id/:style/:filename"
+  
+  validates_attachment :photo, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpg"] }
+  validates_attachment_size :photo, :less_than => 5.megabytes
 end

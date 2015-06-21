@@ -1,5 +1,5 @@
-class AdminsController < ApplicationController
-  before_action :authenticate_admin!
+class SuperAdminAdminsController < ApplicationController
+  before_action :authenticate_super_admin!
   before_action :set_admin, only: [:show, :edit, :update, :destroy]
 
   # GET /admins
