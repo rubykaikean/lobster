@@ -11,5 +11,6 @@
 
 class Region < ActiveRecord::Base
 	has_many :buyers
+  belongs_to :company
 
 end
