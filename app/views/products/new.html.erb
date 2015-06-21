@@ -4,7 +4,8 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">New Products</h3>
 			</div>
-      <%= render 'form' %>
+      <%#= render 'form' %>
+      <%= render :partial => "form", :locals => { :phase_id => nil } %>
     </div>
   </div>
 </div>

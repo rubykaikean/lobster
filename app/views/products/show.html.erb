@@ -7,19 +7,26 @@
       </p>
 
       <p>
-        <strong>Type:</strong>
-        <%= @product.type %>
+        <strong>e-Brochure URL:</strong>
+        <%= @product.e_brochure_url %>
       </p>
 
       <p>
         <strong>Description:</strong>
         <%= @product.description %>
       </p>
+      <p>
+        <strong>Type:</strong>
+        <%= @product.type %>
+      </p>
 
       <p>
         <strong>Status:</strong>
         <%= @product.status %>
       </p>
+
+      <br>
+      <a href="<%= edit_product_path(@product) %>"><button class="btn btn-sm btn-primary">Edit</button></a>
 
     </div>
   </div>
