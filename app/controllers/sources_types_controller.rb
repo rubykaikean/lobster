@@ -1,5 +1,5 @@
 class SourcesTypesController < ApplicationController
-  before_action :authenticate_admin!
+  # before_action :authenticate_admin!
   before_action :set_sources_type, only: [:show, :edit, :update, :destroy]
 
   # GET /sources_types

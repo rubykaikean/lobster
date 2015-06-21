@@ -30,6 +30,7 @@ class Product < ActiveRecord::Base
 	belongs_to :company
 	has_many :lots, dependent: :destroy
 	has_many :product_types, dependent: :destroy
+	has_one  :email_setting, dependent: :destroy
 	has_one  :product_setting, dependent: :destroy
   has_many :sales
 
@@ -63,6 +64,9 @@ class Product < ActiveRecord::Base
 			"Highrise"
 		end
 	end
+
+	# def self.bumi_putera_price(race_id, lot_id)
+	# end
 
 	def auto_create_lot(lot)
 		title = lot[:prepend_title]

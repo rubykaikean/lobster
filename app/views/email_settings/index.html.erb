@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Email Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Subject</th>
+      <th>From</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @email_settings.each do |email_setting| %>
+      <tr>
+        <td><%= email_setting.product_id %></td>
+        <td><%= email_setting.subject %></td>
+        <td><%= email_setting.from %></td>
+        <td><%= email_setting.body %></td>
+        <td><%= link_to 'Show', email_setting %></td>
+        <td><%= link_to 'Edit', edit_email_setting_path(email_setting) %></td>
+        <td><%= link_to 'Destroy', email_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Email setting', new_email_setting_path %>

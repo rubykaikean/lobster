@@ -40,18 +40,18 @@ class Buyer < ActiveRecord::Base
   INDIAN = 3
   OTHER = 4
 
-  def race
-  	case race_id
-  	when CHINESE
-  		"chinese"
-  	when BUMIPUTERA
-  		"bumiputera"
-  	when INDIAN
-  		"indian"
-  	when OTHER
-  		"other"
-  	end
-  end
+  # def race
+  # 	case race.to_i
+  # 	when CHINESE
+  # 		"chinese"
+  # 	when BUMIPUTERA
+  # 		"bumiputera"
+  # 	when INDIAN
+  # 		"indian"
+  # 	when OTHER
+  # 		"other"
+  # 	end
+  # end
 
 
 end
