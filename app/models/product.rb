@@ -99,6 +99,9 @@ class Product < ActiveRecord::Base
     unless product_setting.present?
       create_product_setting
     end
+    unless email_setting.present?
+      create_email_setting
+    end
   end
 
 end

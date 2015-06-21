@@ -1,0 +1,85 @@
+ <div id="all_order-tab" class="tab-pane fade active in">        
+      <div class="table-responsive">
+      <%#= render :text => Buyer.first.to_json %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Agency</th>
+              <th>Agent</th>
+              <th>Purchaser</th>
+              <th>Contact Number</th>
+              <th>Price</th>
+              <th>Type</th>
+              <th>Lot</th>
+              <th>Age</th>
+              <th>Race</th>
+              <th>Region</th>
+              <th>Source</th>
+              <th>Remark</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% @sales.order("id ASC").each do |p| %>
+            <tr>
+              <td><%= p.created_at.strftime("%d-%m-%Y") %></td>
+              <td><%= p.user.company.name %></td>
+              <td><%= p.user.username %></td>
+              <td><%= p.buyer.full_name %></td>
+              <td><%= p.buyer.mobile_contact_number %></td>
+              <td>
+                <% lot = Lot.find_by_id(p.lot_unit_id) %>
+                <% if lot.is_bumi_putera_unit == true %>
+                  <%= p.bumi_putera_price %>
+                <% else %>
+                  <%= lot.selling_price %>
+                <% end %>
+              </td>
+              <td><%= ProductType.find_by_id(p.product_id).name %></td>
+              <td><%= Lot.find_by_id(p.lot_unit_id).name %></td>
+              <td>
+                <% if p.buyer.age == 1 %>
+                  18-30
+                  <% elsif p.buyer.age == 2 %>
+                  31-40
+                  <% elsif p.buyer.age == 3 %>
+                  41-50
+                  <% elsif p.buyer.age == 4 %>
+                  51-60
+                  <% elsif p.buyer.age == 5 %>
+                  60 & above
+                  <% else %>
+                  <% end %>
+              </td>
+              <td>
+                <% if p.buyer.race == 1 %>
+                  Chinese
+                <% elsif p.buyer.race == 2 %>
+                  Melayu
+                <% elsif p.buyer.race == 3 %>
+                  Indian
+                <% elsif p.buyer.race == 4 %>
+                  Other
+                <% else %>
+                <% end %>
+              </td>
+              <td><%= p.buyer.region.try(:name) %></td>
+              <td><%= p.buyer.sources_type.try(:name) %></td>
+              <td>
+                <% if p.status_id == Sale::PENDING %>
+                  Pending
+                <% elsif p.status_id == Sale::COMPLETED %>
+                 Completed
+                <% elsif p.status_id == Sale::REJECTED %>
+                 Rejected : <%= p.reject_reason %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+          
+        </table>
+      </div>
+    </div>
+        

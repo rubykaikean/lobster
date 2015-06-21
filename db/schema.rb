@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621064436) do
+ActiveRecord::Schema.define(version: 20150621083452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,10 @@ ActiveRecord::Schema.define(version: 20150621064436) do
     t.string   "home_contact_number"
     t.string   "office_contact_number"
     t.string   "email"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "gender"
     t.string   "slug"
-    t.boolean  "is_bumi_putera",        default: false
     t.integer  "sources_type_id"
     t.integer  "race"
     t.integer  "age"
@@ -132,8 +131,8 @@ ActiveRecord::Schema.define(version: 20150621064436) do
     t.text     "description"
     t.integer  "product_id"
     t.string   "slug"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "product_type_id"
     t.integer  "status_id",               default: 1
     t.integer  "land_area_square_meter",  default: 0
@@ -143,6 +142,7 @@ ActiveRecord::Schema.define(version: 20150621064436) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
+    t.boolean  "is_bumi_putera_unit",     default: false
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
@@ -164,11 +164,12 @@ ActiveRecord::Schema.define(version: 20150621064436) do
 
   create_table "product_settings", force: :cascade do |t|
     t.integer  "product_id"
-    t.boolean  "allow_multiple_booking", default: false
-    t.boolean  "use_product_type_info",  default: true
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.integer  "unit_per_row",           default: 5
+    t.boolean  "allow_multiple_booking",    default: false
+    t.boolean  "use_product_type_info",     default: true
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "unit_per_row",              default: 5
+    t.integer  "bumi_putera_discount_rate"
   end
 
   create_table "product_types", force: :cascade do |t|

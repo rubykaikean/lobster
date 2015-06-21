@@ -1,16 +1,22 @@
 
 <div id="product_setting-tab" class="tab-pane fade">
     <h4 class="text-thin">Setting</h4>
-     <div class="panel">
+    <div class="panel">
     <div class="panel-body">
-      <%= form_tag update_setting_product_path(@setting) do %>
+      <%= form_tag update_setting_product_path(@setting), :class => "panel-body form-horizontal form-padding" do %>
       <div class="form-group">
-    <label class="col-md-3 control-label" for="setting_unit_per_row">Unit per row</label>
-    <div class="col-md-9">
-      <input type="text" id="setting_unit_per_row" name="setting[unit_per_row]" class="form-control" placeholder="Unit per row" value="<%= @setting.unit_per_row %>">
-      <!-- <small class="help-block">This is a help text</small> -->
-    </div>
-  </div>
+      <label class="col-md-3 control-label" for="setting_unit_per_row">Unit per row</label>
+        <div class="col-md-9">
+          <input type="text" id="setting_unit_per_row" name="setting[unit_per_row]" class="form-control" placeholder="Unit per row" value="<%= @setting.unit_per_row %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="setting_unit_per_row">Bumi Putera Rate(%)</label>
+        <div class="col-md-9">
+           <input type="number" id="setting_bumi_putera_discount_rate" name="setting[bumi_putera_discount_rate]" class="form-control" placeholder="bumi putera discount rate(%)" value="<%= @setting.bumi_putera_discount_rate %>">
+        </div>
+      </div>
   <br>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
       <% end %>

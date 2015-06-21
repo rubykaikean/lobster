@@ -18,6 +18,7 @@
 #  premium                 :integer
 #  extra_land_price        :integer          default(0)
 #  selling_price           :integer          default(0)
+#  is_bumi_putera_unit     :boolean          default(FALSE)
 #
 # Indexes
 #

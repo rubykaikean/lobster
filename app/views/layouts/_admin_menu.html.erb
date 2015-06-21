@@ -81,21 +81,14 @@
 
 									<li class="list-header">Report</li>
 
-									<!-- <li>
-										<%# if current_user.is_admin? %>
-										<a href="https://www.dropbox.com/s/m1luoxgtuhs23py/lbs%20report.pdf?dl=0">
-											<i class="fa fa-briefcase"></i>
-											<span class="menu-title">Analysis Report</span>
-										</a>
-										<%# end %>
-									</li>
 									<li>
+										<% if current_user.is_admin? %>
 										<a href="<%= summary_report_reports_path %>">
 											<i class="fa fa-briefcase"></i>
 											<span class="menu-title">Summary Report</span>
 										</a>
-									</li> -->
-
+										<% end %>
+									</li>
 								</ul>
 
 							</div>

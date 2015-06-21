@@ -20,9 +20,9 @@ class ProductsController < ApplicationController
     @product_types = @product.product_types
 
     @product_type = ProductType.new
-    @setting = @product.product_setting || @product.create_product_setting
+    @setting = @product.product_setting
 
-    @email = @product.email_setting || @product.create_email_setting
+    @email = @product.email_setting
 
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true)
@@ -110,7 +110,10 @@ class ProductsController < ApplicationController
   end
 
   def update_email_setting
-    render :text => params
+    email_setting = EmailSetting.find(params[:id])
+    email_setting.update(setting_email_params)
+    flash[:notice] = "Email Setting has been saved."
+    redirect_to :back
   end
 
   private
@@ -129,7 +132,11 @@ class ProductsController < ApplicationController
     end
 
     def setting_params
-      params.require(:setting).permit(:unit_per_row)
+      params.require(:setting).permit(:unit_per_row, :bumi_putera_discount_rate)
+    end
+
+    def setting_email_params
+      params.require(:setting_email).permit!
     end
    
 end

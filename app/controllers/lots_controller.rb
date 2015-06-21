@@ -81,6 +81,7 @@ class LotsController < ApplicationController
       lot.name = content[:name]
       lot.selling_price = content[:selling_price]
       lot.product_type_id = content[:product_type_id]
+      lot.is_bumi_putera_unit = content[:is_bumi_putera_unit]
       lot.save
     end
     redirect_to :back, notice: "Lot update successfully."
@@ -98,7 +99,7 @@ class LotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
-      params.require(:lot).permit(:name, :description, :product_id, :land_area_square_meter, :land_area_square_feet, :extra_land_square_meter, :extra_land_square_feet, :premium, :extra_land_price, :selling_price)
+      params.require(:lot).permit(:name, :description, :product_id, :land_area_square_meter, :land_area_square_feet, :extra_land_square_meter, :extra_land_square_feet, :premium, :extra_land_price, :selling_price, :is_bumi_putera_unit)
     end
 
     def update_lot_params

@@ -36,14 +36,14 @@ class ReservationsController < ApplicationController
 
   def create_lot
     # render :text => params[:buyer][:race]
-    # @lot = Lot.find(params[:lot_id])
-    # buyer = Buyer.friendly.find(params[:id])
-    # buyer.update(buyer_params)
-    # sale = Sale.find(params[:sale_id])
+    @lot = Lot.find(params[:lot_id])
+    buyer = Buyer.friendly.find(params[:id])
+    buyer.update(buyer_params)
+    sale = Sale.find(params[:sale_id])
     
-    # sale.update(booking_fee: params[:booking_fee])
-    # flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{buyer.full_name}."
-    # redirect_to reservation_path(@lot.product)
+    sale.update(booking_fee: params[:booking_fee])
+    flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{buyer.full_name}."
+    redirect_to reservation_path(@lot.product)
   end
 
 
