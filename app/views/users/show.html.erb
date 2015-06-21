@@ -1,7 +1,14 @@
-
-<h3 class="panel-title"><strong>User Detail</strong></h3>
+<div class="row" id="content_div">
+  <div class="col-lg-6">
 <div class="panel">
+<div class="panel-heading">
+        <h3 class="panel-title">User detail</h3>
+      </div>
 	<div class="panel-body">
+	<p>
+		  <strong>Full Name:</strong>
+		  <%= @user.username %>
+		</p>
 		<p>
 		  <strong>Display Name:</strong>
 		  <%= @user.display_name %>

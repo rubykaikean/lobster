@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_project_owner!
   before_action :set_user, only: [:show, :edit, :update_member, :destroy]
 
   # GET /users
