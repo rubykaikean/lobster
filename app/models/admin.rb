@@ -34,7 +34,7 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :display_name, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
 
   def should_generate_new_friendly_id?
     display_name_changed?

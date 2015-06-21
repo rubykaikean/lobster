@@ -1,5 +1,5 @@
-class AdminsController < ApplicationController
-  before_action :authenticate_admin!
+class SuperAdmin::AdminsController < ApplicationController
+  before_action :authenticate_super_admin!
   before_action :set_admin, only: [:show, :edit, :update, :destroy]
 
   # GET /admins
@@ -38,10 +38,12 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.save
-        format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
+        format.html { redirect_to super_admin_admin_path(@admin), notice: 'Admin was successfully created.' }
         format.json { render json: @admin, status: :created }
       else
-        format.html { render action: 'new' }
+        format.html { 
+          flash.now[:alert] =  @admin.errors.full_messages.join("<br>")
+          render action: 'new' }
         format.json { render json: @admin.errors, status: :unprocessable_entity }
       end
     end
@@ -52,10 +54,12 @@ class AdminsController < ApplicationController
   def update
     respond_to do |format|
       if @admin.update(admin_params)
-        format.html { redirect_to @admin, notice: 'Admin was successfully updated.' }
+        format.html { redirect_to super_admin_admin_path(@admin), notice: 'Admin was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { 
+          flash.now[:alert] =  @admin.errors.full_messages.join("<br>")
+          render action: 'edit' }
         format.json { render json: @admin.errors, status: :unprocessable_entity }
       end
     end
@@ -66,7 +70,7 @@ class AdminsController < ApplicationController
   def destroy
     @admin.destroy
     respond_to do |format|
-      format.html { redirect_to admins_url }
+      format.html { redirect_to super_admin_admins_url }
       format.json { head :no_content }
     end
   end
@@ -79,6 +83,6 @@ class AdminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.require(:admin).permit(:display_name, :email)
+      params.require(:admin).permit(:display_name, :email, :username, :password, :password_confirmation)
     end
 end

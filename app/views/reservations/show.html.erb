@@ -1,8 +1,16 @@
 <div class="row" id="content_div">
-  <div class="col-lg-7">
+  <div class="col-lg-12">
 
 			<div class="panel">
 				<div class="panel-body">
+				<div class="col-lg-5 text-lg-right">
+					<a href="<%= site_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Site Plan</button></a>
+					<a href="<%= floor_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Floor Plan</button></a>
+					<% if @product.e_brochure_url.present? %>
+					  <a href="<%= @product.e_brochure_url %>"><button class="btn btn-sm btn-primary">e-Brochure</button></a>
+					<% end %>
+				</div>
+				<br>
 				<div class="table-responsive">
 
 						<table class="table table-bordered">
@@ -10,50 +18,48 @@
 							</thead>
 							<tbody>
 							<% num = @product.product_setting.unit_per_row || 5 %>
-							<% @lots.in_groups_of(num).each do |lot_arry| %>
-							  <tr>
-							    <% lot_arry.each do |lot| %>
-							      <% if lot %>
-								      <td class="text-center <%= lot.background_css_name %>">
-								        <div class="pad-btm"></div>
-								        <div>	
-								        	<%= lot.name %>
-								        </div>
-								        <div>	
-								        	<%= lot.product_type.try(:name) %>
-								        </div>
-								         <div>	
-								        	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
-								        </div> 
-								        <div>
-								        	<%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-purple btn-labeled fa fa-plus #{(lot.status_id == 2 || lot.status_id == 3) ? 'disabled' : nil}", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
-								        	<%#= link_to "Book It", buyer_reservation_path(lot)  %>
-								        </div>
-								        <div class="pad-top"></div>
-								      </td>
-								     <% else %>
-								       <td class="text-center">
-								        <div class="pad-btm"></div>
-								        <div>	
-								        	
-								        </div>
-								        <div>	
-								        	
-								        </div>
-								         <div>	
-								        	
-								        </div> 
-								        <div>
-								        </div>
-								        <div class="pad-top"></div>
-								      </td>
-								     <% end %>
-							    <% end %>
-							  </tr>
+							<% @lots.each do |key, lot_group| %>
+								<% lot_group.in_groups_of(num).each do |lot_arry| %>
+								  <tr>
+								    <% lot_arry.each do |lot| %>
+								      <% if lot %>
+									      <td class="text-center <%= lot.background_css_name %>">
+									        <div class="pad-btm"></div>
+									        <div>	
+									        	<%= lot.name %>
+									        </div>
+									        <div>	
+									        	<%= lot.product_type.name %>
+									        </div>
+									         <div>	
+									        	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
+									        </div> 
+									        <div>
+									        	<%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-purple btn-labeled fa fa-plus #{(lot.status_id == 2 || lot.status_id == 3) ? 'disabled' : nil}", data: {:confirm => "This will reserve the unit immediately, confirm to book #{lot.name} ?"} %>
+									        </div>
+									        <div class="pad-top"></div>
+									      </td>
+									     <% else %>
+									       <td class="text-center">
+									        <div class="pad-btm"></div>
+									        <div>	
+									        	
+									        </div>
+									        <div>	
+									        	
+									        </div>
+									         <div>	
+									        	
+									        </div> 
+									        <div>
+									        </div>
+									        <div class="pad-top"></div>
+									      </td>
+									    <% end %>
+								    <% end %>
+								  </tr>
+								<% end %>
 							<% end %>
-							
-							
-								
 							</tbody>
 						</table>
 					</div>

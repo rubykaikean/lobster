@@ -17,3 +17,5 @@
 /config/secrets.yml
 /.ruby-gemset
 /.ruby-version
+/public/floor_plans
+/public/site_plans

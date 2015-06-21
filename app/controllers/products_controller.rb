@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_project_owner!
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :site_plans, :floor_plans]
   
   # GET /products
   # GET /products.json
@@ -93,6 +93,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def site_plans
+    @plans = @product.site_plans
+  end
+
+  def floor_plans
+    @plans = @product.floor_plans
+  end
+
 
   def create_lot
     # render :text => lot_params
@@ -106,6 +114,7 @@ class ProductsController < ApplicationController
     setting = ProductSetting.find(params[:id])
     setting.update(setting_params)
     flash[:notice] = "Setting has been saved."
+    # redirect_to "#{product_path(setting.product)}#product_setting-tab"
     redirect_to :back
   end
 
@@ -124,7 +133,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :type_id, :description, :status_id, :phase_id)
+      params.require(:product).permit(:name, :type_id, :description, :status_id, :phase_id, :e_brochure_url)
     end
 
     def lot_params

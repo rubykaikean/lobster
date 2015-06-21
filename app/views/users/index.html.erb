@@ -1,5 +1,5 @@
 <div class="row" id="content_div">
-  <div class="col-lg-7">
+  <div class="col-lg-12">
 
     <div class="panel">
       <div class="panel-heading">
@@ -28,6 +28,7 @@
             <thead>
               <tr>
                 <th>Company</th>
+                <th>Full Name</th>
                 <th>Display Name</th>
                 <th>Email</th>
                 <th class="text-center">Type</th>
@@ -39,6 +40,7 @@
               <% @users.each do |user| %>
                 <tr>
                   <td><%= user.company.name %></td>
+                  <td><%= user.username %></td>
                   <td><%= user.display_name %></td>
                   <td><%= user.email %></td>
                   <td class="text-center"><%= user.type %></td>

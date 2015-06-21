@@ -1,7 +1,7 @@
 <%= form_for(@product, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
   <%#= render :text => phase_id %>
-  <% if phase_id %>
+  <% if phase_id.present? %>
     <%= f.hidden_field :phase_id, value: phase_id %>
   <% end %>
   <div class="form-group">
@@ -9,6 +9,14 @@
     <div class="col-md-9">
       <input type="text" id="product_name" name="product[name]" class="form-control" placeholder="Product name" value="<%= @product.name %>">
       <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_name">e-Brochure URL</label>
+    <div class="col-md-9">
+      <input type="text" id="product_e_brochure_url" name="product[e_brochure_url]" class="form-control" placeholder="e-Brochure URL" value="<%= @product.e_brochure_url %>">
+      <small class="help-block">This URL will appear in reservation page.</small>
     </div>
   </div>
 
@@ -22,10 +30,11 @@
   <div class="form-group pad-ver">
       <label class="col-md-3 control-label">Type</label>
       <div class="col-md-9">
-        <select data-placeholder="Select a Number", class="selectpicker" name="product[type_id]">
-          <option>Select an option.</option>
-          <option value="1">Landed</option>
-          <option value="2">Highrise</option>
+        <select data-placeholder="Select a type", class="selectpicker" name="product[type_id]">
+          <option value="">Select an option.</option>
+          
+          <option value="1" <%= @product.type_id == Product::LANDED ? "selected='selected'" : nil %> >Landed</option>
+          <option value="2" <%= @product.type_id == Product::HIGHRISE ? "selected='selected'" : nil %> >Highrise</option>
         </select>
     </div>
   </div>
@@ -34,7 +43,9 @@
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">
         <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        <% unless @product.new_record? %>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+        <% end %>
       </div>
     </div>
   </div>
@@ -45,7 +56,10 @@
   
   $("#back_btn").click(function(e){
     e.preventDefault();
-    window.location.href='<%= products_path %>';
+    <% if @product.new_record? %>
+    <% else %>
+      window.location.href='<%= product_path(@product) %>';
+    <% end %>
   });
 </script>
 

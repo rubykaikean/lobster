@@ -60,7 +60,10 @@
                 <td><%= sale.created_at.strftime("%d-%m-%Y") %></td>
                 <td><%= sale.user.company.name %></td>
                 <td class="text-center"><%= sale.user.email %></td>
-                <td class="text-center"><%= sale.buyer.full_name %></td>
+                <td class="text-center">
+                  <a href="<%= edit_buyer_path(sale.buyer, :sale_id => sale.id) %>"><button class="btn btn-primary btn-sm"><%= sale.buyer.try(:full_name) || "Unknown" %></button>
+                  </a>
+                </td>
                 
                 <td class="text-center">
                   <%= Lot.find_by(:id => sale.lot_unit_id).product.name %></td>

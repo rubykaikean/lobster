@@ -11,7 +11,7 @@ RACKSPACE_CONFIG = {
     },
     fog_directory: 'ekDeveloper',
     fog_public: true,
-    fog_host: 'http://27aa19866b97f0bcce58-b819e2fccefe3bcfaab3fdbc65b0621c.r76.cf6.rackcdn.com'
+    fog_host: 'http://3ac5fb912e25d800250b-bf0e185df54829b58e2f0f5e2f9a8b15.r25.cf6.rackcdn.com'
   },
   'staging' => {
     path: '',
@@ -25,7 +25,7 @@ RACKSPACE_CONFIG = {
     },
     fog_directory: 'ekDeveloper_staging',
     fog_public: true,
-    fog_host: 'http://adfb74337a09db7a81c6-d7bee26e238a010ee41eaae3768e35d9.r9.cf6.rackcdn.com'
+    fog_host: 'http://373883e50aa963d36a5e-ee9b21b2be3be2fb1eb466326037d8f1.r5.cf6.rackcdn.com'
   },
   'development' => {
     # path: '',

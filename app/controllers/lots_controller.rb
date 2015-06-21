@@ -1,5 +1,6 @@
 class LotsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_project_owner!
   before_action :set_lot, only: [:show, :edit, :update, :destroy]
 
   # GET /lots
@@ -74,17 +75,19 @@ class LotsController < ApplicationController
     end
   end
 
-  def update_lot
+  def bulk_update
     # render :text => params
+    product = Product.friendly.find(params[:id])
     update_lot_params.each do |id, content|
       lot = Lot.find id
       lot.name = content[:name]
+      lot.row_key = content[:row_key]
       lot.selling_price = content[:selling_price]
       lot.product_type_id = content[:product_type_id]
       lot.is_bumi_putera_unit = content[:is_bumi_putera_unit]
       lot.save
     end
-    redirect_to :back, notice: "Lot update successfully."
+    redirect_to "#{product_path(product)}#lot-tab", notice: "Lot update successfully."
   end
 
   def book_lot

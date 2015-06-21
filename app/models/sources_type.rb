@@ -11,6 +11,7 @@
 
 class SourcesType < ActiveRecord::Base
 	has_many :buyers
+  belongs_to :company
 
 
 end

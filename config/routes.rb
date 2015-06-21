@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   resources :email_settings
   resources :regions
   resources :sources_types
-  resources :site_plans
-  resources :floor_plans
   resources :product_settings
   resources :reservations do
     member do
@@ -30,9 +28,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
- 
-  resources :admins
-
   devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions  }
 
   resources :users do
@@ -45,8 +40,8 @@ Rails.application.routes.draw do
   end
 
   resources :lots do 
-    collection do
-      post "update_lot"
+    member do
+      post "bulk_update"
     end
   end
 
@@ -63,7 +58,11 @@ Rails.application.routes.draw do
     member do
       post "update_email_setting"
       post "update_setting"
+      get "site_plans"
+      get "floor_plans"
     end
+    resources :site_plans
+    resources :floor_plans
   end
 
   resources :phases do 
@@ -89,6 +88,7 @@ Rails.application.routes.draw do
   end
 
   namespace :super_admin do
+    resources :admins
     resources :companies do
       member do
         post "update_setting"

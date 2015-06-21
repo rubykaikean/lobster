@@ -2,17 +2,18 @@
 #
 # Table name: products
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  type_id      :integer
-#  description  :text
-#  status_id    :integer
-#  phase_id     :integer
-#  slug         :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  is_published :boolean          default(FALSE)
-#  company_id   :integer
+#  id             :integer          not null, primary key
+#  name           :string
+#  type_id        :integer
+#  description    :text
+#  status_id      :integer
+#  phase_id       :integer
+#  slug           :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  is_published   :boolean          default(FALSE)
+#  company_id     :integer
+#  e_brochure_url :string
 #
 # Indexes
 #
@@ -33,6 +34,8 @@ class Product < ActiveRecord::Base
 	has_one  :email_setting, dependent: :destroy
 	has_one  :product_setting, dependent: :destroy
   has_many :sales
+  has_many :floor_plans
+  has_many :site_plans
 
   validates :company_id, presence: true, allow_nil: true
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }
@@ -70,12 +73,14 @@ class Product < ActiveRecord::Base
 
 	def auto_create_lot(lot)
 		title = lot[:prepend_title]
-		type_id = lot[:type_id].to_i
-		num = lot[:start_number].to_i
-		lot[:lot_no].to_i.times do |p|
-			
-			lots.create!(name: "#{title}-#{num}", product_type_id: type_id)
-			num += 1
+		target_type_id = lot[:type_id].to_i
+		starting_number = lot[:start_number].to_i
+    quantity = lot[:lot_no].to_i
+    target_row_key = lot[:row_key].to_i
+    ending_number = starting_number + quantity
+		while starting_number < ending_number do
+			lots.create(name: "#{title}-#{starting_number}", product_type_id: target_type_id, row_key: target_row_key)
+			starting_number += 1
 		end
 	end
 

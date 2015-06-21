@@ -29,6 +29,9 @@ class BuyersController < ApplicationController
 
   # GET /buyers/1/edit
   def edit
+    @sale = Sale.find(params[:sale_id])
+    @region = current_user.company.regions
+    @sourcestype = current_user.company.sources_types
   end
 
   # POST /buyers
@@ -50,12 +53,17 @@ class BuyersController < ApplicationController
   # PATCH/PUT /buyers/1
   # PATCH/PUT /buyers/1.json
   def update
+    @sale = Sale.find(params[:sale_id])
+    @sale.update(:booking_fee => params[:booking_fee])
     respond_to do |format|
       if @buyer.update(buyer_params)
-        format.html { redirect_to @buyer, notice: 'Buyer was successfully updated.' }
+        format.html { redirect_to sales_path, notice: 'Buyer was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { 
+          @region = current_user.company.regions
+          @sourcestype = current_user.company.sources_types
+          render action: 'edit' }
         format.json { render json: @buyer.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +82,7 @@ class BuyersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_buyer
-      @buyer = Buyer.find(params[:id])
+      @buyer = Buyer.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
