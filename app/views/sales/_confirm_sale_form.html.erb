@@ -1,5 +1,24 @@
 <%= form_tag confirm_sales_sales_path, {:class => 'panel-body form-horizontal form-padding'}  do %>
   <input type="hidden" name="sale[sale_id]" value="<%= sale_id %>">
+
+  <% sale = Sale.find sale_id %>
+
+  <% if is_admin? %>
+     <div class="form-group">
+          <label class="col-md-3 control-label" for="sale_user_id">Sale Person</label>
+          <div class="col-md-9">
+              <!-- Inline radio buttons -->
+            <select class="selectpicker" name="sale[user_id]">
+              <option value="">Select a name</option>
+              <% current_user.company.members.each do |member| %>
+                <option value="<%= member.id %>" ><%= member.username %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+    <br>
+
+  <% end %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment">DownPayment(RM):</label>
     <div class="col-md-9">
@@ -7,25 +26,28 @@
       <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
-
+  <br>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_percentage">Down Payment(%): </label>
     <div class="col-md-9">
       <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="Enter DownPayment percentage" value="">
     </div>
   </div>
+  <br>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_type">Payment Type: </label>
     <div class="col-md-9">
       <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Enter Down Payment Type" value="">
     </div>
   </div>
+  <br>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
     <div class="col-md-9">
       <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Enter Bank Loan" value="">
     </div>
   </div>
+  <br>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_spa">Lawyer Firm: </label>
     <div class="col-md-9">
@@ -33,7 +55,7 @@
     </div>
   </div>
 
-
+  <br>
   <div class="form-group">
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">

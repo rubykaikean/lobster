@@ -90,6 +90,14 @@ class Company < ActiveRecord::Base
     name_changed?
   end
 
+  def members
+    result = users
+    agencies.each do |agency|
+      result << agency.users
+    end
+    result.flatten
+  end
+
   private
 
   def generate_setting

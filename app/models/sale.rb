@@ -62,6 +62,7 @@ class Sale < ActiveRecord::Base
     s.bank_loan = confirm_params[:bank_loan]
     s.downpayment_type = confirm_params[:downpayment_type]
     s.spa = confirm_params[:spa]
+    s.user_id = confirm_params[:user_id]
     
     if s.save
       # Sale.reject_sale_same_record(s)

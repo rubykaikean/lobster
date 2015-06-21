@@ -1,6 +1,6 @@
 
 
-<%= form_for(@buyer, :class => "panel-body form-horizontal form-padding") do |f| %>
+<%= form_for(@buyer, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
     <%= hidden_field_tag "sale_id", nil, value: @sale.id %>
 

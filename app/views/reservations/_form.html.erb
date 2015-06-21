@@ -46,7 +46,7 @@
     <div class="col-md-9">
       <!-- <input type="text" id="buyer_age" name="buyer[age]" class="form-control" placeholder="Age" value=""> -->
     <select class="selectpicker" name="buyer[age]">
-      <option>Select An Option<option>
+      <option>Select An Option</option>
       <option value="1">18-30</option>
       <option value="2">31-40</option>
       <option value="3">41-50</option>
@@ -61,7 +61,7 @@
     <div class="col-md-9">
       <!-- <input type="text" id="buyer_region" name="buyer[region]" class="form-control" placeholder="Region" value=""> -->
       <select class="selectpicker" name="buyer[region_id]">
-        <option>Select An Option<option>
+        <option>Select An Option</option>
         <% @region.each do |p| %>
           <option value="<%= p.id %>"><%= p.name %></option>
         <% end %>
@@ -73,7 +73,7 @@
     <label class="col-md-3 control-label" for="buyer_race">Race: </label>
     <div class="col-md-9">
     <select class="selectpicker" name="buyer[race]" id="buyer_race">
-      <option>Select An Option<option>
+      <option>Select An Option</option>
       <option value="1">Chinese</option>
       <option value="2">Melayu</option>
       <option value="3">Indian</option>
@@ -107,7 +107,7 @@
     <div class="col-md-9">
      <!--  <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="Newspaper? Internet?" value=""> -->
      <select class="selectpicker" name="buyer[sources_type_id]">
-        <option>Select An Option<option>
+        <option>Select An Option</option>
         <% @sourcestype.each do |p| %>
           <option value="<%= p.id %>"><%= p.name %></option>
         <% end %>

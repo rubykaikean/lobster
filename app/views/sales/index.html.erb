@@ -84,9 +84,9 @@
                     
                   <% end %>
                 <% elsif sale.status_id == Sale::REJECTED %>
-                  The sale has been rejected due to <%= sale.reject_reason %>
+                  Rejected due to <%= sale.reject_reason %>
                 <% elsif sale.status_id == Sale::COMPLETED %>
-                  This unit successfully Sold by agent
+                  Sold
                 <% end %>
                 </td>
               </tr>
