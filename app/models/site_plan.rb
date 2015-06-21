@@ -25,6 +25,7 @@ class SitePlan < ActiveRecord::Base
                     :path => "site_plans/:id/:filename"
                     #:url  => "/system/:attachment/:id/:style/:filename"
   
+  validates :image_file_name, presence: true
   validates_attachment :image, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpg"] }
   validates_attachment_size :image, :less_than => 5.megabytes
   

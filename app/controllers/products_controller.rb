@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_project_owner!
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :site_plans, :floor_plans]
   
   # GET /products
   # GET /products.json
@@ -91,6 +91,14 @@ class ProductsController < ApplicationController
       format.html { redirect_to phase_path(phase) }
       format.json { head :no_content }
     end
+  end
+
+  def site_plans
+    @plans = @product.site_plans
+  end
+
+  def floor_plans
+    @plans = @product.floor_plans
   end
 
 

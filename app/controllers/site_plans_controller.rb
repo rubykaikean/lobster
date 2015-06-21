@@ -1,4 +1,5 @@
 class SitePlansController < ApplicationController
+  rescue_from ActionController::ParameterMissing, with: :redirect_to_back
   before_action :authenticate_user!
   before_action :authenticate_project_owner!
   before_action :find_product
@@ -86,5 +87,10 @@ class SitePlansController < ApplicationController
 
     def find_product
       @product = Product.friendly.find(params[:product_id])
+    end
+
+    def redirect_to_back
+      flash[:alert] = "You have to choose an image to upload."
+      redirect_to :back
     end
 end

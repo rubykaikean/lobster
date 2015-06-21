@@ -2,17 +2,18 @@
 #
 # Table name: products
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  type_id      :integer
-#  description  :text
-#  status_id    :integer
-#  phase_id     :integer
-#  slug         :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  is_published :boolean          default(FALSE)
-#  company_id   :integer
+#  id             :integer          not null, primary key
+#  name           :string
+#  type_id        :integer
+#  description    :text
+#  status_id      :integer
+#  phase_id       :integer
+#  slug           :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  is_published   :boolean          default(FALSE)
+#  company_id     :integer
+#  e_brochure_url :string
 #
 # Indexes
 #
