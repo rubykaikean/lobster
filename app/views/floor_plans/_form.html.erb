@@ -1,21 +1,33 @@
-<%= form_for(@floor_plan) do |f| %>
-  <% if @floor_plan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@floor_plan.errors.count, "error") %> prohibited this floor_plan from being saved:</h2>
+<div class="panel">
+  <div class="panel-body">
+  <%= form_for([@product, @product.floor_plans.new], :html => { :multipart => true, :class => 'panel-body form-horizontal form-padding' }) do |f| %>
+  <!--   <%# if @site_plan.errors.any? %>
+      <div id="error_explanation">
+        <h2><%#= pluralize(@site_plan.errors.count, "error") %> prohibited this site_plan from being saved:</h2>
 
-      <ul>
-      <% @floor_plan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <%# @site_plan.errors.full_messages.each do |message| %>
+          <li><%#= message %></li>
+        <%# end %>
+        </ul>
+      </div>
+    <%# end %> -->
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="floo_plan_image"></label>
+    <div class="col-md-9">
+      <%= f.file_field :image %>
+
     </div>
+  </div>
+   
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
+        <button class="btn btn-info btn-labeled fa fa-user fa-lg" name="commit" type="submit">Upload</button>
+      </div>
+    </div>
+  </div>
   <% end %>
+  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :project_id %><br>
-    <%= f.number_field :project_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

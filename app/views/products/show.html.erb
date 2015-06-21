@@ -29,7 +29,9 @@
   <% else %>
     <button data-toggle="modal" class="btn btn-primary" onclick="alert('Please create product type first.');">Generate Lot</button>
   <% end %>
-  <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Product Type</button>
+  <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
+  <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
+  <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
   <hr>
 
   <div class="tab-base">
@@ -40,13 +42,19 @@
         <a data-toggle="tab" href="#lot-tab">Lot list</a>
       </li>
       <li>
-        <a data-toggle="tab" href="#product_type-tab">Product type list <!-- <span class="badge badge-purple">27</span> --></a>
+        <a data-toggle="tab" href="#product_type-tab">Types <!-- <span class="badge badge-purple">27</span> --></a>
       </li>
       <li>
-        <a data-toggle="tab" href="#product_setting-tab">Product Setting</a>
+        <a data-toggle="tab" href="#site_plan-tab">Site Plan <!-- <span class="badge badge-purple">27</span> --></a>
       </li>
       <li>
-        <a data-toggle="tab" href="#email_setting-tab">Email Setting</a>
+        <a data-toggle="tab" href="#floor_plan-tab">Floor Plan<!-- <span class="badge badge-purple">27</span> --></a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#product_setting-tab">Setting</a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#email_setting-tab">Email Template</a>
       </li>
     </ul>
 
@@ -56,6 +64,8 @@
       <%= render "/products/product_type_tab"  %>
       <%= render "/products/product_setting_tab"  %>
       <%= render "/products/email_setting_tab" %>
+      <%= render "/products/floor_plan_tab" %>
+      <%= render "/products/site_plan_tab" %>
    </div>
   </div>
               <!--===================================================-->
@@ -102,6 +112,46 @@
         <!--Modal body-->
         <div class="modal-body">
           <%= render "/product_types/form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new_site_plan" role="dialog" tabindex="-1" aria-labelledby="new_site_plan" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Upload Site Plan</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "/site_plans/form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new_floor_plan" role="dialog" tabindex="-1" aria-labelledby="new_floor_plan" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Upload Floor Plan</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "/floor_plans/form" %>
         </div>
       </div>
     </div>

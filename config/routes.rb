@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   resources :email_settings
   resources :regions
   resources :sources_types
-  resources :site_plans
-  resources :floor_plans
   resources :product_settings
   resources :reservations do
     member do
@@ -42,8 +40,8 @@ Rails.application.routes.draw do
   end
 
   resources :lots do 
-    collection do
-      post "update_lot"
+    member do
+      post "bulk_update"
     end
   end
 
@@ -61,6 +59,8 @@ Rails.application.routes.draw do
       post "update_email_setting"
       post "update_setting"
     end
+    resources :site_plans
+    resources :floor_plans
   end
 
   resources :phases do 

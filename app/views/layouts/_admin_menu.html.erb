@@ -42,6 +42,24 @@
 											<!-- <i class="arrow"></i> -->
 										</a>
 									</li>
+                  
+                  <% if is_admin? %>
+                    <% if current_user.company.products.any? %>
+											<!--Category name-->
+											<li class="list-header">Products</li>
+								
+								      <% current_user.company.products.each do |product| %>
+												<!--Menu list item-->
+												<li>
+													<a href="<%= product_path(product) %>">
+														<i class="fa fa-briefcase"></i>
+														<span class="menu-title"><%= product.name  %></span>
+														<!-- <i class="arrow"></i> -->
+													</a>
+												</li>
+											<% end %>
+										<% end %>
+									<% end %>
 						
 									<!--Category name-->
 									<li class="list-header">Management</li>

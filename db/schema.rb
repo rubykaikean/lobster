@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621064436) do
+ActiveRecord::Schema.define(version: 20150621103250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,16 +103,16 @@ ActiveRecord::Schema.define(version: 20150621064436) do
   add_index "email_settings", ["product_id"], name: "index_email_settings_on_product_id", using: :btree
 
   create_table "floor_plans", force: :cascade do |t|
-    t.integer  "project_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "product_id"
   end
 
-  add_index "floor_plans", ["project_id"], name: "index_floor_plans_on_project_id", using: :btree
+  add_index "floor_plans", ["product_id"], name: "index_floor_plans_on_product_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -255,16 +255,16 @@ ActiveRecord::Schema.define(version: 20150621064436) do
   add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
   create_table "site_plans", force: :cascade do |t|
-    t.integer  "project_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "product_id"
   end
 
-  add_index "site_plans", ["project_id"], name: "index_site_plans_on_project_id", using: :btree
+  add_index "site_plans", ["product_id"], name: "index_site_plans_on_product_id", using: :btree
 
   create_table "sources_types", force: :cascade do |t|
     t.string   "name"

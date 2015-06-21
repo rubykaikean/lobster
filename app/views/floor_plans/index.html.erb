@@ -14,9 +14,9 @@
     <% @floor_plans.each do |floor_plan| %>
       <tr>
         <td><%= floor_plan.project_id %></td>
-        <td><%= link_to 'Show', floor_plan %></td>
-        <td><%= link_to 'Edit', edit_floor_plan_path(floor_plan) %></td>
-        <td><%= link_to 'Destroy', floor_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@product, floor_plan] %></td>
+        <td><%= link_to 'Edit', edit_product_floor_plan_path(@product, floor_plan) %></td>
+        <td><%= link_to 'Destroy', [@product, floor_plan], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Floor plan', new_floor_plan_path %>
+<%= link_to 'New Floor plan', new_product_floor_plan_path(@product) %>

@@ -33,6 +33,8 @@ class Product < ActiveRecord::Base
 	has_one  :email_setting, dependent: :destroy
 	has_one  :product_setting, dependent: :destroy
   has_many :sales
+  has_many :floor_plans
+  has_many :site_plans
 
   validates :company_id, presence: true, allow_nil: true
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }

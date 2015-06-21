@@ -3,17 +3,17 @@
 # Table name: site_plans
 #
 #  id                 :integer          not null, primary key
-#  project_id         :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  image_file_name    :string
 #  image_content_type :string
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  product_id         :integer
 #
 # Indexes
 #
-#  index_site_plans_on_project_id  (project_id)
+#  index_site_plans_on_product_id  (product_id)
 #
 
 class SitePlan < ActiveRecord::Base
@@ -25,8 +25,8 @@ class SitePlan < ActiveRecord::Base
                     :path => "site_plans/:id/:filename"
                     #:url  => "/system/:attachment/:id/:style/:filename"
   
-  validates_attachment :photo, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpg"] }
-  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment :image, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpg"] }
+  validates_attachment_size :image, :less_than => 5.megabytes
   
 
 end
