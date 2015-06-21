@@ -26,7 +26,8 @@
 								        	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
 								        </div> 
 								        <div>
-								        	<%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-purple btn-labeled fa fa-plus #{(lot.status_id == 2 || lot.status_id == 3) ? 'disabled' : nil}", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
+								        	<%#= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-purple btn-labeled fa fa-plus #{(lot.status_id == 2 || lot.status_id == 3) ? 'disabled' : nil}", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
+								        	<%= link_to "Book It", buyer_reservation_path(lot)  %>
 								        </div>
 								        <div class="pad-top"></div>
 								      </td>

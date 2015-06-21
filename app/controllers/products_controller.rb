@@ -18,8 +18,11 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product_types = @product.product_types
+
     @product_type = ProductType.new
     @setting = @product.product_setting || @product.create_product_setting
+
+    @email = @product.email_setting || @product.create_email_setting
 
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true)
@@ -104,6 +107,10 @@ class ProductsController < ApplicationController
     setting.update(setting_params)
     flash[:notice] = "Setting has been saved."
     redirect_to :back
+  end
+
+  def update_email_setting
+    render :text => params
   end
 
   private
