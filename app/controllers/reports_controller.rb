@@ -43,7 +43,7 @@ class ReportsController < ApplicationController
     @this_month_sales = Sale.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month)
 
     # this quarter sales
-    @this_month_sales = Sale.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month) Date.current.beginning_of_quarter
+    #@this_month_sales = Sale.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month) Date.current.beginning_of_quarter
   end
 
 end
