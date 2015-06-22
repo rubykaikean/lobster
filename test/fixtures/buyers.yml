@@ -14,7 +14,6 @@
 #  updated_at            :datetime         not null
 #  gender                :integer
 #  slug                  :string
-#  is_bumi_putera        :boolean          default(FALSE)
 #  sources_type_id       :integer
 #  race                  :integer
 #  age                   :integer

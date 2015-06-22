@@ -46,11 +46,10 @@ ActiveRecord::Schema.define(version: 20150622153014) do
     t.string   "home_contact_number"
     t.string   "office_contact_number"
     t.string   "email"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "gender"
     t.string   "slug"
-    t.boolean  "is_bumi_putera",        default: false
     t.integer  "sources_type_id"
     t.integer  "race"
     t.integer  "age"
@@ -143,7 +142,7 @@ ActiveRecord::Schema.define(version: 20150622153014) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 0
+    t.integer  "row_key",                 default: 1
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree

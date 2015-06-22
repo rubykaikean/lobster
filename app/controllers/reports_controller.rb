@@ -20,9 +20,9 @@ class ReportsController < ApplicationController
     number = []
     @buyers.each do |p|
       name << p.sources_type.try(:name)
-      number << p.source_type
+      number << p.sources_type.count
     end
-    # render :text => name
+    render :text => number
     # @combine = Hash[name.zip number]
 	end
 
