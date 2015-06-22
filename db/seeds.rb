@@ -44,11 +44,15 @@ region = [
 #puts admin
 
 Product.all.each do |product|
-	region.each do |name|
-		name = Region.create(:name => name, :product_id => product.id)
+	if product.regions.empty?
+		region.each do |name|
+			name = Region.create(:name => name, :product_id => product.id)
+		end
 	end
-	source.each do |name|
-		name = SourcesType.create(:name => name, :product_id => product.id)
+	if product.sources_types.empty?
+	  source.each do |name|
+		  SourcesType.create(:name => name, :product_id => product.id)
+		end
 	end
 end
 
