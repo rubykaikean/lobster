@@ -11,7 +11,7 @@
             <select class="selectpicker" name="sale[user_id]">
               <option value="">Select a name</option>
               <% current_user.company.members.each do |member| %>
-                <option value="<%= member.id %>" ><%= member.username %></option>
+                <option value="<%= member.id %>" <%= member.id == sale.user_id ? "selected='selected'" : nil %> ><%= member.username %></option>
               <% end %>
             </select>
           </div>
