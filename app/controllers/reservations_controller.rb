@@ -2,10 +2,15 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.company.is_developer?
+    company = current_user.company
+    if company.is_developer?
       @products = Product.where(company_id: current_user.company_id, is_published: true)
     else
-      @products = Product.where(company_id: current_user.company.parent_id, is_published: true)
+      if company.parent_id > 0
+        @products = Product.where(company_id: current_user.company.parent_id, is_published: true)
+      else
+        @products = Product.where(company_id: current_user.company_id, is_published: true)
+      end
     end
   end
 
