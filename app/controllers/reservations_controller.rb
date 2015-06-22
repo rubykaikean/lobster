@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
     if company.is_developer?
       @products = Product.where(company_id: current_user.company_id, is_published: true)
     else
-      if company.parent_id > 0
+      if company.parent_id.to_i > 0
         @products = Product.where(company_id: current_user.company.parent_id, is_published: true)
       else
         @products = Product.where(company_id: current_user.company_id, is_published: true)
