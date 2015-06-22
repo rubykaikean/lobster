@@ -1,0 +1,83 @@
+ <div class="row" id="content_div">
+  <div class="col-lg-12">
+  <div class="panel">
+    <div class="panel-body"> 
+    <div class="table-responsive">
+    <%#= render :text => Buyer.first.to_json %>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sales Report</th>
+            <th>Unit</th>
+            <th>GDV</th>
+          </tr>
+         </thead>
+         <tbody>
+          <% total = 0 %>
+          <% @today_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <td>Today</td>
+            <td class="text-center"><%= @today_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @yesterday_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <td>Yesterday</td>
+            <td class="text-center"><%= @yesterday_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @this_week_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <td>This Week</td>
+            <td class="text-center"><%= @this_week_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @this_month_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <td>This Month</td>
+            <td class="text-center"><%= @this_month_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @this_quarter_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <td>This Quarter</td>
+            <td class="text-center"><%= @this_quarter_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @this_year_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <td>This Year</td>
+            <td class="text-center"><%= @this_year_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+          
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+</div>
