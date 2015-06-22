@@ -59,6 +59,8 @@ Rails.application.routes.draw do
     member do
       post "update_email_setting"
       post "update_setting"
+      post "update_region"
+      post "update_sources_type"
       get "site_plans"
       get "floor_plans"
     end

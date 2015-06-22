@@ -38,7 +38,7 @@ class SourcesTypesController < ApplicationController
 
     respond_to do |format|
       if @sources_type.save
-        format.html { redirect_to @sources_type, notice: 'Sources type was successfully created.' }
+        format.html { redirect_to :back, notice: 'Sources type was successfully created.' }
         format.json { render json: @sources_type, status: :created }
       else
         format.html { render action: 'new' }
@@ -79,6 +79,6 @@ class SourcesTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sources_type_params
-      params.require(:sources_type).permit(:name)
+      params.require(:sources_type).permit(:name, :product_id)
     end
 end

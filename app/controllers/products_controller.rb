@@ -22,6 +22,12 @@ class ProductsController < ApplicationController
     @product_type = ProductType.new
     @setting = @product.product_setting
 
+    @region = Region.new
+    @regions = @product.regions
+
+    @sources_type = SourcesType.new
+    @sources_types = @product.sources_types
+
     @email = @product.email_setting
 
     @q = @product.lots.ransack(params[:q])
@@ -118,6 +124,28 @@ class ProductsController < ApplicationController
     redirect_to :back
   end
 
+  def update_region
+    # render :text => region_params
+    region_params.each do |id, content|
+      region = Region.find id
+      region.name = content[:name]
+      region.save!
+    end
+    flash[:notice] = "Region has been saved."
+    redirect_to :back
+  end
+
+  def update_sources_type
+    # render :text => sources_type_params
+    sources_type_params.each do |id, content|
+      sources = SourcesType.find id
+      sources.name = content[:name]
+      sources.save!
+    end
+    flash[:notice] = "Sources Type has been saved."
+    redirect_to :back
+  end
+
   def update_email_setting
     email_setting = EmailSetting.find(params[:id])
     email_setting.update(setting_email_params)
@@ -146,6 +174,14 @@ class ProductsController < ApplicationController
 
     def setting_email_params
       params.require(:setting_email).permit!
+    end
+
+    def region_params
+      params.require(:update_region).permit!
+    end
+
+    def sources_type_params
+      params.require(:sources_type).permit!
     end
    
 end
