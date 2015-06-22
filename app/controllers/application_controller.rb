@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     admin_signed_in? && current_admin
   end
 
-  helper_method :is_admin?
-  def is_admin?
+  helper_method :is_top_level_admin?
+  def is_top_level_admin?
     if current_user && current_user.company.parent_id.to_i == 0
       current_user.is_admin?
     else
@@ -23,9 +23,41 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :is_staff?
-  def is_staff?
-    current_user && !current_user.is_admin?
+  helper_method :is_top_level_staff?
+  def is_top_level_staff?
+    if current_user && current_user.company.parent_id.to_i == 0
+      current_user.is_staff?
+    else
+      return false
+    end
+  end
+
+  helper_method :is_top_level_management?
+  def is_top_level_management?
+    is_top_level_admin? || is_top_level_staff?
+  end
+
+  helper_method :is_low_level_admin?
+  def is_low_level_admin?
+    if current_user && current_user.company.parent_id.to_i > 0
+      current_user.is_admin?
+    else
+      return false
+    end
+  end
+
+  helper_method :is_low_level_staff?
+  def is_low_level_staff?
+    if current_user && current_user.company.parent_id.to_i > 0
+      current_user.is_staff?
+    else
+      return false
+    end
+  end
+
+  helper_method :is_low_level_management?
+  def is_low_level_management?
+    is_low_level_admin? || is_low_level_staff?
   end
 
   def authenticate_admin_and_user!

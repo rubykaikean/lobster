@@ -69,6 +69,14 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def is_developer?
+    type_id == DEVELOPER
+  end
+
+  def is_agency?
+    type_id == AGENCY
+  end
+
   def status
     case status_id
     when ACTIVE
@@ -95,7 +103,8 @@ class Company < ActiveRecord::Base
     agencies.each do |agency|
       result << agency.users
     end
-    result.flatten
+    result = result.flatten.uniq
+    result.sort_by {|agent| agent.username} if result
   end
 
   private

@@ -7,20 +7,20 @@
 								<ul id="mainnav-menu" class="list-group">
 						
 									<!--Category name-->
-									<!-- <li class="list-header">Navigation</li> -->
+									<li class="list-header">Navigation</li>
 						
 									<!--Menu list item-->
-									<!-- <li class="active-link">
+									<li class="active-link">
 										<a href="/">
 											<i class="fa fa-dashboard"></i>
 											<span class="menu-title">
-												<strong>Dashboard</strong> -->
+												<strong>Dashboard</strong>
 												<!-- <span class="label label-success pull-right">Top</span> -->
-											<!-- </span>
+											</span>
 										</a>
 									</li>
 						
-									<li class="list-divider"></li> -->
+									<li class="list-divider"></li>
 																
 									<!--Category name-->
 									<li class="list-header">System</li>
@@ -34,8 +34,18 @@
 										</a>
 									</li>
 
-									
-
+									<% unless is_low_level_staff? %>
+										<li class="list-header">Sales History</li>
+							
+										<!--Menu list item-->
+										<li>
+											<a href="<%= sales_path %>">
+												<i class="fa fa-calculator"></i>
+												<span class="menu-title">Personal Sales</span>
+												<!-- <i class="arrow"></i> -->
+											</a>
+										</li>
+									<% end %>
 								</ul>
 
 							</div>

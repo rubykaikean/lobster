@@ -14,11 +14,11 @@
 #  buyer_id               :integer
 #  downpayment            :integer
 #  downpayment_percentage :integer
-#  downpayment_type       :integer
 #  bank_loan              :string
 #  spa                    :string
 #  booking_fee            :integer
 #  reject_reason          :string
+#  downpayment_type       :string
 #
 # Indexes
 #
@@ -39,6 +39,7 @@ class Sale < ActiveRecord::Base
   belongs_to :phase
   belongs_to :lot_unit
 
+  # status
   PENDING = 1
   COMPLETED = 2
   REJECTED = 3

@@ -90,6 +90,9 @@ Rails.application.routes.draw do
       post "update_setting"
       patch "update_profile"
     end
+    collection do
+      get "profile"
+    end
   end
 
   namespace :super_admin do

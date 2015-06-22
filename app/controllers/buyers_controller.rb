@@ -30,8 +30,13 @@ class BuyersController < ApplicationController
   # GET /buyers/1/edit
   def edit
     @sale = Sale.find(params[:sale_id])
-    @region = current_user.company.regions
-    @sourcestype = current_user.company.sources_types
+    if is_top_level_admin? || @sale.user_id == current_user.id
+      @region = @sale.product.regions
+      @sourcestype = @sale.product.sources_types
+    else
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to sales_path
+    end
   end
 
   # POST /buyers

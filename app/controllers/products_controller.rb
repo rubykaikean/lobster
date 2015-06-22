@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_project_owner!
+  before_action :authenticate_project_owner!, except: [:site_plans, :floor_plans]
   before_action :set_product, only: [:show, :edit, :update, :destroy, :site_plans, :floor_plans]
   
   # GET /products

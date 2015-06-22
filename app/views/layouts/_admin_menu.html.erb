@@ -19,16 +19,11 @@
 											</span>
 										</a>
 									</li>
-						
-									<li class="list-divider"></li>
-						
-									<!--Category name-->
-									<li class="list-header">Components</li>
-						
+
 									<!--Menu list item-->
-									<li class="active-link">
-										<a href="/">
-											<i class="fa fa-dashboard"></i>
+									<li>
+										<a href="<%= profile_companies_path %>">
+											<i class="fa fa-pencil-square-o"></i>
 											<span class="menu-title">
 												<strong>Company Profile</strong>
 												<!-- <span class="label label-success pull-right">Top</span> -->
@@ -36,6 +31,12 @@
 										</a>
 									</li>
 
+						
+									<li class="list-divider"></li>
+						
+									<!--Category name-->
+									<li class="list-header">Components</li>
+						
 									<!--Menu list item-->
 									<li>
 										<a href="<%= projects_path %>">
@@ -54,7 +55,7 @@
 										</a>
 									</li>
                   
-                  <% if is_admin? %>
+                  <% if is_top_level_admin? %>
                     <% if current_user.company.products.any? %>
 											<!--Category name-->
 											<li class="list-header">Products</li>
@@ -109,15 +110,14 @@
 									</li>
 
 									<li class="list-header">Report</li>
-
-									<li>
-										<% if current_user.is_admin? %>
-										<a href="<%= summary_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Summary Report</span>
-										</a>
-										<% end %>
-									</li>
+									<% if is_top_level_management? %>
+										<li>
+												<a href="<%= summary_report_reports_path %>">
+													<i class="fa fa-bar-chart"></i>
+													<span class="menu-title">Summary Report</span>
+												</a>
+										</li>
+									<% end %>
 									<li>
 										<a href="<%= analysis_unit_report_reports_path %>">
 											<i class="fa fa-bar-chart"></i>

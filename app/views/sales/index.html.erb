@@ -50,6 +50,7 @@
               <th class="text-center">Product</th>
               <th class="text-center">Lot</th>
               <th class="text-center">Price</th>
+              <th class="text-center">Status</th>
               <th class="text-center">Action<th>
             </tr>
           </thead>
@@ -73,20 +74,32 @@
                 <td class="text-center">
                   <%= Lot.find_by(:id => sale.lot_unit_id).selling_price %>
                 </td>
+                <td class="text-center">
+                  <% if sale.status_id == Sale::PENDING %>
+                    <span class="label label-warning">Reserved</span>
+                  <% elsif sale.status_id == Sale::REJECTED %>
+                    <span class="label label-danger"><%= sale.reject_reason %></span>
+                  <% elsif sale.status_id == Sale::COMPLETED %>
+                    <span class="label label-success">Sold</span>
+                  <% end %>
+                </td>
         
                 <td class="text-center">
                 <% if sale.status_id == Sale::PENDING %>
-                  <% if current_user.is_admin? %>
+                  <% if is_top_level_management? %>
                     
-                    <button data-target="#confirm_sale<%= sale.id %>" data-toggle="modal" class="btn btn-warning btn-sm">Confirm</button>
+                    <button data-target="#confirm_sale<%= sale.id %>" data-toggle="modal" class="btn btn-success btn-sm">Confirm</button>
                   
                     <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject</button>
-                    
+                  
                   <% end %>
                 <% elsif sale.status_id == Sale::REJECTED %>
-                  Rejected due to <%= sale.reject_reason %>
+                  
                 <% elsif sale.status_id == Sale::COMPLETED %>
-                  Sold
+                  <% if is_top_level_admin? %>
+                    <a href="<%= edit_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Edit</button>
+                    </a>
+                  <% end %>
                 <% end %>
                 </td>
               </tr>

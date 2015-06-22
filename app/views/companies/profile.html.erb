@@ -1,0 +1,72 @@
+<div class="row" id="content_div">
+	  <!--company profile-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<div class="col-lg-12">
+		<div class="panel">
+			<div class="panel-heading">
+				<h3 class="panel-title">Current profile</h3>
+			</div>
+
+      <%= form_for(@company, url: update_profile_company_path(@company), html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
+
+		  <div class="form-group">
+		    <label class="col-md-3 control-label" for="company_name">Name</label>
+		    <div class="col-md-9">
+		      <input type="text" id="company_name" name="company[name]" class="form-control" placeholder="Company name" value="<%= @company.name %>" <%= current_user_can_edit? ? nil : 'disabled' %> >
+		      <!-- <small class="help-block">This is a help text</small> -->
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-md-3 control-label" for="company_registration_number">Registration No</label>
+		    <div class="col-md-9">
+		      <input type="text" id="company_registration_number" name="company[registration_number]" class="form-control" placeholder="Company registration number" value="<%= @company.registration_number %>" <%= current_user_can_edit? ? nil : 'disabled' %> >
+		      <!-- <small class="help-block">This is a help text</small> -->
+		    </div>
+		  </div>
+
+		  <!--Textarea-->
+		  <div class="form-group">
+		    <label class="col-md-3 control-label" for="company_address">Address</label>
+		    <div class="col-md-9">
+		      <textarea id="company_address" name="company[address]" rows="9" class="form-control" <%= current_user_can_edit? ? nil : 'disabled' %> ><%= @company.address %></textarea>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-md-3 control-label" for="company_phone_number">Phone Number</label>
+		    <div class="col-md-9">
+		      <input type="text" id="company_phone_number" name="company[phone_number]" class="form-control" placeholder="Company phone number" value="<%= @company.phone_number %>" <%= current_user_can_edit? ? nil : 'disabled' %> >
+		      <!-- <small class="help-block">This is a help text</small> -->
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-md-3 control-label" for="company_fax_number">Fax Number</label>
+		    <div class="col-md-9">
+		      <input type="text" id="company_fax_number" name="company[fax_number]" class="form-control" placeholder="Company fax number" value="<%= @company.fax_number %>" <%= current_user_can_edit? ? nil : 'disabled' %> >
+		      <!-- <small class="help-block">This is a help text</small> -->
+		    </div>
+		  </div>
+
+		    <div class="form-group pad-ver">
+		      <label class="col-md-3 control-label">Type</label>
+		      <div class="col-md-9"><p class="form-control-static"><%= @company.type  %></p></div>
+		    </div>
+
+		    <div class="panel-footer">
+		      <div class="row">
+		        <div class="col-sm-9 col-sm-offset-3">
+		          <% if current_user_can_edit? %>
+		            <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Update</button>
+		          <% end %>
+		        </div>
+		      </div>
+		    </div>
+
+		<% end %>
+          
+    </div>
+  </div>
+</div>
+
