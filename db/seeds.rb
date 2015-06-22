@@ -48,7 +48,7 @@ Product.all.each do |product|
 		name = Region.create(:name => name, :product_id => product.id)
 	end
 	source.each do |name|
-		name = SourcesType.create(:name => name)
+		name = SourcesType.create(:name => name, :product_id => product.id)
 	end
 end
 
