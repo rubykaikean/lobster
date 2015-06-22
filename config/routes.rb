@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get "analysis_sources_type_report"
       get "analysis_race_report"
       get "sales"
+      get "monthly_sales"
     end
   end
   
