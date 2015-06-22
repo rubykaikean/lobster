@@ -26,6 +26,13 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def profile
+    if current_user
+      @company = current_user.company
+      @setting = @company.company_setting
+    end
+  end
+
   # GET /companies/new
   def new
     @company = current_user.company.agencies.new
@@ -43,7 +50,7 @@ class CompaniesController < ApplicationController
     @company = current_user.company.agencies.new(company_params)
     @company.type_id = Company::AGENCY
 
-    @user = User.new(email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin", username: params[:username])
+    @user = User.new(username: params[:username], email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin", username: params[:username])
     @user.type_id = User::ADMIN
       if @company.valid? && @user.valid?
         if @company.save
@@ -88,7 +95,7 @@ class CompaniesController < ApplicationController
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to root_path
+    redirect_to action: :profile
   end
 
   # DELETE /companies/1
