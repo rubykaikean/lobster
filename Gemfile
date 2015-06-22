@@ -37,6 +37,8 @@ gem 'annotate', '~> 2.6.6'
 gem "puma"
 gem 'active_model_serializers'
 gem 'chartkick', '~> 1.3.2'
+gem 'week_of_month'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
