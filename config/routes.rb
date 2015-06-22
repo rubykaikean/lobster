@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :reports do
     collection do
       get "summary_report"
-      get "analysis_report"
+      get "analysis_age_report"
+      get "analysis_unit_report"
+      get "analysis_sources_type_report"
     end
   end
   
