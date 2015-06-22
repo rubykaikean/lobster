@@ -1,0 +1,28 @@
+<div class="panel">
+
+    
+    <div class="panel-body">
+      <div class="panel-heading">
+      <h4>Summary Report</h4>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="tab-base">
+          
+        <!--Nav Tabs-->
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a data-toggle="tab" href="#all_order-tab">All Order</a>
+          </li>
+          
+        </ul>
+
+        <!--Tabs Content-->
+        <div class="tab-content">
+            <%#= render "/reports/all_order" %>
+            <%#= render "/reports/completed_order" %>
+            <%#= render "/reports/rejected_order" %>
+        </div>
+  </div>
