@@ -40,13 +40,19 @@ region = [
 					"Sarawak"
 ]
 
-admin = Admin.create!(display_name: "Super Admin", email: "dev@estatekitkat.com", password: "12345678", password_confirmation: "12345678", username: "admin")
-puts admin
+#admin = Admin.create!(display_name: "Super Admin", email: "dev@estatekitkat.com", password: "12345678", password_confirmation: "12345678", username: "admin")
+#puts admin
 
-region.each do |name|
-	name = Region.create(:name => name)
+Product.all.each do |product|
+	if product.regions.empty?
+		region.each do |name|
+			name = Region.create(:name => name, :product_id => product.id)
+		end
+	end
+	if product.sources_types.empty?
+	  source.each do |name|
+		  SourcesType.create(:name => name, :product_id => product.id)
+		end
+	end
 end
 
-source.each do |name|
-	name = SourcesType.create(:name => name)
-end
