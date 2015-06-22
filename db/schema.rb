@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 20150622153014) do
     t.string   "home_contact_number"
     t.string   "office_contact_number"
     t.string   "email"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "gender"
     t.string   "slug"
+    t.boolean  "is_bumi_putera",        default: false
     t.integer  "sources_type_id"
     t.integer  "race"
     t.integer  "age"

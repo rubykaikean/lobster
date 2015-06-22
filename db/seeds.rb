@@ -40,8 +40,8 @@ region = [
 					"Sarawak"
 ]
 
-#admin = Admin.create!(display_name: "Super Admin", email: "dev@estatekitkat.com", password: "12345678", password_confirmation: "12345678", username: "admin")
-#puts admin
+admin = Admin.create!(display_name: "Super Admin", email: "dev@estatekitkat.com", password: "12345678", password_confirmation: "12345678", username: "admin")
+puts admin
 
 Product.all.each do |product|
 	if product.regions.empty?
