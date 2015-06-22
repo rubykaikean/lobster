@@ -1,5 +1,5 @@
 class RegionsController < ApplicationController
-  before_action :authenticate_admin!
+  # before_action :authenticate_admin!
   before_action :set_region, only: [:show, :edit, :update, :destroy]
 
   # GET /regions
@@ -24,7 +24,7 @@ class RegionsController < ApplicationController
 
   # GET /regions/new
   def new
-    @region = Region.new
+    @region = Regions.new
   end
 
   # GET /regions/1/edit
@@ -38,7 +38,7 @@ class RegionsController < ApplicationController
 
     respond_to do |format|
       if @region.save
-        format.html { redirect_to @region, notice: 'Region was successfully created.' }
+        format.html { redirect_to :back, notice: 'Region was successfully created.' }
         format.json { render json: @region, status: :created }
       else
         format.html { render action: 'new' }
@@ -79,6 +79,6 @@ class RegionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def region_params
-      params.require(:region).permit(:name)
+      params.require(:region).permit(:name, :product_id)
     end
 end

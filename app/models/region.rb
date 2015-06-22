@@ -6,11 +6,11 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  company_id :integer
+#  product_id :integer
 #
 
 class Region < ActiveRecord::Base
 	has_many :buyers
-  belongs_to :company
+  belongs_to :product
 
 end

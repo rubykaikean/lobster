@@ -39,6 +39,8 @@
   <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
   <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
   <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
+  <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
+  <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
   <hr>
 
   <div class="tab-base">
@@ -63,16 +65,24 @@
       <li>
         <a data-toggle="tab" href="#email_setting-tab">Email Template</a>
       </li>
+      <li>
+        <a data-toggle="tab" href="#new_region-tab">Region</a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#new_sources_type-tab">Source Types</a>
+      </li>
     </ul>
 
     <!--Tabs Content-->
    <div class="tab-content">
-      <%= render "/products/lot_tab"  %>
-      <%= render "/products/product_type_tab"  %>
-      <%= render "/products/product_setting_tab"  %>
+      <%= render "/products/lot_tab" %>
+      <%= render "/products/product_type_tab" %>
+      <%= render "/products/product_setting_tab" %>
       <%= render "/products/email_setting_tab" %>
       <%= render "/products/floor_plan_tab" %>
       <%= render "/products/site_plan_tab" %>
+      <%= render "/products/region_tab" %>
+      <%= render "/products/sources_type_tab" %>
    </div>
   </div>
               <!--===================================================-->
@@ -159,6 +169,46 @@
         <!--Modal body-->
         <div class="modal-body">
           <%= render "/floor_plans/form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new_region" role="dialog" tabindex="-1" aria-labelledby="new_region" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Region</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "/regions/form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new_sources_type" role="dialog" tabindex="-1" aria-labelledby="new_sources_type" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Sources Type</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "/sources_types/form" %>
         </div>
       </div>
     </div>
