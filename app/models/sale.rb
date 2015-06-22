@@ -56,7 +56,7 @@ class Sale < ActiveRecord::Base
   end
 
   def lot
-    if product.type_id == LANDED
+    if product.type_id == Product::LANDED
       Lot.find(lot_unit_id)
     else
 
