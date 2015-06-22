@@ -1,0 +1,92 @@
+  <div class="panel">
+    <div class="panel-body">
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="http://code.highcharts.com/modules/exporting.js"></script>
+      <div id="unit_pie_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    
+    <hr> 
+    <div class="table-responsive">
+    <%#= render :text => Buyer.first.to_json %>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Type</th>
+            <th>Unit</th>
+          </tr>
+          <tr>
+            <td>Sold:</td>
+            <td><%= sold = @lots.where("status_id = 3").count %></td>
+          </tr>
+          <tr>
+            <td>Available:</td>
+            <td><%= available = @lots.where("status_id = 1").count %></td>
+          </tr>
+          <tr>
+            <td>Reserved:</td>
+            <td><%= reserved = @lots.where("status_id = 2").count %></td>
+          </tr>
+          <tr>
+            <td>Total Unit:</td>
+            <td><%= @lots.count %></td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+
+            var combine = <%= raw sold.to_json %>
+            var sold = <%= sold %>
+            var available = <%= available %>
+            var reserved = <%= reserved %>
+            console.log(sold, reserved, available);
+
+
+            var unit_cart = [["Sold", sold],["Available", available],["Reserved", reserved]];
+            $('#unit_pie_chart').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 1,//null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Analysis Age Report.'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                  },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: unit_cart
+                          // arrayMy
+                        // ['Firefox',   40.0],
+                        // ['IE',       20.0],
+                        // // {
+                        // //     name: 'Chrome',
+                        // //     y: 12.8,
+                        // //     sliced: true,
+                        // //     selected: true
+                        // // }, 
+                }]
+            });
+          });
+
+</script>

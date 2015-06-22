@@ -6,19 +6,24 @@ class ReportsController < ApplicationController
 		@sales = Sale.all
 	end
 
-	def analysis_report
+	def analysis_unit_report
 		@lots = Lot.all
-		@sales = Sale.all
+	end
+
+	def analysis_age_report
 		@buyers = Buyer.all
-			# name = []
-	  #  	number = []
-	  # 	@lots.each do |p|
-	  #     name << p.status_id
-	  #     number << p.number.to_i
-	  #   end
-	  #  @combine = Hash[name.zip number]
-	   # render :text => name
-		
+	end
+
+	def analysis_sources_type_report
+		@buyers = Buyer.all
+		name = []
+    number = []
+    @buyers.each do |p|
+      name << p.sources_type.try(:name)
+      number << p.source_type
+    end
+    # render :text => name
+    # @combine = Hash[name.zip number]
 	end
 
 end

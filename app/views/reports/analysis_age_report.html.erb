@@ -1,0 +1,99 @@
+<div class="panel">
+        
+      <div class="panel-body">
+        
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+        <div id="age_pie_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+      
+      <hr> 
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Type</th>
+              <th>Age</th>
+            </tr>
+            <tr>
+              <td>18-30</td>
+              <td><%= a = @buyers.where("age = 1").count %></td>
+            </tr>
+            <tr>
+              <td>31-40</td>
+              <td><%= b = @buyers.where("age = 2").count %></td>
+            </tr>
+            <tr>
+              <td>41-50</td>
+              <td><%= c = @buyers.where("age = 3").count %></td>
+            </tr>
+            <tr>
+              <td>51-60</td>
+              <td><%= d = @buyers.where("age = 4").count %></td>
+            </tr>
+            <tr>
+              <td>60 & above</td>
+              <td><%= e = @buyers.where("age = 5").count %></td>
+            </tr>
+          </tbody>
+          
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  $(function () {
+
+            // var combine = <%#= raw sold.to_json %>
+            var a = <%= a %>
+            var b = <%= b %>
+            var c = <%= c %>
+            var d = <%= d %>
+            var e = <%= e %>
+            // console.log(sold, reserved, available);
+
+
+            var age_unit_cart = [["18-30", a],["31-40", b],["41-50", c],["51-60", d],["60 & above", e]];
+            $('#age_pie_chart').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 1,//null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Analysis Age Report.'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                  },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: age_unit_cart
+                          // arrayMy
+                        // ['Firefox',   40.0],
+                        // ['IE',       20.0],
+                        // // {
+                        // //     name: 'Chrome',
+                        // //     y: 12.8,
+                        // //     sliced: true,
+                        // //     selected: true
+                        // // }, 
+                }]
+            });
+          });
+
+</script>     
