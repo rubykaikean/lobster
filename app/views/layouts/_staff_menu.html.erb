@@ -34,8 +34,18 @@
 										</a>
 									</li>
 
-									
-
+									<% unless is_low_level_staff? %>
+										<li class="list-header">Sales History</li>
+							
+										<!--Menu list item-->
+										<li>
+											<a href="<%= sales_path %>">
+												<i class="fa fa-calculator"></i>
+												<span class="menu-title">Personal Sales</span>
+												<!-- <i class="arrow"></i> -->
+											</a>
+										</li>
+									<% end %>
 								</ul>
 
 							</div>

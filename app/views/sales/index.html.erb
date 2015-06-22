@@ -76,12 +76,14 @@
         
                 <td class="text-center">
                 <% if sale.status_id == Sale::PENDING %>
-                  <% if current_user.is_admin? %>
+                  <% if is_top_level_management? %>
                     
                     <button data-target="#confirm_sale<%= sale.id %>" data-toggle="modal" class="btn btn-warning btn-sm">Confirm</button>
                   
                     <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject</button>
-                    
+                  <% else %>
+                    Reserved  
+                  
                   <% end %>
                 <% elsif sale.status_id == Sale::REJECTED %>
                   Rejected due to <%= sale.reject_reason %>

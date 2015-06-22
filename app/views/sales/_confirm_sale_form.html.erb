@@ -3,7 +3,7 @@
 
   <% sale = Sale.find sale_id %>
 
-  <% if is_admin? %>
+  <% if is_top_level_management? %>
      <div class="form-group">
           <label class="col-md-3 control-label" for="sale_user_id">Sale Person</label>
           <div class="col-md-9">

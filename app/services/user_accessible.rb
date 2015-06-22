@@ -1,7 +1,7 @@
 class UserAccessible
   attr_reader :user, :area, :action
 
-  def new(user, area, action)
+  def initialize(user, area, action)
     @user = user
     @area = area
     @action = action

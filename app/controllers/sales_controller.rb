@@ -1,12 +1,17 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_project_owner!
+  before_action :authenticate_project_owner!, except: [:index, :confirm_sales, :reject_sales]
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   # GET /sales
   # GET /sales.json
   def index
-    @q = Sale.ransack(params[:q])
+    return redirect_to root_path, alert: "Sorry, you don't have the access right." if is_low_level_staff?
+    if is_top_level_management?
+      @q = Sale.where("products.id IN(?)", current_user.company.product_ids).ransack(params[:q])
+    else
+      @q = current_user.sales.ransack(params[:q])
+    end
     @sales = @q.result(distinct: true)
 
     respond_to do |format|
@@ -26,7 +31,7 @@ class SalesController < ApplicationController
 
   # GET /sales/new
   def new
-    @sale = Sale.new
+    # @sale = Sale.new
   end
 
   # GET /sales/1/edit
@@ -36,60 +41,70 @@ class SalesController < ApplicationController
   # POST /sales
   # POST /sales.json
   def create
-    @sale = Sale.new(sale_params)
+    # @sale = Sale.new(sale_params)
 
-    respond_to do |format|
-      if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
-        format.json { render json: @sale, status: :created }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @sale.save
+    #     format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+    #     format.json { render json: @sale, status: :created }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @sale.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /sales/1
   # PATCH/PUT /sales/1.json
   def update
-    respond_to do |format|
-      if @sale.update(sale_params)
-        format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @sale.update(sale_params)
+    #     format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: 'edit' }
+    #     format.json { render json: @sale.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /sales/1
   # DELETE /sales/1.json
   def destroy
-    @sale.destroy
-    respond_to do |format|
-      format.html { redirect_to sales_url }
-      format.json { head :no_content }
-    end
+    # @sale.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to sales_url }
+    #   format.json { head :no_content }
+    # end
   end
 
   def confirm_sales
     # render :text => confirm_sale_params
-    Sale.confirm_sale(confirm_sale_params)
-    redirect_to sales_path, notice: "Sale has been confirmed."
+    if is_top_level_management?
+      Sale.confirm_sale(confirm_sale_params)
+      redirect_to sales_path, notice: "Sale has been confirmed."
+    else
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to sales_path
+    end
   end
 
   def reject_sales
     # render :text => confirm_sale_params
-    s = Sale.find(confirm_sale_params[:sale_id])
-    s.status_id = Sale::REJECTED
-    s.reject_reason = confirm_sale_params[:reject_reason]
-    if s.save
-      lot = Lot.find(s.lot_unit_id)
-      lot.status_id = Lot::AVAILABLE
-      lot.save
+    if is_top_level_management?
+      s = Sale.find(confirm_sale_params[:sale_id])
+      s.status_id = Sale::REJECTED
+      s.reject_reason = confirm_sale_params[:reject_reason]
+      if s.save
+        lot = Lot.find(s.lot_unit_id)
+        lot.status_id = Lot::AVAILABLE
+        lot.save
+      end
+      redirect_to sales_path, notice: "Sale has been rejected."
+    else
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to sales_path
     end
-    redirect_to sales_path, notice: "Sale has been rejected."
   end
 
   private

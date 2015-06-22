@@ -69,6 +69,14 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def is_developer?
+    type_id == DEVELOPER
+  end
+
+  def is_agency?
+    type_id == AGENCY
+  end
+
   def status
     case status_id
     when ACTIVE
