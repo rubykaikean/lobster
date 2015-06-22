@@ -28,8 +28,8 @@ class ReportsController < ApplicationController
 
   def sales
     @product = current_user.company.products.first
-    @today_sales = Sale.where(:created_at => Date.current)
-    @yesterday_sales = Sale.where(:created_at => (Date.current - 1.day))
+    @today_sales = Sale.where(:created_at => Date.current, status_id: Sale::COMPLETED)
+    @yesterday_sales = Sale.where(:created_at => (Date.current - 1.day), status_id: Sale::COMPLETED)
 
     # this week sales
     weeks_array = Date.current.week_split
@@ -37,13 +37,16 @@ class ReportsController < ApplicationController
       @this_week = week if week.include?(Date.current.day)
     end
     to_day = Date.current
-    @this_week_sales = Sale.where(created_at: "#{to_day.year}-#{to_day.month}-#{@this_week.first}".to_date.."#{to_day.year}-#{to_day.month}-#{@this_week.last}".to_date)
+    @this_week_sales = Sale.where(created_at: "#{to_day.year}-#{to_day.month}-#{@this_week.first}".to_date.."#{to_day.year}-#{to_day.month}-#{@this_week.last}".to_date, status_id: Sale::COMPLETED)
 
     # this month sales
-    #@this_month_sales = Sale.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month)
+    @this_month_sales = Sale.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month, status_id: Sale::COMPLETED)
 
     # this quarter sales
-    #@this_month_sales = Sale.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month) Date.current.beginning_of_quarter
+    @this_quarter_sales = Sale.where(created_at: Date.current.beginning_of_quarter..Date.current.end_of_quarter, status_id: Sale::COMPLETED)
+
+    # this year sales
+    @this_year_sales = Sale.where(created_at: Date.current.beginning_of_year..Date.current.end_of_year, status_id: Sale::COMPLETED)
   end
 
 end

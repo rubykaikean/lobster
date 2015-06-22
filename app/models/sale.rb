@@ -55,6 +55,14 @@ class Sale < ActiveRecord::Base
     end
   end
 
+  def lot
+    if product.type_id == LANDED
+      Lot.find(lot_unit_id)
+    else
+
+    end
+  end
+
   def self.confirm_sale(confirm_params)
     s = Sale.find(confirm_params[:sale_id])
     s.status_id = COMPLETED
