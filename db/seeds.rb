@@ -40,7 +40,7 @@ region = [
 					"Sarawak"
 ]
 
-admin = Admin.create!(display_name: "Super Admin", email: "dev@estatekitkat.com", password: "12345678", password_confirmation: "12345678")
+admin = Admin.create!(display_name: "Super Admin", email: "dev@estatekitkat.com", password: "12345678", password_confirmation: "12345678", username: "admin")
 puts admin
 
 region.each do |name|

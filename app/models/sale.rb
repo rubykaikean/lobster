@@ -73,12 +73,10 @@ class Sale < ActiveRecord::Base
   end
 
   def bumi_putera_price
+    
     lot = Lot.find(lot_unit_id)
-    rate = lot.product.product_setting.bumi_putera_discount_rate
-    if lot.is_bumi_putera_unit == true
-      rate_total = lot.selling_price * rate / 100
-      lot.selling_price -= rate_total
-    end
+    rate_total = lot.selling_price * 7 / 100
+    lot.selling_price -= rate_total
   end
 
 end

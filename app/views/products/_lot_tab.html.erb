@@ -45,7 +45,7 @@
             <th class="text-center">Row key</th>
             <th class="text-center">Type</th>
             <th class="text-center">Price</th>
-            <th class="text-center">Bumiputera Unit</th>
+            <!-- <th class="text-center">Bumiputera Unit</th> -->
             <th class="text-center">Status</th>
           </tr>
         </thead>
@@ -74,9 +74,9 @@
               <td class="text-center">
                 <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
               </td>
-              <td class="text-center">
-                <%= check_box_tag "update_lot[#{lot.id}][is_bumi_putera_unit]" ,true ,lot.is_bumi_putera_unit == true ? "checked" : nil %>
-              </td>
+              <!-- <td class="text-center">
+                <%#= check_box_tag "update_lot[#{lot.id}][is_bumi_putera_unit]" ,true ,lot.is_bumi_putera_unit == true ? "checked" : nil %>
+              </td> -->
               <td class="text-center">
                 <%= lot.status  %>
               </td>

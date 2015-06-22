@@ -6,4 +6,8 @@ class ReportsController < ApplicationController
 		@sales = Sale.all
 	end
 
+	def analysis_report
+		
+	end
+
 end

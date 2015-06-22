@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :reports do
     collection do
       get "summary_report"
+      get "analysis_report"
     end
   end
   
