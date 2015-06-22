@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_project_owner!, except: [:index, :confirm_sales, :reject_sales]
+  before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales]
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   # GET /sales
@@ -8,7 +8,7 @@ class SalesController < ApplicationController
   def index
     return redirect_to root_path, alert: "Sorry, you don't have the access right." if is_low_level_staff?
     if is_top_level_management?
-      @q = Sale.where("products.id IN(?)", current_user.company.product_ids).ransack(params[:q])
+      @q = Sale.where("product_id IN(?)", current_user.company.product_ids).ransack(params[:q])
     else
       @q = current_user.sales.ransack(params[:q])
     end
@@ -23,10 +23,10 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @sale }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @sale }
+    # end
   end
 
   # GET /sales/new
@@ -36,6 +36,10 @@ class SalesController < ApplicationController
 
   # GET /sales/1/edit
   def edit
+    unless is_top_level_admin?
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to sales_path
+    end
   end
 
   # POST /sales
@@ -57,15 +61,15 @@ class SalesController < ApplicationController
   # PATCH/PUT /sales/1
   # PATCH/PUT /sales/1.json
   def update
-    # respond_to do |format|
-    #   if @sale.update(sale_params)
-    #     format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
-    #     format.json { head :no_content }
-    #   else
-    #     format.html { render action: 'edit' }
-    #     format.json { render json: @sale.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @sale.update(sale_params)
+        format.html { redirect_to sales_path, notice: 'Sale was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @sale.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /sales/1
@@ -115,7 +119,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:project_id, :product_id, :lot_unit_id, :phase_id, :user_id, :status_id, :downpayment, :downpayment_percentage ,:down_payment_type, :cash_bank_loan, :spa, :reject_reason)
+      params.require(:sale).permit(:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa)
     end
 
     def confirm_sale_params

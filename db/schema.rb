@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622122310) do
+ActiveRecord::Schema.define(version: 20150622153014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,11 +241,11 @@ ActiveRecord::Schema.define(version: 20150622122310) do
     t.integer  "buyer_id"
     t.integer  "downpayment"
     t.integer  "downpayment_percentage"
-    t.integer  "downpayment_type"
     t.string   "bank_loan"
     t.string   "spa"
     t.integer  "booking_fee"
     t.string   "reject_reason"
+    t.string   "downpayment_type"
   end
 
   add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree

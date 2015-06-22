@@ -103,7 +103,7 @@ class Company < ActiveRecord::Base
     agencies.each do |agency|
       result << agency.users
     end
-    result.flatten
+    result.flatten.uniq.sort_by {|agent| agent.username}
   end
 
   private
