@@ -14,15 +14,17 @@
         <!--Nav Tabs-->
         <ul class="nav nav-tabs">
           <li class="active">
-            <a data-toggle="tab" href="#all_order-tab">All Order</a>
+            <a data-toggle="tab" href="#analysis_unit-tab">Unit Type</a>
           </li>
-          
+          <li>
+            <a data-toggle="tab" href="#-tab">Unit Type</a>
+          </li>
         </ul>
 
         <!--Tabs Content-->
         <div class="tab-content">
-            <%#= render "/reports/all_order" %>
-            <%#= render "/reports/completed_order" %>
+            <%= render "/reports/analysis_unit_tab" %>
+            <%= render "/reports/analysis_age_tab" %>
             <%#= render "/reports/rejected_order" %>
         </div>
   </div>

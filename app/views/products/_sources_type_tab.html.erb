@@ -1,0 +1,29 @@
+
+<div id="new_sources_type-tab" class="tab-pane fade">
+    <div class="panel">
+    <div class="panel-body">
+      <%= form_tag update_sources_type_product_path(@product) do %>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @sources_types.each do |sources_type| %>
+            <tr>
+              <td>
+                <%= text_field_tag "sources_type[#{sources_type.id}][name]", sources_type.name, :class=>"form-control" %>
+              </td>
+            </tr>
+            
+          <% end %>
+        </tbody>
+      </table>
+      <%= submit_tag "Update", :class=>"btn btn-primary pull-right" if @product.regions.any? %>
+      <% end %>
+    </div>
+  </div>
+</div>
