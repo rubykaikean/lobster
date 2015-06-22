@@ -23,8 +23,8 @@ class ReservationsController < ApplicationController
     # render :text => params
     @lot = Lot.friendly.find(params[:id])
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
-      @sourcestype = SourcesType.all
-      @region = Region.all
+      @sourcestype = @lot.product.sources_types
+      @region = @lot.product.regions
       if @lot.is_available?
         @lot.status_id = Lot::RESERVED
         @lot.save
@@ -51,7 +51,7 @@ class ReservationsController < ApplicationController
   def create_lot
     # render :text => params[:buyer][:race]
     @lot = Lot.find(params[:lot_id])
-    if UserAccessible.new(current_user, :reservation, :confirm_sale).can_access?
+    if UserAccessible.new(current_user, :reservation, :reserve).can_access?
       buyer = Buyer.friendly.find(params[:id])
       buyer.update(buyer_params)
       sale = Sale.find(params[:sale_id])
