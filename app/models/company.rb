@@ -104,7 +104,12 @@ class Company < ActiveRecord::Base
       result << agency.users
     end
     result = result.flatten.uniq
-    result.sort_by {|agent| agent.username} if result
+    result.each do |agent|
+      if agent.username.nil?
+        agent.username = "Unknown"
+      end
+    end
+    result.sort_by {|agent| agent.username }
   end
 
   private
