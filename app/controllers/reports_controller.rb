@@ -8,6 +8,7 @@ class ReportsController < ApplicationController
 
 	def analysis_unit_report
 		@lots = Lot.all
+		@sales = Sale.all
 	end
 
 	def analysis_age_report

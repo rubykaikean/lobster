@@ -134,5 +134,5 @@ class Lot < ActiveRecord::Base
     sale.save!
   end
 
-
+  
 end
