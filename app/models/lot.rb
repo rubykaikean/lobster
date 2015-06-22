@@ -18,7 +18,7 @@
 #  premium                 :integer
 #  extra_land_price        :integer          default(0)
 #  selling_price           :integer          default(0)
-#  row_key                 :integer          default(0)
+#  row_key                 :integer          default(1)
 #
 # Indexes
 #
@@ -134,5 +134,5 @@ class Lot < ActiveRecord::Base
     sale.save!
   end
 
-
+  
 end

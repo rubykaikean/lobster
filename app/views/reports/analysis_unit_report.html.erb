@@ -31,6 +31,74 @@
             <td>Total Unit:</td>
             <td><%= @lots.count %></td>
           </tr>
+          <tr></tr>
+          <tr>
+            <th>GDV</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td>Sold</td>
+            <td>
+              <% sold_arr = [] %>
+              <% @sales.order("id ASC").each do |p| %>
+                <% lot = Lot.find_by_id(p.lot_unit_id) %>
+                  <% if p.buyer.race == 2 || p.status_id == 3 %>
+                    <% sold_arr << p.bumi_putera_price %>
+                  <% elsif p.status_id == 3 %>
+                    <% sold_arr << lot.selling_price %>
+                  <% else %>
+                  <% end %>
+              <% end %>
+              <%= sold_arr.sum %>
+            </td>
+          </tr>
+          <tr>
+            <td>Available</td>
+            <td>
+
+              <% available_arr = [] %>
+              <% @lots.order("id ASC").each do |p| %>
+                  <% if p.status_id == 1 %>
+                    <% available_arr << p.selling_price %>
+                  <% else %>
+                    <% available_arr << 0 %>
+                  <% end %>
+              <% end %>
+              <%= available_arr.sum %>
+            </td>
+          </tr>
+          <tr>
+            <td>Reserved</td>
+            <td>
+              <% reserved_arr = [] %>
+              <% @sales.order("id ASC").each do |p| %>
+                <% lot = Lot.find_by_id(p.lot_unit_id) %>
+                  <% if p.buyer.race == 2 && p.status_id == 1 %>
+                    <% reserved_arr << p.bumi_putera_price %>
+                  <% elsif p.status_id == 1 %>
+                    <% reserved_arr << lot.selling_price %>
+                  <% else %>
+                    <% reserved_arr << 0 %>
+                  <% end %>
+              <% end %>
+              <%= reserved_arr.sum %>
+            </td>
+          </tr>
+         <!--  <tr>
+            <td>Total</td>
+            <td>
+              <%# total_arr = [] %>
+              <%# @sales.order("id ASC").each do |p| %>
+                <%# lot = Lot.find_by_id(p.lot_unit_id) %>
+                <%# if p.buyer.race == 2 %>
+                  <%# total_arr << p.bumi_putera_price %>
+                <%# else %>
+                  <%# total_arr << lot.selling_price %>
+                <%# end %>
+              <%# end %>
+              <%#= total_arr.sum %>
+            </td>
+          </tr> -->
         </tbody>
         
       </table>
