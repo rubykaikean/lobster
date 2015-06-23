@@ -1,0 +1,143 @@
+ <div class="row" id="content_div">
+  <div class="col-lg-12">
+  <div class="panel">
+    <div class="panel-body"> 
+    <div class="table-responsive">
+    <%#= render :text => Buyer.first.to_json %>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">Sales By Month</th>
+            <th class="text-center">Unit</th>
+            <th class="text-center">GDV</th>
+          </tr>
+         </thead>
+         <tbody>
+          <% total = 0 %>
+          <% @jan_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">JAN</th>
+            <td class="text-center"><%= @jan_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @feb_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">FEB</th>
+            <td class="text-center"><%= @feb_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @mar_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">MAR</th>
+            <td class="text-center"><%= @mar_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @apr_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">APR</th>
+            <td class="text-center"><%= @apr_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @may_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">MAY</th>
+            <td class="text-center"><%= @may_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+           <% total = 0 %>
+          <% @jun_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">JUN</th>
+            <td class="text-center"><%= @jun_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+           <% total = 0 %>
+          <% @jul_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">JUL</th>
+            <td class="text-center"><%= @jul_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+           <% total = 0 %>
+          <% @ogo_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">AUG</th>
+            <td class="text-center"><%= @ogo_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @sep_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">SEP</th>
+            <td class="text-center"><%= @sep_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+           <% total = 0 %>
+          <% @oct_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">OCT</th>
+            <td class="text-center"><%= @oct_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @nov_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">NOV</th>
+            <td class="text-center"><%= @nov_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+
+          <% total = 0 %>
+          <% @dec_sales.each do |sale| %>
+          	<% total += sale.lot.selling_price %>
+          <% end %>
+          <tr>
+            <th class="text-center">DEC</th>
+            <td class="text-center"><%= @dec_sales.size %></td>
+            <td class="text-right"><%= total %></td>
+          </tr>
+          
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+</div>
