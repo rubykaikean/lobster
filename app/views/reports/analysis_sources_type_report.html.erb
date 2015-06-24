@@ -8,17 +8,18 @@
     
     <hr> 
     <div class="table-responsive">
-    <%#= render :text => Buyer.first.to_json %>
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th>Type</th>
+            <th class="text-center">Type</th>
             <th>Sources</th>
           </tr>
+          <% @combine.each do |key, value| %>
           <tr>
-            <td></td>
-            <td></td>
+            <td class="text-center"><%= key %></td>
+            <td><%= value %></td>
           </tr>
+          <% end %>
         </tbody>
         
       </table>
@@ -32,7 +33,17 @@
 <script type="text/javascript">
   $(function () {
 
-            var unit_cart = [["Sold", sold],["Available", available],["Reserved", reserved]];
+            var combine = <%= raw @combine.to_json %>
+            console.log(combine);
+
+            var f = [];
+            $.each( combine, function( key, value ) {
+              // arrayMy.push("'" + key + "'" + ", " + value);
+              var x = new Array(key , value);
+              f.push(x);
+            });
+            console.log(f);
+
             $('#source_type_pie_chart').highcharts({
                 chart: {
                     plotBackgroundColor: null,
@@ -60,8 +71,8 @@
                   },
                 series: [{
                     type: 'pie',
-                    name: 'Browser share',
-                    data: unit_cart
+                    name: 'Unit Percentage',
+                    data: f
                           // arrayMy
                         // ['Firefox',   40.0],
                         // ['IE',       20.0],

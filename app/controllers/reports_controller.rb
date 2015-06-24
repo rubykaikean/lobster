@@ -17,15 +17,25 @@ class ReportsController < ApplicationController
 	end
 
 	def analysis_sources_type_report
+        # @sources_types = current_user.company.products.first.sources_types
 		@buyers = Buyer.all
 		name = []
-  	    number = []
+        number = []
+        result = []
         @buyers.each do |p|
           name << p.sources_type.try(:name)
-          number << p.sources_type.id
+          number << p.sources_type.try(:name).to_s
         end
-        # @combine = Hash[name.zip number]
-    	render :text => number.count
+
+        name.uniq.each do |t|
+           result << name.count { |x| x == t }
+        end
+        @combine = Hash[name.uniq.zip result]
+        # render :text => @combine
+        # render :text => name.uniq
+        # render :text => number
+        # render :text => result
+        # render :text => name.count { |x| x == "newspaper" }
     end
 
 
