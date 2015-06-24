@@ -36,7 +36,7 @@ class SalesController < ApplicationController
 
   # GET /sales/1/edit
   def edit
-    unless is_top_level_admin?
+    unless is_top_level_management?
       flash[:alert] = "Sorry, you don't have the access right."
       redirect_to sales_path
     end
