@@ -16,16 +16,16 @@ class ReportsController < ApplicationController
 	end
 
 	def analysis_sources_type_report
-		# @buyers = Buyer.all
-		# name = []
-  	# number = []
-    # @buyers.each do |p|
-    #   name << p.sources_type.try(:name)
-    #   number << p.sources_type_id.count
-    # end
-    # render :text => number
-    # @combine = Hash[name.zip number]
-	end
+		@buyers = Buyer.all
+		name = []
+  	    number = []
+        @buyers.each do |p|
+          name << p.sources_type.try(:name)
+          number << p.sources_type.id
+        end
+        # @combine = Hash[name.zip number]
+    	render :text => number.count
+    end
 
 
 	def analysis_race_report
