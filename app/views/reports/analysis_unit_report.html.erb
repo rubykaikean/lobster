@@ -49,13 +49,12 @@
                   <% else %>
                   <% end %>
               <% end %>
-              <%= sold_arr.sum %>
+              RM<%= sold_arr.sum %>
             </td>
           </tr>
           <tr>
             <td>Available</td>
             <td>
-
               <% available_arr = [] %>
               <% @lots.order("id ASC").each do |p| %>
                   <% if p.status_id == 1 %>
@@ -64,7 +63,7 @@
                     <% available_arr << 0 %>
                   <% end %>
               <% end %>
-              <%= available_arr.sum %>
+              RM<%= available_arr.sum %>
             </td>
           </tr>
           <tr>
@@ -81,7 +80,7 @@
                     <% reserved_arr << 0 %>
                   <% end %>
               <% end %>
-              <%= reserved_arr.sum %>
+              RM<%= reserved_arr.sum %>
             </td>
           </tr>
          <!--  <tr>

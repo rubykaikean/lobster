@@ -69,7 +69,7 @@ class Lot < ActiveRecord::Base
     when AVAILABLE
       "bg-light"
     when RESERVED
-      "bg-warning"
+      "bg-orange"
     when SOLD
       "bg-danger"
     end

@@ -5376,12 +5376,12 @@ a.list-group-item-dark:focus {
 }
 
 .bg-orange {
-  background-color: #ff8040;
+  background-color: #FFA500;
 }
 
 .bg-orange,
 .bg-orange a {
-  color: #ffffff;
+  color: #FFA500;
 }
 
 .bg-gray-light {
