@@ -1375,6 +1375,15 @@ a.bg-success:hover {
 a.bg-info:hover {
   background-color: #afd9ee;
 }
+
+.bg-orange {
+  background-color: #ff8040;
+}
+
+a.bg-orange:hover {
+  background-color: #ff8040;
+}
+
 .bg-warning {
   background-color: #fcf8e3;
 }

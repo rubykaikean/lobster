@@ -5374,6 +5374,16 @@ a.list-group-item-dark:focus {
 .bg-light a {
   color: #515151;
 }
+
+.bg-orange {
+  background-color: #ff8040;
+}
+
+.bg-orange,
+.bg-orange a {
+  color: #ffffff;
+}
+
 .bg-gray-light {
   background-color: #f3f5f8;
 }

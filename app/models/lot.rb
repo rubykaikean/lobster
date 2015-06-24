@@ -67,11 +67,11 @@ class Lot < ActiveRecord::Base
   def background_css_name
     case status_id
     when AVAILABLE
-      "bg-mint"
+      "bg-light"
     when RESERVED
-      "bg-danger"
+      "bg-warning"
     when SOLD
-      "bg-primary"
+      "bg-danger"
     end
   end
 
