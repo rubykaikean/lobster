@@ -62,23 +62,27 @@
                 <td><%= sale.user.company.name %></td>
                 <td class="text-center"><%= sale.user.email %></td>
                 <td class="text-center">
-                  <a href="<%= edit_buyer_path(sale.buyer, :sale_id => sale.id) %>"><button class="btn btn-primary btn-sm"><%= sale.buyer.try(:full_name) || "Unknown" %></button>
-                  </a>
+                  <% if is_top_level_management? || (sale.user_id == current_user.id) %>
+                    <a href="<%= edit_buyer_path(sale.buyer, :sale_id => sale.id) rescue '#' %>"><button class="btn btn-primary btn-sm"><%= sale.buyer.try(:full_name) || "Unknown" %></button>
+                    </a>
+                  <% else %>
+                    <span class="label label-primary">Reserved</span>
+                  <% end %>
                 </td>
-                
+                <% lot = Lot.find_by(:id => sale.lot_unit_id) %>
                 <td class="text-center">
-                  <%= Lot.find_by(:id => sale.lot_unit_id).product.name %></td>
+                  <%= lot.product.name %></td>
                 <td class="text-center">
-                  <%= Lot.find_by(:id => sale.lot_unit_id).name %>
+                  <%= lot.name %>
                 </td>
                 <td class="text-center">
-                  <%= Lot.find_by(:id => sale.lot_unit_id).selling_price %>
+                  <%= lot.selling_price %>
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>
                     <span class="label label-warning">Reserved</span>
                   <% elsif sale.status_id == Sale::REJECTED %>
-                    <span class="label label-danger"><%= sale.reject_reason %></span>
+                    <span class="label label-danger">Rejected</span>
                   <% elsif sale.status_id == Sale::COMPLETED %>
                     <span class="label label-success">Sold</span>
                   <% end %>
@@ -91,7 +95,8 @@
                     <button data-target="#confirm_sale<%= sale.id %>" data-toggle="modal" class="btn btn-success btn-sm">Confirm</button>
                   
                     <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject</button>
-                  
+                  <% elsif sale.user_id == current_user.id %>
+                    <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject</button>
                   <% end %>
                 <% elsif sale.status_id == Sale::REJECTED %>
                   

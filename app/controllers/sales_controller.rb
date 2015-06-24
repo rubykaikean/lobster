@@ -94,9 +94,8 @@ class SalesController < ApplicationController
   end
 
   def reject_sales
-    # render :text => confirm_sale_params
-    if is_top_level_management?
-      s = Sale.find(confirm_sale_params[:sale_id])
+    s = Sale.find(confirm_sale_params[:sale_id])
+    if is_top_level_management? || s.user_id == current_user.id
       s.status_id = Sale::REJECTED
       s.reject_reason = confirm_sale_params[:reject_reason]
       if s.save

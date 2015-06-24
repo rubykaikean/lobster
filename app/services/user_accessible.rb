@@ -27,6 +27,8 @@ class UserAccessible
       is_top_level_management? || is_low_level_admin?
     elsif action == :confirm_sale
       is_top_level_management?
+    elsif action == :cancel_sale
+      is_top_level_management?
     elsif action == :edit_sale
       is_top_level_admin?
     end
