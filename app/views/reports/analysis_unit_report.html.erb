@@ -12,7 +12,7 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th>Type</th>
+            <th>type</th>
             <th>Unit</th>
           </tr>
           <tr>
@@ -37,23 +37,25 @@
             <th></th>
           </tr>
           <tr>
-            <td>Sold</td>
+            <td>Sold Unit</td>
             <td>
               <% sold_arr = [] %>
-              <% @sales.order("id ASC").each do |p| %>
+              <% @sales.where("status_id = 2").each do |p| %>
                 <% lot = Lot.find_by_id(p.lot_unit_id) %>
-                  <% if p.buyer.race == 2 || lot.status_id == 2 %>
-                    <% sold_arr << p.bumi_putera_price %>
-                  <% elsif p.status_id == 2 %>
-                    <% sold_arr << lot.selling_price %>
-                  <% else %>
+                  
+                  <% if p.buyer.race == 2 %>
+                  <%= p.buyer.full_name %>
+                    <%# sold_arr << p.bumi_putera_price %>
+                  <%# elsif p.status_id == 2 %>
+                    <%# sold_arr << lot.selling_price %>
+                  <%# else %>
                   <% end %>
               <% end %>
-              RM<%= sold_arr.sum %>
+              RM<%= number_with_delimiter(sold_arr.sum) %>
             </td>
           </tr>
           <tr>
-            <td>Available</td>
+            <td>Available Unit</td>
             <td>
               <% available_arr = [] %>
               <% @lots.order("id ASC").each do |p| %>
@@ -63,11 +65,11 @@
                     <% available_arr << 0 %>
                   <% end %>
               <% end %>
-              RM<%= available_arr.sum %>
+              RM<%= number_with_delimiter(available_arr.sum) %>
             </td>
           </tr>
           <tr>
-            <td>Reserved</td>
+            <td>Reserved Unit</td>
             <td>
               <% reserved_arr = [] %>
               <% @sales.order("id ASC").each do |p| %>
@@ -80,7 +82,7 @@
                     <% reserved_arr << 0 %>
                   <% end %>
               <% end %>
-              RM<%= reserved_arr.sum %>
+              RM<%= number_with_delimiter(reserved_arr.sum) %>
             </td>
           </tr>
          <!--  <tr>

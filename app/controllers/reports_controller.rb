@@ -7,6 +7,7 @@ class ReportsController < ApplicationController
 	end
 
 	def analysis_unit_report
+        @product = current_user.company.products.first
 		@lots = Lot.all
 		@sales = Sale.all
 	end
