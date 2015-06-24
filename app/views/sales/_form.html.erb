@@ -1,3 +1,7 @@
+<% content_for :stylesheets do %>
+  <link href="/plugins/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
+<% end %>
+
 <%= form_for(@sale, html: {:class => 'panel-body form-horizontal form-padding'}) do |f| %>
 
      <div class="form-group">
@@ -15,9 +19,20 @@
     <br>
 
   <div class="form-group">
+      <label class="col-md-3 control-label" for="sale_user_id">Sale Date</label>
+      <div class="col-md-9">
+      <div class="input-group date">
+        <input type="text" class="form-control" name="sale[confirm_date]" id="sale_confirm_date" value="<%= @sale.confirm_date_short_format %>">
+        <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
+      </div>
+      <small class="text-muted">Click to change the date</small>
+    </div>
+  </div>
+
+  <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment">DownPayment(RM):</label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment" name="sale[downpayment]" class="form-control" placeholder="Enter DownPayment" value="<%= @sale.downpayment %>">
+      <input type="number" id="sale_downpayment" name="sale[downpayment]" class="form-control" placeholder="Enter DownPayment" value="<%= @sale.downpayment %>">
       <!-- <small class="help-block">This is a help text</small> -->
     </div>
   </div>
@@ -25,7 +40,7 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_percentage">Down Payment(%): </label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="Enter DownPayment percentage" value="<%= @sale.downpayment_percentage %>">
+      <input type="number" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="Enter DownPayment percentage" value="<%= @sale.downpayment_percentage %>">
     </div>
   </div>
   <br>
@@ -69,5 +84,17 @@
     e.preventDefault();
     window.location.href='<%= sales_path %>';
   });
+
 </script>
+
+<% content_for :javascripts do %>
+  <script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+  <script src="/js/demo/form-component.js"></script>
+  <script type="text/javascript">
+    $('#sale_confirm_date').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    });
+  </script>
+<% end %>
 

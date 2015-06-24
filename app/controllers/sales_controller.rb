@@ -8,7 +8,7 @@ class SalesController < ApplicationController
   def index
     return redirect_to root_path, alert: "Sorry, you don't have the access right." if is_low_level_staff?
     if is_top_level_management?
-      @q = Sale.where("product_id IN(?)", current_user.company.product_ids).ransack(params[:q])
+      @q = Sale.where("product_id IN(?)", current_user.company.product_ids).order("created_at DESC").ransack(params[:q])
     else
       @q = current_user.sales.ransack(params[:q])
     end
@@ -118,7 +118,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa)
+      params.require(:sale).permit(:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa, :confirm_date)
     end
 
     def confirm_sale_params
