@@ -66,8 +66,9 @@ class BuyersController < ApplicationController
         format.json { head :no_content }
       else
         format.html { 
-          @region = current_user.company.regions
-          @sourcestype = current_user.company.sources_types
+          @region = @sale.product.regions
+          @sourcestype = @sale.product.sources_types
+          flash.now[:alert] =  @buyer.errors.full_messages.join("<br>")
           render action: 'edit' }
         format.json { render json: @buyer.errors, status: :unprocessable_entity }
       end
@@ -87,7 +88,7 @@ class BuyersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_buyer
-      @buyer = Buyer.friendly.find(params[:id])
+      @buyer = Buyer.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

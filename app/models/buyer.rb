@@ -28,8 +28,8 @@
 #
 
 class Buyer < ActiveRecord::Base
-  extend FriendlyId
-  friendly_id :full_name, use: :slugged
+  #extend FriendlyId
+  #friendly_id :full_name, use: :slugged
   
   has_many :sales
   belongs_to :sources_type
@@ -42,7 +42,9 @@ class Buyer < ActiveRecord::Base
   INDIAN = 3
   OTHER = 4
 
-
+  # def should_generate_new_friendly_id?
+  #   full_name_changed?
+  # end
 
 
 end

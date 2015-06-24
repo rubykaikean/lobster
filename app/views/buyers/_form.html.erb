@@ -30,7 +30,7 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_address">Address</label>
     <div class="col-md-9">
-      <textarea id="company_address" name="company[address]" rows="4" class="form-control" required><%= @buyer.address %></textarea>
+      <textarea id="company_address" name="buyer[address]" rows="4" class="form-control" required><%= @buyer.address %></textarea>
       <small class="help-block">Required field</small>
     </div>
   </div>
@@ -38,7 +38,7 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_gender">Gender: </label>
     <div class="col-md-9">
-      <%= radio_button_tag "buyer[gender]", 1,  @buyer.gender == 1, required: true  %> Male
+      <%= radio_button_tag "buyer[gender]", 1,  @buyer.gender == 1  %> Male
       <%= radio_button_tag "buyer[gender]", 2,  @buyer.gender == 2  %> Female
       <small class="help-block">Required field</small>
     </div>
