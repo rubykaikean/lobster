@@ -18,7 +18,7 @@
 #  premium                 :integer
 #  extra_land_price        :integer          default(0)
 #  selling_price           :integer          default(0)
-#  row_key                 :integer          default(1)
+#  row_key                 :integer          default(0)
 #
 # Indexes
 #
@@ -51,6 +51,15 @@ class Lot < ActiveRecord::Base
 
   def is_sold?
     status_id == SOLD
+  end
+
+  def available_for_booking?
+    setting = product.product_setting
+    if setting.allow_multiple_booking?
+      is_available? || is_reserved?
+    else
+      is_available?
+    end
   end
 
   def status
@@ -93,46 +102,46 @@ class Lot < ActiveRecord::Base
     
   end
 
-  def create_buyer(lot, user_id)
+  # def create_buyer(lot, user_id)
     
-    @user_id = user_id
-    buyer = Buyer.new
-    buyer.full_name = lot[:name]
-    buyer.ic_number = lot[:ic_number]
-    buyer.address = lot[:address]
-    buyer.email = lot[:email]
-    buyer.gender = lot[:gender]
-    buyer.age = lot[:age]
-    buyer.region = lot[:region]
-    buyer.race = lot[:race]
-    buyer.sources = lot[:sources]
-    buyer.mobile_contact_number = lot[:mobile_contact_number]
-    buyer.home_contact_number = lot[:home_contact_number]
-    buyer.office_contact_number = lot[:office_contact_number]
-    @booking_fee = lot[:booking_fee]
+  #   @user_id = user_id
+  #   buyer = Buyer.new
+  #   buyer.full_name = lot[:name]
+  #   buyer.ic_number = lot[:ic_number]
+  #   buyer.address = lot[:address]
+  #   buyer.email = lot[:email]
+  #   buyer.gender = lot[:gender]
+  #   buyer.age = lot[:age]
+  #   buyer.region = lot[:region]
+  #   buyer.race = lot[:race]
+  #   buyer.sources = lot[:sources]
+  #   buyer.mobile_contact_number = lot[:mobile_contact_number]
+  #   buyer.home_contact_number = lot[:home_contact_number]
+  #   buyer.office_contact_number = lot[:office_contact_number]
+  #   @booking_fee = lot[:booking_fee]
     
-    buyer.save!
-    @buyer_id = buyer.id
-    create_sale
-  end
+  #   buyer.save!
+  #   @buyer_id = buyer.id
+  #   create_sale
+  # end
 
-  def create_sale
-    sale = Sale.new
-    sale.project_id = product.phase.project_id
-    sale.product_id = product_id
-    sale.lot_unit_id = self.id
-    sale.phase_id = product.phase_id
-    sale.user_id = @user_id
-    sale.booking_fee = @booking_fee
-    sale.status_id = 1
-    sale.buyer_id = @buyer_id
-    # sale.downpayment
-    # sale.downpayment_percentage
-    # sale.downpayment_type
-    # sale.bank_loan
-    # sale.spa
-    sale.save!
-  end
+  # def create_sale
+  #   sale = Sale.new
+  #   sale.project_id = product.phase.project_id
+  #   sale.product_id = product_id
+  #   sale.lot_unit_id = self.id
+  #   sale.phase_id = product.phase_id
+  #   sale.user_id = @user_id
+  #   sale.booking_fee = @booking_fee
+  #   sale.status_id = 1
+  #   sale.buyer_id = @buyer_id
+  #   # sale.downpayment
+  #   # sale.downpayment_percentage
+  #   # sale.downpayment_type
+  #   # sale.bank_loan
+  #   # sale.spa
+  #   sale.save!
+  # end
 
   
 end

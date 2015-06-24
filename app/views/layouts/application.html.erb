@@ -37,6 +37,7 @@
 	<!--Demo script [ DEMONSTRATION ]-->
 	<link href="/css/demo/nifty-demo.min.css" rel="stylesheet">
 
+  <%= yield(:stylesheets) %>
 
 
 	<!--SCRIPT-->
@@ -47,29 +48,6 @@
 	<script src="/plugins/pace/pace.min.js"></script>
 	<!--Modals [ SAMPLE ]-->
 	<script src="/js/demo/ui-modals.js"></script>
-
-	
-	<!--
-
-	REQUIRED
-	You must include this in your project.
-
-	RECOMMENDED
-	This category must be included but you may modify which plugins or components which should be included in your project.
-
-	OPTIONAL
-	Optional plugins. You may choose whether to include it in your project or not.
-
-	DEMONSTRATION
-	This is to be removed, used for demonstration purposes only. This category must not be included in your project.
-
-	SAMPLE
-	Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
-
-
-	Detailed information and more samples can be found in the document.
-
-	-->
 	<%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
@@ -858,6 +836,8 @@
 
 	<!--Specify page [ SAMPLE ]-->
 	<script src="/js/demo/dashboard.js"></script>
+
+	<%= yield(:javascripts)  %>
 
   <script type="text/javascript">
   	vph = $(window).height();

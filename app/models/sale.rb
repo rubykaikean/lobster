@@ -19,6 +19,7 @@
 #  booking_fee            :integer
 #  reject_reason          :string
 #  downpayment_type       :string
+#  confirm_date           :datetime
 #
 # Indexes
 #
@@ -55,9 +56,13 @@ class Sale < ActiveRecord::Base
     end
   end
 
+  def confirm_date_short_format
+    confirm_date.strftime("%d/%m/%Y") rescue ""
+  end
+
   def lot
     if product.type_id == Product::LANDED
-      Lot.find(lot_unit_id)
+      Lot.find_by(id: lot_unit_id)
     else
 
     end
@@ -71,6 +76,11 @@ class Sale < ActiveRecord::Base
     s.bank_loan = confirm_params[:bank_loan]
     s.downpayment_type = confirm_params[:downpayment_type]
     s.spa = confirm_params[:spa]
+    if confirm_params[:confirm_date]
+      s.confirm_date = confirm_params[:confirm_date]
+    else
+      s.confirm_date = Time.current
+    end
     s.user_id = confirm_params[:user_id] if confirm_params[:user_id]
     
     if s.save

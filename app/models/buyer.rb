@@ -35,6 +35,8 @@ class Buyer < ActiveRecord::Base
   belongs_to :sources_type
   belongs_to :region
 
+  validates :full_name, :ic_number, :address, :mobile_contact_number, :gender, :sources_type_id, :race, :age, :region_id, presence: true
+
   CHINESE = 1
   BUMIPUTERA = 2
   INDIAN = 3

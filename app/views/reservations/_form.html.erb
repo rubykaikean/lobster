@@ -8,51 +8,57 @@
    <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_full_name">Full name: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_full_name" name="buyer[full_name]" class="form-control" placeholder="Full name" value="">
+      <input type="text" id="buyer_full_name" name="buyer[full_name]" class="form-control" placeholder="Full name" value="<%= @buyer.full_name %>" required>
+      <small class="help-block">Required field</small>
 	  </div>
 	</div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_email">Email: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_email" name="buyer[email]" class="form-control" placeholder="Email" value="">
+      <input type="text" id="buyer_email" name="buyer[email]" class="form-control" placeholder="Email" value="<%= @buyer.email %>">
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_ic_number">IC Number: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="">
+      <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" required maxlength="12" minlength="12">
+      <small class="help-block">Required field</small>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_address">Address</label>
     <div class="col-md-9">
-      <input type="text" id="buyer_address" name="buyer[address]" class="form-control" placeholder="Address" value="">
+      <textarea id="buyer_address" name="buyer[address]" rows="4" class="form-control" required><%= @buyer.address %></textarea>
+      <small class="help-block">Required field</small>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_age">Gender: </label>
+    <label class="col-md-3 control-label" for="buyer_gender">Gender: </label>
     <div class="col-md-9">
-      <%= radio_button_tag "buyer[gender]", 1, nil %> Male
-      <%= radio_button_tag "buyer[gender]", 2, nil %> Female
+      <%= radio_button_tag "buyer[gender]", 1, @buyer.gender == 1, required: true  %> Male
+      <%= radio_button_tag "buyer[gender]", 2, @buyer.gender == 2 %> Female
+      <small class="help-block">Required field</small>
     </div>
+    
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_age">Age: </label>
     <div class="col-md-9">
       <!-- <input type="text" id="buyer_age" name="buyer[age]" class="form-control" placeholder="Age" value=""> -->
-    <select class="selectpicker" name="buyer[age]">
-      <option>Select An Option</option>
-      <option value="1">18-30</option>
-      <option value="2">31-40</option>
-      <option value="3">41-50</option>
-      <option value="4">51-60</option>
-      <option value="5">61 & above</option>
+    <select class="selectpicker" name="buyer[age]" required>
+      <option value="">Select An Option</option>
+      <option value="1" <%= @buyer.age == 1 ? 'selected' : nil %> >18-30</option>
+      <option value="2" <%= @buyer.age == 2 ? 'selected' : nil %> >31-40</option>
+      <option value="3" <%= @buyer.age == 3 ? 'selected' : nil %> >41-50</option>
+      <option value="4" <%= @buyer.age == 4 ? 'selected' : nil %> >51-60</option>
+      <option value="5" <%= @buyer.age == 5 ? 'selected' : nil %> >61 & above</option>
     </select>
+    <small class="help-block">Required field</small>
     </div>
   </div>
 
@@ -60,45 +66,48 @@
     <label class="col-md-3 control-label" for="buyer_region_id">Region: </label>
     <div class="col-md-9">
       <!-- <input type="text" id="buyer_region" name="buyer[region]" class="form-control" placeholder="Region" value=""> -->
-      <select class="selectpicker" name="buyer[region_id]">
-        <option>Select An Option</option>
+      <select class="selectpicker" name="buyer[region_id]" required>
+        <option value="">Select An Option</option>
         <% @region.each do |p| %>
-          <option value="<%= p.id %>"><%= p.name %></option>
+          <option value="<%= p.id %>" <%= @buyer.region_id == p.id ? 'selected' : nil %> ><%= p.name %></option>
         <% end %>
       </select>
+      <small class="help-block">Required field</small>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_race">Race: </label>
     <div class="col-md-9">
-    <select class="selectpicker" name="buyer[race]" id="buyer_race">
-      <option>Select An Option</option>
-      <option value="1">Chinese</option>
-      <option value="2">Bumiputera</option>
-      <option value="3">Indian</option>
-      <option value="4">Other</option>
+    <select class="selectpicker" name="buyer[race]" id="buyer_race" required>
+      <option value="">Select An Option</option>
+      <option value="1" <%= @buyer.race == 1 ? 'selected' : nil %> >Chinese</option>
+      <option value="2" <%= @buyer.race == 2 ? 'selected' : nil %> >Bumiputera</option>
+      <option value="3" <%= @buyer.race == 3 ? 'selected' : nil %> >Indian</option>
+      <option value="4" <%= @buyer.race == 4 ? 'selected' : nil %> >Other</option>
     </select>
+    <small class="help-block">Required field</small>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Contact Number: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="">
+      <input type="number" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="<%= @buyer.mobile_contact_number %>" required>
+      <small class="help-block">Required field</small>
     </div>
   </div>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_home_contact_number"></label>
     <div class="col-md-9">
-      <input type="text" id="buyer_home_contact_number" name="buyer[home_contact_number]" class="form-control" placeholder="Home Contact Number" value="">
+      <input type="number" id="buyer_home_contact_number" name="buyer[home_contact_number]" class="form-control" placeholder="Home Contact Number" value="<%= @buyer.home_contact_number %>">
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_office_contact_number"></label>
     <div class="col-md-9">
-      <input type="text" id="buyer_office_contact_number" name="buyer[office_contact_number]" class="form-control" placeholder="Office Contact Number" value="">
+      <input type="number" id="buyer_office_contact_number" name="buyer[office_contact_number]" class="form-control" placeholder="Office Contact Number" value="<%= @buyer.office_contact_number %>">
     </div>
   </div>
 
@@ -106,19 +115,20 @@
     <label class="col-md-3 control-label" for="buyer_sources_type_id">How did you hear about us? </label>
     <div class="col-md-9">
      <!--  <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="Newspaper? Internet?" value=""> -->
-     <select class="selectpicker" name="buyer[sources_type_id]">
-        <option>Select An Option</option>
+     <select class="selectpicker" name="buyer[sources_type_id]" required>
+        <option value="">Select An Option</option>
         <% @sourcestype.each do |p| %>
-          <option value="<%= p.id %>"><%= p.name %></option>
+          <option value="<%= p.id %>" <%= @buyer.sources_type_id == p.id ? 'selected' : nil %> ><%= p.name %></option>
         <% end %>
       </select>
+      <small class="help-block">Required field</small>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_booking_fee">Booking Fee: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="">
+      <input type="number" id="buyer_booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="<%= @sale.booking_fee %>">
     </div>
   </div>
   

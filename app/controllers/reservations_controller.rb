@@ -25,7 +25,7 @@ class ReservationsController < ApplicationController
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
       @sourcestype = @lot.product.sources_types
       @region = @lot.product.regions
-      if @lot.is_available?
+      if @lot.available_for_booking?
         @lot.status_id = Lot::RESERVED
         @lot.save
         @sale = Sale.new
@@ -34,7 +34,8 @@ class ReservationsController < ApplicationController
         @sale.phase_id = @lot.product.phase_id
         @sale.project_id = @lot.product.phase.project_id
         @sale.user_id = current_user.id
-        @buyer = Buyer.create
+        @buyer = Buyer.new
+        @buyer.save(validate: false)
         @sale.buyer_id = @buyer.id
         @sale.status_id = 1
         @sale.save
@@ -52,12 +53,16 @@ class ReservationsController < ApplicationController
     # render :text => params[:buyer][:race]
     @lot = Lot.find(params[:lot_id])
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
-      buyer = Buyer.friendly.find(params[:id])
-      buyer.update(buyer_params)
-      sale = Sale.find(params[:sale_id])
-      sale.update(booking_fee: params[:booking_fee])
-      flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{buyer.full_name}."
-      redirect_to reservation_path(@lot.product)
+      @buyer = Buyer.friendly.find(params[:id])
+      if @buyer.update(buyer_params)
+        @sale = Sale.find(params[:sale_id])
+        @sale.update(booking_fee: params[:booking_fee])
+        flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{@buyer.full_name}."
+        redirect_to reservation_path(@lot.product)
+      else
+        flash.now[:alert] =  @buyer.errors.full_messages.join("<br>")
+        render action: 'buyer'
+      end
     else
       flash[:alert] = "Sorry, you don't have the access right."
       redirect_to reservation_path(@lot.product)
