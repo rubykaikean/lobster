@@ -23,8 +23,8 @@ class ReportsController < ApplicationController
         number = []
         result = []
         @buyers.each do |p|
-          name << p.sources_type.name
-          number << p.sources_type.name.to_s
+          name << p.sources_type.try(:name)
+          number << p.sources_type.try(:name).to_s
         end
 
         name.uniq.each do |t|
