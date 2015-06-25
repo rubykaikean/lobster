@@ -5,10 +5,8 @@
        <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
         <div id="monthly_sales_pie_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-      
       <hr> 
     <div class="table-responsive">
-    <%#= render :text => Buyer.first.to_json %>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -22,7 +20,7 @@
           <% @jan_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= jan = total %>
+          <% jan = total %>
           <tr>
             <th class="text-center">JAN</th>
             <td class="text-center"><%= @jan_sales.size %></td>
@@ -33,7 +31,7 @@
           <% @feb_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= feb = total %>
+          <% feb = total %>
           <tr>
             <th class="text-center">FEB</th>
             <td class="text-center"><%= @feb_sales.size %></td>
@@ -44,7 +42,7 @@
           <% @mar_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= mar = total %>
+          <% mar = total %>
           <tr>
             <th class="text-center">MAR</th>
             <td class="text-center"><%= @mar_sales.size %></td>
@@ -55,7 +53,7 @@
           <% @apr_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= apr = total %>
+          <% apr = total %>
           <tr>
             <th class="text-center">APR</th>
             <td class="text-center"><%= @apr_sales.size %></td>
@@ -66,7 +64,7 @@
           <% @may_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= may = total %>
+          <% may = total %>
           <tr>
             <th class="text-center">MAY</th>
             <td class="text-center"><%= @may_sales.size %></td>
@@ -77,7 +75,7 @@
           <% @jun_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= jun = total %>
+          <% jun = total %>
           <tr>
             <th class="text-center">JUN</th>
             <td class="text-center"><%= @jun_sales.size %></td>
@@ -88,7 +86,7 @@
           <% @jul_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= jul = total %>
+          <% jul = total %>
           <tr>
             <th class="text-center">JUL</th>
             <td class="text-center"><%= @jul_sales.size %></td>
@@ -99,7 +97,7 @@
           <% @ogo_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= aug = total %>
+          <% aug = total %>
           <tr>
             <th class="text-center">AUG</th>
             <td class="text-center"><%= @ogo_sales.size %></td>
@@ -110,7 +108,7 @@
           <% @sep_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= sep = total %>
+          <% sep = total %>
           <tr>
             <th class="text-center">SEP</th>
             <td class="text-center"><%= @sep_sales.size %></td>
@@ -121,7 +119,7 @@
           <% @oct_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= oct = total %>
+          <% oct = total %>
           <tr>
             <th class="text-center">OCT</th>
             <td class="text-center"><%= @oct_sales.size %></td>
@@ -132,7 +130,7 @@
           <% @nov_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= nov = total %>
+          <% nov = total %>
           <tr>
             <th class="text-center">NOV</th>
             <td class="text-center"><%= @nov_sales.size %></td>
@@ -143,7 +141,7 @@
           <% @dec_sales.each do |sale| %>
           	<% total += sale.lot.selling_price %>
           <% end %>
-          <%= dec = total %>
+          <% dec = total %>
           <tr>
             <th class="text-center">DEC</th>
             <td class="text-center"><%= @dec_sales.size %></td>
@@ -165,18 +163,18 @@
   $(function () {
 
             // var combine = <%#= raw sold.to_json %>
-            var jan = <%= jan %>
-            var feb = <%= feb %>
-            var mar = <%= mar %>
-            var apr = <%= apr %>
-            var may = <%= may %>
-            var jun = <%= jun %>
-            var jul = <%= jul %>
-            var aug = <%= aug %>
-            var sep = <%= sep %>
-            var oct = <%= oct %>
-            var nov = <%= nov %>
-            var dec = <%= dec %>
+            var jan = <%= jan %>;
+            var feb = <%= feb %>;
+            var mar = <%= mar %>;
+            var apr = <%= apr %>;
+            var may = <%= may %>;
+            var jun = <%= jun %>;
+            var jul = <%= jul %>;
+            var aug = <%= aug %>;
+            var sep = <%= sep %>;
+            var oct = <%= oct %>;
+            var nov = <%= nov %>;
+            var dec = <%= dec %>;
             // console.log(sold, reserved, available);
 
 
