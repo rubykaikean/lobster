@@ -20,7 +20,7 @@
           <tr>
             <td>Today</td>
             <td class="text-center"><%= @today_sales.size %></td>
-            <td class="text-right">RM<%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
           </tr>
 
           <% total = 0 %>
@@ -30,7 +30,7 @@
           <tr>
             <td>Yesterday</td>
             <td class="text-center"><%= @yesterday_sales.size %></td>
-            <td class="text-right">RM<%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
           </tr>
 
           <% total = 0 %>
@@ -40,7 +40,7 @@
           <tr>
             <td>This Week</td>
             <td class="text-center"><%= @this_week_sales.size %></td>
-            <td class="text-right">RM<%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
           </tr>
 
           <% total = 0 %>
@@ -50,7 +50,7 @@
           <tr>
             <td>This Month</td>
             <td class="text-center"><%= @this_month_sales.size %></td>
-            <td class="text-right">RM<%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
           </tr>
 
           <% total = 0 %>
@@ -60,7 +60,7 @@
           <tr>
             <td>This Quarter</td>
             <td class="text-center"><%= @this_quarter_sales.size %></td>
-            <td class="text-right">RM<%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
           </tr>
 
           <% total = 0 %>
@@ -70,7 +70,7 @@
           <tr>
             <td>This Year</td>
             <td class="text-center"><%= @this_year_sales.size %></td>
-            <td class="text-right">RM<%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
           </tr>
           
         </tbody>
