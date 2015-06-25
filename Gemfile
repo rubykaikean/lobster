@@ -36,7 +36,7 @@ gem 'rails_email_preview', '~> 0.2.29'
 gem 'annotate', '~> 2.6.6'
 gem "puma"
 gem 'active_model_serializers'
-gem 'chartkick', '~> 1.3.2'
+gem 'chartkick' #, '~> 1.3.2'
 gem 'week_of_month'
 
 # Use ActiveModel has_secure_password

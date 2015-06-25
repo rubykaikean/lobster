@@ -1,0 +1,84 @@
+ <div class="row" id="content_div">
+  <div class="col-lg-12">
+  <div class="panel">
+    <div class="panel-body">
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="http://code.highcharts.com/modules/exporting.js"></script>
+      <div id="agency_sales_pie_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+      </div>
+
+      <hr> 
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th class="text-center">Agency</th>
+            <th>Unit</th>
+            <th>Sales volume</th>
+          </tr>
+          <% @result.each do |sale_array| %>
+          <% agency_sales = sale_array.last %>
+          <% 
+            total = agency_sales.inject(0) do |sum, sale|  
+          	  lot = sale.lot
+          	  sum += lot.selling_price
+            end
+          %>
+          <tr>
+            <td><%= sale_array.first.name %></td>
+            <td class="text-center"><%= agency_sales.count %></td>
+            <td class="text-center"><%= total %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        
+      </table>
+      <%= link_to "Export Excel", export_sources_type_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+  	 var agency_sales = [];
+     <% @pie_chart_data.each do |data_array| %>
+       agency_sales.push(["<%= data_array.first %>", <%= data_array.last %>]);
+     <% end %>
+ 
+            $('#agency_sales_pie_chart').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 1,//null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Analysis Race Report.'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                  },
+                series: [{
+                    type: 'pie',
+                    name: 'Unit Percentage',
+                    data: agency_sales
+                    
+                }]
+            });
+          });
+
+</script>     

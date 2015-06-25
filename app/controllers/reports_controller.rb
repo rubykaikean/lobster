@@ -108,6 +108,26 @@ class ReportsController < ApplicationController
     @dec_sales = Sale.where(confirm_date: dec.beginning_of_month..dec.end_of_month, status_id: Sale::COMPLETED)
     
   end
+
+  def agency_sales
+    if is_top_level_management?
+      agencies = current_user.company.agencies.order(:name)
+      @result = []
+      @pie_chart_data = []
+      agencies.each do |agency|
+        sales = Sale.where("user_id IN(?) and status_id = ?", agency.user_ids, Sale::COMPLETED)
+        @result << [agency, sales]
+        total = sales.inject(0) do |sum, sale|
+          lot = sale.lot
+          sum += lot.selling_price
+        end
+        @pie_chart_data << [agency.name, total]
+      end
+    else
+      flash[:alert] = "Sorry, you don't have access right."
+      redirect_to :back
+    end
+  end
   
   # ============ excel ===============
 
@@ -121,7 +141,7 @@ class ReportsController < ApplicationController
     end
 
     sources_name.uniq.each do |t|
-       result << sources_name.count { |x| x == t }
+      result << sources_name.count { |x| x == t }
     end
     @source_combine = Hash[sources_name.uniq.zip result]
     respond_to do |format|
