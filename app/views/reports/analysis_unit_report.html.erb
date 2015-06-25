@@ -69,7 +69,7 @@
               <% reserved_price = 0 %>
               <% @sales.where("status_id = 1").each do |p| %>
                 <% lot = Lot.find_by_id(p.lot_unit_id) %>
-                <% if p.buyer.race == 2 %>
+                <% if p.buyer.try(:race) == 2 %>
                     <% reserved_price += p.bumi_putera_price %>
                   <% else %>
                     <% reserved_price += lot.selling_price %>
@@ -96,6 +96,7 @@
         </tbody>
         
       </table>
+      <%#= link_to "Export Excel", ideal_export_excel_developer_customers_path(format: "xls"), :class=>"btn btn-default" %>
     </div>
   </div>
 </div>
@@ -120,7 +121,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Analysis Age Report.'
+                    text: 'Analysis Unit Report.'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'

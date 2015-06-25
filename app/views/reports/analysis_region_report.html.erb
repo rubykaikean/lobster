@@ -4,17 +4,18 @@
     <div class="panel-body">
       <script src="http://code.highcharts.com/highcharts.js"></script>
       <script src="http://code.highcharts.com/modules/exporting.js"></script>
-      <div id="source_type_pie_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+      <div id="unit_region_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
     
     <hr> 
     <div class="table-responsive">
+    <%#= render :text => Buyer.first.to_json %>
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th class="text-center">Type</th>
-            <th>Sources</th>
+            <th>Region</th>
+            <th>Unit</th>
           </tr>
-          <% @combine.each do |key, value| %>
+             <% @combine.each do |key, value| %>
           <tr>
             <td class="text-center"><%= key %></td>
             <td><%= value %></td>
@@ -23,17 +24,15 @@
         </tbody>
         
       </table>
-      <%= link_to "Export Excel", export_sources_type_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
+      <%= link_to "Export Excel", export_regions_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
     </div>
   </div>
 </div>
-  </div>
 </div>
-
+</div>
 
 <script type="text/javascript">
   $(function () {
-
             var combine = <%= raw @combine.to_json %>
             console.log(combine);
 
@@ -45,14 +44,14 @@
             });
             console.log(f);
 
-            $('#source_type_pie_chart').highcharts({
+            $('#unit_region_chart').highcharts({
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: 1,//null,
                     plotShadow: false
                 },
                 title: {
-                    text: 'Analysis Sources Report.'
+                    text: 'Analysis Region Report.'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
@@ -72,7 +71,7 @@
                   },
                 series: [{
                     type: 'pie',
-                    name: 'Unit Percentage',
+                    name: 'Unit Percentage:',
                     data: f
                           // arrayMy
                         // ['Firefox',   40.0],

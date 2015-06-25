@@ -1,7 +1,4 @@
- <div id="all_order-tab" class="tab-pane fade active in">        
-      <div class="table-responsive">
-      <%#= render :text => Buyer.first.to_json %>
-        <table class="table table-bordered">
+<table class="table table-bordered">
           <thead>
             <tr>
               <th>Date</th>
@@ -35,12 +32,6 @@
                 <% else %>
                   <%= lot.selling_price %>
                 <% end %>
-                
-                <%# if lot.is_bumi_putera_unit == true %>
-                  <%#= p.bumi_putera_price %>
-                <%# else %>
-                  <%#= lot.selling_price %>
-                <%# end %>
               </td>
               <td><%= ProductType.find_by_id(p.product_id).try(:name) %></td>
               <td><%= Lot.find_by_id(p.lot_unit_id).name %></td>
@@ -86,6 +77,3 @@
           </tbody>
           
         </table>
-      </div>
-    </div>
-        

@@ -31,6 +31,7 @@
             <%= render "/reports/completed_order" %>
             <%= render "/reports/rejected_order" %>
         </div>
+        <%= link_to "Export ALL Order Excel", export_summary_report_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
   </div>
   </div>
   </div>

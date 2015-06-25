@@ -34,6 +34,7 @@
           </tbody>
           
         </table>
+        <%= link_to "Export Excel", export_analysis_age_race_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
       </div>
     </div>
   </div>
@@ -57,7 +58,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Analysis Age Report.'
+                    text: 'Analysis Race Report.'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
@@ -77,7 +78,7 @@
                   },
                 series: [{
                     type: 'pie',
-                    name: 'Browser share',
+                    name: 'Unit Percentage',
                     data: race_unit_cart
                           // arrayMy
                         // ['Firefox',   40.0],

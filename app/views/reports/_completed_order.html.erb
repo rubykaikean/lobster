@@ -25,10 +25,10 @@
                 <% @sales.where("status_id = 2").each do |p| %>
                 <tr>
                   <td><%= p.created_at.strftime("%d-%m-%Y") %></td>
-                  <td><%= p.user.company.name %></td>
-                  <td><%= p.user.username %></td>
-                  <td><%= p.buyer.full_name %></td>
-                  <td><%= p.buyer.mobile_contact_number %></td>
+                  <td><%= p.user.company.try(:name) %></td>
+                  <td><%= p.user.try(:username) %></td>
+                  <td><%= p.buyer.try(:full_name) %></td>
+                  <td><%= p.buyer.try(:mobile_contact_number) %></td>
                   <td><%= p.bumi_putera_price %></td>
                   <td><%= ProductType.find_by_id(p.product_id).try(:name) %></td>
                   <td><%= Lot.find_by_id(p.lot_unit_id).name %></td>

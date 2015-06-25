@@ -16,6 +16,10 @@ class ReportsController < ApplicationController
 		@buyers = Buyer.all
 	end
 
+    def analysis_race_report
+        @buyers = Buyer.all
+    end
+
 	def analysis_sources_type_report
         # @sources_types = current_user.company.products.first.sources_types
 		@buyers = Buyer.all
@@ -37,11 +41,21 @@ class ReportsController < ApplicationController
         # render :text => result
         # render :text => name.count { |x| x == "newspaper" }
     end
+    def analysis_region_report
+        @buyers = Buyer.all
+        name = []
+        number = []
+        result = []
+        @buyers.each do |p|
+          name << p.region.try(:name)
+          number << p.region.try(:name).to_s
+        end
 
-
-	def analysis_race_report
-		@buyers = Buyer.all
-	end
+        name.uniq.each do |t|
+           result << name.count { |x| x == t }
+        end
+        @combine = Hash[name.uniq.zip result]
+    end
 
   def sales
     @product = current_user.company.products.first
@@ -93,5 +107,65 @@ class ReportsController < ApplicationController
     @dec_sales = Sale.where(updated_at: dec.beginning_of_month..dec.end_of_month, status_id: Sale::COMPLETED)
     
   end
+
+
+      # ============ excel ===============
+
+      def export_sources_type_excel
+
+        @buyers = Buyer.all
+            sources_name = []
+            result = []
+            @buyers.each do |p|
+              sources_name << p.sources_type.try(:name)
+            end
+
+            sources_name.uniq.each do |t|
+               result << sources_name.count { |x| x == t }
+            end
+            @source_combine = Hash[sources_name.uniq.zip result]
+        respond_to do |format|
+          format.csv { render text: @source_combine.to_csv }
+          format.xls
+        end
+      end
+
+    def export_regions_excel
+        @buyers = Buyer.all
+            name = []
+            number = []
+            result = []
+            @buyers.each do |p|
+              name << p.region.try(:name)
+              number << p.region.try(:name).to_s
+            end
+
+            name.uniq.each do |t|
+               result << name.count { |x| x == t }
+            end
+            @region_combine = Hash[name.uniq.zip result]
+
+        respond_to do |format|
+          format.csv { render text: @region_combine.to_csv }
+          format.xls
+        end
+      end
+
+    def export_analysis_age_race_excel
+        @buyers = Buyer.all
+        respond_to do |format|
+          format.csv { render text: @buyers.to_csv }
+          format.xls
+        end
+    end
+
+    def export_summary_report_excel
+        @sales = Sale.all
+        respond_to do |format|
+          format.csv { render text: @sales.to_csv }
+          format.xls
+        end
+    end
+
 
 end

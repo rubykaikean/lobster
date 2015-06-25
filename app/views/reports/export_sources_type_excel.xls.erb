@@ -1,0 +1,14 @@
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="text-center">Type</th>
+      <th>Sources</th>
+    </tr>
+    <% @source_combine.each do |key, value| %>
+    <tr>
+      <td class="text-center"><%= key %></td>
+      <td><%= value %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
