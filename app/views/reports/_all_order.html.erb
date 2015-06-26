@@ -33,7 +33,7 @@
                 <% if p.buyer.try(:race) == 2 %>
                   <%= p.bumi_putera_price %>
                 <% else %>
-                  <%= lot.selling_price %>
+                  <%= number_with_delimiter(lot.selling_price) %>
                 <% end %>
                 
                 <%# if lot.is_bumi_putera_unit == true %>
