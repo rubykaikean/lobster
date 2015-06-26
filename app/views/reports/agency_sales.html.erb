@@ -14,7 +14,7 @@
           <tr>
             <th class="text-center">Agency</th>
             <th class="text-center">Unit</th>
-            <th class="text-center">Sales volume</th>
+            <th class="text-center">Sales</th>
           </tr>
           <% @result.each do |sale_array| %>
           <% agency_sales = sale_array.last %>
@@ -27,7 +27,7 @@
           <tr>
             <td><%= sale_array.first.name %></td>
             <td class="text-center"><%= agency_sales.count %></td>
-            <td class="text-center"><%= total %></td>
+            <td class="text-center">RM <%= number_with_delimiter(total) %></td>
           </tr>
           <% end %>
         </tbody>
