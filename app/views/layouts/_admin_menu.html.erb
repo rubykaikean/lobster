@@ -21,7 +21,7 @@
 									</li> -->
 
 								<li class="list-header">Report</li>
-									<%# if is_top_level_management? %>
+									<% if is_top_level_management? %>
 									<li>
 											<a href="<%= analysis_unit_report_reports_path %>">
 											<i class="fa fa-bar-chart"></i>
@@ -32,25 +32,25 @@
 											<i class="fa fa-bar-chart"></i>
 											<span class="menu-title">Monthly Sales Report</span>
 										</a>
-											<a href="<%= summary_report_reports_path %>">
-												<i class="fa fa-bar-chart"></i>
-												<span class="menu-title">Purchaser Listing</span>
-											</a>
-									</li>
-									<%# end %>
-									<li>
 										<a href="<%= sales_reports_path %>">
 											<i class="fa fa-bar-chart"></i>
 											<span class="menu-title">Sales Report</span>
 										</a>
+										<a href="<%= summary_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Purchaser Listing</span>
+										</a>
+										<a href="<%= agency_sales_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Agency Sales Report</span>
+										</a>
+									</li>
+									<% end %>
+									<li>
+										
 									</li>
 									
 									<li>
-										
-										<a href="<%= analysis_age_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Sales By Ages Report</span>
-										</a>
 										<a href="<%= analysis_sources_type_report_reports_path %>">
 											<i class="fa fa-bar-chart"></i>
 											<span class="menu-title">Analysis Sources Report</span>
@@ -62,6 +62,10 @@
 										<a href="<%= analysis_region_report_reports_path %>">
 											<i class="fa fa-bar-chart"></i>
 											<span class="menu-title">Analysis Region Report</span>
+										</a>
+										<a href="<%= analysis_age_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Sales By Ages Report</span>
 										</a>
 									</li>
 
