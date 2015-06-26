@@ -1,7 +1,14 @@
  <div class="row" id="content_div">
   <div class="col-lg-12">
   <div class="panel">
-    <div class="panel-body"> 
+    <div class="panel-body">
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <div id="sales_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+      </div>
+
+   <br>
     <div class="table-responsive">
     <%#= render :text => Buyer.first.to_json %>
       <table class="table table-bordered">
@@ -81,3 +88,48 @@
 </div>
 </div>
 </div>
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function () {
+    $('#sales_chart').highcharts({
+        title: {
+            text: 'Sales Chart',
+            x: -20 //center
+        },
+        // subtitle: {
+        //     text: 'Source: WorldClimate.com',
+        //     x: -20
+        // },
+        xAxis: {
+            categories: ['Today', 'Yesterday', 'This week', 'This month', 'This quarter', 'This year']
+        },
+        yAxis: {
+            title: {
+                text: 'Unit Sold'
+            },
+            min: 0,
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: 'Unit'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Sales',
+            data: [<%= @today_sales.size %>, <%= @yesterday_sales.size %>, <%= @this_week_sales.size %>, <%= @this_month_sales.size %>, <%= @this_quarter_sales.size %>, <%= @this_year_sales.size %>]
+        }]
+    });
+});
+
+</script>
+<% end %>

@@ -102,19 +102,19 @@
                   
                   <% if is_top_level_admin? %>
                     <% if current_user.company.products.any? %>
-											<!--Category name-->
-											<li class="list-header">Products</li>
-								
-								      <% current_user.company.products.each do |product| %>
-												<!--Menu list item-->
-												<li>
-													<a href="<%= product_path(product) %>">
-														<i class="fa fa-building"></i>
-														<span class="menu-title"><%= product.name  %></span>
-														<!-- <i class="arrow"></i> -->
-													</a>
-												</li>
+                      <li>
+												<a href="#">
+													<i class="fa fa-building"></i>
+													<span class="menu-title">Product</span>
+													<i class="arrow"></i>
+												</a>
+						
+										<!--Submenu-->
+										<ul class="collapse">
+										  <% current_user.company.products.each do |product| %>
+											  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
 											<% end %>
+										</ul>
 										<% end %>
 									<% end %>
 						
@@ -153,8 +153,63 @@
 											<!-- <i class="arrow"></i> -->
 										</a>
 									</li>
-
-								
+									<li class="list-header">Report</li>
+									<%# if is_top_level_management? %>
+										<li>
+												<a href="<%= summary_report_reports_path %>">
+													<i class="fa fa-bar-chart"></i>
+													<span class="menu-title">Purchaser Listing</span>
+												</a>
+										</li>
+									<%# end %>
+									<li>
+										<a href="<%= sales_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Sales Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="<%= monthly_sales_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Monthly Sales Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="<%= agency_sales_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Agency Sales Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="<%= analysis_unit_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Summary Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="<%= analysis_age_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Sales By Ages Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="<%= analysis_sources_type_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Analysis Sources Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="<%= analysis_race_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Analysis Race Report</span>
+										</a>
+									</li>
+									<li>
+										<a href="<%= analysis_region_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Analysis Region Report</span>
+										</a>
+									</li>
 								</ul>
 
 							</div>

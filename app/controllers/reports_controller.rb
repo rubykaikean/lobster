@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
 	end
 
 	def analysis_unit_report
-        @product = current_user.company.products.first
+    @product = current_user.company.products.first
 		@lots = Lot.all
 		@sales = Sale.all
 	end
@@ -16,46 +16,47 @@ class ReportsController < ApplicationController
 		@buyers = Buyer.all
 	end
 
-    def analysis_race_report
-        @buyers = Buyer.all
-    end
+  def analysis_race_report
+    @buyers = Buyer.all
+  end
 
 	def analysis_sources_type_report
-        # @sources_types = current_user.company.products.first.sources_types
+    # @sources_types = current_user.company.products.first.sources_types
 		@buyers = Buyer.all
 		name = []
-        number = []
-        result = []
-        @buyers.each do |p|
-          name << p.sources_type.try(:name)
-          number << p.sources_type.try(:name).to_s
-        end
-
-        name.uniq.each do |t|
-           result << name.count { |x| x == t }
-        end
-        @combine = Hash[name.uniq.zip result]
-        # render :text => @combine
-        # render :text => name.uniq
-        # render :text => number
-        # render :text => result
-        # render :text => name.count { |x| x == "newspaper" }
+    number = []
+    result = []
+    @buyers.each do |p|
+      name << p.sources_type.try(:name)
+      number << p.sources_type.try(:name).to_s
     end
-    def analysis_region_report
-        @buyers = Buyer.all
-        name = []
-        number = []
-        result = []
-        @buyers.each do |p|
-          name << p.region.try(:name)
-          number << p.region.try(:name).to_s
-        end
 
-        name.uniq.each do |t|
-           result << name.count { |x| x == t }
-        end
-        @combine = Hash[name.uniq.zip result]
+    name.uniq.each do |t|
+      result << name.count { |x| x == t }
     end
+    @combine = Hash[name.uniq.zip result]
+    # render :text => @combine
+    # render :text => name.uniq
+    # render :text => number
+    # render :text => result
+    # render :text => name.count { |x| x == "newspaper" }
+  end
+
+  def analysis_region_report
+    @buyers = Buyer.all
+    name = []
+    number = []
+    result = []
+    @buyers.each do |p|
+      name << p.region.try(:name)
+      number << p.region.try(:name).to_s
+    end
+
+    name.uniq.each do |t|
+       result << name.count { |x| x == t }
+    end
+    @combine = Hash[name.uniq.zip result]
+  end
 
   def sales
     @product = current_user.company.products.first
@@ -108,64 +109,83 @@ class ReportsController < ApplicationController
     
   end
 
-
-      # ============ excel ===============
-
-      def export_sources_type_excel
-
-        @buyers = Buyer.all
-            sources_name = []
-            result = []
-            @buyers.each do |p|
-              sources_name << p.sources_type.try(:name)
-            end
-
-            sources_name.uniq.each do |t|
-               result << sources_name.count { |x| x == t }
-            end
-            @source_combine = Hash[sources_name.uniq.zip result]
-        respond_to do |format|
-          format.csv { render text: @source_combine.to_csv }
-          format.xls
+  def agency_sales
+    if is_top_level_management?
+      agencies = current_user.company.agencies.order(:name)
+      @result = []
+      @pie_chart_data = []
+      agencies.each do |agency|
+        sales = Sale.where("user_id IN(?) and status_id = ?", agency.user_ids, Sale::COMPLETED)
+        @result << [agency, sales]
+        total = sales.inject(0) do |sum, sale|
+          lot = sale.lot
+          sum += lot.selling_price
         end
+        @pie_chart_data << [agency.name, total]
       end
+    else
+      flash[:alert] = "Sorry, you don't have access right."
+      redirect_to :back
+    end
+  end
+  
+  # ============ excel ===============
 
-    def export_regions_excel
-        @buyers = Buyer.all
-            name = []
-            number = []
-            result = []
-            @buyers.each do |p|
-              name << p.region.try(:name)
-              number << p.region.try(:name).to_s
-            end
+  def export_sources_type_excel
 
-            name.uniq.each do |t|
-               result << name.count { |x| x == t }
-            end
-            @region_combine = Hash[name.uniq.zip result]
-
-        respond_to do |format|
-          format.csv { render text: @region_combine.to_csv }
-          format.xls
-        end
-      end
-
-    def export_analysis_age_race_excel
-        @buyers = Buyer.all
-        respond_to do |format|
-          format.csv { render text: @buyers.to_csv }
-          format.xls
-        end
+    @buyers = Buyer.all
+    sources_name = []
+    result = []
+    @buyers.each do |p|
+      sources_name << p.sources_type.try(:name)
     end
 
-    def export_summary_report_excel
-        @sales = Sale.all
-        respond_to do |format|
-          format.csv { render text: @sales.to_csv }
-          format.xls
-        end
+    sources_name.uniq.each do |t|
+      result << sources_name.count { |x| x == t }
     end
+    @source_combine = Hash[sources_name.uniq.zip result]
+    respond_to do |format|
+      format.csv { render text: @source_combine.to_csv }
+      format.xls
+    end
+  end
+
+  def export_regions_excel
+    @buyers = Buyer.all
+        name = []
+        number = []
+        result = []
+        @buyers.each do |p|
+          name << p.region.try(:name)
+          number << p.region.try(:name).to_s
+        end
+
+        name.uniq.each do |t|
+           result << name.count { |x| x == t }
+        end
+        @region_combine = Hash[name.uniq.zip result]
+
+    respond_to do |format|
+      format.csv { render text: @region_combine.to_csv }
+      format.xls
+    end
+  end
+
+  def export_analysis_age_race_excel
+    @buyers = Buyer.all
+    respond_to do |format|
+      format.csv { render text: @buyers.to_csv }
+      format.xls
+    end
+  end
+
+  def export_summary_report_excel
+    @sales = Sale.all
+    respond_to do |format|
+      format.csv { render text: @sales.to_csv }
+      format.xls
+    end
+  end
 
 
 end

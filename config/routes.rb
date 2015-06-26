@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get "analysis_race_report"
       get "sales"
       get "monthly_sales"
-
+      get "agency_sales"
       get "export_summary_report_excel"
       get "export_analysis_unit_excel"
       get "export_analysis_age_race_excel"
