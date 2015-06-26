@@ -49,7 +49,7 @@
                     <%#= link_to 'Edit', company_path(company, :company_id => params[:company_id]), :class=>"btn btn-small btn-info" %>
                     <%#= link_to "Setting", new_company_setting_path(:company_id => company.id), :class=>"btn btn-info btn-info" %>
                     
-                    <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger #{user.id == current_user.id ? 'disabled' : nil}" %></td>
+                    <%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger #{user.id == current_user.id ? 'disabled' : nil}" %></td>
                 </tr>
               <% end %>
               <% @agents.each do |user| %>
@@ -64,7 +64,7 @@
                     <%#= link_to 'Edit', company_path(company, :company_id => params[:company_id]), :class=>"btn btn-small btn-info" %>
                     <%#= link_to "Setting", new_company_setting_path(:company_id => company.id), :class=>"btn btn-info btn-info" %>
                     
-                    <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %></td>
+                    <%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %></td>
                 </tr>
               <% end %>
             </tbody>
