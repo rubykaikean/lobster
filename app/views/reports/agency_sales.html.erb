@@ -13,8 +13,8 @@
         <tbody>
           <tr>
             <th class="text-center">Agency</th>
-            <th>Unit</th>
-            <th>Sales volume</th>
+            <thclass="text-center">Unit</th>
+            <thclass="text-center">Sales volume</th>
           </tr>
           <% @result.each do |sale_array| %>
           <% agency_sales = sale_array.last %>
@@ -33,7 +33,7 @@
         </tbody>
         
       </table>
-      <%= link_to "Export Excel", export_sources_type_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
+      <%#= link_to "Export Excel", export_sources_type_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
     </div>
   </div>
 </div>
