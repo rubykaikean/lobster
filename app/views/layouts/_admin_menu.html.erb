@@ -20,72 +20,55 @@
 										</a>
 									</li> -->
 
-									<!--Menu list item-->
-									<li  class="active-link">
-										<a href="<%= profile_companies_path %>">
-											<i class="fa fa-pencil-square-o"></i>
-											<span class="menu-title">
-												<strong>Company Profile</strong>
-												<!-- <span class="label label-success pull-right">Top</span> -->
-											</span>
-										</a>
-									</li>
-
-						
-									<li class="list-divider"></li>
-						
-									<!--Category name-->
-									<li class="list-header">Components</li>
-						
-									<!--Menu list item-->
+								<li class="list-header">Report</li>
+									<% if is_top_level_management? %>
 									<li>
-										<a href="<%= projects_path %>">
-											<i class="fa fa-university"></i>
-											<span class="menu-title">Project</span>
-											<!-- <i class="arrow"></i> -->
+											<a href="<%= analysis_unit_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Summary Report</span>
 										</a>
-									</li>
 
-									<!--Menu list item-->
-									<li>
-										<a href="<%= companies_path %>">
-											<i class="fa fa-users"></i>
-											<span class="menu-title">Agency</span>
-											<!-- <i class="arrow"></i> -->
+										<a href="<%= monthly_sales_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Monthly Sales Report</span>
+										</a>
+										<a href="<%= sales_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Sales Report</span>
+										</a>
+										<a href="<%= summary_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Purchaser Listing</span>
+										</a>
+										<a href="<%= agency_sales_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Agency Sales Report</span>
 										</a>
 									</li>
-                  
-                  <% if is_top_level_admin? %>
-                    <% if current_user.company.products.any? %>
-                      <li>
-												<a href="#">
-													<i class="fa fa-building"></i>
-													<span class="menu-title">Product</span>
-													<i class="arrow"></i>
-												</a>
-						
-										<!--Submenu-->
-										<ul class="collapse">
-										  <% current_user.company.products.each do |product| %>
-											  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
-											<% end %>
-										</ul>
-										<% end %>
 									<% end %>
-						
-									<!--Category name-->
-									<li class="list-header">Management</li>
-										<!--Menu list item-->
-										<li>
-											<a href="<%= users_path %>">
-												<i class="fa fa-user"></i>
-												<span class="menu-title">
-													User
-													<!-- <span class="label label-mint pull-right">New</span> -->
-												</span>
-											</a>
-										</li>
-						
+									<li>
+										
+									</li>
+									
+									<li>
+										<a href="<%= analysis_sources_type_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Analysis Sources Report</span>
+										</a>
+										<a href="<%= analysis_race_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Analysis Race Report</span>
+										</a>
+										<a href="<%= analysis_region_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Analysis Region Report</span>
+										</a>
+										<a href="<%= analysis_age_report_reports_path %>">
+											<i class="fa fa-bar-chart"></i>
+											<span class="menu-title">Sales By Ages Report</span>
+										</a>
+									</li>
+
 									<!--Category name-->
 									<li class="list-header">System</li>
 						
@@ -109,65 +92,74 @@
 										</a>
 									</li>
 
-									<li class="list-header">Report</li>
-									<%# if is_top_level_management? %>
+									<!--Category name-->
+									<li class="list-header">Management</li>
+										<!--Menu list item-->
 										<li>
-												<a href="<%= summary_report_reports_path %>">
-													<i class="fa fa-bar-chart"></i>
-													<span class="menu-title">Purchaser Listing</span>
-												</a>
+											<a href="<%= users_path %>">
+												<i class="fa fa-user"></i>
+												<span class="menu-title">
+													User
+													<!-- <span class="label label-mint pull-right">New</span> -->
+												</span>
+											</a>
 										</li>
-									<%# end %>
-									<li>
-										<a href="<%= sales_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Sales Report</span>
-										</a>
-									</li>
-									<li>
-										<a href="<%= monthly_sales_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Monthly Sales Report</span>
-										</a>
-									</li>
-									<li>
-										<a href="<%= agency_sales_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Agency Sales Report</span>
-										</a>
-									</li>
-									<li>
-										<a href="<%= analysis_unit_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Summary Report</span>
-										</a>
-									</li>
-									<li>
-										<a href="<%= analysis_age_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Sales By Ages Report</span>
-										</a>
-									</li>
-									<li>
-										<a href="<%= analysis_sources_type_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Analysis Sources Report</span>
-										</a>
-									</li>
-									<li>
-										<a href="<%= analysis_race_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Analysis Race Report</span>
-										</a>
-									</li>
-									<li>
-										<a href="<%= analysis_region_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Analysis Region Report</span>
-										</a>
-									</li>
-								</ul>
 
+									<li class="list-divider"></li>
+						
+									<!--Category name-->
+									<li class="list-header">Components</li>
+						
+									<!--Menu list item-->
+									<li>
+										<a href="<%= projects_path %>">
+											<i class="fa fa-university"></i>
+											<span class="menu-title">Project</span>
+											<!-- <i class="arrow"></i> -->
+										</a>
+									</li>
+
+									<!--Menu list item-->
+									<li>
+										<a href="<%= companies_path %>">
+											<i class="fa fa-users"></i>
+											<span class="menu-title">Agency</span>
+											<!-- <i class="arrow"></i> -->
+										</a>
+									</li>
+									
+									<!--Menu list item-->
+									<!-- <li  class="active-link"> -->
+									<li>
+										<a href="<%= profile_companies_path %>">
+											<i class="fa fa-pencil-square-o"></i>
+											<span class="menu-title">
+												<strong>Company Profile</strong>
+												<!-- <span class="label label-success pull-right">Top</span> -->
+											</span>
+										</a>
+									</li>
+
+                  <% if is_top_level_admin? %>
+                    <% if current_user.company.products.any? %>
+                      <li>
+												<a href="#">
+													<i class="fa fa-building"></i>
+													<span class="menu-title">Product</span>
+													<i class="arrow"></i>
+												</a>
+						
+										<!--Submenu-->
+										<ul class="collapse">
+										  <% current_user.company.products.each do |product| %>
+											  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
+											<% end %>
+										</ul>
+										<% end %>
+									<% end %>
+						
+									
+						
 							</div>
 						</div>
 					</div>
