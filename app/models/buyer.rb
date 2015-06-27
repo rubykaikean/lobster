@@ -28,8 +28,8 @@
 #
 
 class Buyer < ActiveRecord::Base
-  #extend FriendlyId
-  #friendly_id :full_name, use: :slugged
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
   
   has_many :sales
   belongs_to :sources_type

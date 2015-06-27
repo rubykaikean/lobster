@@ -26,19 +26,8 @@ class ReservationsController < ApplicationController
       @sourcestype = @lot.product.sources_types
       @region = @lot.product.regions
       if @lot.available_for_booking?
-        @lot.status_id = Lot::RESERVED
-        @lot.save
+        @buyer = Buyer.new
         @sale = Sale.new
-        @sale.lot_unit_id = @lot.id
-        @sale.product_id = @lot.product_id
-        @sale.phase_id = @lot.product.phase_id
-        @sale.project_id = @lot.product.phase.project_id
-        @sale.user_id = current_user.id
-        @buyer = Buyer.new(full_name: "Please enter the buyer full name")
-        @buyer.save(validate: false)
-        @sale.buyer_id = @buyer.id
-        @sale.status_id = 1
-        @sale.save
       else
         flash[:alert] = "Lot #{@lot.name} is not available for booking."
         redirect_to reservation_path(@lot.product)
@@ -52,13 +41,23 @@ class ReservationsController < ApplicationController
   def create_lot
     # render :text => params[:buyer][:race]
     @lot = Lot.find(params[:lot_id])
-    @sale = Sale.find(params[:sale_id])
     @sourcestype = @lot.product.sources_types
     @region = @lot.product.regions
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
-      @buyer = Buyer.friendly.find(params[:id])
-      if @buyer.update(buyer_params)
-        @sale.update(booking_fee: params[:booking_fee])
+      @buyer = Buyer.new(buyer_params)
+      if @buyer.save
+        @lot.status_id = Lot::RESERVED
+        @lot.save
+        @sale = Sale.new
+        @sale.lot_unit_id = @lot.id
+        @sale.product_id = @lot.product_id
+        @sale.phase_id = @lot.product.phase_id
+        @sale.project_id = @lot.product.phase.project_id
+        @sale.user_id = current_user.id
+        @sale.buyer_id = @buyer.id
+        @sale.booking_fee = params[:booking_fee]
+        @sale.status_id = Sale::PENDING
+        @sale.save
         flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{@buyer.full_name}."
         redirect_to reservation_path(@lot.product)
       else

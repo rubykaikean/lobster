@@ -23,7 +23,7 @@
     <label class="col-md-3 control-label" for="buyer_ic_number">IC Number: </label>
     <div class="col-md-9">
       <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" required maxlength="12" minlength="12">
-      <small class="help-block">Required field</small>
+      <small class="help-block">Required field. Example : 123456778888</small>
     </div>
   </div>
 
@@ -92,7 +92,7 @@
     <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Contact Number: </label>
     <div class="col-md-9">
       <input type="number" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="<%= @buyer.mobile_contact_number %>">
-      <small class="help-block">Required field</small>
+      <small class="help-block">Required field. Example : 0129998888</small>
     </div>
   </div>
   <div class="form-group">
