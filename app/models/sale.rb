@@ -93,9 +93,7 @@ class Sale < ActiveRecord::Base
 
   #for tempo
   def bumi_putera_price
-    
-    lot = Lot.find(lot_unit_id)
-    if lot.selling_price
+    if lot && lot.selling_price.present?
       rate_total = lot.selling_price * 7 / 100
       lot.selling_price -= rate_total
     end
