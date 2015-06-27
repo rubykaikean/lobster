@@ -29,7 +29,7 @@ class ReservationsController < ApplicationController
         @buyer = Buyer.new
         @sale = Sale.new
       else
-        flash[:alert] = "Lot #{@lot.name} is not available for booking."
+        flash[:alert] = "Lot #{@lot.name} is already reserved."
         redirect_to reservation_path(@lot.product)
       end
     else
@@ -45,21 +45,26 @@ class ReservationsController < ApplicationController
     @region = @lot.product.regions
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
       @buyer = Buyer.new(buyer_params)
-      if @buyer.save
-        @lot.status_id = Lot::RESERVED
-        @lot.save
-        @sale = Sale.new
-        @sale.lot_unit_id = @lot.id
-        @sale.product_id = @lot.product_id
-        @sale.phase_id = @lot.product.phase_id
-        @sale.project_id = @lot.product.phase.project_id
-        @sale.user_id = current_user.id
-        @sale.buyer_id = @buyer.id
-        @sale.booking_fee = params[:booking_fee]
-        @sale.status_id = Sale::PENDING
-        @sale.save
-        flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{@buyer.full_name}."
-        redirect_to reservation_path(@lot.product)
+      if @lot.available_for_booking?
+        if @buyer.save
+          @lot.status_id = Lot::RESERVED
+          @lot.save
+          @sale = Sale.new
+          @sale.lot_unit_id = @lot.id
+          @sale.product_id = @lot.product_id
+          @sale.phase_id = @lot.product.phase_id
+          @sale.project_id = @lot.product.phase.project_id
+          @sale.user_id = current_user.id
+          @sale.buyer_id = @buyer.id
+          @sale.booking_fee = params[:booking_fee]
+          @sale.status_id = Sale::PENDING
+          @sale.save
+          flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{@buyer.full_name}."
+          redirect_to reservation_path(@lot.product)
+        else
+          flash[:alert] = "Lot #{@lot.name} is already reserved."
+          redirect_to reservation_path(@lot.product)
+        end
       else
         flash.now[:alert] =  @buyer.errors.full_messages.join("<br>")
         render action: 'buyer'
