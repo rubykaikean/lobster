@@ -20,64 +20,64 @@
           </tr>
          </thead>
          <tbody>
-          <% total = 0 %>
+          <% today_total = 0 %>
           <% @today_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% today_total += sale.lot.selling_price %>
           <% end %>
           <tr>
             <td>Today</td>
             <td class="text-center"><%= @today_sales.size %></td>
-            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(today_total) %></td>
           </tr>
 
-          <% total = 0 %>
+          <% yesterday_total = 0 %>
           <% @yesterday_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% yesterday_total += sale.lot.selling_price %>
           <% end %>
           <tr>
             <td>Yesterday</td>
             <td class="text-center"><%= @yesterday_sales.size %></td>
-            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(yesterday_total) %></td>
           </tr>
 
-          <% total = 0 %>
+          <% this_week_total = 0 %>
           <% @this_week_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% this_week_total += sale.lot.selling_price %>
           <% end %>
           <tr>
             <td>This Week</td>
             <td class="text-center"><%= @this_week_sales.size %></td>
-            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(this_week_total) %></td>
           </tr>
 
-          <% total = 0 %>
+          <% this_month_total = 0 %>
           <% @this_month_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% this_month_total += sale.lot.selling_price %>
           <% end %>
           <tr>
             <td>This Month</td>
             <td class="text-center"><%= @this_month_sales.size %></td>
-            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(this_month_total) %></td>
           </tr>
 
-          <% total = 0 %>
+          <% this_quarter_total = 0 %>
           <% @this_quarter_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% this_quarter_total += sale.lot.selling_price %>
           <% end %>
           <tr>
             <td>This Quarter</td>
             <td class="text-center"><%= @this_quarter_sales.size %></td>
-            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(this_quarter_total) %></td>
           </tr>
 
-          <% total = 0 %>
+          <% this_year_total = 0 %>
           <% @this_year_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% this_year_total += sale.lot.selling_price %>
           <% end %>
           <tr>
             <td>This Year</td>
             <td class="text-center"><%= @this_year_sales.size %></td>
-            <td class="text-right">RM <%= number_with_delimiter(total) %></td>
+            <td class="text-right">RM <%= number_with_delimiter(this_year_total) %></td>
           </tr>
           
         </tbody>
@@ -90,43 +90,62 @@
 </div>
 
 <% content_for :javascripts do %>
+
 <script type="text/javascript">
   $(function () {
     $('#sales_chart').highcharts({
+        chart: {
+            type: 'bar'
+        },
         title: {
-            text: 'Sales Chart',
-            x: -20 //center
+            text: 'Sales Report'
         },
         // subtitle: {
-        //     text: 'Source: WorldClimate.com',
-        //     x: -20
+        //     text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
         // },
         xAxis: {
-            categories: ['Today', 'Yesterday', 'This week', 'This month', 'This quarter', 'This year']
+            categories: ['Today', 'Yesterday', 'This week', 'This month', 'This quarter', 'This year'],
+            title: {
+                text: null
+            }
         },
         yAxis: {
-            title: {
-                text: 'Unit Sold'
-            },
             min: 0,
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
+            title: {
+                text: 'Sales',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
         },
         tooltip: {
-            valueSuffix: 'Unit'
+            valueSuffix: ''
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
         },
         legend: {
             layout: 'vertical',
             align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
         },
         series: [{
-            name: 'Sales',
-            data: [<%= @today_sales.size %>, <%= @yesterday_sales.size %>, <%= @this_week_sales.size %>, <%= @this_month_sales.size %>, <%= @this_quarter_sales.size %>, <%= @this_year_sales.size %>]
+            name: 'Year <%= Date.current.year %>',
+            data: [<%= today_total %>, <%= yesterday_total %>, <%= this_week_total %>, <%= this_month_total %>, <%= this_quarter_total %>, <%= this_year_total %> ]
         }]
     });
 });
