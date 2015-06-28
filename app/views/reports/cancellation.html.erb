@@ -1,0 +1,68 @@
+ <div class="row" id="content_div">
+  <div class="col-lg-12">
+  	 <div class="panel">
+  	 <h3 class="panel-title">Cancellation report</h3>
+      <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Agency</th>
+                  <th>Agent</th>
+                  <th>Purchaser</th>
+                  <th>Price</th>
+                  <th>Lot</th>
+                  <th>Age</th>
+                  <th>Race</th>
+                  <th>Region</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <% @sales.each do |p| %>
+                <tr>
+                  <td><%= p.user.company.try(:name) %></td>
+                  <td><%= p.user.try(:username) %></td>
+                  <td><%= p.buyer.try(:full_name) %></td>
+                  <td><%= p.lot.selling_price %></td>
+                  <td><%= p.lot.name %></td>
+                  <td>
+                    <% if p.buyer.age == 1 %>
+                      18-30
+                      <% elsif p.buyer.age == 2 %>
+                      31-40
+                      <% elsif p.buyer.age == 3 %>
+                      41-50
+                      <% elsif p.buyer.age == 4 %>
+                      51-60
+                      <% elsif p.buyer.age == 5 %>
+                      60 & above
+                      <% else %>
+                      <% end %>
+                  </td>
+                  <td>
+                    <% if p.buyer.race == 1 %>
+                      Chinese
+                    <% elsif p.buyer.race == 2 %>
+                      Melayu
+                    <% elsif p.buyer.race == 3 %>
+                      Indian
+                    <% elsif p.buyer.race == 4 %>
+                      Other
+                    <% else %>
+                    <% end %>
+                  </td>
+                  <td><%= p.buyer.region.try(:name) %></td>
+                  <td><%= p.reject_reason %></td>
+                </tr>
+                <% end %>
+              </tbody>
+              
+            </table>    
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>

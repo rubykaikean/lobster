@@ -1,5 +1,6 @@
-<div class="panel">
-        
+ <div class="row" id="content_div">
+  <div class="col-lg-12">  
+    <div class="panel">    
       <div class="panel-body">
         
         <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -16,19 +17,19 @@
             </tr>
             <tr>
               <td>chinese</td>
-              <td><%= chinese = @buyers.where("race = 1").count %></td>
+              <td><%= chinese = @buyers.select {|buyer| buyer.race == 1}.size %></td>
             </tr>
             <tr>
               <td>bumiputera</td>
-              <td><%= bumiputera = @buyers.where("race = 2").count %></td>
+              <td><%= bumiputera = @buyers.select {|buyer| buyer.race == 2}.size %></td>
             </tr>
             <tr>
               <td>indian</td>
-              <td><%= indian = @buyers.where("race = 3").count %></td>
+              <td><%= indian = @buyers.select {|buyer| buyer.race == 3}.size %></td>
             </tr>
             <tr>
               <td>others</td>
-              <td><%= others = @buyers.where("race = 4").count %></td>
+              <td><%= others = @buyers.select {|buyer| buyer.race == 4}.size %></td>
             </tr>
             
           </tbody>
@@ -38,6 +39,10 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+
+<%= render "/layouts/highchart_options"  %>
 
 <script type="text/javascript">
   $(function () {

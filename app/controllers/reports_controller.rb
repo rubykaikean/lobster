@@ -1,28 +1,48 @@
 class ReportsController < ApplicationController
 	before_action :authenticate_user!
-	# layout false, only:[:summary_report]
+  before_action :authenticate_project_owner!
 
 	def summary_report
-		@sales = Sale.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
 	end
 
 	def analysis_unit_report
     @product = current_user.company.products.first
-		@lots = Lot.all
-		@sales = Sale.all
+		@lots = @product.lots
+		@sales = @product.sales
 	end
 
 	def analysis_age_report
-		@buyers = Buyer.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
+    @buyers = []
+    @sales.each do |sale|
+      @buyers << sale.buyer
+    end
 	end
 
   def analysis_race_report
-    @buyers = Buyer.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
+    @buyers = []
+    @sales.each do |sale|
+      @buyers << sale.buyer
+    end
+  end
+
+  def cancellation
+    @product = current_user.company.products.first
+    @sales = @product.sales.where(status_id: Sale::REJECTED)
   end
 
 	def analysis_sources_type_report
-    # @sources_types = current_user.company.products.first.sources_types
-		@buyers = Buyer.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
+    @buyers = []
+    @sales.each do |sale|
+      @buyers << sale.buyer
+    end
 		name = []
     number = []
     result = []
@@ -43,7 +63,12 @@ class ReportsController < ApplicationController
   end
 
   def analysis_region_report
-    @buyers = Buyer.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
+    @buyers = []
+    @sales.each do |sale|
+      @buyers << sale.buyer
+    end
     name = []
     number = []
     result = []
@@ -82,6 +107,7 @@ class ReportsController < ApplicationController
   end
 
   def monthly_sales
+    @product = current_user.company.products.first
     jan = "#{Date.current.year}-01-#{Date.current.day}".to_date
     feb = "#{Date.current.year}-02-#{Date.current.day}".to_date
     mar = "#{Date.current.year}-03-#{Date.current.day}".to_date
@@ -94,28 +120,29 @@ class ReportsController < ApplicationController
     oct = "#{Date.current.year}-10-#{Date.current.day}".to_date
     nov = "#{Date.current.year}-11-#{Date.current.day}".to_date
     dec = "#{Date.current.year}-12-#{Date.current.day}".to_date
-    @jan_sales = Sale.where(confirm_date: jan.beginning_of_month..jan.end_of_month, status_id: Sale::COMPLETED)
-    @feb_sales = Sale.where(confirm_date: feb.beginning_of_month..feb.end_of_month, status_id: Sale::COMPLETED)
-    @mar_sales = Sale.where(confirm_date: mar.beginning_of_month..mar.end_of_month, status_id: Sale::COMPLETED)
-    @apr_sales = Sale.where(confirm_date: apr.beginning_of_month..apr.end_of_month, status_id: Sale::COMPLETED)
-    @may_sales = Sale.where(confirm_date: may.beginning_of_month..may.end_of_month, status_id: Sale::COMPLETED)
-    @jun_sales = Sale.where(confirm_date: jun.beginning_of_month..jun.end_of_month, status_id: Sale::COMPLETED)
-    @jul_sales = Sale.where(confirm_date: jul.beginning_of_month..jul.end_of_month, status_id: Sale::COMPLETED)
-    @ogo_sales = Sale.where(confirm_date: ogo.beginning_of_month..ogo.end_of_month, status_id: Sale::COMPLETED)
-    @sep_sales = Sale.where(confirm_date: sep.beginning_of_month..sep.end_of_month, status_id: Sale::COMPLETED)
-    @oct_sales = Sale.where(confirm_date: oct.beginning_of_month..oct.end_of_month, status_id: Sale::COMPLETED)
-    @nov_sales = Sale.where(confirm_date: nov.beginning_of_month..nov.end_of_month, status_id: Sale::COMPLETED)
-    @dec_sales = Sale.where(confirm_date: dec.beginning_of_month..dec.end_of_month, status_id: Sale::COMPLETED)
+    @jan_sales = Sale.where(confirm_date: jan.beginning_of_month..jan.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @feb_sales = Sale.where(confirm_date: feb.beginning_of_month..feb.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @mar_sales = Sale.where(confirm_date: mar.beginning_of_month..mar.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @apr_sales = Sale.where(confirm_date: apr.beginning_of_month..apr.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @may_sales = Sale.where(confirm_date: may.beginning_of_month..may.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @jun_sales = Sale.where(confirm_date: jun.beginning_of_month..jun.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @jul_sales = Sale.where(confirm_date: jul.beginning_of_month..jul.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @ogo_sales = Sale.where(confirm_date: ogo.beginning_of_month..ogo.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @sep_sales = Sale.where(confirm_date: sep.beginning_of_month..sep.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @oct_sales = Sale.where(confirm_date: oct.beginning_of_month..oct.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @nov_sales = Sale.where(confirm_date: nov.beginning_of_month..nov.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
+    @dec_sales = Sale.where(confirm_date: dec.beginning_of_month..dec.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
     
   end
 
   def agency_sales
     if is_top_level_management?
+      @product = current_user.company.products.first
       agencies = current_user.company.agencies.order(:name)
       @result = []
       @pie_chart_data = []
       current_company = current_user.company
-      sales = Sale.where("user_id IN(?) and status_id = ?", current_company.user_ids, Sale::COMPLETED)
+      sales = Sale.where("user_id IN(?) and status_id = ? and product_id = ?", current_company.user_ids, Sale::COMPLETED, @product.id)
       @result << [current_company, sales]
       total = sales.inject(0) do |sum, sale|
         lot = sale.lot
@@ -124,7 +151,7 @@ class ReportsController < ApplicationController
       @pie_chart_data << [current_company.name, total]
 
       agencies.each do |agency|
-        sales = Sale.where("user_id IN(?) and status_id = ?", agency.user_ids, Sale::COMPLETED)
+        sales = Sale.where("user_id IN(?) and status_id = ? and product_id = ?", agency.user_ids, Sale::COMPLETED, @product.id)
         @result << [agency, sales]
         total = sales.inject(0) do |sum, sale|
           lot = sale.lot
@@ -142,7 +169,12 @@ class ReportsController < ApplicationController
 
   def export_sources_type_excel
 
-    @buyers = Buyer.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
+    @buyers = []
+    @sales.each do |sale|
+      @buyers << sale.buyer
+    end
     sources_name = []
     result = []
     @buyers.each do |p|
@@ -160,7 +192,12 @@ class ReportsController < ApplicationController
   end
 
   def export_regions_excel
-    @buyers = Buyer.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
+    @buyers = []
+    @sales.each do |sale|
+      @buyers << sale.buyer
+    end
         name = []
         number = []
         result = []
@@ -181,7 +218,12 @@ class ReportsController < ApplicationController
   end
 
   def export_analysis_age_race_excel
-    @buyers = Buyer.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
+    @buyers = []
+    @sales.each do |sale|
+      @buyers << sale.buyer
+    end
     respond_to do |format|
       format.csv { render text: @buyers.to_csv }
       format.xls
@@ -189,7 +231,8 @@ class ReportsController < ApplicationController
   end
 
   def export_summary_report_excel
-    @sales = Sale.all
+    @product = current_user.company.products.first
+    @sales = @product.sales
     respond_to do |format|
       format.csv { render text: @sales.to_csv }
       format.xls

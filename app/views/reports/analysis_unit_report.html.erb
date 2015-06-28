@@ -106,10 +106,10 @@
 <script type="text/javascript">
   $(function () {
 
-            var combine = <%= raw sold.to_json %>
-            var sold = <%= sold %>
-            var available = <%= available %>
-            var reserved = <%= reserved %>
+            var combine = <%= raw sold.to_json %>;
+            var sold = <%= sold %>;
+            var available = <%= available %>;
+            var reserved = <%= reserved %>;
             console.log(sold, reserved, available);
 
 
@@ -118,7 +118,8 @@
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: 1,//null,
-                    plotShadow: false
+                    plotShadow: false,
+                    type: "pie"
                 },
                 title: {
                     text: 'Analysis Unit Report.'
@@ -140,19 +141,22 @@
                     }
                   },
                 series: [{
-                    type: 'pie',
-                    name: 'Browser share',
-                    data: unit_cart
-                          // arrayMy
-                        // ['Firefox',   40.0],
-                        // ['IE',       20.0],
-                        // // {
-                        // //     name: 'Chrome',
-                        // //     y: 12.8,
-                        // //     sliced: true,
-                        // //     selected: true
-                        // // }, 
+                name: "Percent",
+                colorByPoint: true,
+                data: [{
+                    name: "Sold",
+                    y: sold,
+                    color: "red"
+                }, {
+                    name: "Available",
+                    y: available,
+                    color: "green"
+                }, {
+                    name: "Reserved",
+                    y: reserved,
+                    color: "purple"
                 }]
+              }]
             });
           });
 
