@@ -169,7 +169,7 @@ class ProductsController < ApplicationController
     end
 
     def setting_params
-      params.require(:setting).permit(:unit_per_row, :bumi_putera_discount_rate)
+      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking)
     end
 
     def setting_email_params

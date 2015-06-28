@@ -1,7 +1,5 @@
 <%= form_tag confirm_sales_sales_path, {:class => 'panel-body form-horizontal form-padding'}  do %>
-  <input type="hidden" name="sale[sale_id]" value="<%= sale_id %>">
-
-  <% sale = Sale.find sale_id %>
+  <input type="hidden" name="sale[sale_id]" value="<%= sale.id %>">
 
   <% if is_top_level_management? %>
      <div class="form-group">

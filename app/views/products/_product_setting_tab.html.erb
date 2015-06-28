@@ -10,12 +10,13 @@
         </div>
       </div>
 
-      <!-- <div class="form-group">
-        <label class="col-md-3 control-label" for="setting_unit_per_row">Bumi Putera Rate(%)</label>
-        <div class="col-md-9">
-           <input type="number" id="setting_bumi_putera_discount_rate" name="setting[bumi_putera_discount_rate]" class="form-control" placeholder="bumi putera discount rate(%)" value="<%#= @setting.bumi_putera_discount_rate %>">
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="setting_allow_multiple_booking">Allow multiple booking</label>
+        <div class="col-md-9" style="padding-top: 5px;">
+          <input type="hidden" id="setting_allow_multiple_booking_false" name="setting[allow_multiple_booking]" value="0">
+          <input class="demo-switch" name="setting[allow_multiple_booking]" type="checkbox" <%= @setting.allow_multiple_booking? ? 'checked' : nil %> >
         </div>
-      </div> -->
+      </div>
   <br>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
 

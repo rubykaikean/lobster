@@ -85,9 +85,10 @@ class Sale < ActiveRecord::Base
     
     if s.save
       # Sale.reject_sale_same_record(s)
-      lot = Lot.find(s.lot_unit_id)
-      lot.status_id = Lot::SOLD
-      lot.save
+      if lot
+        lot.status_id = Lot::SOLD
+        lot.save
+      end
     end
   end
 
