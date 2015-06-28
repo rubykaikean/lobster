@@ -32,6 +32,7 @@
                 <th>Display Name</th>
                 <th>Email</th>
                 <th class="text-center">Type</th>
+                <th class="text-center">Status</th>
                 <th class="text-center">Action</th>
               </tr>
             </thead>
@@ -45,28 +46,25 @@
                   <td><%= user.email %></td>
                   <td class="text-center"><%= user.type %></td>
                   <td class="text-center">
-                    <%= link_to 'Show', user, :class=>"btn btn-small btn-warning #{user.id == current_user.id ? 'disabled' : nil}" %>
-                    <%#= link_to 'Edit', company_path(company, :company_id => params[:company_id]), :class=>"btn btn-small btn-info" %>
-                    <%#= link_to "Setting", new_company_setting_path(:company_id => company.id), :class=>"btn btn-info btn-info" %>
+                    <% if user.is_active? %>
+                      <span class="label label-primary"><%= user.status %></span>
+                    <% else %>
+                      <span class="label label-danger"><%= user.status %></span>
+                    <% end %>
                     
-                    <%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger #{user.id == current_user.id ? 'disabled' : nil}" %></td>
-                </tr>
-              <% end %>
-              <% @agents.each do |user| %>
-                <tr>
-                  <td><%= user.company.name rescue "" %></td>
-                  <td><%= user.username %></td>
-                  <td><%= user.display_name %></td>
-                  <td><%= user.email %></td>
-                  <td class="text-center"><%= user.type %></td>
+                    </td>
                   <td class="text-center">
-                    <%= link_to 'Show', user, :class=>"btn btn-small btn-warning" %>
-                    <%#= link_to 'Edit', company_path(company, :company_id => params[:company_id]), :class=>"btn btn-small btn-info" %>
-                    <%#= link_to "Setting", new_company_setting_path(:company_id => company.id), :class=>"btn btn-info btn-info" %>
-                    
-                    <%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %></td>
+                    <%= link_to 'Show', user, :class=>"btn btn-small btn-warning #{user.id == current_user.id ? 'disabled' : nil}" %>
+
+                    <% if user.is_active? %>
+                      <%= link_to 'Suspend', suspend_user_path(user), class: "btn btn-small btn-danger #{user.id == current_user.id ? 'disabled' : nil}", method: :delete, data: {:confirm => "Are you sure you want to suspend the user? "} %>
+                    <% else %>
+                      <%= link_to 'Activate', activate_user_path(user), class: "btn btn-small btn-info #{user.id == current_user.id ? 'disabled' : nil}", data: {:confirm => "Are you sure you want to activate the user? "} %>
+                    <% end %>
+                   </td>
                 </tr>
               <% end %>
+             
             </tbody>
           </table>
           </div>

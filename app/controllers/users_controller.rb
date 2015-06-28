@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_project_owner!
-  before_action :set_user, only: [:show, :edit, :update_member, :destroy]
+  before_action :set_user, only: [:show, :edit, :update_member, :destroy, :suspend, :activate]
 
   # GET /users
   # GET /users.json
   def index
     @company = current_user.company
-    @users = @company.users
-    @agents = []
+    @users = []
+    @users << @company.users
     @company.agencies.each do |agency|
-      @agents << agency.users  
+      @users << agency.users
     end
-    @agents.flatten!
+    @users.flatten!
+    @users.sort_by! {|user| [user.company_id, user.username]}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -90,6 +91,18 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def suspend
+    @user.suspend!
+    flash[:notice] = "User has been suspended successfully."
+    redirect_to :back
+  end
+
+  def activate
+    @user.activate!
+    flash[:notice] = "User has been activated successfully."
+    redirect_to :back
   end
 
   private

@@ -3,11 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_suspended_user!, unless: :devise_controller?
 
   # before_action :authenticate_user!
   # before_action :authenticate_admin!
 
   protected
+
+  helper_method :authenticate_suspended_user!
+  def authenticate_suspended_user!
+    if current_user && current_user.is_suspended?
+      flash[:alert] = "You account has been suspended."
+      sign_out(current_user)
+    end
+  end
 
   helper_method :is_super_admin?
   def is_super_admin?

@@ -114,6 +114,15 @@ class ReportsController < ApplicationController
       agencies = current_user.company.agencies.order(:name)
       @result = []
       @pie_chart_data = []
+      current_company = current_user.company
+      sales = Sale.where("user_id IN(?) and status_id = ?", current_company.user_ids, Sale::COMPLETED)
+      @result << [current_company, sales]
+      total = sales.inject(0) do |sum, sale|
+        lot = sale.lot
+        sum += lot.selling_price
+      end
+      @pie_chart_data << [current_company.name, total]
+
       agencies.each do |agency|
         sales = Sale.where("user_id IN(?) and status_id = ?", agency.user_ids, Sale::COMPLETED)
         @result << [agency, sales]

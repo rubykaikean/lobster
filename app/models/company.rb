@@ -99,16 +99,12 @@ class Company < ActiveRecord::Base
   end
 
   def members
-    result = users
+    result = []
+    result << users.to_a
     agencies.each do |agency|
-      result << agency.users
+      result << agency.users.to_a
     end
     result = result.flatten.uniq
-    result.each do |agent|
-      if agent.username.nil?
-        agent.username = "Unknown"
-      end
-    end
     result.sort_by {|agent| agent.username }
   end
 
