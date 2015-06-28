@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
 	before_action :authenticate_user!
-	# layout false, only:[:summary_report]
+  before_action :authenticate_project_owner!
 
 	def summary_report
     @product = current_user.company.products.first
@@ -29,6 +29,11 @@ class ReportsController < ApplicationController
     @sales.each do |sale|
       @buyers << sale.buyer
     end
+  end
+
+  def cancellation
+    @product = current_user.company.products.first
+    @sales = @product.sales.where(status_id: Sale::REJECTED)
   end
 
 	def analysis_sources_type_report
