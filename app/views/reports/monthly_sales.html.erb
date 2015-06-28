@@ -177,7 +177,7 @@
             var dec = <%= dec %>;
             // console.log(sold, reserved, available);
 
-
+            var colors = Highcharts.getOptions().colors;
             var monthly_sale_cart = [["January", jan],["Febuary", feb],["March", mar],["April", apr],["May", may],["June", jun],["July", jul],["August", aug],["September", sep],["October", oct],["November", nov],["December", dec]];
             $('#monthly_sales_pie_chart').highcharts({
                 chart: {
@@ -207,16 +207,55 @@
                 series: [{
                     type: 'pie',
                     name: 'Month Sales:',
-                    data: monthly_sale_cart
-                          // arrayMy
-                        // ['Firefox',   40.0],
-                        // ['IE',       20.0],
-                        // // {
-                        // //     name: 'Chrome',
-                        // //     y: 12.8,
-                        // //     sliced: true,
-                        // //     selected: true
-                        // // }, 
+                    data: [{
+                      name: "Jan",
+                      y: jan,
+                      color: colors[0]
+                  }, {
+                      name: "Feb",
+                      y: feb,
+                      color: colors[8]
+                  }, {
+                      name: "Mar",
+                      y: mar,
+                      color: colors[2]
+                  }, {
+                      name: "Apr",
+                      y: apr,
+                      color: colors[3]
+                  }, {
+                      name: "May",
+                      y: may,
+                      color: colors[4]
+                  }, {
+                      name: "Jun",
+                      y: jun,
+                      color: colors[5]
+                  }, {
+                      name: "Jul",
+                      y: jul,
+                      color: colors[6]
+                  }, {
+                      name: "Aug",
+                      y: aug,
+                      color: colors[7]
+                  }, {
+                      name: "Sep",
+                      y: sep,
+                      color: colors[8]
+                  }, {
+                      name: "Oct",
+                      y: oct,
+                      color: colors[9]
+                  }, {
+                      name: "Nov",
+                      y: nov,
+                      color: colors[2]
+                  }, {
+                      name: "Dec",
+                      y: dec,
+                      color: colors[3]
+                  }]
                 }]
             });
           });
