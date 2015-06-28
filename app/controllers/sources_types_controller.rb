@@ -1,5 +1,6 @@
 class SourcesTypesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_project_owner!
   before_action :set_sources_type, only: [:show, :edit, :update, :destroy]
 
   # GET /sources_types
@@ -64,9 +65,10 @@ class SourcesTypesController < ApplicationController
   # DELETE /sources_types/1
   # DELETE /sources_types/1.json
   def destroy
+    source_type = @source_type.product
     @sources_type.destroy
     respond_to do |format|
-      format.html { redirect_to sources_types_url }
+      format.html { redirect_to product_path(source_type) }
       format.json { head :no_content }
     end
   end

@@ -82,7 +82,7 @@ class SalesController < ApplicationController
   end
 
   def confirm_sales
-    # render :text => confirm_sale_params
+    # render :text => params
     if is_top_level_management?
       Sale.confirm_sale(confirm_sale_params)
       redirect_to sales_path, notice: "Sale has been confirmed."

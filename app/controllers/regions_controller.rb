@@ -1,5 +1,6 @@
 class RegionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_project_owner!
   before_action :set_region, only: [:show, :edit, :update, :destroy]
 
   # GET /regions
@@ -64,9 +65,10 @@ class RegionsController < ApplicationController
   # DELETE /regions/1
   # DELETE /regions/1.json
   def destroy
+    region = @region.product
     @region.destroy
     respond_to do |format|
-      format.html { redirect_to regions_url }
+      format.html { redirect_to product_path(region) }
       format.json { head :no_content }
     end
   end

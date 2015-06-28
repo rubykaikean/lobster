@@ -17,6 +17,9 @@
               <td>
                 <%= text_field_tag "sources_type[#{sources_type.id}][name]", sources_type.name, :class=>"form-control" %>
               </td>
+              <td>
+                <%= link_to 'Destroy', sources_type_path(sources_type), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
+              </td>
             </tr>
             
           <% end %>

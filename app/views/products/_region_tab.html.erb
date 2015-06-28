@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th>Name</th>
-            
+            <th>Action</th>
           </tr>
         </thead>
         
@@ -16,6 +16,9 @@
             <tr>
               <td>
                 <%= text_field_tag "update_region[#{region.id}][name]", region.name, :class=>"form-control" %>
+              </td>
+              <td>
+                <%= link_to 'Destroy', region_path(region), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
               </td>
             </tr>
             
