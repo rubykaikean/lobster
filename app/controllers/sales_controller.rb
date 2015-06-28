@@ -13,7 +13,6 @@ class SalesController < ApplicationController
       @q = current_user.sales.ransack(params[:q])
     end
     @sales = @q.result(distinct: true)
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sales }
