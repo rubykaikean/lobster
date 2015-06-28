@@ -20,6 +20,7 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  username               :string
+#  status_id              :integer          default(1)
 #
 # Indexes
 #
@@ -48,6 +49,9 @@ class User < ActiveRecord::Base
 
   ADMIN = 1
   STAFF = 2
+
+  ACTIVE = 1
+  INACTIVE = 2
 
   TYPE_OPTIONS = [
     ["Admin", ADMIN],
@@ -91,6 +95,33 @@ class User < ActiveRecord::Base
     when STAFF
       "Staff"
     end
+  end
+
+  def status
+    case status_id
+    when ACTIVE
+      "Active"
+    when INACTIVE
+      "Suspended"
+    end
+  end
+
+  def is_suspended?
+    status_id == INACTIVE
+  end
+
+  def is_active?
+    status_id == ACTIVE
+  end
+
+  def suspend!
+    self.status_id = INACTIVE
+    save
+  end
+
+  def activate!
+    self.status_id = ACTIVE
+    save
   end
 
   def should_generate_new_friendly_id?

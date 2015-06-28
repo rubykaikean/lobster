@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624143602) do
+ActiveRecord::Schema.define(version: 20150628083600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20150624143602) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 1
+    t.integer  "row_key",                 default: 0
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
@@ -294,6 +294,7 @@ ActiveRecord::Schema.define(version: 20150624143602) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "username"
+    t.integer  "status_id",              default: 1
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

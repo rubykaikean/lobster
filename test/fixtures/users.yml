@@ -20,6 +20,7 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  username               :string
+#  status_id              :integer          default(1)
 #
 # Indexes
 #

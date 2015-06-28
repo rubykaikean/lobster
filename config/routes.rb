@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     end
     member do
       patch "update_member"
+      delete "suspend"
+      get    "activate"
     end
   end
 
