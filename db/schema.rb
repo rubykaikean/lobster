@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628083600) do
+ActiveRecord::Schema.define(version: 20150629152023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20150628083600) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 1
+    t.integer  "row_key",                 default: 0
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
@@ -235,9 +235,9 @@ ActiveRecord::Schema.define(version: 20150628083600) do
     t.integer  "lot_unit_id"
     t.integer  "phase_id"
     t.integer  "user_id"
-    t.integer  "status_id",              default: 1
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.integer  "status_id",                           default: 1
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "buyer_id"
     t.integer  "downpayment"
     t.integer  "downpayment_percentage"
@@ -247,6 +247,10 @@ ActiveRecord::Schema.define(version: 20150628083600) do
     t.string   "reject_reason"
     t.string   "downpayment_type"
     t.datetime "confirm_date"
+    t.string   "purchaser_name"
+    t.text     "purchaser_address"
+    t.string   "purchaser_ic_number",      limit: 15
+    t.string   "purchaser_contact_number", limit: 15
   end
 
   add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree

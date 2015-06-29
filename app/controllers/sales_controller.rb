@@ -81,10 +81,11 @@ class SalesController < ApplicationController
     # end
   end
 
-  def confirm_sales
+  def confirm
     # render :text => params
     if is_top_level_management?
-      Sale.confirm_sale(confirm_sale_params)
+      @sale = Sale.find params[:id]
+      @sale.confirm_sale(confirm_sale_params)
       redirect_to sales_path, notice: "Sale has been confirmed."
     else
       flash[:alert] = "Sorry, you don't have the access right."
@@ -92,13 +93,13 @@ class SalesController < ApplicationController
     end
   end
 
-  def reject_sales
-    s = Sale.find(confirm_sale_params[:sale_id])
+  def reject
+    s = Sale.find(params[:id])
     if is_top_level_management? || s.user_id == current_user.id
       s.status_id = Sale::REJECTED
       s.reject_reason = confirm_sale_params[:reject_reason]
       if s.save
-        lot = Lot.find(s.lot_unit_id)
+        lot = s.lot
         lot.status_id = Lot::AVAILABLE
         lot.save
       end
@@ -117,7 +118,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa, :confirm_date)
+      params.require(:sale).permit(:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number)
     end
 
     def confirm_sale_params

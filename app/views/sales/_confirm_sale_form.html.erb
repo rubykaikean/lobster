@@ -1,5 +1,4 @@
-<%= form_tag confirm_sales_sales_path, {:class => 'panel-body form-horizontal form-padding'}  do %>
-  <input type="hidden" name="sale[sale_id]" value="<%= sale.id %>">
+<%= form_tag confirm_sale_path(sale), {:class => 'panel-body form-horizontal form-padding'}  do %>
 
   <% if is_top_level_management? %>
      <div class="form-group">
@@ -15,45 +14,89 @@
           </div>
         </div>
     <br>
-
   <% end %>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_purchaser_name">Full name:</label>
+    <div class="col-md-9">
+      <input type="text" id="sale_purchaser_name" name="sale[purchaser_name]" class="form-control" placeholder="Full name" value="" required>
+      <small class="help-block">Required field</small>
+    </div>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_purchaser_ic_number">IC number:</label>
+    <div class="col-md-9">
+      <input type="text" id="sale_purchaser_ic_number" name="sale[purchaser_ic_number]" class="form-control" placeholder="IC number" value="" required minlength="12" maxlength="12">
+      <small class="help-block">Required field. Example : 900826075088</small>
+    </div>
+  </div>
+  <br>
+
+   <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_purchaser_contact_number">Contact number:</label>
+    <div class="col-md-9">
+      <input type="text" id="sale_purchaser_contact_number" name="sale[purchaser_contact_number]" class="form-control" placeholder="Contact number" value="" required>
+      <small class="help-block">Required field. Example : 0183998888</small>
+    </div>
+  </div>
+  <br>
+
+   <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_purchaser_address">Address</label>
+    <div class="col-md-9">
+      <textarea id="sale_purchaser_address" name="sale[purchaser_address]" rows="4" class="form-control" required></textarea>
+      <small class="help-block">Required field</small>
+    </div>
+  </div>
+  <br>
+
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment">DownPayment(RM):</label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment" name="sale[downpayment]" class="form-control" placeholder="Enter DownPayment" value="">
-      <!-- <small class="help-block">This is a help text</small> -->
+      <input type="text" id="sale_downpayment" name="sale[downpayment]" class="form-control" placeholder="DownPayment" value="">
+      <small class="help-block"> </small>
     </div>
   </div>
   <br>
+
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_percentage">Down Payment(%): </label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="Enter DownPayment percentage" value="">
+      <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="DownPayment percentage" value="">
+      <small class="help-block"> </small>
     </div>
   </div>
   <br>
+
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_type">Payment Type: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Enter Down Payment Type" value="">
+      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Down Payment Type" value="">
+      <small class="help-block"> </small>
     </div>
   </div>
   <br>
+
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Enter Bank Loan" value="">
+      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Bank Loan" value="">
+      <small class="help-block"> </small>
     </div>
   </div>
   <br>
+
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_spa">Lawyer Firm: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_spa" name="sale[spa]" class="form-control" placeholder="Enter SPA" value="">
+      <input type="text" id="sale_spa" name="sale[spa]" class="form-control" placeholder="SPA Lawyer Firm" value="">
+      <small class="help-block"> </small>
     </div>
   </div>
-
   <br>
+
   <div class="form-group">
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">

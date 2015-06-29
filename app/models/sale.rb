@@ -2,24 +2,28 @@
 #
 # Table name: sales
 #
-#  id                     :integer          not null, primary key
-#  project_id             :integer
-#  product_id             :integer
-#  lot_unit_id            :integer
-#  phase_id               :integer
-#  user_id                :integer
-#  status_id              :integer          default(1)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  buyer_id               :integer
-#  downpayment            :integer
-#  downpayment_percentage :integer
-#  bank_loan              :string
-#  spa                    :string
-#  booking_fee            :integer
-#  reject_reason          :string
-#  downpayment_type       :string
-#  confirm_date           :datetime
+#  id                       :integer          not null, primary key
+#  project_id               :integer
+#  product_id               :integer
+#  lot_unit_id              :integer
+#  phase_id                 :integer
+#  user_id                  :integer
+#  status_id                :integer          default(1)
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  buyer_id                 :integer
+#  downpayment              :integer
+#  downpayment_percentage   :integer
+#  bank_loan                :string
+#  spa                      :string
+#  booking_fee              :integer
+#  reject_reason            :string
+#  downpayment_type         :string
+#  confirm_date             :datetime
+#  purchaser_name           :string
+#  purchaser_address        :text
+#  purchaser_ic_number      :string(15)
+#  purchaser_contact_number :string(15)
 #
 # Indexes
 #
@@ -68,24 +72,11 @@ class Sale < ActiveRecord::Base
     end
   end
 
-  def self.confirm_sale(confirm_params)
-    s = Sale.find(confirm_params[:sale_id])
-    s.status_id = COMPLETED
-    s.downpayment = confirm_params[:downpayment]
-    s.downpayment_percentage = confirm_params[:downpayment_percentage]
-    s.bank_loan = confirm_params[:bank_loan]
-    s.downpayment_type = confirm_params[:downpayment_type]
-    s.spa = confirm_params[:spa]
-    if confirm_params[:confirm_date]
-      s.confirm_date = confirm_params[:confirm_date]
-    else
-      s.confirm_date = Time.current
-    end
-    s.user_id = confirm_params[:user_id] if confirm_params[:user_id]
-    
-    if s.save
+  def confirm_sale(confirm_params)
+    self.status_id = COMPLETED
+    self.confirm_date = Time.current if confirm_date.nil?
+    if self.update(confirm_params)
       # Sale.reject_sale_same_record(s)
-      lot = s.lot
       if lot
         lot.status_id = Lot::SOLD
         lot.save
