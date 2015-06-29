@@ -62,7 +62,7 @@
                 <td><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
                 <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
                 <td><%= sale.user.company.name %></td>
-                <td class="text-center"><%= sale.user.email %></td>
+                <td class="text-center"><%= sale.user.username %></td>
                 <td class="text-center">
                   <% if is_top_level_management? || (sale.user_id == current_user.id) %>
                     <a href="<%= edit_buyer_path(sale.buyer, sale_id: sale.id) rescue '#' %>"><button class="btn btn-primary btn-sm"><%= sale.buyer.try(:full_name) || "Unknown" %></button>
