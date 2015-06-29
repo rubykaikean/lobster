@@ -160,104 +160,163 @@
 
 
 <script type="text/javascript">
-  $(function () {
+  // pie chart
+  // $(function () {
+  //           // var combine = <%#= raw sold.to_json %>
+  //           var jan = <%#= jan %>;
+  //           var feb = <%#= feb %>;
+  //           var mar = <%#= mar %>;
+  //           var apr = <%#= apr %>;
+  //           var may = <%#= may %>;
+  //           var jun = <%#= jun %>;
+  //           var jul = <%#= jul %>;
+  //           var aug = <%#= aug %>;
+  //           var sep = <%#= sep %>;
+  //           var oct = <%#= oct %>;
+  //           var nov = <%#= nov %>;
+  //           var dec = <%#= dec %>;
+  //           // console.log(sold, reserved, available);
 
-            // var combine = <%#= raw sold.to_json %>
-            var jan = <%= jan %>;
-            var feb = <%= feb %>;
-            var mar = <%= mar %>;
-            var apr = <%= apr %>;
-            var may = <%= may %>;
-            var jun = <%= jun %>;
-            var jul = <%= jul %>;
-            var aug = <%= aug %>;
-            var sep = <%= sep %>;
-            var oct = <%= oct %>;
-            var nov = <%= nov %>;
-            var dec = <%= dec %>;
-            // console.log(sold, reserved, available);
+  //           var colors = Highcharts.getOptions().colors;
+  //           var monthly_sale_cart = [["January", jan],["Febuary", feb],["March", mar],["April", apr],["May", may],["June", jun],["July", jul],["August", aug],["September", sep],["October", oct],["November", nov],["December", dec]];
+  //           $('#monthly_sales_pie_chart').highcharts({
+  //               chart: {
+  //                   plotBackgroundColor: null,
+  //                   plotBorderWidth: 1,//null,
+  //                   plotShadow: false
+  //               },
+  //               title: {
+  //                   text: 'Monthly Sales Report.'
+  //               },
+  //               tooltip: {
+  //                   pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
+  //               },
+  //               plotOptions: {
+  //                   pie: {
+  //                       allowPointSelect: true,
+  //                       cursor: 'pointer',
+  //                       dataLabels: {
+  //                           enabled: true,
+  //                           format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+  //                           style: {
+  //                               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+  //                           }
+  //                       }
+  //                   }
+  //                 },
+  //               series: [{
+  //                   type: 'pie',
+  //                   name: 'Month Sales:',
+  //                   data: [{
+  //                     name: "Jan",
+  //                     y: jan,
+  //                     color: colors[0]
+  //                 }, {
+  //                     name: "Feb",
+  //                     y: feb,
+  //                     color: colors[8]
+  //                 }, {
+  //                     name: "Mar",
+  //                     y: mar,
+  //                     color: colors[2]
+  //                 }, {
+  //                     name: "Apr",
+  //                     y: apr,
+  //                     color: colors[3]
+  //                 }, {
+  //                     name: "May",
+  //                     y: may,
+  //                     color: colors[4]
+  //                 }, {
+  //                     name: "Jun",
+  //                     y: jun,
+  //                     color: colors[5]
+  //                 }, {
+  //                     name: "Jul",
+  //                     y: jul,
+  //                     color: colors[6]
+  //                 }, {
+  //                     name: "Aug",
+  //                     y: aug,
+  //                     color: colors[7]
+  //                 }, {
+  //                     name: "Sep",
+  //                     y: sep,
+  //                     color: colors[8]
+  //                 }, {
+  //                     name: "Oct",
+  //                     y: oct,
+  //                     color: colors[9]
+  //                 }, {
+  //                     name: "Nov",
+  //                     y: nov,
+  //                     color: colors[2]
+  //                 }, {
+  //                     name: "Dec",
+  //                     y: dec,
+  //                     color: colors[3]
+  //                 }]
+  //               }]
+  //           });
+  // });
 
-            var colors = Highcharts.getOptions().colors;
-            var monthly_sale_cart = [["January", jan],["Febuary", feb],["March", mar],["April", apr],["May", may],["June", jun],["July", jul],["August", aug],["September", sep],["October", oct],["November", nov],["December", dec]];
-            $('#monthly_sales_pie_chart').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: 1,//null,
-                    plotShadow: false
-                },
-                title: {
-                    text: 'Monthly Sales Report.'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.0f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
-                        }
-                    }
-                  },
-                series: [{
-                    type: 'pie',
-                    name: 'Month Sales:',
-                    data: [{
-                      name: "Jan",
-                      y: jan,
-                      color: colors[0]
-                  }, {
-                      name: "Feb",
-                      y: feb,
-                      color: colors[8]
-                  }, {
-                      name: "Mar",
-                      y: mar,
-                      color: colors[2]
-                  }, {
-                      name: "Apr",
-                      y: apr,
-                      color: colors[3]
-                  }, {
-                      name: "May",
-                      y: may,
-                      color: colors[4]
-                  }, {
-                      name: "Jun",
-                      y: jun,
-                      color: colors[5]
-                  }, {
-                      name: "Jul",
-                      y: jul,
-                      color: colors[6]
-                  }, {
-                      name: "Aug",
-                      y: aug,
-                      color: colors[7]
-                  }, {
-                      name: "Sep",
-                      y: sep,
-                      color: colors[8]
-                  }, {
-                      name: "Oct",
-                      y: oct,
-                      color: colors[9]
-                  }, {
-                      name: "Nov",
-                      y: nov,
-                      color: colors[2]
-                  }, {
-                      name: "Dec",
-                      y: dec,
-                      color: colors[3]
-                  }]
-                }]
-            });
-          });
+  $('#monthly_sales_pie_chart').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Montly Sales Report'
+        },
+        // subtitle: {
+        //     text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+        // },
+        xAxis: {
+            categories: ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Monthly Sales',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Year <%= Date.current.year %>',
+            data: [<%= jan %>, <%= feb %>, <%= mar %>, <%= apr %>, <%= may %>, <%= jun %>, <%= jul %>, <%= aug %>, <%= sep %>, <%= oct %>, <%= nov %>, <%= dec %>]
+        }]
+    });
+  
+  
+
 
 </script>     
