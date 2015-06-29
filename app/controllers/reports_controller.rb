@@ -108,18 +108,18 @@ class ReportsController < ApplicationController
 
   def monthly_sales
     @product = current_user.company.products.first
-    jan = "#{Date.current.year}-01-#{Date.current.day}".to_date
-    feb = "#{Date.current.year}-02-#{Date.current.day}".to_date
-    mar = "#{Date.current.year}-03-#{Date.current.day}".to_date
-    apr = "#{Date.current.year}-04-#{Date.current.day}".to_date
-    may = "#{Date.current.year}-05-#{Date.current.day}".to_date
-    jun = "#{Date.current.year}-06-#{Date.current.day}".to_date
-    jul = "#{Date.current.year}-07-#{Date.current.day}".to_date
-    ogo = "#{Date.current.year}-08-#{Date.current.day}".to_date
-    sep = "#{Date.current.year}-09-#{Date.current.day}".to_date
-    oct = "#{Date.current.year}-10-#{Date.current.day}".to_date
-    nov = "#{Date.current.year}-11-#{Date.current.day}".to_date
-    dec = "#{Date.current.year}-12-#{Date.current.day}".to_date
+    jan = "#{Date.current.year}-01-01".to_date
+    feb = "#{Date.current.year}-02-01".to_date
+    mar = "#{Date.current.year}-03-01".to_date
+    apr = "#{Date.current.year}-04-01".to_date
+    may = "#{Date.current.year}-05-01".to_date
+    jun = "#{Date.current.year}-06-01".to_date
+    jul = "#{Date.current.year}-07-01".to_date
+    ogo = "#{Date.current.year}-08-01".to_date
+    sep = "#{Date.current.year}-09-01".to_date
+    oct = "#{Date.current.year}-10-01".to_date
+    nov = "#{Date.current.year}-11-01".to_date
+    dec = "#{Date.current.year}-12-01".to_date
     @jan_sales = Sale.where(confirm_date: jan.beginning_of_month..jan.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
     @feb_sales = Sale.where(confirm_date: feb.beginning_of_month..feb.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
     @mar_sales = Sale.where(confirm_date: mar.beginning_of_month..mar.end_of_month, status_id: Sale::COMPLETED, product_id: @product.id)
