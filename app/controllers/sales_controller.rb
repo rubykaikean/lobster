@@ -8,13 +8,14 @@ class SalesController < ApplicationController
   def index
     return redirect_to root_path, alert: "Sorry, you don't have the access right." if is_low_level_staff?
     if is_top_level_management?
+      @agencies = current_user.company.agencies
+      @agencies << current_user.company
       @q = Sale.where("product_id IN(?)", current_user.company.product_ids).order("created_at DESC").ransack(params[:q])
     else
       @q = current_user.sales.ransack(params[:q])
     end
     @sales = @q.result(distinct: true)
-    @agencies = current_user.company.agencies
-    @agencies << current_user.company
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sales }
