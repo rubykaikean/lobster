@@ -7,7 +7,7 @@
 								<ul id="mainnav-menu" class="list-group">
 						
 									<!--Category name-->
-									<li class="list-header">Navigation</li>
+									<!-- <li class="list-header">Navigation</li> -->
 						
 									<!--Menu list item-->
 									<!-- <li>
@@ -19,56 +19,7 @@
 											</span>
 										</a>
 									</li> -->
-
-								<li class="list-header">Report</li>
-									<% if is_top_level_management? %>
-									<li>
-											<a href="<%= analysis_unit_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Summary Report</span>
-										</a>
-
-										<a href="<%= monthly_sales_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Monthly Sales Report</span>
-										</a>
-										<a href="<%= sales_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Sales Report</span>
-										</a>
-										<a href="<%= summary_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Purchaser Listing</span>
-										</a>
-										<a href="<%= agency_sales_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Agency Sales Report</span>
-										</a>
-										<a href="<%= cancellation_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Cancellation Report</span>
-										</a>
-									</li>
-									<% end %>
 									
-									<li>
-										<a href="<%= analysis_sources_type_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Analysis Sources Report</span>
-										</a>
-										<a href="<%= analysis_race_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Analysis Race Report</span>
-										</a>
-										<a href="<%= analysis_region_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Analysis Region Report</span>
-										</a>
-										<a href="<%= analysis_age_report_reports_path %>">
-											<i class="fa fa-bar-chart"></i>
-											<span class="menu-title">Sales By Ages Report</span>
-										</a>
-									</li>
 
 									<!--Category name-->
 									<li class="list-header">System</li>
@@ -95,6 +46,15 @@
 
 									<!--Category name-->
 									<li class="list-header">Management</li>
+									  <li>
+											<a href="<%= reports_path %>">
+												<i class="fa fa-bar-chart"></i>
+												<span class="menu-title">
+													Report
+													<!-- <span class="label label-mint pull-right">New</span> -->
+												</span>
+											</a>
+										</li>
 										<!--Menu list item-->
 										<li>
 											<a href="<%= users_path %>">

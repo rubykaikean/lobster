@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :reports do
-    collection do
+    member do
+      get "menu"
       get "summary_report"
       get "analysis_age_report"
       get "analysis_unit_report"
