@@ -94,7 +94,7 @@ class ReportsController < ApplicationController
       @this_week = week if week.include?(Date.current.day)
     end
     to_day = Date.current
-    @this_week_sales = Sale.where(confirm_date: "#{to_day.year}-#{to_day.month}-#{@this_week.first}".to_date.."#{to_day.year}-#{to_day.month}-#{@this_week.last}".to_date, status_id: Sale::COMPLETED)
+    # @this_week_sales = Sale.where(confirm_date: "#{to_day.year}-#{to_day.month}-#{@this_week.first}".to_date.."#{to_day.year}-#{to_day.month}-#{@this_week.last}".to_date, status_id: Sale::COMPLETED)
 
     # this month sales
     @this_month_sales = Sale.where(confirm_date: Date.current.beginning_of_month..Date.current.end_of_month, status_id: Sale::COMPLETED)
