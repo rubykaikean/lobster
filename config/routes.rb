@@ -39,9 +39,9 @@ Rails.application.routes.draw do
   resources :company_settings 
 
   resources :sales do
-    collection do
-      post "confirm_sales"
-      post "reject_sales"
+    member do
+      post "confirm"
+      post "reject"
     end
   end
 

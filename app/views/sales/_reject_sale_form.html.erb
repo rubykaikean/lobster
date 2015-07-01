@@ -1,5 +1,5 @@
-<%= form_tag reject_sales_sales_path, {:class => 'panel-body form-horizontal form-padding'}  do %>
-  <input type="hidden" name="sale[sale_id]" value="<%= sale.id %>">
+<%= form_tag reject_sale_path(sale), {:class => 'panel-body form-horizontal form-padding'}  do %>
+
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_reject_reason">Reject Reason:</label>
     <div class="col-md-9">

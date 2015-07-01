@@ -101,7 +101,13 @@ class CompaniesController < ApplicationController
   # DELETE /companies/1
   # DELETE /companies/1.json
   def destroy
-    @company.destroy
+    can_destroy, message = @company.can_destroy?
+    if can_destroy
+      @company.destroy
+      flash[:notice] = "The company has been destroyed successfully."
+    else
+      flash[:alert] = message
+    end
     respond_to do |format|
       format.html { redirect_to companies_url }
       format.json { head :no_content }

@@ -34,10 +34,10 @@ class Company < ActiveRecord::Base
   has_many :users, dependent: :destroy
   has_many :projects, dependent: :destroy
   has_one :company_setting, dependent: :destroy
-  has_many :agencies, class_name: "Company", foreign_key: "parent_id"
+  has_many :agencies, class_name: "Company", foreign_key: "parent_id", dependent: :destroy
   has_many :products
-  has_many :regions
-  has_many :sources_types
+  has_many :regions, dependent: :destroy
+  has_many :sources_types, dependent: :destroy
 
   has_attached_file :logo, 
           #:styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
@@ -106,6 +106,14 @@ class Company < ActiveRecord::Base
     end
     result = result.flatten.uniq
     result.sort_by {|agent| agent.username }
+  end
+
+  def can_destroy?
+    if products.any?
+      return false, "The company cannot be delete if there is product running."
+    else
+      return true, "The company can be destroy."
+    end
   end
 
   private
