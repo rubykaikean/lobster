@@ -151,6 +151,63 @@
 
 
 <script type="text/javascript">
+
+  $('#monthly_sales_pie_chart').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Montly Sales Report'
+        },
+        // subtitle: {
+        //     text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+        // },
+        xAxis: {
+            categories: ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Monthly Sales',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Year <%= Date.current.year %>',
+            data: [<%= jan %>, <%= feb %>, <%= mar %>, <%= apr %>, <%= may %>, <%= jun %>, <%= jul %>, <%= aug %>, <%= sep %>, <%= oct %>, <%= nov %>, <%= dec %>]
+        }]
+    });
+
   // pie chart
   // $(function () {
   //           // var combine = <%#= raw sold.to_json %>
@@ -251,61 +308,7 @@
   //           });
   // });
 
-  $('#monthly_sales_pie_chart').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Montly Sales Report'
-        },
-        // subtitle: {
-        //     text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
-        // },
-        xAxis: {
-            categories: ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Monthly Sales',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 80,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Year <%= Date.current.year %>',
-            data: [<%= jan %>, <%= feb %>, <%= mar %>, <%= apr %>, <%= may %>, <%= jun %>, <%= jul %>, <%= aug %>, <%= sep %>, <%= oct %>, <%= nov %>, <%= dec %>]
-        }]
-    });
+  
   
   
 

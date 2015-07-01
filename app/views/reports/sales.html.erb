@@ -36,13 +36,13 @@
           </tr>
 
           <% this_week_total = 0 %>
-          <% @this_week_sales.each do |sale| %>
-          	<% this_week_total += sale.lot.selling_price %>
-          <% end %>
+          <%# @this_week_sales.each do |sale| %>
+          	<%# this_week_total += sale.lot.selling_price %>
+          <%# end %>
           <tr>
             <td>This Week</td>
-            <td class="text-center"><%= @this_week_sales.size %></td>
-            <td class="text-right">RM <%= number_with_delimiter(this_week_total) %></td>
+            <td class="text-center"><%#= @this_week_sales.size %></td>
+            <td class="text-right">RM <%#= number_with_delimiter(this_week_total) %></td>
           </tr>
 
           <% this_month_total = 0 %>

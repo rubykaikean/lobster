@@ -106,6 +106,7 @@ class ReportsController < ApplicationController
       last_day = @this_week.last
     end
     to_day = Date.current
+    # this week sales
     @this_week_sales = Sale.where(confirm_date: "#{to_day.year}-#{to_day.month}-#{first_day}".to_date.."#{to_day.year}-#{to_day.month}-#{last_day}".to_date, status_id: Sale::COMPLETED)
 
     # this month sales
