@@ -49,7 +49,7 @@
   <div class="tab-base">
           
     <!--Nav Tabs-->
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" id="product_options_tabs">
       <li class="active">
         <a data-toggle="tab" href="#lot-tab">Lot list</a>
       </li>
@@ -60,7 +60,7 @@
         <a data-toggle="tab" href="#site_plan-tab">Site Plan <!-- <span class="badge badge-purple">27</span> --></a>
       </li>
       <li>
-        <a data-toggle="tab" href="#floor_plan-tab">Floor Plan<!-- <span class="badge badge-purple">27</span> --></a>
+        <a data-toggle="tab" href="#floor_plan-tab">Floor Plan</a>
       </li>
       <li>
         <a data-toggle="tab" href="#product_setting-tab">Setting</a>
@@ -216,3 +216,16 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+   $( document ).ready(function() {
+
+        var loc = window.location.href;
+        var pathName = loc.split("#");
+        var tab_id = pathName.pop();
+        if(tab_id !== undefined) {
+          $('#product_options_tabs a[href="#'+ tab_id +'"]').tab("show");
+        }
+    
+   });
+  </script>

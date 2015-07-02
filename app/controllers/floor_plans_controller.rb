@@ -41,7 +41,7 @@ class FloorPlansController < ApplicationController
 
     respond_to do |format|
       if @floor_plan.save
-        format.html { redirect_to :back, notice: 'Floor plan was successfully created.' }
+        format.html { redirect_to "#{product_path(@product)}/#floor_plan-tab", notice: 'Floor plan was successfully created.' }
         format.json { render json: @floor_plan, status: :created }
       else
         format.html { render action: 'new' }
@@ -67,9 +67,10 @@ class FloorPlansController < ApplicationController
   # DELETE /floor_plans/1
   # DELETE /floor_plans/1.json
   def destroy
+    product = @floor_plan.product
     @floor_plan.destroy
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to "#{product_path(product)}/#floor_plan-tab" }
       format.json { head :no_content }
     end
   end

@@ -36,13 +36,17 @@ class RegionsController < ApplicationController
   # POST /regions.json
   def create
     @region = Region.new(region_params)
+    @product = @region.product
 
     respond_to do |format|
       if @region.save
-        format.html { redirect_to :back, notice: 'Region was successfully created.' }
+        format.html { redirect_to "#{product_path(@product)}/#new_region-tab", notice: 'Region was successfully created.' }
         format.json { render json: @region, status: :created }
       else
-        format.html { render action: 'new' }
+        format.html { 
+          flash[:alert] = @region.errors.full_messages.join("<br>")
+          redirect_to "#{product_path(@product)}/#new_region-tab"
+        }
         format.json { render json: @region.errors, status: :unprocessable_entity }
       end
     end
@@ -65,10 +69,10 @@ class RegionsController < ApplicationController
   # DELETE /regions/1
   # DELETE /regions/1.json
   def destroy
-    region = @region.product
+    product = @region.product
     @region.destroy
     respond_to do |format|
-      format.html { redirect_to product_path(region) }
+      format.html { redirect_to "#{product_path(product)}/#new_region-tab" }
       format.json { head :no_content }
     end
   end
