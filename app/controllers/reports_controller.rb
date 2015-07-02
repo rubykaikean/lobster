@@ -1,20 +1,27 @@
 class ReportsController < ApplicationController
 	before_action :authenticate_user!
   before_action :authenticate_project_owner!
+  before_action :find_product, except: [:index, :menu]
+  layout :false, except: [:index]
+
+  def index
+    @products = current_user.company.products
+  end
+
+  def menu
+    @product = Product.find params[:id]
+  end
 
 	def summary_report
-    @product = current_user.company.products.first
     @sales = @product.sales
 	end
 
 	def analysis_unit_report
-    @product = current_user.company.products.first
 		@lots = @product.lots
 		@sales = @product.sales
 	end
 
 	def analysis_age_report
-    @product = current_user.company.products.first
     @sales = @product.sales
     @buyers = []
     @sales.each do |sale|
@@ -23,7 +30,6 @@ class ReportsController < ApplicationController
 	end
 
   def analysis_race_report
-    @product = current_user.company.products.first
     @sales = @product.sales
     @buyers = []
     @sales.each do |sale|
@@ -32,12 +38,10 @@ class ReportsController < ApplicationController
   end
 
   def cancellation
-    @product = current_user.company.products.first
     @sales = @product.sales.where(status_id: Sale::REJECTED)
   end
 
 	def analysis_sources_type_report
-    @product = current_user.company.products.first
     @sales = @product.sales
     @buyers = []
     @sales.each do |sale|
@@ -63,7 +67,6 @@ class ReportsController < ApplicationController
   end
 
   def analysis_region_report
-    @product = current_user.company.products.first
     @sales = @product.sales
     @buyers = []
     @sales.each do |sale|
@@ -84,7 +87,6 @@ class ReportsController < ApplicationController
   end
 
   def sales
-    @product = current_user.company.products.first
     @today_sales = Sale.where("DATE(confirm_date) = ? and status_id = ?", Date.current, Sale::COMPLETED)
     @yesterday_sales = Sale.where("DATE(confirm_date) = ? and status_id = ?", (Date.current - 1.day), Sale::COMPLETED)
 
@@ -93,8 +95,19 @@ class ReportsController < ApplicationController
     weeks_array.each do |week|
       @this_week = week if week.include?(Date.current.day)
     end
+    if @this_week.first.nil?
+      first_day = "01"
+    else
+      first_day = @this_week.first
+    end
+    if @this_week.last.nil?
+      last_day = Date.current.end_of_month
+    else
+      last_day = @this_week.last
+    end
     to_day = Date.current
-    # @this_week_sales = Sale.where(confirm_date: "#{to_day.year}-#{to_day.month}-#{@this_week.first}".to_date.."#{to_day.year}-#{to_day.month}-#{@this_week.last}".to_date, status_id: Sale::COMPLETED)
+    # this week sales
+    @this_week_sales = Sale.where(confirm_date: "#{to_day.year}-#{to_day.month}-#{first_day}".to_date.."#{to_day.year}-#{to_day.month}-#{last_day}".to_date, status_id: Sale::COMPLETED)
 
     # this month sales
     @this_month_sales = Sale.where(confirm_date: Date.current.beginning_of_month..Date.current.end_of_month, status_id: Sale::COMPLETED)
@@ -107,7 +120,6 @@ class ReportsController < ApplicationController
   end
 
   def monthly_sales
-    @product = current_user.company.products.first
     jan = "#{Date.current.year}-01-01".to_date
     feb = "#{Date.current.year}-02-01".to_date
     mar = "#{Date.current.year}-03-01".to_date
@@ -137,7 +149,6 @@ class ReportsController < ApplicationController
 
   def agency_sales
     if is_top_level_management?
-      @product = current_user.company.products.first
       agencies = current_user.company.agencies.order(:name)
       @result = []
       @pie_chart_data = []
@@ -168,8 +179,6 @@ class ReportsController < ApplicationController
   # ============ excel ===============
 
   def export_sources_type_excel
-
-    @product = current_user.company.products.first
     @sales = @product.sales
     @buyers = []
     @sales.each do |sale|
@@ -192,7 +201,6 @@ class ReportsController < ApplicationController
   end
 
   def export_regions_excel
-    @product = current_user.company.products.first
     @sales = @product.sales
     @buyers = []
     @sales.each do |sale|
@@ -218,7 +226,6 @@ class ReportsController < ApplicationController
   end
 
   def export_analysis_age_race_excel
-    @product = current_user.company.products.first
     @sales = @product.sales
     @buyers = []
     @sales.each do |sale|
@@ -231,12 +238,17 @@ class ReportsController < ApplicationController
   end
 
   def export_summary_report_excel
-    @product = current_user.company.products.first
     @sales = @product.sales
     respond_to do |format|
       format.csv { render text: @sales.to_csv }
       format.xls
     end
+  end
+
+  private
+
+  def find_product
+    @product = Product.friendly.find params[:id]
   end
 
 

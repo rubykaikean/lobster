@@ -1,5 +1,4 @@
- <div class="row" id="content_div">
-  <div class="col-lg-12">
+
   <div class="tab-base">
           
         <!--Nav Tabs-->
@@ -21,7 +20,5 @@
             <%= render "/reports/completed_order" %>
             <%= render "/reports/rejected_order" %>
         </div>
-        <%= link_to "Export ALL Order Excel", export_summary_report_excel_reports_path(format: "xls"), :class=>"btn btn-primary" %>
-  </div>
-  </div>
+        <%= link_to "Export to Excel", export_summary_report_excel_report_path(@product, format: "xls"), :class=>"btn btn-primary" %>
   </div>

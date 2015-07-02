@@ -1,0 +1,159 @@
+<div style="padding: 5px;" class="pull-left">
+	<a href="#" id="summary_report">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Summary</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#summary_report").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= analysis_unit_report_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+	<a href="#" id="monthly_sales">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Monthly Sales</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#monthly_sales").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= monthly_sales_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+	<a href="#" id="sales_report">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Sales</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#sales_report").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= sales_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+  <a href="#" id="purchase_listing">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Purchaser Listing</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#purchase_listing").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= summary_report_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+  <a href="#" id="agency_sale">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Agency Sales</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#agency_sale").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= agency_sales_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+  <a href="#" id="cancellation">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Cancellation</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#cancellation").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= cancellation_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+  <a href="#" id="sources_report">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Analysis Sources</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#sources_report").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= analysis_sources_type_report_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+	<a href="#" id="races_report">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Analysis Race</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#races_report").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= analysis_race_report_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+	<a href="#" id="region_report">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Analysis Region</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#region_report").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= analysis_region_report_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+	<a href="#" id="age_report">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Sales By Ages</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#age_report").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= analysis_age_report_report_path(@product) %>");
+	});
+</script>
