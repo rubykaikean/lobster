@@ -35,12 +35,7 @@
             <td>
               <% sold_price = 0 %>
               <% @sales.where("status_id = 2").each do |p| %>
-                <% lot = Lot.find_by_id(p.lot_unit_id) %>
-                  <% if p.buyer.race == 2 %>
-                    <% sold_price += p.bumi_putera_price %>
-                  <% else %>
-                    <% sold_price += lot.selling_price %>
-                  <% end %>
+                <% sold_price += p.actual_price %>
               <% end %>
               RM <%= number_with_delimiter(sold_price) %>
             </td>
@@ -49,9 +44,9 @@
             <td>Available Unit</td>
             <td>
               <% available_price = 0 %>
-              <% @lots.order("id ASC").each do |p| %>
-                  <% if p.status_id == 1 %>
-                    <% available_price += p.selling_price %>
+              <% @lots.order("id ASC").each do |l| %>
+                  <% if l.status_id == 1 %>
+                    <% available_price += l.selling_price %>
                   <% end %>
               <% end %>
               RM <%= number_with_delimiter(available_price) %>
@@ -62,31 +57,12 @@
             <td>
               <% reserved_price = 0 %>
               <% @sales.where("status_id = 1").each do |p| %>
-                <% lot = Lot.find_by_id(p.lot_unit_id) %>
-                <% if p.buyer.try(:race) == 2 %>
-                    <% reserved_price += p.bumi_putera_price %>
-                  <% else %>
-                    <% reserved_price += lot.selling_price %>
-                  <% end %>
+                <% reserved_price += p.actual_price %>
               <% end %>
               RM <%= number_with_delimiter(reserved_price) %>
             </td>
           </tr>
-         <!--  <tr>
-            <td>Total</td>
-            <td>
-              <%# total_arr = [] %>
-              <%# @sales.order("id ASC").each do |p| %>
-                <%# lot = Lot.find_by_id(p.lot_unit_id) %>
-                <%# if p.buyer.race == 2 %>
-                  <%# total_arr << p.bumi_putera_price %>
-                <%# else %>
-                  <%# total_arr << lot.selling_price %>
-                <%# end %>
-              <%# end %>
-              <%#= total_arr.sum %>
-            </td>
-          </tr> -->
+       
         </tbody>
         
       </table>

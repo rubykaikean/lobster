@@ -29,21 +29,12 @@
               <td><%= p.buyer.try(:full_name) %></td>
               <td><%= p.buyer.try(:mobile_contact_number) %></td>
               <td>
-                <% lot = Lot.find_by_id(p.lot_unit_id) %>
-                <% if p.buyer.try(:race) == 2 %>
-                  <%= p.bumi_putera_price %>
-                <% else %>
-                  <%= number_with_delimiter(lot.selling_price) %>
-                <% end %>
-                
-                <%# if lot.is_bumi_putera_unit == true %>
-                  <%#= p.bumi_putera_price %>
-                <%# else %>
-                  <%#= lot.selling_price %>
-                <%# end %>
+                <% lot = p.lot %>
+                <%= number_with_delimiter(p.actual_price) %>
+     
               </td>
               <td><%= ProductType.find_by_id(p.product_id).try(:name) %></td>
-              <td><%= Lot.find_by_id(p.lot_unit_id).name %></td>
+              <td><%= lot.name %></td>
               <td>
                 <% if p.buyer.try(:age) == 1 %>
                   18-30

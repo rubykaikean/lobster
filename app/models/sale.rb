@@ -84,11 +84,13 @@ class Sale < ActiveRecord::Base
     end
   end
 
-  #for tempo
-  def bumi_putera_price
-    if lot && lot.selling_price.present?
-      rate_total = lot.selling_price * 7 / 100
-      lot.selling_price -= rate_total
+  def actual_price
+    if buyer.is_bumiputera?
+      original_price = lot.selling_price
+      rate_total = original_price * 7 / 100
+      original_price -= rate_total
+    else
+      lot.selling_price
     end
   end
 

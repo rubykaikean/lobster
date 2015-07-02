@@ -13,7 +13,7 @@
          <tbody>
           <% total = 0 %>
           <% @jan_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% jan = total %>
           <tr>
@@ -24,7 +24,7 @@
 
           <% total = 0 %>
           <% @feb_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% feb = total %>
           <tr>
@@ -35,7 +35,7 @@
 
           <% total = 0 %>
           <% @mar_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% mar = total %>
           <tr>
@@ -46,7 +46,7 @@
 
           <% total = 0 %>
           <% @apr_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% apr = total %>
           <tr>
@@ -57,7 +57,7 @@
 
           <% total = 0 %>
           <% @may_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% may = total %>
           <tr>
@@ -68,7 +68,7 @@
 
            <% total = 0 %>
           <% @jun_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% jun = total %>
           <tr>
@@ -79,7 +79,7 @@
 
            <% total = 0 %>
           <% @jul_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% jul = total %>
           <tr>
@@ -90,7 +90,7 @@
 
            <% total = 0 %>
           <% @ogo_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% aug = total %>
           <tr>
@@ -101,7 +101,7 @@
 
           <% total = 0 %>
           <% @sep_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% sep = total %>
           <tr>
@@ -112,7 +112,7 @@
 
            <% total = 0 %>
           <% @oct_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% oct = total %>
           <tr>
@@ -123,7 +123,7 @@
 
           <% total = 0 %>
           <% @nov_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% nov = total %>
           <tr>
@@ -134,7 +134,7 @@
 
           <% total = 0 %>
           <% @dec_sales.each do |sale| %>
-          	<% total += sale.lot.selling_price %>
+          	<% total += sale.actual_price %>
           <% end %>
           <% dec = total %>
           <tr>
@@ -207,110 +207,4 @@
             data: [<%= jan %>, <%= feb %>, <%= mar %>, <%= apr %>, <%= may %>, <%= jun %>, <%= jul %>, <%= aug %>, <%= sep %>, <%= oct %>, <%= nov %>, <%= dec %>]
         }]
     });
-
-  // pie chart
-  // $(function () {
-  //           // var combine = <%#= raw sold.to_json %>
-  //           var jan = <%#= jan %>;
-  //           var feb = <%#= feb %>;
-  //           var mar = <%#= mar %>;
-  //           var apr = <%#= apr %>;
-  //           var may = <%#= may %>;
-  //           var jun = <%#= jun %>;
-  //           var jul = <%#= jul %>;
-  //           var aug = <%#= aug %>;
-  //           var sep = <%#= sep %>;
-  //           var oct = <%#= oct %>;
-  //           var nov = <%#= nov %>;
-  //           var dec = <%#= dec %>;
-  //           // console.log(sold, reserved, available);
-
-  //           var colors = Highcharts.getOptions().colors;
-  //           var monthly_sale_cart = [["January", jan],["Febuary", feb],["March", mar],["April", apr],["May", may],["June", jun],["July", jul],["August", aug],["September", sep],["October", oct],["November", nov],["December", dec]];
-  //           $('#monthly_sales_pie_chart').highcharts({
-  //               chart: {
-  //                   plotBackgroundColor: null,
-  //                   plotBorderWidth: 1,//null,
-  //                   plotShadow: false
-  //               },
-  //               title: {
-  //                   text: 'Monthly Sales Report.'
-  //               },
-  //               tooltip: {
-  //                   pointFormat: '{series.name}: <b>{point.percentage:.0f} %</b>'
-  //               },
-  //               plotOptions: {
-  //                   pie: {
-  //                       allowPointSelect: true,
-  //                       cursor: 'pointer',
-  //                       dataLabels: {
-  //                           enabled: true,
-  //                           format: '<b>{point.name}</b>: {point.percentage:.0f} %',
-  //                           style: {
-  //                               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-  //                           }
-  //                       }
-  //                   }
-  //                 },
-  //               series: [{
-  //                   type: 'pie',
-  //                   name: 'Month Sales:',
-  //                   data: [{
-  //                     name: "Jan",
-  //                     y: jan,
-  //                     color: colors[0]
-  //                 }, {
-  //                     name: "Feb",
-  //                     y: feb,
-  //                     color: colors[8]
-  //                 }, {
-  //                     name: "Mar",
-  //                     y: mar,
-  //                     color: colors[2]
-  //                 }, {
-  //                     name: "Apr",
-  //                     y: apr,
-  //                     color: colors[3]
-  //                 }, {
-  //                     name: "May",
-  //                     y: may,
-  //                     color: colors[4]
-  //                 }, {
-  //                     name: "Jun",
-  //                     y: jun,
-  //                     color: colors[5]
-  //                 }, {
-  //                     name: "Jul",
-  //                     y: jul,
-  //                     color: colors[6]
-  //                 }, {
-  //                     name: "Aug",
-  //                     y: aug,
-  //                     color: colors[7]
-  //                 }, {
-  //                     name: "Sep",
-  //                     y: sep,
-  //                     color: colors[8]
-  //                 }, {
-  //                     name: "Oct",
-  //                     y: oct,
-  //                     color: colors[9]
-  //                 }, {
-  //                     name: "Nov",
-  //                     y: nov,
-  //                     color: colors[2]
-  //                 }, {
-  //                     name: "Dec",
-  //                     y: dec,
-  //                     color: colors[3]
-  //                 }]
-  //               }]
-  //           });
-  // });
-
-  
-  
-  
-
-
 </script>     

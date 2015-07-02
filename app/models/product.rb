@@ -70,9 +70,6 @@ class Product < ActiveRecord::Base
 		end
 	end
 
-	# def self.bumi_putera_price(race_id, lot_id)
-	# end
-
 	def auto_create_lot(lot)
 		title = lot[:prepend_title]
 		target_type_id = lot[:type_id].to_i

@@ -156,8 +156,7 @@ class ReportsController < ApplicationController
       sales = Sale.where("user_id IN(?) and status_id = ? and product_id = ?", current_company.user_ids, Sale::COMPLETED, @product.id)
       @result << [current_company, sales]
       total = sales.inject(0) do |sum, sale|
-        lot = sale.lot
-        sum += lot.selling_price
+        sum += sale.actual_price
       end
       @pie_chart_data << [current_company.name, total]
 
@@ -165,8 +164,7 @@ class ReportsController < ApplicationController
         sales = Sale.where("user_id IN(?) and status_id = ? and product_id = ?", agency.user_ids, Sale::COMPLETED, @product.id)
         @result << [agency, sales]
         total = sales.inject(0) do |sum, sale|
-          lot = sale.lot
-          sum += lot.selling_price
+          sum += sale.actual_price
         end
         @pie_chart_data << [agency.name, total]
       end

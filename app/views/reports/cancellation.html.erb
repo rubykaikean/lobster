@@ -21,7 +21,7 @@
                   <td><%= p.user.company.try(:name) %></td>
                   <td><%= p.user.try(:username) %></td>
                   <td><%= p.buyer.try(:full_name) %></td>
-                  <td><%= p.lot.selling_price %></td>
+                  <td><%= p.actual_price %></td>
                   <td><%= p.lot.name %></td>
                   <td>
                     <% if p.buyer.age == 1 %>
