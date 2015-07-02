@@ -111,8 +111,8 @@
                     <span class="label label-primary">Reserved</span>
                   <% end %>
 
-                  Sources : <%= sale.buyer.try(:id) %>
-                  Region : <%= sale.buyer.try(:id) %>
+                  Sources : <%= sale.buyer.try(:sources_type_id) %>
+                  Region : <%= sale.buyer.try(:region_id) %>
                 </td>
                 <% lot = sale.lot %>
                 <td class="text-center">
