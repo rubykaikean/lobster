@@ -27,7 +27,7 @@
                     <td><%= p.user.try(:username) %></td>
                     <td><%= p.buyer.try(:full_name) %></td>
                     <td><%= p.buyer.try(:mobile_contact_number) %></td>
-                    <td><%= p.actual_price %></td>
+                    <td><%= number_with_delimiter(p.actual_price) %></td>
                     <td><%= ProductType.find_by_id(p.product_id).try(:name) %></td>
                     <td><%= p.lot.try(:name) %></td>
                     <td>
