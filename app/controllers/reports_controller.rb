@@ -60,7 +60,7 @@ class ReportsController < ApplicationController
     end
     @combine = Hash[name.uniq.zip result]
     # render :text => @combine
-    render :text => name.uniq
+    # render :text => name.uniq
     # render :text => number
     # render :text => result
     # render :text => name.count { |x| x == "newspaper" }
