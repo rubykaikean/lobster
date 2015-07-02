@@ -73,9 +73,17 @@ class ProductTypesController < ApplicationController
   # DELETE /product_types/1.json
   def destroy
     product = @product_type.product
-    @product_type.destroy
+    status, message = @product_type.try_to_destroy
     respond_to do |format|
-      format.html { redirect_to "#{product_path(product)}/#product_type-tab"}
+      format.html { 
+        if status
+          @product_type.destroy
+          redirect_to "#{product_path(product)}/#product_type-tab"
+        else
+          flash[:alert] = message
+          redirect_to "#{product_path(product)}/#product_type-tab"
+        end
+      }
       format.json { head :no_content }
     end
   end

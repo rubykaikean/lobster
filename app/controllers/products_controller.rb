@@ -92,7 +92,11 @@ class ProductsController < ApplicationController
   def destroy
     # render :text => params
     phase = @product.phase
-    @product.destroy
+    if @product.try_to_destroy
+      @product.destroy
+    else
+      flash[:alert] = "The product cannot be delete because it has lot or sale attached."
+    end
     respond_to do |format|
       format.html { redirect_to phase_path(phase) }
       format.json { head :no_content }

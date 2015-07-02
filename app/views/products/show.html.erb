@@ -37,13 +37,11 @@
     <button data-toggle="modal" class="btn btn-primary" onclick="alert('Please create product type first.');">Generate Lot</button>
   <% end %>
   <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
+  <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
+  <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
   <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
   <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
   
-  <% if is_top_level_management? %>
-  <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
-  <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
-  <% end %>
   <hr>
 
   <div class="tab-base">

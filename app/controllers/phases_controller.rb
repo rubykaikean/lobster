@@ -69,7 +69,12 @@ class PhasesController < ApplicationController
   def destroy
     # render :text => params
     project = @phase.project
-    @phase.destroy
+    status, message = @phase.try_to_destroy
+    if status
+      @phase.destroy
+    else
+      flash[:alert] = message
+    end
 
     respond_to do |format|
       format.html { redirect_to project_path(project) }
