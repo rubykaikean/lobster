@@ -110,6 +110,13 @@
                   <% else %>
                     <span class="label label-primary">Reserved</span>
                   <% end %>
+
+                  <% if sale.buyer.sources_type_id == nil %>
+                    Sources : <%= sale.buyer.id %>
+                  <% end %>
+                  <% if sale.buyer.region_id == nil %>
+                    Region : <%= sale.buyer.id %>
+                  <% end %>
                 </td>
                 <% lot = sale.lot %>
                 <td class="text-center">

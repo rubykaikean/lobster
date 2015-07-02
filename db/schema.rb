@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20150629152023) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 0
+    t.integer  "row_key",                 default: 1
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
