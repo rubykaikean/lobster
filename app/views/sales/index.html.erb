@@ -99,7 +99,7 @@
           <tbody>
             <% @sales.each do |sale| %>
               <tr>
-                <td><%= sale.id %><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
+                <td><%#= sale.id %><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
                 <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
                 <td><%= sale.user.company.name %></td>
                 <td class="text-center"><%= sale.user.username %></td>
@@ -111,8 +111,8 @@
                     <span class="label label-primary">Reserved</span>
                   <% end %>
 
-                  Sources : <%= sale.buyer.try(:sources_type_id) %>
-                  Region : <%= sale.buyer.try(:region_id) %>
+                  <!-- Sources : <%#= sale.buyer.try(:sources_type_id) %>
+                  Region : <%#= sale.buyer.try(:region_id) %> -->
                 </td>
                 <% lot = sale.lot %>
                 <td class="text-center">
