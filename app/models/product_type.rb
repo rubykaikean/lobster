@@ -26,7 +26,7 @@ class ProductType < ActiveRecord::Base
   friendly_id :slug_candidates, use: :slugged
   
 	belongs_to :product
-  has_many :lots, dependent: :destroy
+  has_many :lots #, dependent: :destroy
 
 	validates :name, presence: true, uniqueness: { scope: :product_id }
 
