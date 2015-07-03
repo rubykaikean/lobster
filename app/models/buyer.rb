@@ -19,6 +19,10 @@
 #  race                  :integer
 #  age                   :integer
 #  region_id             :integer
+#  buyer_second_name     :string
+#  buyer_third_name      :string
+#  second_ic_number      :string
+#  third_ic_number       :string
 #
 # Indexes
 #
