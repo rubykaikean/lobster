@@ -6,7 +6,7 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th>type</th>
+            <th>TYPE</th>
             <th>Unit</th>
           </tr>
           <tr>
@@ -31,7 +31,7 @@
             <th></th>
           </tr>
           <tr>
-            <td>Sold Unit</td>
+            <td>Sold :</td>
             <td>
               <% sold_price = 0 %>
               <% @sales.where("status_id = 2").each do |p| %>
@@ -46,7 +46,7 @@
             </td>
           </tr>
           <tr>
-            <td>Available Unit</td>
+            <td>Available :</td>
             <td>
               <% available_price = 0 %>
               <% @lots.order("id ASC").each do |p| %>
@@ -58,7 +58,7 @@
             </td>
           </tr>
           <tr>
-            <td>Reserved Unit</td>
+            <td>Reserved :</td>
             <td>
               <% reserved_price = 0 %>
               <% @sales.where("status_id = 1").each do |p| %>
@@ -72,21 +72,10 @@
               RM <%= number_with_delimiter(reserved_price) %>
             </td>
           </tr>
-         <!--  <tr>
-            <td>Total</td>
-            <td>
-              <%# total_arr = [] %>
-              <%# @sales.order("id ASC").each do |p| %>
-                <%# lot = Lot.find_by_id(p.lot_unit_id) %>
-                <%# if p.buyer.race == 2 %>
-                  <%# total_arr << p.bumi_putera_price %>
-                <%# else %>
-                  <%# total_arr << lot.selling_price %>
-                <%# end %>
-              <%# end %>
-              <%#= total_arr.sum %>
-            </td>
-          </tr> -->
+          <tr>
+            <td>Total :</td>
+            <td>RM <%= sold_price + available_price + reserved_price  %></td>
+          </tr>
         </tbody>
         
       </table>

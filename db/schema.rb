@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629152023) do
+ActiveRecord::Schema.define(version: 20150702091746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(version: 20150629152023) do
     t.integer  "race"
     t.integer  "age"
     t.integer  "region_id"
+    t.string   "buyer_second_name"
+    t.string   "buyer_third_name"
+    t.string   "second_ic_number"
+    t.string   "third_ic_number"
   end
 
   add_index "buyers", ["region_id"], name: "index_buyers_on_region_id", using: :btree

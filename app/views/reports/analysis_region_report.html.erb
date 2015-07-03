@@ -10,11 +10,14 @@
             <th>Region</th>
             <th>Unit</th>
           </tr>
-             <% @combine.each do |key, value| %>
-          <tr>
-            <td class="text-center"><%= key %></td>
-            <td><%= value %></td>
-          </tr>
+          <% @combine.each do |key, value| %>
+            <% if key %>
+            <tr>
+              <td class="text-center"><%= key %></td>
+              <td><%= value %></td>
+            </tr>
+            <% else %>
+            <% end %>
           <% end %>
         </tbody>
         
