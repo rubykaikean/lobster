@@ -44,6 +44,8 @@ class Product < ActiveRecord::Base
 	after_create :generate_setting
   after_find :generate_setting
 
+  scope :published, -> { where(is_published: true) }
+
 	LANDED = 1
 	HIGHRISE = 2
 	

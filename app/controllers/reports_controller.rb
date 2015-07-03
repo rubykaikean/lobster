@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   layout :false, except: [:index]
 
   def index
-    @products = current_user.company.products
+    @products = current_user.company.products.published
   end
 
   def menu
