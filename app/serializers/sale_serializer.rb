@@ -2,28 +2,24 @@
 #
 # Table name: sales
 #
-#  id                       :integer          not null, primary key
-#  project_id               :integer
-#  product_id               :integer
-#  lot_unit_id              :integer
-#  phase_id                 :integer
-#  user_id                  :integer
-#  status_id                :integer          default(1)
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  buyer_id                 :integer
-#  downpayment              :integer
-#  downpayment_percentage   :integer
-#  bank_loan                :string
-#  spa                      :string
-#  booking_fee              :integer
-#  reject_reason            :string
-#  downpayment_type         :string
-#  confirm_date             :datetime
-#  purchaser_name           :string
-#  purchaser_address        :text
-#  purchaser_ic_number      :string(15)
-#  purchaser_contact_number :string(15)
+#  id                     :integer          not null, primary key
+#  project_id             :integer
+#  product_id             :integer
+#  lot_unit_id            :integer
+#  phase_id               :integer
+#  user_id                :integer
+#  status_id              :integer          default(1)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  buyer_id               :integer
+#  downpayment            :integer
+#  downpayment_percentage :integer
+#  bank_loan              :string
+#  spa                    :string
+#  booking_fee            :integer
+#  reject_reason          :string
+#  downpayment_type       :string
+#  confirm_date           :datetime
 #
 # Indexes
 #

@@ -31,44 +31,7 @@
   <br>
 
   <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_purchaser_name">Full name:</label>
-    <div class="col-md-9">
-      <input type="text" id="sale_purchaser_name" name="sale[purchaser_name]" class="form-control" placeholder="Full name" value="<%= @sale.purchaser_name %>" required>
-      <small class="help-block">Required field</small>
-    </div>
-  </div>
-  <br>
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_purchaser_ic_number">IC number:</label>
-    <div class="col-md-9">
-      <input type="text" id="sale_purchaser_ic_number" name="sale[purchaser_ic_number]" class="form-control" placeholder="IC number" value="<%= @sale.purchaser_ic_number %>" required minlength="12" maxlength="12">
-      <small class="help-block">Required field. Example : 900826075088</small>
-    </div>
-  </div>
-  <br>
-
-   <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_purchaser_contact_number">Contact number:</label>
-    <div class="col-md-9">
-      <input type="text" id="sale_purchaser_contact_number" name="sale[purchaser_contact_number]" class="form-control" placeholder="Contact number" value="<%= @sale.purchaser_contact_number %>" required>
-      <small class="help-block">Required field. Example : 0183998888</small>
-    </div>
-  </div>
-  <br>
-
-   <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_purchaser_address">Address</label>
-    <div class="col-md-9">
-      <textarea id="sale_purchaser_address" name="sale[purchaser_address]" rows="4" class="form-control" required><%= @sale.purchaser_address %></textarea>
-      <small class="help-block">Required field</small>
-    </div>
-  </div>
-  <br>
-
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_downpayment">DownPayment(RM):</label>
+    <label class="col-md-3 control-label" for="sale_downpayment">Down Payment(RM):</label>
     <div class="col-md-9">
       <input type="number" id="sale_downpayment" name="sale[downpayment]" class="form-control" placeholder="DownPayment" value="<%= @sale.downpayment %>">
       <!-- <small class="help-block">This is a help text</small> -->
