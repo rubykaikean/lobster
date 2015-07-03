@@ -1,6 +1,11 @@
-<h3 class="panel-title"><strong>Product Detail</strong></h3>
-  <div class="panel">
-    <div class="panel-body">
+<div class="row" id="content_div">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Product detail</h3>
+      </div>
+      <div class="panel-body">
+  
       <p>
         <strong>Name:</strong>
         <%= @product.name %>
@@ -26,23 +31,21 @@
       </p>
 
       <br>
-      <a href="<%= edit_product_path(@product) %>"><button class="btn btn-sm btn-primary">Edit</button></a>
+      <a href="<%= edit_product_path(@product) %>"><button class="btn btn-primary">Edit</button></a>
 
+    <%#= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
+    <% if @product_types.any? %>
+      <button data-target="#generate_lot" data-toggle="modal" class="btn btn-primary">Generate Lot</button>
+    <% else %>
+      <button data-toggle="modal" class="btn btn-primary" onclick="alert('Please create product type first.');">Generate Lot</button>
+    <% end %>
+      <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
+      <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
+      <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
+      <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
+      <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
     </div>
   </div>
-  <%#= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
-  <% if @product_types.any? %>
-    <button data-target="#generate_lot" data-toggle="modal" class="btn btn-primary">Generate Lot</button>
-  <% else %>
-    <button data-toggle="modal" class="btn btn-primary" onclick="alert('Please create product type first.');">Generate Lot</button>
-  <% end %>
-  <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
-  <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
-  <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
-  <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
-  <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
-  
-  <hr>
 
   <div class="tab-base">
           
@@ -77,24 +80,22 @@
     </ul>
 
     <!--Tabs Content-->
-   <div class="tab-content">
-      <%= render "/products/lot_tab" %>
-      <%= render "/products/product_type_tab" %>
-      <%= render "/products/product_setting_tab" %>
-      <%= render "/products/email_setting_tab" %>
-      <%= render "/products/floor_plan_tab" %>
-      <%= render "/products/site_plan_tab" %>
-      <%= render "/products/region_tab" %>
-      <%= render "/products/sources_type_tab" %>
-   </div>
-  </div>
+     <div class="tab-content">
+        <%= render "/products/lot_tab" %>
+        <%= render "/products/product_type_tab" %>
+        <%= render "/products/product_setting_tab" %>
+        <%= render "/products/email_setting_tab" %>
+        <%= render "/products/floor_plan_tab" %>
+        <%= render "/products/site_plan_tab" %>
+        <%= render "/products/region_tab" %>
+        <%= render "/products/sources_type_tab" %>
+     </div>
+    </div>
               <!--===================================================-->
               <!--End Default Tabs (Left Aligned)-->
-          
-
-  <!-- <h3 class="panel-title"><strong>Product Types List</strong></h3> -->
-  
-  <!-- <h3 class="panel-title"><strong>Lot List</strong></h3> -->
+    
+  </div>
+</div>
  
 
   <div class="modal fade" id="generate_lot" role="dialog" tabindex="-1" aria-labelledby="generate_lot" aria-hidden="true">
