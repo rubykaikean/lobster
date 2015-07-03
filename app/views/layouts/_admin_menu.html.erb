@@ -46,20 +46,21 @@
 
 									<!--Category name-->
 									<li class="list-header">Management</li>
+									  <!--Menu list item-->
+
 									  <li>
 											<a href="<%= reports_path %>">
 												<i class="fa fa-bar-chart"></i>
 												<span class="menu-title">Report</span>
 											</a>
 										</li>
-										<!--Menu list item-->
+
 										<li>
 											<a href="<%= users_path %>">
 												<i class="fa fa-user"></i>
-												<span class="menu-title">User</span>
+												<span class="menu-title">&nbsp;User</span>
 											</a>
 										</li>
-
 									<li class="list-divider"></li>
 						
 									<!--Category name-->
@@ -91,13 +92,13 @@
 													<span class="menu-title">Product</span>
 													<i class="arrow"></i>
 												</a>
-						
-										<!--Submenu-->
-										<ul class="collapse">
-										  <% current_user.company.products.each do |product| %>
-											  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
-											<% end %>
-										</ul>
+											<!--Submenu-->
+											<ul class="collapse">
+											  <% current_user.company.products.each do |product| %>
+												  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
+												<% end %>
+											</ul>
+										</li>
 										<% end %>
 									<% end %>
 
