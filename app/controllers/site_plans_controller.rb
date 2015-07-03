@@ -41,7 +41,7 @@ class SitePlansController < ApplicationController
 
     respond_to do |format|
       if @site_plan.save
-        format.html { redirect_to :back, notice: 'Site plan was successfully created.' }
+        format.html { redirect_to "#{product_path(@product)}/#site_plan-tab", notice: 'Site plan was successfully created.' }
         format.json { render json: @site_plan, status: :created }
       else
         format.html { render action: 'new' }
@@ -67,9 +67,10 @@ class SitePlansController < ApplicationController
   # DELETE /site_plans/1
   # DELETE /site_plans/1.json
   def destroy
+    product = @site_plan.product
     @site_plan.destroy
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to "#{product_path(@product)}/#site_plan-tab" }
       format.json { head :no_content }
     end
   end

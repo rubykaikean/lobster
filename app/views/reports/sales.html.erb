@@ -17,7 +17,7 @@
          <tbody>
           <% today_total = 0 %>
           <% @today_sales.each do |sale| %>
-          	<% today_total += sale.lot.selling_price %>
+          	<% today_total += sale.actual_price %>
           <% end %>
           <tr>
             <td>Today</td>
@@ -27,7 +27,7 @@
 
           <% yesterday_total = 0 %>
           <% @yesterday_sales.each do |sale| %>
-          	<% yesterday_total += sale.lot.selling_price %>
+          	<% yesterday_total += sale.actual_price %>
           <% end %>
           <tr>
             <td>Yesterday</td>
@@ -36,18 +36,18 @@
           </tr>
 
           <% this_week_total = 0 %>
-          <%# @this_week_sales.each do |sale| %>
-          	<%# this_week_total += sale.lot.selling_price %>
-          <%# end %>
+          <% @this_week_sales.each do |sale| %>
+          	<% this_week_total += sale.actual_price %>
+          <% end %>
           <tr>
             <td>This Week</td>
-            <td class="text-center"><%#= @this_week_sales.size %></td>
-            <td class="text-right">RM <%#= number_with_delimiter(this_week_total) %></td>
+            <td class="text-center"><%= @this_week_sales.size %></td>
+            <td class="text-right">RM <%= number_with_delimiter(this_week_total) %></td>
           </tr>
 
           <% this_month_total = 0 %>
           <% @this_month_sales.each do |sale| %>
-          	<% this_month_total += sale.lot.selling_price %>
+          	<% this_month_total += sale.actual_price %>
           <% end %>
           <tr>
             <td>This Month</td>
@@ -57,7 +57,7 @@
 
           <% this_quarter_total = 0 %>
           <% @this_quarter_sales.each do |sale| %>
-          	<% this_quarter_total += sale.lot.selling_price %>
+          	<% this_quarter_total += sale.actual_price %>
           <% end %>
           <tr>
             <td>This Quarter</td>
@@ -67,7 +67,7 @@
 
           <% this_year_total = 0 %>
           <% @this_year_sales.each do |sale| %>
-          	<% this_year_total += sale.lot.selling_price %>
+          	<% this_year_total += sale.actual_price %>
           <% end %>
           <tr>
             <td>This Year</td>

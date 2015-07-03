@@ -42,7 +42,7 @@ class ProductTypesController < ApplicationController
 
     respond_to do |format|
       if @product_type.save
-        format.html { redirect_to @product_type.product, notice: 'Product type was successfully created.' }
+        format.html { redirect_to "#{product_path(@product_type.product)}/#product_type-tab", notice: 'Product type was successfully created.' }
         format.json { render json: @product_type, status: :created }
       else
         format.html { 
@@ -73,22 +73,31 @@ class ProductTypesController < ApplicationController
   # DELETE /product_types/1.json
   def destroy
     product = @product_type.product
-    @product_type.destroy
+    status, message = @product_type.try_to_destroy
     respond_to do |format|
-      format.html { redirect_to product_path(product)}
+      format.html { 
+        if status
+          @product_type.destroy
+          redirect_to "#{product_path(product)}/#product_type-tab"
+        else
+          flash[:alert] = message
+          redirect_to "#{product_path(product)}/#product_type-tab"
+        end
+      }
       format.json { head :no_content }
     end
   end
 
-  def update_product_type
+  def bulk_update
     # render :text => update_product_type_params
+    product = Product.friendly.find(params[:id])
     update_product_type_params.each do |id, content|
       product_type = ProductType.find id
       product_type.name = content[:name]
       product_type.description = content[:description]
       product_type.save!
     end
-    redirect_to :back, notice: "Product Type update successfully."
+    redirect_to "#{product_path(product)}/#product_type-tab", notice: "Product Type update successfully."
   end
 
   private

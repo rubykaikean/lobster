@@ -67,8 +67,8 @@ Rails.application.routes.draw do
   end
 
   resources :product_types do 
-    collection do 
-      post "update_product_type"
+    member do 
+      post "bulk_update"
     end
   end
 

@@ -29,10 +29,10 @@ class Product < ActiveRecord::Base
 
 	belongs_to :phase
 	belongs_to :company
-	has_many :lots, dependent: :destroy
-	has_many :product_types, dependent: :destroy
-	has_one  :email_setting, dependent: :destroy
-	has_one  :product_setting, dependent: :destroy
+	has_many :lots
+	has_many :product_types
+	has_one  :email_setting
+	has_one  :product_setting
   has_many :sales
   has_many :floor_plans
   has_many :site_plans
@@ -70,9 +70,6 @@ class Product < ActiveRecord::Base
 		end
 	end
 
-	# def self.bumi_putera_price(race_id, lot_id)
-	# end
-
 	def auto_create_lot(lot)
 		title = lot[:prepend_title]
 		target_type_id = lot[:type_id].to_i
@@ -98,6 +95,14 @@ class Product < ActiveRecord::Base
 
 	def should_generate_new_friendly_id?
     name_changed?
+  end
+
+  def try_to_destroy
+    if lots.any? || sales.any?
+      false
+    else
+      true
+    end
   end
 
   private

@@ -46,9 +46,13 @@ class Buyer < ActiveRecord::Base
   INDIAN = 3
   OTHER = 4
 
-  # def should_generate_new_friendly_id?
-  #   full_name_changed?
-  # end
+  def should_generate_new_friendly_id?
+    full_name_changed?
+  end
+
+  def is_bumiputera?
+    race == BUMIPUTERA
+  end
 
 
 end

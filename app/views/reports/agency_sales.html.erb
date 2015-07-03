@@ -16,8 +16,7 @@
           <% agency_sales = sale_array.last %>
           <% 
             total = agency_sales.inject(0) do |sum, sale|  
-          	  lot = sale.lot
-          	  sum += lot.selling_price
+          	  sum += sale.actual_price
             end
           %>
           <tr>

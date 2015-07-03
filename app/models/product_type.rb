@@ -26,7 +26,7 @@ class ProductType < ActiveRecord::Base
   friendly_id :slug_candidates, use: :slugged
   
 	belongs_to :product
-  has_many :lots, dependent: :destroy
+  has_many :lots
 
 	validates :name, presence: true, uniqueness: { scope: :product_id }
 
@@ -42,6 +42,14 @@ class ProductType < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     name_changed?
+  end
+
+  def try_to_destroy
+    if lots.any?
+      return false, "The product type cannot be delete because it's having at least one lot attached."
+    else
+      return true, "Save to destroy."
+    end
   end
 
 end

@@ -23,7 +23,7 @@ class Phase < ActiveRecord::Base
   # friendly_id :name, :use => :slugged
 
   belongs_to :project
-  has_many   :products, dependent: :destroy
+  has_many   :products
 
   # validates :name, presence: true
 
@@ -51,6 +51,14 @@ class Phase < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     name_changed?
+  end
+
+  def try_to_destroy
+    if products.any?
+      return false, "The phase cannot be delete because it's has at least one product attached."
+    else
+      return true, "Save to destroy"
+    end
   end
 
 end

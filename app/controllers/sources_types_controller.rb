@@ -36,10 +36,10 @@ class SourcesTypesController < ApplicationController
   # POST /sources_types.json
   def create
     @sources_type = SourcesType.new(sources_type_params)
-
+    @product = @sources_type.product
     respond_to do |format|
       if @sources_type.save
-        format.html { redirect_to :back, notice: 'Sources type was successfully created.' }
+        format.html { redirect_to "#{product_path(@product)}/#new_sources_type-tab", notice: 'Sources type was successfully created.' }
         format.json { render json: @sources_type, status: :created }
       else
         format.html { render action: 'new' }
@@ -65,10 +65,10 @@ class SourcesTypesController < ApplicationController
   # DELETE /sources_types/1
   # DELETE /sources_types/1.json
   def destroy
-    source_type = @source_type.product
+    product = @sources_type.product
     @sources_type.destroy
     respond_to do |format|
-      format.html { redirect_to product_path(source_type) }
+      format.html { redirect_to "#{product_path(product)}/#new_sources_type-tab" }
       format.json { head :no_content }
     end
   end

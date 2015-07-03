@@ -78,7 +78,11 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @project.destroy
+    if @project.try_to_destroy
+      @project.destroy
+    else
+      flash[:alert] = "The project cannot be delete because it has phase attached."
+    end
     respond_to do |format|
       format.html { redirect_to projects_url }
       format.json { head :no_content }

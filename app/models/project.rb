@@ -24,9 +24,7 @@ class Project < ActiveRecord::Base
   # friendly_id :name, :use => :slugged
 
   belongs_to :company
-  has_many   :phases, dependent: :destroy
-  has_many   :site_plan, dependent: :destroy
-  has_many   :floor_plan, dependent: :destroy
+  has_many   :phases
 
   validates :name, presence: true, uniqueness: { scope: :company_id }
 
@@ -75,6 +73,15 @@ class Project < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     name_changed?
+  end
+
+  def try_to_destroy
+    if phases.any?
+      false
+    else
+      true
+    end
+    
   end
 
 end

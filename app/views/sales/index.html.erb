@@ -100,8 +100,8 @@
               <tr>
                 <td><%#= sale.id %><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
                 <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
-                <td><%= sale.user.company.name %></td>
-                <td class="text-center"><%= sale.user.username %></td>
+                <td><%= sale.user.company.name rescue "Company not found" %></td>
+                <td class="text-center"><%= sale.user.username rescue "User not found" %></td>
                 <td class="text-center">
                   <% if is_top_level_management? || (sale.user_id == current_user.id) %>
                     <a href="<%= edit_buyer_path(sale.buyer, sale_id: sale.id) rescue '#' %>"><button class="btn btn-primary btn-sm"><%= sale.buyer.try(:full_name) || "Unknown" %></button>
@@ -115,13 +115,13 @@
                 </td>
                 <% lot = sale.lot %>
                 <td class="text-center">
-                  <%= lot.product.name %></td>
+                  <%= lot.product.name rescue "Lot not found" %></td>
                 <td class="text-center">
-                  <%= lot.name %>
+                  <%= lot.name rescue "Lot not found" %>
                 </td>
                 <%# binding.pry %>
                 <td class="text-center">
-                  <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
+                  <%= number_with_precision(sale.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>

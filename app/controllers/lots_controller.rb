@@ -67,7 +67,6 @@ class LotsController < ApplicationController
   # DELETE /lots/1
   # DELETE /lots/1.json
   def destroy
-    
     @lot.destroy
     respond_to do |format|
       format.html { redirect_to :back }
@@ -91,7 +90,6 @@ class LotsController < ApplicationController
   end
 
   def book_lot
-    
   end
 
   private

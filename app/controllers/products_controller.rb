@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_project_owner!, except: [:site_plans, :floor_plans]
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :site_plans, :floor_plans]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :site_plans, :floor_plans, :update_sources_type, :update_region]
   
   # GET /products
   # GET /products.json
@@ -92,7 +92,11 @@ class ProductsController < ApplicationController
   def destroy
     # render :text => params
     phase = @product.phase
-    @product.destroy
+    if @product.try_to_destroy
+      @product.destroy
+    else
+      flash[:alert] = "The product cannot be delete because it has lot or sale attached."
+    end
     respond_to do |format|
       format.html { redirect_to phase_path(phase) }
       format.json { head :no_content }
@@ -120,8 +124,7 @@ class ProductsController < ApplicationController
     setting = ProductSetting.find(params[:id])
     setting.update(setting_params)
     flash[:notice] = "Setting has been saved."
-    # redirect_to "#{product_path(setting.product)}#product_setting-tab"
-    redirect_to :back
+    redirect_to "#{product_path(setting.product)}#product_setting-tab"
   end
 
   def update_region
@@ -132,7 +135,7 @@ class ProductsController < ApplicationController
       region.save!
     end
     flash[:notice] = "Region has been saved."
-    redirect_to :back
+    redirect_to "#{product_path(@product)}/#new_region-tab"
   end
 
   def update_sources_type
@@ -143,14 +146,14 @@ class ProductsController < ApplicationController
       sources.save!
     end
     flash[:notice] = "Sources Type has been saved."
-    redirect_to :back
+    redirect_to "#{product_path(@product)}/#new_sources_type-tab"
   end
 
   def update_email_setting
     email_setting = EmailSetting.find(params[:id])
     email_setting.update(setting_email_params)
     flash[:notice] = "Email Setting has been saved."
-    redirect_to :back
+    redirect_to "#{product_path(email_setting.product)}#email_setting-tab"
   end
 
   private

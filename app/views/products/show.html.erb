@@ -37,43 +37,43 @@
     <button data-toggle="modal" class="btn btn-primary" onclick="alert('Please create product type first.');">Generate Lot</button>
   <% end %>
   <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
+  <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
+  <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
   <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
   <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
   
-  <% if is_top_level_management? %>
-  <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
-  <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
-  <% end %>
   <hr>
 
   <div class="tab-base">
           
     <!--Nav Tabs-->
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" id="product_options_tabs">
       <li class="active">
         <a data-toggle="tab" href="#lot-tab">Lot list</a>
       </li>
       <li>
         <a data-toggle="tab" href="#product_type-tab">Types <!-- <span class="badge badge-purple">27</span> --></a>
       </li>
-      <li>
-        <a data-toggle="tab" href="#site_plan-tab">Site Plan <!-- <span class="badge badge-purple">27</span> --></a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#floor_plan-tab">Floor Plan<!-- <span class="badge badge-purple">27</span> --></a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#product_setting-tab">Setting</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#email_setting-tab">Email Template</a>
-      </li>
-      <li>
+       <li>
         <a data-toggle="tab" href="#new_region-tab">Region</a>
       </li>
       <li>
         <a data-toggle="tab" href="#new_sources_type-tab">Source Types</a>
       </li>
+      <li>
+        <a data-toggle="tab" href="#site_plan-tab">Site Plan <!-- <span class="badge badge-purple">27</span> --></a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#floor_plan-tab">Floor Plan</a>
+      </li>
+     
+      <li>
+        <a data-toggle="tab" href="#email_setting-tab">Email Template</a>
+      </li>
+       <li>
+        <a data-toggle="tab" href="#product_setting-tab">Setting</a>
+      </li>
+     
     </ul>
 
     <!--Tabs Content-->
@@ -216,3 +216,16 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+   $( document ).ready(function() {
+
+        var loc = window.location.href;
+        var pathName = loc.split("#");
+        var tab_id = pathName.pop();
+        if(tab_id !== undefined) {
+          $('#product_options_tabs a[href="#'+ tab_id +'"]').tab("show");
+        }
+    
+   });
+  </script>
