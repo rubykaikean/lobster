@@ -13,6 +13,20 @@
   </div>
 
   <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_buyer_second_name"></label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_buyer_second_name" name="buyer[buyer_second_name]" class="form-control" placeholder="Second Buyer Name" value="<%= @buyer.buyer_second_name %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_buyer_third_name"></label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_buyer_third_name" name="buyer[buyer_third_name]" class="form-control" placeholder="Third Buyer Name" value="<%= @buyer.buyer_third_name %>">
+    </div>
+  </div> 
+
+  <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_email">Email: </label>
     <div class="col-md-9">
       <input type="text" id="buyer_email" name="buyer[email]" class="form-control" placeholder="Email" value="<%= @buyer.email %>">
@@ -24,6 +38,20 @@
     <div class="col-md-9">
       <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" required maxlength="12" minlength="12">
       <small class="help-block">Required field. Example : 801023075488</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_second_ic_number"></label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_second_ic_number" name="buyer[second_ic_number]" class="form-control" placeholder="Second Buyer IC Number" value="<%= @buyer.second_ic_number %>" maxlength="12" minlength="12">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_third_ic_number"></label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_third_ic_number" name="buyer[third_ic_number]" class="form-control" placeholder="Third Buyer IC Number" value="<%= @buyer.third_ic_number %>" maxlength="12" minlength="12">
     </div>
   </div>
 
