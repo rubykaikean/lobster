@@ -11,7 +11,14 @@
             <td>Name: </td>
             <td><%= f.search_field :name_cont, :placeholder => "", :class => "form-control"%>
             </td>
-            <td>Row key: </td>
+            <td>
+              <% if @product.type_id == Product::LANDED %>
+                Row key
+              <% elsif @product.type_id == Product::HIGHRISE %>
+                Floor level
+              <% else %>
+              <% end %>
+            </td>
             <td><%= f.search_field :row_key_eq, :placeholder => "", :class => "form-control"%>
             </td>
             <td>Type: </td>
@@ -42,11 +49,18 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th class="text-center">Row key</th>
+            <th class="text-center">
+              <% if @product.type_id == Product::LANDED %>
+                Row key
+              <% elsif @product.type_id == Product::HIGHRISE %>
+                Floor level
+              <% else %>
+              <% end %>
+            </th>
             <th class="text-center">Type</th>
             <th class="text-center">Price</th>
             <!-- <th class="text-center">Bumiputera Unit</th> -->
-            <th class="text-center">Status</th>
+            <!-- <th class="text-center">Status</th> -->
           </tr>
         </thead>
         
@@ -77,9 +91,9 @@
               <!-- <td class="text-center">
                 <%#= check_box_tag "update_lot[#{lot.id}][is_bumi_putera_unit]" ,true ,lot.is_bumi_putera_unit == true ? "checked" : nil %>
               </td> -->
-              <td class="text-center">
-                <%= lot.status  %>
-              </td>
+              <!-- <td class="text-center">
+                <%#= lot.status  %>
+              </td> -->
             </tr>
           <% end %>
         </tbody>
