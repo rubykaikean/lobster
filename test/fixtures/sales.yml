@@ -20,6 +20,7 @@
 #  reject_reason          :string
 #  downpayment_type       :string
 #  confirm_date           :datetime
+#  admin_confirm_user_id  :integer
 #
 # Indexes
 #

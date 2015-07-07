@@ -20,6 +20,7 @@
 #  reject_reason          :string
 #  downpayment_type       :string
 #  confirm_date           :datetime
+#  admin_confirm_user_id  :integer
 #
 # Indexes
 #
@@ -61,22 +62,16 @@ class Sale < ActiveRecord::Base
   end
 
   def lot
-    if product.type_id == Product::LANDED
-      Lot.find_by(id: lot_unit_id)
-    else
-
-    end
+    Lot.find_by(id: lot_unit_id)
   end
 
   def confirm_sale(confirm_params)
     self.status_id = COMPLETED
     self.confirm_date = Time.current if confirm_date.nil?
     if self.update(confirm_params)
-      # Sale.reject_sale_same_record(s)
-      if lot
-        lot.status_id = Lot::SOLD
-        lot.save
-      end
+      lot = Lot.find_by(id: lot_unit_id)
+      lot.status_id = Lot::SOLD
+      lot.save
     end
   end
 

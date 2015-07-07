@@ -123,7 +123,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number)
+      params.require(:sale).permit(:admin_confirm_user_id ,:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number)
     end
 
     def confirm_sale_params
