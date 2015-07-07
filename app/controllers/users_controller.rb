@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       @users << agency.users
     end
     @users.flatten!
-    @users.sort_by! {|user| [user.company_id, user.username]}
+    @users.sort_by! {|user| [user.company_id, user.name]}
 
     respond_to do |format|
       format.html # index.html.erb

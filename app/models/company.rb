@@ -103,7 +103,7 @@ class Company < ActiveRecord::Base
       result << agency.users.to_a
     end
     result = result.flatten.uniq
-    result.sort_by {|agent| agent.username }
+    result.sort_by {|agent| agent.name }
   end
 
   def can_destroy?

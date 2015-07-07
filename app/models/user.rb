@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
   	email.split("@").last.split(".").first rescue nil
   end
 
+  def name
+    username || display_name || email
+  end
+
   def is_admin?
     type_id == ADMIN
   end
