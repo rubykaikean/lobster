@@ -1,3 +1,27 @@
+<% content_for :stylesheets do %>
+	<style type="text/css">
+		::-webkit-scrollbar {
+      width: 15px;
+    } /* this targets the default scrollbar (compulsory) */
+    ::-webkit-scrollbar-track {
+      background-color: #848c95;
+		} /* the new scrollbar will have a flat appearance with the set background color */
+		 
+		::-webkit-scrollbar-thumb {
+		  background-color: rgba(0, 0, 0, 0.2); 
+		} /* this will style the thumb, ignoring the track */
+		 
+		/*::-webkit-scrollbar-button {
+		  background-color: #7c2929;
+		}*/ /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+		 
+		::-webkit-scrollbar-corner {
+		  background-color: black;
+		} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
+	</style>
+<% end %>
+
+
 <div class="row" id="content_div">
   <div class="col-lg-12">
 
@@ -21,7 +45,7 @@
 
 				<div class="panel-body" style="padding-top:0px;">
 				<div class="table-responsive">
-
+				  
 						<table class="table table-bordered">
 						  <thead>
 							</thead>
@@ -74,9 +98,8 @@
 							</tbody>
 						</table>
 					</div>
+			</div> <!-- panel body -->
 
-				</div> <!-- panel body -->
-
-			</div> <!-- panel -->
+		</div> <!-- panel -->
   </div>
 </div>  <!-- row -->
