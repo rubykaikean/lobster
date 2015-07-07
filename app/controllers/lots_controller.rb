@@ -67,7 +67,14 @@ class LotsController < ApplicationController
   # DELETE /lots/1
   # DELETE /lots/1.json
   def destroy
-    @lot.destroy
+    # render :text => params
+
+    sale = Sale.pluck(:lot_unit_id)
+    if sale.any? {|a| a == @lot.id }
+      flash[:alert] = "The Lot cannot be delete because it has Sale attached. "
+     else
+      @lot.destroy
+    end
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { head :no_content }
