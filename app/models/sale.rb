@@ -69,6 +69,9 @@ class Sale < ActiveRecord::Base
     self.status_id = COMPLETED
     self.confirm_date = Time.current if confirm_date.nil?
     if self.update(confirm_params)
+      lot = Lot.find_by(id: lot_unit_id)
+      # lot.status_id = Lot::SOLD
+      # lot.save
       if lot
         lot.status_id = Lot::SOLD
         lot.save
