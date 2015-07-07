@@ -1,3 +1,16 @@
+<% content_for :stylesheets do %>
+  <link href="/plugins/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
+<% end %>
+<% content_for :javascripts do %>
+  <script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+  <script src="/js/demo/form-component.js"></script>
+  <script type="text/javascript">
+    $('#sale_confirm_date').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    });
+  </script>
+<% end %>
 
 
 <%= form_tag confirm_sale_path(sale), {:class => 'panel-body form-horizontal form-padding'}  do %>
@@ -13,19 +26,20 @@
                 <option value="<%= member.id %>" <%= member.id == sale.user_id ? "selected='selected'" : nil %> ><%= member.name %></option>
               <% end %>
             </select>
+            <small class="help-block"> </small>
           </div>
         </div>
 
         <input type="hidden" name="sale[admin_confirm_user_id]" class="form-control" value="<%= current_user.id %>">
-
+      <br>
       <div class="form-group">
-        <label class="col-md-3 control-label" for="sale_user_id">SPA Date</label>
+        <label class="col-md-3 control-label" for="sale_confirm_date">SPA Date</label>
         <div class="col-md-9">
           <div class="input-group date">
             <input type="text" class="form-control" name="sale[confirm_date]" id="sale_confirm_date" value="">
             <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
           </div>
-          <small class="text-muted">Click to change the date</small>
+          <small class="text-muted">Click to select the SPA date</small>
       </div>
     </div>
     <br>
