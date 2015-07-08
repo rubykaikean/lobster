@@ -32,6 +32,7 @@ gem 'fog'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'exception_notification'
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 gem 'rails_email_preview', '~> 0.2.29'
 gem 'annotate', '~> 2.6.6'
 gem "puma"
