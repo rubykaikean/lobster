@@ -25,7 +25,6 @@
 class Product < ActiveRecord::Base
 	extend FriendlyId
 	friendly_id :slug_candidates, use: :slugged
-  # friendly_id :name, :use => :slugged
 
 	belongs_to :phase
 	belongs_to :company

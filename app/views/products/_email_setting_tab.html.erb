@@ -22,6 +22,11 @@
       <label class="col-md-2 control-label" for="setting_email_body">Body</label>
         <div class="col-md-10">
          <textarea id="setting_email_body" name="setting_email[body]" rows="20" class="form-control"><%= @email.body %></textarea>
+         <small class="help-block">Available helper names :
+         
+         [buyer_full_name], [lot_name], [buyer_address], [buyer_ic_number], [buyer_mobile_contact_number], [sale_booking_fee], [sale_downpayment], [sale_confirm_date_short_format], [sale_actual_price]
+
+         </small>
         </div>
       </div>
 

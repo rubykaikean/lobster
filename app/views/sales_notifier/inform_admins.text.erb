@@ -1,0 +1,10 @@
+Congratulation ! A new sale has been confirmed !
+
+Below is the detail :
+Buyer Full name : <%= @buyer.full_name %>
+Project : <%= @product.name %>
+Lot / Unit : <%= @lot.name %>
+Selling Price : RM <%= number_with_precision(@sale.actual_price, precision: 0, separator: ".", delimiter: ",") %>
+Downpayment : RM <%= number_with_precision(@sale.downpayment, precision: 0, separator: ".", delimiter: ",") %>
+Sale person : <%= @sale.user.name %> 
+           

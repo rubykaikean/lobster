@@ -17,6 +17,23 @@
           <input class="demo-switch" name="setting[allow_multiple_booking]" type="checkbox" <%= @setting.allow_multiple_booking? ? 'checked' : nil %> >
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="setting_notify_buyer_on_sale_confirmation">Notify buyer on sale confirmation</label>
+        <div class="col-md-9" style="padding-top: 5px;">
+          <input type="hidden" id="setting_notify_buyer_on_sale_confirmation_false" name="setting[notify_buyer_on_sale_confirmation]" value="0">
+          <input class="demo-switch" name="setting[notify_buyer_on_sale_confirmation]" type="checkbox" <%= @setting.notify_buyer_on_sale_confirmation? ? 'checked' : nil %> >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="setting_notify_admin_on_sale_confirmation">Notify admin on sale confirmation</label>
+        <div class="col-md-9" style="padding-top: 5px;">
+          <input type="hidden" id="setting_notify_admin_on_sale_confirmation_false" name="setting[notify_admin_on_sale_confirmation]" value="0">
+          <input class="demo-switch" name="setting[notify_admin_on_sale_confirmation]" type="checkbox" <%= @setting.notify_admin_on_sale_confirmation? ? 'checked' : nil %> >
+        </div>
+      </div>
+
   <br>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
 

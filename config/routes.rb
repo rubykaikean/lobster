@@ -121,6 +121,11 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  require 'sidekiq/web'
+  authenticate :admin do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   
   get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   root 'companies#profile'

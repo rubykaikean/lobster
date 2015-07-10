@@ -15,7 +15,7 @@ $(document).ready(function() {
 	// ================================
 	changeTheme = function(themeName, type){
 		var themeCSS = $('#theme'),
-			filename = 'css/themes/type-'+type+'/'+themeName+'.min.css';
+			filename = '/css/themes/type-'+type+'/'+themeName+'.min.css';
 
 		if (themeCSS.length) {
 			themeCSS.prop('href', filename);

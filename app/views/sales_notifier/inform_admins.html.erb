@@ -1,0 +1,49 @@
+<table class="row">
+  <tr>
+    <td class="wrapper last">
+
+      <table class="twelve columns">
+        <tr>
+          <td>
+
+           <strong>Congratulation ! A new sale has been confirmed !</strong>
+           <p>
+             Below is the detail :
+           </p>
+           <p>
+             Buyer Full name : <%= @buyer.full_name %> <br>
+             Project : <%= @product.name %> <br>
+             Lot / Unit : <%= @lot.name %>  <br>
+             Selling Price : RM <%= number_with_precision(@sale.actual_price, precision: 0, separator: ".", delimiter: ",") %> <br>
+             Downpayment : RM <%= number_with_precision(@sale.downpayment, precision: 0, separator: ".", delimiter: ",") %> <br>
+             Sale person : <%= @sale.user.name %> <br>
+           </p>
+           
+
+          </td>
+          <td class="expander"></td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+<table class="row">
+  <tr>
+    <td class="wrapper last">
+
+      <table class="twelve columns">
+        <tr>
+          <td align="center">
+            <center>
+              <p style="text-align:center;"></p>
+            </center>
+          </td>
+          <td class="expander"></td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
