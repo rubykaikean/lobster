@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
 
-    @setting = @company.company_setting
+    # @setting = @company.company_setting
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @company }
@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
   def profile
     if current_user
       @company = current_user.company
-      @setting = @company.company_setting
+      # @setting = @company.company_setting
     end
   end
 
