@@ -61,69 +61,70 @@
       
 
       <%= form_tag bulk_update_lot_path(@product) do %>
-       <div class="panel-body">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th class="text-center">
-                <% if @product.type_id == Product::LANDED %>
-                  Row key
-                <% elsif @product.type_id == Product::HIGHRISE %>
-                  Floor level
-                <% else %>
-                <% end %>
-              </th>
-              <th class="text-center">Type</th>
-              <th class="text-center">Price</th>
-              <!-- <th class="text-center">Bumiputera Unit</th> -->
-              <th class="text-center">Status</th>
-              <!-- <th>Action</th> -->
-            </tr>
-          </thead>
-          
-          <tbody>
-            <% @lots.order(:name).each do |lot| %>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
               <tr>
-                <td>
-                  <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
-                </td>
-                 <td class="text-center">
-                  <%= text_field_tag "update_lot[#{lot.id}][row_key]", lot.row_key, :class=>"form-control" %>
-                </td>
-                <td class="text-center">
-                  <select class="selectpicker" name="update_lot[<%= lot.id %>][product_type_id]">
-                    <option>Select An Option</option>
-                    <% @product.product_types.each do |t| %>
-                      <% if t.id == lot.product_type_id %>
-                        <option value="<%= t.id %>" selected><%= t.name %></option>
-                      <% else %>
-                        <option value="<%= t.id %>"><%= t.name %></option>
-                      <% end %>
-                    <% end %>
-                  </select>
-                </td>
-                <td class="text-center">
-                  <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
-                </td>
-                <td class="text-center">
-                  <select class="selectpicker" name="update_lot[<%= lot.id %>][status_id]">
-                      <option value="1" <%= lot.status_id == 1 ? "selected='selected'" : nil %> >Available</option>
-                      <option value="2" <%= lot.status_id == 2 ? "selected='selected'" : nil %> >Reserved</option>
-                      <option value="3" <%= lot.status_id == 3 ? "selected='selected'" : nil %> >Sold</option>
-                      <option value="4" <%= lot.status_id == 4 ? "selected='selected'" : nil %> >Blocked</option>
-                   
-                  </select>
-                </td>
+                <th>Name</th>
+                <th class="text-center">
+                  <% if @product.type_id == Product::LANDED %>
+                    Row key
+                  <% elsif @product.type_id == Product::HIGHRISE %>
+                    Floor level
+                  <% else %>
+                  <% end %>
+                </th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Price</th>
+                <!-- <th class="text-center">Bumiputera Unit</th> -->
+                <th class="text-center">Status</th>
+                <!-- <th>Action</th> -->
               </tr>
+            </thead>
+            
+            <tbody>
+              <% @lots.order(:name).each do |lot| %>
+                <tr>
+                  <td>
+                    <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
+                  </td>
+                   <td class="text-center">
+                    <%= text_field_tag "update_lot[#{lot.id}][row_key]", lot.row_key, :class=>"form-control" %>
+                  </td>
+                  <td class="text-center">
+                    <select class="selectpicker" name="update_lot[<%= lot.id %>][product_type_id]">
+                      <option>Select An Option</option>
+                      <% @product.product_types.each do |t| %>
+                        <% if t.id == lot.product_type_id %>
+                          <option value="<%= t.id %>" selected><%= t.name %></option>
+                        <% else %>
+                          <option value="<%= t.id %>"><%= t.name %></option>
+                        <% end %>
+                      <% end %>
+                    </select>
+                  </td>
+                  <td class="text-center">
+                    <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
+                  </td>
+                  <td class="text-center">
+                    <select class="selectpicker" name="update_lot[<%= lot.id %>][status_id]">
+                        <option value="1" <%= lot.status_id == 1 ? "selected='selected'" : nil %> >Available</option>
+                        <option value="2" <%= lot.status_id == 2 ? "selected='selected'" : nil %> >Reserved</option>
+                        <option value="3" <%= lot.status_id == 3 ? "selected='selected'" : nil %> >Sold</option>
+                        <option value="4" <%= lot.status_id == 4 ? "selected='selected'" : nil %> >Blocked</option>
+                     
+                    </select>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="panel-footer text-right">
+            <% if @product.lots.any?  %>
+              <button class="btn btn-primary btn-labeled fa fa-floppy-o" type="submit">Update</button>
             <% end %>
-          </tbody>
-        </table>
-        <div class="panel-footer text-right">
-            <%= submit_tag "Update", :class=>"btn btn-primary pull-right" if @product.lots.any? %>
+          </div>
         </div>
-      </div>
-      
       <% end %>
 
   </div>
