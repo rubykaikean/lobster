@@ -1,3 +1,12 @@
+<% content_for :breadcrumb do %>
+  <ol class="breadcrumb">
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="<%= project_path(@product.phase.project) %>"><%= @product.phase.project.name %></a></li>
+    <li><a href="<%= phase_path(@product.phase) %>"><%= @product.phase.name %></a></li>
+    <li class="active"><%= @product.name %></li>
+  </ol>
+<% end %>
+
 <div class="row" id="content_div">
   <div class="col-lg-12">
     <div class="panel">
@@ -12,7 +21,7 @@
       </p>
 
       <p>
-        <strong>e-Brochure URL:</strong>
+        <strong>i-Brochure URL:</strong>
         <%= @product.e_brochure_url %>
       </p>
 
