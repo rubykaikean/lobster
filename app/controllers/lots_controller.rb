@@ -97,7 +97,8 @@ class LotsController < ApplicationController
       end
       lot.save
     end
-    redirect_to "#{product_path(product)}#lot-tab", notice: "Lot update successfully."
+    # redirect_to "#{product_path(product)}#lot-tab", notice: "Lot update successfully."
+    redirect_to :back, notice: "Lot update successfully."
   end
 
   def book_lot
