@@ -60,7 +60,7 @@
             <th class="text-center">Type</th>
             <th class="text-center">Price</th>
             <!-- <th class="text-center">Bumiputera Unit</th> -->
-            <!-- <th class="text-center">Status</th> -->
+            <th class="text-center">Status</th>
             <!-- <th>Action</th> -->
           </tr>
         </thead>
@@ -89,15 +89,15 @@
               <td class="text-center">
                 <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
               </td>
-              <!-- <td class="text-center">
-                <%#= check_box_tag "update_lot[#{lot.id}][is_bumi_putera_unit]" ,true ,lot.is_bumi_putera_unit == true ? "checked" : nil %>
-              </td> -->
-              <!-- <td class="text-center">
-                <%#= lot.status  %>
-              </td> -->
-              <!-- <td>
-                <%#= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
-              </td> -->
+              <td class="text-center">
+                <select class="selectpicker" name="update_lot[<%= lot.id %>][status_id]">
+                    <option value="1" <%= lot.status_id == 1 ? "selected='selected'" : nil %> >Available</option>
+                    <option value="2" <%= lot.status_id == 2 ? "selected='selected'" : nil %> >Reserved</option>
+                    <option value="3" <%= lot.status_id == 3 ? "selected='selected'" : nil %> >Sold</option>
+                    <option value="4" <%= lot.status_id == 4 ? "selected='selected'" : nil %> >Blocked</option>
+                 
+                </select>
+              </td>
             </tr>
           <% end %>
         </tbody>

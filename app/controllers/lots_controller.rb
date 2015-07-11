@@ -90,7 +90,11 @@ class LotsController < ApplicationController
       lot.row_key = content[:row_key]
       lot.selling_price = content[:selling_price]
       lot.product_type_id = content[:product_type_id]
-      # lot.is_bumi_putera_unit = content[:is_bumi_putera_unit]
+      if content[:status_id].to_i == Lot::BLOCKED
+        lot.status_id = content[:status_id] if lot.is_available?
+      else
+        lot.status_id = content[:status_id]
+      end
       lot.save
     end
     redirect_to "#{product_path(product)}#lot-tab", notice: "Lot update successfully."

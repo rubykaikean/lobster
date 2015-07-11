@@ -40,6 +40,7 @@
 					    <div class="bg-light text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Available </div>
 					    <div class="bg-orange text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Reserved </div>
 					    <div class="bg-danger text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Sold </div>
+					    <div class="bg-pink text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Blocked </div>
 				    </div>
 				</div>
 
@@ -69,7 +70,7 @@
 									        </div> 
 									        <div>
 									          <% if is_top_level_management? || is_low_level_admin? %>
-									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "This will reserve the unit immediately, confirm to book #{lot.name} ?"} %>
+									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
 									        	<% end %>
 									        </div>
 									        <div class="pad-top"></div>
