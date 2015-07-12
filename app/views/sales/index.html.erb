@@ -105,7 +105,7 @@
               <th>SPA Date</th>
               <th>Agency</th>
               <th class="text-center">Agent</th>
-              <th class="text-center">Purchaser</th>
+              <th class="text-left">Purchaser</th>
               <th class="text-center">Product</th>
               <th class="text-center">Lot</th>
               <th class="text-center">Price</th>
@@ -144,11 +144,11 @@
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>
-                    <span class="label label-table label-warning">Reserved</span>
+                    <span class="label label-warning">Reserved</span>
                   <% elsif sale.status_id == Sale::REJECTED %>
-                    <span class="label label-table label-danger">Rejected</span>
+                    <span class="label label-danger">Rejected</span>
                   <% elsif sale.status_id == Sale::COMPLETED %>
-                    <span class="label label-table label-success">Sold</span>
+                    <span class="label label-success">Sold</span>
                   <% end %>
                 </td>
         
