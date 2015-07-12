@@ -121,9 +121,9 @@
                 <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
                 <td><%= sale.user.company.name rescue "Company not found" %></td>
                 <td class="text-center"><%= sale.user.name rescue "User not found" %></td>
-                <td class="text-center">
+                <td class="text-left">
                   <% if is_top_level_management? || (sale.user_id == current_user.id) %>
-                    <a href="<%= edit_buyer_path(sale.buyer, sale_id: sale.id) rescue '#' %>"><button class="btn btn-primary btn-sm"><%= sale.buyer.try(:full_name) || "Unknown" %></button>
+                    <a href="<%= edit_buyer_path(sale.buyer, sale_id: sale.id) rescue '#' %>"><button class="btn btn-primary btn-sm"><%= (sale.buyer.try(:full_name) || "Unknown").truncate(30, omission: '...') %></button>
                     </a>
                   <% else %>
                     <span class="label label-primary">Reserved</span>
@@ -144,11 +144,11 @@
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>
-                    <span class="label label-warning">Reserved</span>
+                    <span class="label label-table label-warning">Reserved</span>
                   <% elsif sale.status_id == Sale::REJECTED %>
-                    <span class="label label-danger">Rejected</span>
+                    <span class="label label-table label-danger">Rejected</span>
                   <% elsif sale.status_id == Sale::COMPLETED %>
-                    <span class="label label-success">Sold</span>
+                    <span class="label label-table label-success">Sold</span>
                   <% end %>
                 </td>
         
