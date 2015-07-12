@@ -128,8 +128,8 @@ Rails.application.routes.draw do
   end
   
   get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
-  root 'companies#profile'
-
+  # root 'companies#profile'
+  root 'dashboard#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

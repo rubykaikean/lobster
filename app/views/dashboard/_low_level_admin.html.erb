@@ -1,0 +1,56 @@
+<div class="col-sm-6 col-md-4 col-lg-2">
+	<!--Projects-->
+	<div class="panel panel-purple panel-colorful">
+		<div class="pad-all text-center">
+			<span class="text-5x text-thin"><%= @projects_count %></span>
+			<p>Projects</p>
+			<i class="fa fa-university"></i>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-6 col-md-4 col-lg-2">
+	<!--Task-->
+	<div class="panel panel-success panel-colorful">
+		<div class="pad-all text-center">
+			<span class="text-5x text-thin"><%= @products_count  %></span>
+			<p>Products</p>
+			<i class="fa fa-building"></i>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-6 col-md-4 col-lg-2">				
+	<!--Reports-->
+	<div class="panel panel-dark panel-colorful">
+		<div class="pad-all text-center">
+			<span class="text-5x text-thin"><%= @agent_count %></span>
+			<p>Agents</p>
+			<i class="fa fa-user"></i>
+		</div>
+	</div>
+</div>
+					
+<div class="col-sm-6 col-md-6 col-lg-2">					
+<!--Sales-->
+<div class="panel panel-primary panel-colorful">
+	<div class="pad-all text-center">
+		<span class="text-5x text-thin"><%= @sales_count %></span>
+		<p>Sales</p>
+		<i class="fa fa-shopping-cart"></i>
+	</div>
+</div>
+</div>
+<div class="col-sm-6 col-md-6 col-lg-2">
+
+	<!--Messages-->
+	<div class="panel panel-warning panel-colorful">
+		<div class="pad-all text-center">
+			<span class="text-5x text-thin"><%= number_with_precision(@earnings, precision: 0, separator: ".", delimiter: ",") %></span>
+			<p>Revenue</p>
+			<i class="fa fa-money"></i>
+		</div>
+	</div>
+
+</div>
+

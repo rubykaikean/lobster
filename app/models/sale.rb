@@ -41,6 +41,8 @@ class Sale < ActiveRecord::Base
   belongs_to :phase
   belongs_to :lot_unit
 
+  scope :confirmed, -> { where status_id: COMPLETED }
+
   # status
   PENDING = 1
   COMPLETED = 2
