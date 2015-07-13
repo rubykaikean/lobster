@@ -33,7 +33,6 @@ class Company < ActiveRecord::Base
 
   has_many :users
   has_many :projects
-  has_one :company_setting
   has_many :agencies, class_name: "Company", foreign_key: "parent_id"
   has_many :products
 
@@ -44,8 +43,6 @@ class Company < ActiveRecord::Base
           :path => "companies/:id/:filename"
   
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
-
-  after_create :generate_setting
 
   DEVELOPER = 1
   AGENCY    = 2
@@ -115,11 +112,5 @@ class Company < ActiveRecord::Base
   end
 
   private
-
-  def generate_setting
-    unless company_setting.present? && parent_id > 0
-      create_company_setting
-    end
-  end
 
 end

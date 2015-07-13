@@ -1,111 +1,132 @@
  <div id="lot-tab" class="tab-pane fade active in">
   <h4 class="text-thin"></h4>
    <div class="panel">
-    <div class="panel-body">
-      <div class="panel-title"><strong>Search</strong></div>
-      <div class="row">
-        <%= search_form_for @q, url: product_path(@product) do |f| %>
-
-        <table class="table">
-          <tr>
-            <td>Name: </td>
-            <td><%= f.search_field :name_cont, :placeholder => "", :class => "form-control"%>
-            </td>
-            <td>
-              <% if @product.type_id == Product::LANDED %>
-                Row key
-              <% elsif @product.type_id == Product::HIGHRISE %>
-                Floor level
-              <% else %>
-              <% end %>
-            </td>
-            <td><%= f.search_field :row_key_eq, :placeholder => "", :class => "form-control"%>
-            </td>
-            <td>Type: </td>
-            <td>
-              <select id="q_product_type_id_eq" name="q[product_type_id_eq]" class="selectpicker">
-                <option value="">All Type</option>
-                <% @product_types.each do |pro| %>
-                  <option value="<%= pro.id %>"><%= pro.name %></option>
-                <% end %>
-              </select>
-            </td>
-          </tr>
+ 
+      <%= search_form_for(@q, url: product_path(@product), :html => {class: "form-horizontal"}) do |f| %>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label">Name</label>
+                <input type="text" class="form-control" name="q[name_cont]" id="q_name_cont" >
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label">
+                  <% if @product.type_id == Product::LANDED %>
+                    Row key
+                  <% elsif @product.type_id == Product::HIGHRISE %>
+                    Floor level
+                  <% else %>
+                  <% end %>
+                </label>
+                <input type="text" class="form-control" name="q[row_key_eq]" id="q_row_key_eq" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Type</label>
+              <select class="selectpicker form-control" name="q[product_type_id_eq]" id="q_product_type_id_eq">
+                  <option value="">All Type</option>
+                  <% @product_types.each do |pro| %>
+                    <option value="<%= pro.id %>"><%= pro.name %></option>
+                  <% end %>
+                </select>
+            </div>
+          </div>
           
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><%= f.submit "Search", :class=>"btn btn-default" %></td>
-          </tr>
-        </table>
-        <% end %>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Status</label>
+              <select class="selectpicker form-control" name="q[status_id_eq]" id="q_status_id_eq">
+                  <option value="">All Status</option>
+                  <option value="<%= Lot::AVAILABLE %>">Available</option>
+                  <option value="<%= Lot::RESERVED %>">Reserved</option>
+                  <option value="<%= Lot::SOLD %>">Sold</option>
+                  <option value="<%= Lot::BLOCKED %>">Blocked</option>
+                  
+                </select>
+            </div>
+          </div>
+          </div>
+          <br>
+          <div class="panel-footer text-right">
+            <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Search</button>
+          </div>
+        </div>
+      <% end %>
       
 
       <%= form_tag bulk_update_lot_path(@product) do %>
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th class="text-center">
-              <% if @product.type_id == Product::LANDED %>
-                Row key
-              <% elsif @product.type_id == Product::HIGHRISE %>
-                Floor level
-              <% else %>
-              <% end %>
-            </th>
-            <th class="text-center">Type</th>
-            <th class="text-center">Price</th>
-            <!-- <th class="text-center">Bumiputera Unit</th> -->
-            <!-- <th class="text-center">Status</th> -->
-            <!-- <th>Action</th> -->
-          </tr>
-        </thead>
-        
-        <tbody>
-          <% @lots.order(:name).each do |lot| %>
-            <tr>
-              <td>
-                <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
-              </td>
-               <td class="text-center">
-                <%= text_field_tag "update_lot[#{lot.id}][row_key]", lot.row_key, :class=>"form-control" %>
-              </td>
-              <td class="text-center">
-                <select class="selectpicker" name="update_lot[<%= lot.id %>][product_type_id]">
-                  <option>Select An Option</option>
-                  <% @product.product_types.each do |t| %>
-                    <% if t.id == lot.product_type_id %>
-                      <option value="<%= t.id %>" selected><%= t.name %></option>
-                    <% else %>
-                      <option value="<%= t.id %>"><%= t.name %></option>
-                    <% end %>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th class="text-center">
+                  <% if @product.type_id == Product::LANDED %>
+                    Row key
+                  <% elsif @product.type_id == Product::HIGHRISE %>
+                    Floor level
+                  <% else %>
                   <% end %>
-                </select>
-              </td>
-              <td class="text-center">
-                <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
-              </td>
-              <!-- <td class="text-center">
-                <%#= check_box_tag "update_lot[#{lot.id}][is_bumi_putera_unit]" ,true ,lot.is_bumi_putera_unit == true ? "checked" : nil %>
-              </td> -->
-              <!-- <td class="text-center">
-                <%#= lot.status  %>
-              </td> -->
-              <!-- <td>
-                <%#= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
-              </td> -->
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= submit_tag "Update", :class=>"btn btn-primary pull-right" if @product.lots.any? %>
+                </th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Price</th>
+                <!-- <th class="text-center">Bumiputera Unit</th> -->
+                <th class="text-center">Status</th>
+                <!-- <th>Action</th> -->
+              </tr>
+            </thead>
+            
+            <tbody>
+              <% @lots.order(:name).each do |lot| %>
+                <tr>
+                  <td>
+                    <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
+                  </td>
+                   <td class="text-center">
+                    <%= text_field_tag "update_lot[#{lot.id}][row_key]", lot.row_key, :class=>"form-control" %>
+                  </td>
+                  <td class="text-center">
+                    <select class="selectpicker" name="update_lot[<%= lot.id %>][product_type_id]">
+                      <option>Select An Option</option>
+                      <% @product.product_types.each do |t| %>
+                        <% if t.id == lot.product_type_id %>
+                          <option value="<%= t.id %>" selected><%= t.name %></option>
+                        <% else %>
+                          <option value="<%= t.id %>"><%= t.name %></option>
+                        <% end %>
+                      <% end %>
+                    </select>
+                  </td>
+                  <td class="text-center">
+                    <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
+                  </td>
+                  <td class="text-center">
+                    <select class="selectpicker" name="update_lot[<%= lot.id %>][status_id]">
+                        <option value="1" <%= lot.status_id == 1 ? "selected='selected'" : nil %> >Available</option>
+                        <option value="2" <%= lot.status_id == 2 ? "selected='selected'" : nil %> >Reserved</option>
+                        <option value="3" <%= lot.status_id == 3 ? "selected='selected'" : nil %> >Sold</option>
+                        <option value="4" <%= lot.status_id == 4 ? "selected='selected'" : nil %> >Blocked</option>
+                     
+                    </select>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="panel-footer text-right">
+            <% if @product.lots.any?  %>
+              <button class="btn btn-primary btn-labeled fa fa-floppy-o" type="submit">Update</button>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    </div>
-  </div>
+
   </div>
 </div>
 

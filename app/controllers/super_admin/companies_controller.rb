@@ -17,7 +17,6 @@ class SuperAdmin::CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
 
-    @setting = @company.company_setting
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @company }
@@ -86,13 +85,6 @@ class SuperAdmin::CompaniesController < ApplicationController
     end
   end
 
-  def update_setting
-    # render :text => params
-    @setting = @company.company_setting
-    @setting.update(:allow_multiple_booking => setting_params[:allow_multiple_booking] )
-    redirect_to super_admin_company_path(@company)
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
@@ -104,7 +96,4 @@ class SuperAdmin::CompaniesController < ApplicationController
       params.require(:company).permit(:name, :registration_number, :address, :phone_number, :fax_number, :type_id, :parent_id,:slug, :username)
     end
 
-    def setting_params
-      params.require(:company_setting).permit!
-    end
 end

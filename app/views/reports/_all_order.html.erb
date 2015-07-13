@@ -23,7 +23,7 @@
           <tbody>
             <% @sales.order("id ASC").each do |p| %>
             <tr>
-              <td><%= p.created_at.strftime("%d-%m-%Y") %></td>
+              <td><%= p.created_at.strftime("%d-%m-%Y") rescue "" %></td>
               <td><%= p.user.company.try(:name) %></td>
               <td><%= p.user.try(:username) %></td>
               <td><%= p.buyer.try(:full_name) %></td>

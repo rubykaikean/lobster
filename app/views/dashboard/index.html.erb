@@ -3,9 +3,47 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<div class="col-lg-12">
 		  <div class="panel">
-			  <div class="panel-heading">
-				  <h3 class="panel-title">Dashboard</h3>
-			  </div>
-      </div>
+				<div class="panel-bg-cover">
+					<img class="img-responsive" src="/img/thumbs/img1.jpg" alt="Image">
+				</div>
+				<div class="panel-media">
+					<img src="/img/av1.png" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
+					<div class="row">
+						<div class="col-lg-7">
+							<h3 class="panel-media-heading"><%= current_user.name %></h3>
+							<a href="#" class="btn-link"><%= current_user.email %></a>
+							<p class="text-muted mar-btm"><%= current_user.type %></p>
+						</div>
+				<!-- 		<div class="pad-all text-left">
+							<small><span class="text-semibold"><i class="fa fa-shopping-cart fa-fw"></i> 954</span> Sales in this month</small>
+						</div> -->
+
+						<!-- <div class="col-lg-5 text-lg-right">
+						  <button class="btn btn-sm btn-primary">Add Friend</button>
+						  <button class="btn btn-sm btn-mint btn-icon fa fa-envelope icon-lg"></button>
+					  </div> -->
+					
+					</div>
+				</div>
+
+				<div class="panel-heading">
+				  <h4 class="panel-title">Company Statistics</h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<% if is_top_level_admin? %>
+						  <%= render "top_level_admin"  %>
+						<% elsif is_top_level_staff? %>
+						  <%= render "top_level_staff"  %>
+						<% elsif is_low_level_admin? %>
+						  <%= render "low_level_admin"  %>
+						<% elsif is_low_level_staff? %>
+						   <%= render "low_level_staff"  %>
+						<% end %>
+						<hr>
+					</div>
+				</div>
+			</div>
+
     </div>
 </div>

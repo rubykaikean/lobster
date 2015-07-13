@@ -24,8 +24,8 @@
               <tbody>
                 <% @sales.where("status_id = 2").each do |p| %>
                 <tr>
-                  <td><%= p.created_at.strftime("%d-%m-%Y") %></td>
-                  <td><%= p.confirm_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= p.created_at.strftime("%d-%m-%Y") rescue "" %></td>
+                  <td><%= p.confirm_date.strftime("%d-%m-%Y") rescue "" %></td>
                   <td><%= p.user.company.try(:name) %></td>
                   <td><%= p.user.try(:username) %></td>
                   <td><%= p.buyer.try(:full_name) %></td>

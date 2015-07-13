@@ -32,12 +32,17 @@ gem 'fog'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'exception_notification'
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 gem 'rails_email_preview', '~> 0.2.29'
 gem 'annotate', '~> 2.6.6'
 gem "puma"
 gem 'active_model_serializers'
-gem 'chartkick' #, '~> 1.3.2'
+# gem 'chartkick' #, '~> 1.3.2'
 gem 'week_of_month'
+gem 'sidekiq'
+gem "devise-async"
+gem 'sinatra', :require => nil
+gem 'redcarpet'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

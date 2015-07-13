@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706092356) do
+ActiveRecord::Schema.define(version: 20150710142310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,12 +169,12 @@ ActiveRecord::Schema.define(version: 20150706092356) do
 
   create_table "product_settings", force: :cascade do |t|
     t.integer  "product_id"
-    t.boolean  "allow_multiple_booking",    default: false
-    t.boolean  "use_product_type_info",     default: true
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.integer  "unit_per_row",              default: 5
-    t.integer  "bumi_putera_discount_rate"
+    t.boolean  "allow_multiple_booking",            default: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "unit_per_row",                      default: 5
+    t.boolean  "notify_buyer_on_sale_confirmation", default: false
+    t.boolean  "notify_admin_on_sale_confirmation", default: false
   end
 
   create_table "product_types", force: :cascade do |t|

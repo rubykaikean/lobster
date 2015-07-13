@@ -41,6 +41,8 @@ class Sale < ActiveRecord::Base
   belongs_to :phase
   belongs_to :lot_unit
 
+  scope :confirmed, -> { where status_id: COMPLETED }
+
   # status
   PENDING = 1
   COMPLETED = 2
@@ -72,7 +74,11 @@ class Sale < ActiveRecord::Base
       sold_lot = self.lot
       if sold_lot
         sold_lot.status_id = Lot::SOLD
-        sold_lot.save
+        if sold_lot.save
+          setting = product.product_setting
+          SalesNotifier.confirmation(self.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
+          SalesNotifier.inform_admins(self.id).deliver_later if setting.notify_admin_on_sale_confirmation?
+        end
       end
     end
   end

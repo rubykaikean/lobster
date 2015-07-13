@@ -172,7 +172,7 @@ class ProductsController < ApplicationController
     end
 
     def setting_params
-      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking)
+      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking, :notify_buyer_on_sale_confirmation, :notify_admin_on_sale_confirmation)
     end
 
     def setting_email_params
