@@ -166,7 +166,15 @@
                   
                 <% elsif sale.status_id == Sale::COMPLETED %>
                   <% if is_top_level_management? %>
-                    <a href="<%= edit_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Edit</button>
+                    <a href="<%= edit_sale_path(sale) %>">
+                      <button class="btn btn-primary btn-sm">
+                      Edit
+                      </button>
+                    </a>
+                    <a href="#">
+                      <button class="btn btn-danger btn-sm">
+                        Cancellation
+                      </button>
                     </a>
                   <% end %>
                 <% end %>
