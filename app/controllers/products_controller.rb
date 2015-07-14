@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_project_owner!, except: [:site_plans, :floor_plans]
+  before_action :authenticate_user!, except: [:published]
+  before_action :authenticate_project_owner!, except: [:site_plans, :floor_plans, :published]
   before_action :set_product, only: [:show, :edit, :update, :destroy, :site_plans, :floor_plans, :update_sources_type, :update_region]
   
   # GET /products
@@ -12,6 +12,10 @@ class ProductsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @products }
     end
+  end
+
+  def published
+    @products = Product.published
   end
 
   # GET /products/1

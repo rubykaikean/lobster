@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   resources :products do 
     collection do
       post "create_lot"
+      get "published"
     end
     member do
       post "update_email_setting"
