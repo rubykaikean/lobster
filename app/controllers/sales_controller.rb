@@ -98,6 +98,10 @@ class SalesController < ApplicationController
     end
   end
 
+  def cancellation
+    render :text => params
+  end
+
   def reject
     s = Sale.find(params[:id])
     if is_top_level_management? || s.user_id == current_user.id
