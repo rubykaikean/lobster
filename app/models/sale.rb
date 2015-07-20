@@ -47,6 +47,7 @@ class Sale < ActiveRecord::Base
   PENDING = 1
   COMPLETED = 2
   REJECTED = 3
+  CANCELLED = 4
 
   def status
   	case status_id
@@ -56,6 +57,8 @@ class Sale < ActiveRecord::Base
       "completed"
     when REJECTED
       "Rejected"
+    when CANCELLED
+      "Cancelled"
     end
   end
 
@@ -67,21 +70,22 @@ class Sale < ActiveRecord::Base
     Lot.find_by(id: lot_unit_id)
   end
 
-  def confirm_sale(confirm_params)
-    self.status_id = COMPLETED
-    self.confirm_date = Time.current if confirm_date.nil?
-    if self.update(confirm_params)
-      sold_lot = self.lot
-      if sold_lot
-        sold_lot.status_id = Lot::SOLD
-        if sold_lot.save
-          setting = product.product_setting
-          SalesNotifier.confirmation(self.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
-          SalesNotifier.inform_admins(self.id).deliver_later if setting.notify_admin_on_sale_confirmation?
-        end
-      end
-    end
-  end
+  # def confirm_sale(confirm_params)
+  #   self.status_id = COMPLETED
+  #   self.confirm_date = Time.current if confirm_date.nil?
+  #   if self.update(confirm_params)
+  #     sold_lot = self.lot
+  #     if sold_lot
+  #       sold_lot.status_id = Lot::SOLD
+  #       if sold_lot.save
+          
+  #         setting = product.product_setting
+  #         SalesNotifier.confirmation(self.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
+  #         SalesNotifier.inform_admins(self.id).deliver_later if setting.notify_admin_on_sale_confirmation?
+  #       end
+  #     end
+  #   end
+  # end
 
   def actual_price
     if buyer.is_bumiputera?

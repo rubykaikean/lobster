@@ -358,10 +358,10 @@
 									<img class="img-circle img-user media-object" src="/img/av1.png" alt="Profile Picture">
 								</span>
 								<div class="username hidden-xs">
-								  <% if current_user %>
+								  <% if user_signed_in? && current_user %>
 									  <%= current_user.display_name  %>
-									<% elsif current_admin %>
-									  <%= current_admin.display_name  %>
+									<% elsif admin_signed_in? && current_admin %>
+									  <%= current_admin.name  %>
 									<% end %>
 								</div>
 							</a>
@@ -381,7 +381,16 @@
 
 
 								<!-- User dropdown menu -->
+								<% if is_super_admin? %>
 								<ul class="head-list">
+									<li>
+										<a href="/admins/edit">
+											<i class="fa fa-user fa-fw fa-lg"></i> Personal Profile
+										</a>
+									</li>
+									
+									<% else %>
+									<ul class="head-list">
 									<li>
 										<a href="/users/edit">
 											<i class="fa fa-user fa-fw fa-lg"></i> Personal Profile
@@ -392,6 +401,7 @@
 											<i class="fa fa-cube fa-fw fa-lg"></i> Company Profile
 										</a>
 									</li>
+									<% end %>
 									<!-- <li>
 										<a href="#">
 											<span class="badge badge-danger pull-right">0</span>

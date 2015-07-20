@@ -36,6 +36,10 @@ class Admin < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: true
 
+  def name
+    display_name || username || email
+  end
+
   def should_generate_new_friendly_id?
     display_name_changed?
   end

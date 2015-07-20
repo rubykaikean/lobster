@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     member do
       post "confirm"
       post "reject"
+      post "cancel"
     end
   end
 
