@@ -87,10 +87,10 @@ class SalesController < ApplicationController
   end
 
   def confirm
-    # render :text => params
     if is_top_level_management?
       @sale = Sale.find params[:id]
-      @sale.confirm_sale(confirm_sale_params)
+      SaleEngine.new(@sale, sale_params).confirm
+      #@sale.confirm_sale(confirm_sale_params)
       redirect_to sales_path, notice: "Sale has been confirmed."
     else
       flash[:alert] = "Sorry, you don't have the access right."
@@ -98,21 +98,28 @@ class SalesController < ApplicationController
     end
   end
 
-  def cancellation
-    render :text => params
-  end
 
   def reject
-    s = Sale.find(params[:id])
-    if is_top_level_management? || s.user_id == current_user.id
-      s.status_id = Sale::REJECTED
-      s.reject_reason = confirm_sale_params[:reject_reason]
-      if s.save
-        lot = s.lot
-        lot.status_id = Lot::AVAILABLE
-        lot.save
+    sale = Sale.find(params[:id])
+    if is_top_level_management? || sale.user_id == current_user.id
+      SaleEngine.new(sale, reject_reason_params).reject
+      redirect_to sales_path, notice: "Sale has been rejected successfully."
+    else
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to sales_path
+    end
+  end
+
+  def cancel
+    sale = Sale.find(params[:id])
+    if is_top_level_management? || sale.user_id == current_user.id
+      if sale.status_id == Sale::COMPLETED
+        SaleEngine.new(sale, cancel_reason_params).cancel
+        flash[:notice] = "Sale has been cancelled successfully."
+      else
+        flash[:alert] = "The sale cannot be cancel due to invalid status."
       end
-      redirect_to sales_path, notice: "Sale has been rejected."
+      redirect_to sales_path
     else
       flash[:alert] = "Sorry, you don't have the access right."
       redirect_to sales_path
@@ -130,7 +137,11 @@ class SalesController < ApplicationController
       params.require(:sale).permit(:admin_confirm_user_id ,:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :bank_loan, :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number)
     end
 
-    def confirm_sale_params
-      params.require(:sale).permit!
+    def reject_reason_params
+      params.require(:sale).permit(:reject_reason)
+    end
+
+     def cancel_reason_params
+      params.require(:sale).permit(:cancel_reason)
     end
 end

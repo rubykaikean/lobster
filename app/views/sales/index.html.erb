@@ -147,6 +147,8 @@
                     <span class="label label-warning">Reserved</span>
                   <% elsif sale.status_id == Sale::REJECTED %>
                     <span class="label label-danger">Rejected</span>
+                  <% elsif sale.status_id == Sale::CANCELLED %>
+                    <span class="label label-danger">Cancelled</span>
                   <% elsif sale.status_id == Sale::COMPLETED %>
                     <span class="label label-success">Sold</span>
                   <% end %>
@@ -162,8 +164,8 @@
                   <% elsif sale.user_id == current_user.id %>
                     <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject</button>
                   <% end %>
-                <% elsif sale.status_id == Sale::REJECTED %>
-                  
+                <% elsif sale.status_id == Sale::REJECTED || sale.status_id == Sale::CANCELLED %>
+                  <button class="btn btn-default btn-hover-info add-tooltip" data-placement="top" data-toggle="tooltip" data-original-title="<%= sale.reject_reason %>">Show reason</button>
                 <% elsif sale.status_id == Sale::COMPLETED %>
                   <% if is_top_level_management? %>
                     <a href="<%= edit_sale_path(sale) %>">
@@ -171,53 +173,74 @@
                       Edit
                       </button>
                     </a>
-                    <%= link_to "Cancellation", data: { confirm: 'Are you sure to cancel?' }, :class=>"btn btn-danger btn-sm" %>
+                    <button data-target="#cancel_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Cancel</button>
                   <% end %>
                 <% end %>
                 </td>
               </tr>
 
-            <div class="modal fade" id="confirm_sale<%= sale.id %>" role="dialog" tabindex="-1" aria-labelledby="confirm_sale" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
+              <div class="modal fade" id="confirm_sale<%= sale.id %>" role="dialog" tabindex="-1" aria-labelledby="confirm_sale" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
 
-                  <!--Modal header-->
-                  <div class="modal-header">
-                    <button data-dismiss="modal" class="close" type="button">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Confirm Sale</h4>
-                  </div>
+                    <!--Modal header-->
+                    <div class="modal-header">
+                      <button data-dismiss="modal" class="close" type="button">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title">Confirm Sale</h4>
+                    </div>
 
-                  <!--Modal body-->
-                  <div class="modal-body">
-                    <%= render partial: "confirm_sale_form",  :locals => { :sale => sale } %>
-                    <%#= render :text => params %>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="modal fade" id="reject_sale<%= sale.id %>" role="dialog" tabindex="-1" aria-labelledby="confirm_sale" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-
-                  <!--Modal header-->
-                  <div class="modal-header">
-                    <button data-dismiss="modal" class="close" type="button">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Reject Sale</h4>
-                  </div>
-
-                  <!--Modal body-->
-                  <div class="modal-body">
-                    <%= render partial: "reject_sale_form",  :locals => { :sale => sale } %>
-                    <%#= render :text => params %>
+                    <!--Modal body-->
+                    <div class="modal-body">
+                      <%= render partial: "confirm_sale_form",  :locals => { :sale => sale } %>
+                      <%#= render :text => params %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+
+              <div class="modal fade" id="reject_sale<%= sale.id %>" role="dialog" tabindex="-1" aria-labelledby="reject_sale" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!--Modal header-->
+                    <div class="modal-header">
+                      <button data-dismiss="modal" class="close" type="button">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title">Reject Sale</h4>
+                    </div>
+
+                    <!--Modal body-->
+                    <div class="modal-body">
+                      <%= render partial: "reject_sale_form",  :locals => { :sale => sale } %>
+                      <%#= render :text => params %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="cancel_sale<%= sale.id %>" role="dialog" tabindex="-1" aria-labelledby="cancel_sale" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!--Modal header-->
+                    <div class="modal-header">
+                      <button data-dismiss="modal" class="close" type="button">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title">Cancel Sale</h4>
+                    </div>
+
+                    <!--Modal body-->
+                    <div class="modal-body">
+                      <%= render partial: "cancel_sale_form",  :locals => { :sale => sale } %>
+                      <%#= render :text => params %>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             <div class="modal fade" id="reject_sale<%= sale.id %>" role="dialog" tabindex="-1" aria-labelledby="confirm_sale" aria-hidden="true">
               <div class="modal-dialog">

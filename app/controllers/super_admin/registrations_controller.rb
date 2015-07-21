@@ -1,4 +1,6 @@
 class SuperAdmin::RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+  layout "application"
 
 	def new
 		# @company = Company.new
@@ -31,10 +33,21 @@ class SuperAdmin::RegistrationsController < Devise::RegistrationsController
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def edit
+    self.resource = current_admin
+    # raise ActionController::RoutingError.new('Not Found')
+  end
+
   private
 
-  def company_params
-      params.require(:company).permit(:name, :registration_number, :address, :phone_number, :fax_number, :type_id, :slug)
+  def after_update_path_for(resource)
+    edit_admin_registration_path
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:username, :email, :display_name, :contact_number, :password, :password_confirmation, :current_password)
+    end
   end
 
 end
