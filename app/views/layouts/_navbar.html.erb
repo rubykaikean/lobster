@@ -358,10 +358,10 @@
 									<img class="img-circle img-user media-object" src="/img/av1.png" alt="Profile Picture">
 								</span>
 								<div class="username hidden-xs">
-								  <% if user_signed_in? && current_user %>
+								  <% if user_signed_in? && current_user && current_user.class.name == "User" %>
 									  <%= current_user.display_name  %>
-									<% elsif admin_signed_in? && current_admin %>
-									  <%= current_admin.name  %>
+									<% elsif admin_signed_in? && current_admin && current_admin.class.name == "Admin" %>
+									  <%= current_admin.display_name  %>
 									<% end %>
 								</div>
 							</a>
