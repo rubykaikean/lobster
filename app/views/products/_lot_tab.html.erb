@@ -119,7 +119,9 @@
               <% end %>
             </tbody>
           </table>
-
+          <% if @lots %>
+            <%= paginate @lots %>
+          <% end %>
           <div class="panel-footer text-right">
             <% if @product.lots.any?  %>
               <button class="btn btn-primary btn-labeled fa fa-floppy-o" type="submit">Update</button>

@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
     @email = @product.email_setting
 
     @q = @product.lots.ransack(params[:q])
-    @lots = @q.result(distinct: true)
+    @lots = @q.result(distinct: true).page(params[:page]).per(10)
     
     respond_to do |format|
       format.html # show.html.erb
