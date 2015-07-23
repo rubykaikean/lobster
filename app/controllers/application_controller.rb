@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_super_admin?
   def is_super_admin?
-    admin_signed_in? && current_admin
+    admin_signed_in? && current_admin && current_admin.class.name == "Admin"
   end
 
   helper_method :is_top_level_admin?
@@ -77,6 +77,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_super_admin!
+    sign_out(current_user) if user_signed_in?
     unless admin_signed_in?
       flash[:alert] = "You need to sign in as supermin before continue."
       return redirect_to new_admin_session_path
