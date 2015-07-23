@@ -120,7 +120,7 @@
             </tbody>
           </table>
           <% if @lots %>
-            <%= paginate @lots %>
+            <%= paginate @lots, :theme => 'twitter-bootstrap-3' %>
           <% end %>
           <div class="panel-footer text-right">
             <% if @product.lots.any?  %>
