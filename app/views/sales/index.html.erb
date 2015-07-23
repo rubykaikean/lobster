@@ -117,7 +117,7 @@
           <tbody>
             <% @sales.each do |sale| %>
               <tr>
-                <td><%#= sale.id %><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
+                <td><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
                 <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
                 <td><%= sale.user.company.name rescue "Company not found" %></td>
                 <td class="text-center"><%= sale.user.name rescue "User not found" %></td>
@@ -140,7 +140,8 @@
                 </td>
                 <%# binding.pry %>
                 <td class="text-center">
-                  <%= number_with_precision(sale.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
+                  <%#= number_with_precision(sale.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
+                  <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>
