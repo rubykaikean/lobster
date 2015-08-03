@@ -1,4 +1,6 @@
 class EnquiriesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
+  before_action :authenticate_user!, only: [:index, :show]
   before_action :find_product
   before_action :set_enquiry, only: [:show]
 
