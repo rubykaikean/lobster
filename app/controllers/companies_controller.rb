@@ -50,7 +50,7 @@ class CompaniesController < ApplicationController
     @company = current_user.company.agencies.new(company_params)
     @company.type_id = Company::AGENCY
 
-    @user = User.new(username: params[:username], email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin", username: params[:username])
+    @user = User.new(username: params[:username], email: params[:company_email], password: params[:company_password], password_confirmation: params[:company_password_confirmation], display_name: "Admin")
     @user.type_id = User::ADMIN
       if @company.valid? && @user.valid?
         if @company.save

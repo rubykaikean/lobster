@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: enquiry_fields
+#
+#  id         :integer          not null, primary key
+#  enquiry_id :integer
+#  name       :string
+#  content    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  enquiry_id: 1
+  name: MyString
+  content: MyString
+
+two:
+  enquiry_id: 1
+  name: MyString
+  content: MyString

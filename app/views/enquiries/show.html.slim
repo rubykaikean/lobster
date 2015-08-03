@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Product:
+  = @enquiry.product_id
+
+= link_to 'Edit', edit_enquiry_path(@enquiry)
+'|
+= link_to 'Back', enquiries_path

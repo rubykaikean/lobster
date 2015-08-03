@@ -88,6 +88,7 @@ Rails.application.routes.draw do
     end
     resources :site_plans
     resources :floor_plans
+    resources :enquiries, only: [:create, :index, :show]
   end
 
   resources :phases do 

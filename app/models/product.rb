@@ -37,6 +37,7 @@ class Product < ActiveRecord::Base
   has_many :site_plans
   has_many :regions
   has_many :sources_types
+  has_many :enquiries
 
   validates :company_id, presence: true, allow_nil: true
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }

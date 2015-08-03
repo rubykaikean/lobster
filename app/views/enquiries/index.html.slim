@@ -1,0 +1,21 @@
+h1 Listing enquiries
+
+table
+  thead
+    tr
+      th Product
+      th
+      th
+      th
+
+  tbody
+    - @enquiries.each do |enquiry|
+      tr
+        td = enquiry.product_id
+        td = link_to 'Show', enquiry
+        td = link_to 'Edit', edit_enquiry_path(enquiry)
+        td = link_to 'Destroy', enquiry, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Enquiry', new_enquiry_path
