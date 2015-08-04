@@ -38,6 +38,7 @@ class EnquiriesController < ApplicationController
   # POST /enquiries.json
   def create
     Rails.logger.info params
+    render status: :ok
     # @enquiry = Enquiry.new(enquiry_params)
 
     # respond_to do |format|

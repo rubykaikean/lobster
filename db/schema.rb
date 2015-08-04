@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803140642) do
+ActiveRecord::Schema.define(version: 20150803171136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20150803140642) do
     t.integer  "unit_per_row",                      default: 5
     t.boolean  "notify_buyer_on_sale_confirmation", default: false
     t.boolean  "notify_admin_on_sale_confirmation", default: false
+    t.integer  "bumiputera_discount",               default: 5
   end
 
   create_table "product_types", force: :cascade do |t|

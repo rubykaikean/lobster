@@ -10,6 +10,7 @@
 #  unit_per_row                      :integer          default(5)
 #  notify_buyer_on_sale_confirmation :boolean          default(FALSE)
 #  notify_admin_on_sale_confirmation :boolean          default(FALSE)
+#  bumiputera_discount               :integer          default(5)
 #
 
 # Read about fixtures at

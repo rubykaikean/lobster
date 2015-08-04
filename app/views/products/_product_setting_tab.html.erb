@@ -11,6 +11,13 @@
       </div>
 
       <div class="form-group">
+      <label class="col-md-3 control-label" for="setting_bumiputera_discount">Bumiputera Discount %</label>
+        <div class="col-md-9">
+          <input type="text" id="setting_bumiputera_discount" name="setting[bumiputera_discount]" class="form-control" placeholder="Bumiputera discount rate" value="<%= @setting.bumiputera_discount %>">
+        </div>
+      </div>
+
+      <div class="form-group">
         <label class="col-md-3 control-label" for="setting_allow_multiple_booking">Allow multiple booking</label>
         <div class="col-md-9" style="padding-top: 5px;">
           <input type="hidden" id="setting_allow_multiple_booking_false" name="setting[allow_multiple_booking]" value="0">
