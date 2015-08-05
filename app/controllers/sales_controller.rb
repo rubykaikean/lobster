@@ -141,7 +141,7 @@ class SalesController < ApplicationController
       params.require(:sale).permit(:reject_reason)
     end
 
-     def cancel_reason_params
+    def cancel_reason_params
       params.require(:sale).permit(:cancel_reason)
     end
 end

@@ -22,9 +22,7 @@ class EmailTemplateRenderer
       "email"
     ],
     "SALE": [
-      "downpayment",
       "booking_fee",
-      "confirm_date_short_format",
       "actual_price"
     ],
     "LOT": [

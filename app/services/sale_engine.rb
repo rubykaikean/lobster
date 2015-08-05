@@ -17,8 +17,6 @@ class SaleEngine
         @sold_lot.status_id = Lot::SOLD
         if @sold_lot.save
           reject_the_rest_of_sales_for_the_same_lot
-          SalesNotifier.confirmation(@sale.id).deliver_later unless @buyer.email.blank? if @setting.notify_buyer_on_sale_confirmation?
-          SalesNotifier.inform_admins(@sale.id).deliver_later if @setting.notify_admin_on_sale_confirmation?
         end
       end
     end
