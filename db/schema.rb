@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803171136) do
+ActiveRecord::Schema.define(version: 20150807061832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,8 +150,8 @@ ActiveRecord::Schema.define(version: 20150803171136) do
     t.text     "description"
     t.integer  "product_id"
     t.string   "slug"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "product_type_id"
     t.integer  "status_id",               default: 1
     t.integer  "land_area_square_meter",  default: 0
@@ -161,7 +161,8 @@ ActiveRecord::Schema.define(version: 20150803171136) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 0
+    t.integer  "row_key",                 default: 1
+    t.boolean  "is_special_unit",         default: false
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree

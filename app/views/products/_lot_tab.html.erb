@@ -76,6 +76,7 @@
                 </th>
                 <th class="text-center">Type</th>
                 <th class="text-center">Price</th>
+                <th class="text-center">Special</th>
                 <!-- <th class="text-center">Bumiputera Unit</th> -->
                 <th class="text-center">Status</th>
                 <!-- <th>Action</th> -->
@@ -88,7 +89,7 @@
                   <td>
                     <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
                   </td>
-                   <td class="text-center">
+                  <td class="text-center">
                     <%= text_field_tag "update_lot[#{lot.id}][row_key]", lot.row_key, :class=>"form-control" %>
                   </td>
                   <td class="text-center">
@@ -105,6 +106,10 @@
                   </td>
                   <td class="text-center">
                     <%= text_field_tag "update_lot[#{lot.id}][selling_price]", lot.selling_price, :class=>"form-control" %>
+                  </td>
+                  <td>
+                    <%= hidden_field_tag "update_lot[#{lot.id}][is_special_unit]", false %>
+                    <%= check_box_tag "update_lot[#{lot.id}][is_special_unit]", true, lot.is_special_unit? ? "checked" : nil %>
                   </td>
                   <td class="text-center">
                     <select class="selectpicker" name="update_lot[<%= lot.id %>][status_id]">

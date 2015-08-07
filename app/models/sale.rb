@@ -78,7 +78,6 @@ class Sale < ActiveRecord::Base
   #     if sold_lot
   #       sold_lot.status_id = Lot::SOLD
   #       if sold_lot.save
-          
   #         setting = product.product_setting
   #         SalesNotifier.confirmation(self.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
   #         SalesNotifier.inform_admins(self.id).deliver_later if setting.notify_admin_on_sale_confirmation?
@@ -89,7 +88,7 @@ class Sale < ActiveRecord::Base
 
   def actual_price
     original_price = lot.selling_price
-    if buyer.is_bumiputera?
+    if buyer.is_bumiputera? && lot.is_special_unit == false
       rate_total = original_price * bumiputera_discount / 100
       original_price -= rate_total
     else
