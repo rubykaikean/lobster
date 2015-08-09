@@ -44,6 +44,47 @@ class SaleEngine
     end
   end
 
+  def self.reserve(data)
+    lot = data[:lot]
+    setting = data[:setting]
+    buyer = Buyer.new(data[:buyer_data])
+    sale = Sale.new(booking_fee: data[:booking_fee])
+    result = {}
+    if lot.available_for_booking?
+      if buyer.save
+        lot.status_id = Lot::RESERVED
+        lot.save
+        
+        sale.lot_unit_id = lot.id
+        sale.product_id = lot.product_id
+        sale.phase_id = lot.product.phase_id
+        sale.project_id = lot.product.phase.project_id
+        sale.user_id = data[:user_id]
+        sale.buyer_id = buyer.id
+        sale.status_id = Sale::PENDING
+        sale.save
+        if data[:payment_image].present?
+          payment = sale.build_payment
+          payment.image = data[:payment_image]
+          payment.save
+        end
+        SalesNotifier.confirmation(sale.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
+        SalesNotifier.inform_admins(sale.id).deliver_later if setting.notify_admin_on_sale_confirmation?
+        result[:status] = 201
+        result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}."
+      else
+        result[:status] = 400
+        result[:buyer] = buyer
+        result[:sale] = sale
+        result[:message] = buyer.errors.full_messages.join("<br>")
+      end
+    else
+      result[:status] = 403
+      result[:message] = "Lot #{lot.name} is already reserved."
+    end
+    result
+  end
+
   private
 
   def reject_the_rest_of_sales_for_the_same_lot

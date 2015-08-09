@@ -25,6 +25,7 @@ class ReservationsController < ApplicationController
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
       @sourcestype = @lot.product.sources_types
       @region = @lot.product.regions
+      @setting = @lot.product.product_setting
       if @lot.available_for_booking?
         @buyer = Buyer.new
         @sale = Sale.new
@@ -45,33 +46,29 @@ class ReservationsController < ApplicationController
     @region = @lot.product.regions
     @setting = @lot.product.product_setting
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
-      @buyer = Buyer.new(buyer_params)
-      if @lot.available_for_booking?
-        if @buyer.save
-          @lot.status_id = Lot::RESERVED
-          @lot.save
-          @sale = Sale.new
-          @sale.lot_unit_id = @lot.id
-          @sale.product_id = @lot.product_id
-          @sale.phase_id = @lot.product.phase_id
-          @sale.project_id = @lot.product.phase.project_id
-          @sale.user_id = current_user.id
-          @sale.buyer_id = @buyer.id
-          @sale.booking_fee = params[:booking_fee]
-          @sale.status_id = Sale::PENDING
-          @sale.save
-          SalesNotifier.confirmation(@sale.id).deliver_later unless @buyer.email.blank? if @setting.notify_buyer_on_sale_confirmation?
-          SalesNotifier.inform_admins(@sale.id).deliver_later if @setting.notify_admin_on_sale_confirmation?
-          flash[:notice] = "Lot #{@lot.name} has been reserved successfully for #{@buyer.full_name}."
-          redirect_to reservation_path(@lot.product)
-        else
-          flash[:alert] = "Lot #{@lot.name} is already reserved."
-          redirect_to reservation_path(@lot.product)
-        end
-      else
-        flash.now[:alert] =  @buyer.errors.full_messages.join("<br>")
+      data = { 
+        lot: @lot, 
+        setting: @setting,
+        buyer_data: buyer_params,
+        booking_fee: params[:booking_fee],
+        payment_image: params[:payment_image],
+        user_id: current_user.id
+      }
+      result = SaleEngine.reserve(data)
+      case result[:status]
+      when 201
+        flash[:notice] = result[:message]
+        redirect_to reservation_path(@lot.product)
+      when 403
+        flash[:alert] = result[:message]
+        redirect_to reservation_path(@lot.product)
+      when 400
+        flash.now[:alert] = result[:message]
+        @buyer = result[:buyer]
+        @sale = result[:sale]
         render action: 'buyer'
       end
+
     else
       flash[:alert] = "Sorry, you don't have the access right."
       redirect_to reservation_path(@lot.product)

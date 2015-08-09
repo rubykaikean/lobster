@@ -41,6 +41,14 @@
         </div>
       </div>
 
+       <div class="form-group">
+        <label class="col-md-3 control-label" for="setting_attach_payment_image">Require attach payment image</label>
+        <div class="col-md-9" style="padding-top: 5px;">
+          <input type="hidden" id="setting_attach_payment_image_false" name="setting[attach_payment_image]" value="0">
+          <input class="demo-switch" name="setting[attach_payment_image]" type="checkbox" <%= @setting.attach_payment_image? ? 'checked' : nil %> >
+        </div>
+      </div>
+
   <br>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
 

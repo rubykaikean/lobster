@@ -82,13 +82,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'dev.estatekitkat.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    address: "smtpout.asia.secureserver.net",
-    port: 25,
+    address: "smtp.office365.com",
+    port: 587,
     domain: "estatekitkat.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "noreply@estatekitkat.com",
-    password: "ContactEK8888"
+    user_name: "sasa@outsq.com",
+    password: "Vusu3761"
   }
 end
 

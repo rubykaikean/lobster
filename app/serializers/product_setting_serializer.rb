@@ -11,6 +11,7 @@
 #  notify_buyer_on_sale_confirmation :boolean          default(FALSE)
 #  notify_admin_on_sale_confirmation :boolean          default(FALSE)
 #  bumiputera_discount               :integer          default(5)
+#  attach_payment_image              :boolean          default(FALSE)
 #
 
 class ProductSettingSerializer < ActiveModel::Serializer

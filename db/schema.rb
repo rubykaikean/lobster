@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803171136) do
+ActiveRecord::Schema.define(version: 20150809123720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,16 @@ ActiveRecord::Schema.define(version: 20150803171136) do
   add_index "lots", ["product_type_id"], name: "index_lots_on_product_type_id", using: :btree
   add_index "lots", ["slug"], name: "index_lots_on_slug", unique: true, using: :btree
 
+  create_table "payments", force: :cascade do |t|
+    t.integer  "sale_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "phases", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -190,6 +200,7 @@ ActiveRecord::Schema.define(version: 20150803171136) do
     t.boolean  "notify_buyer_on_sale_confirmation", default: false
     t.boolean  "notify_admin_on_sale_confirmation", default: false
     t.integer  "bumiputera_discount",               default: 5
+    t.boolean  "attach_payment_image",              default: false
   end
 
   create_table "product_types", force: :cascade do |t|

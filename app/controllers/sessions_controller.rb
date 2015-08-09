@@ -1,7 +1,8 @@
 class SessionsController < Devise::SessionsController
 	prepend_before_action :require_no_authentication, only: [ :new, :create ]
 	#before_filter :configure_permitted_parameters, if: :devise_controller?
-  # skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token, only: [:destroy]
+  
   layout "devise"
 
   def create
