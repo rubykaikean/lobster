@@ -140,8 +140,8 @@
                 </td>
                 <%# binding.pry %>
                 <td class="text-center">
-                  <%#= number_with_precision(sale.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
-                  <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
+                  <%= number_with_precision(sale.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
+                  <%#= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>

@@ -87,6 +87,7 @@ class LotsController < ApplicationController
     update_lot_params.each do |id, content|
       lot = Lot.find id
       lot.name = content[:name]
+      lot.is_special_unit = content[:is_special_unit]
       lot.row_key = content[:row_key]
       lot.selling_price = content[:selling_price]
       lot.product_type_id = content[:product_type_id]
@@ -112,7 +113,7 @@ class LotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
-      params.require(:lot).permit(:name, :description, :product_id, :land_area_square_meter, :land_area_square_feet, :extra_land_square_meter, :extra_land_square_feet, :premium, :extra_land_price, :selling_price)
+      params.require(:lot).permit(:name, :description, :product_id, :land_area_square_meter, :land_area_square_feet, :extra_land_square_meter, :extra_land_square_feet, :premium, :extra_land_price, :selling_price, :is_special_unit)
     end
 
     def update_lot_params
