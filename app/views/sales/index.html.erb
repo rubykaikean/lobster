@@ -109,6 +109,7 @@
               <th class="text-center">Product</th>
               <th class="text-center">Lot</th>
               <th class="text-center">Price</th>
+              <th class="text-center">Payment</th>
               <th class="text-center">Status</th>
               <th class="text-center">Action<th>
             </tr>
@@ -142,6 +143,13 @@
                 <td class="text-center">
                   <%= number_with_precision(sale.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
                   <%#= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
+                </td>
+                <td class="text-center">
+                  <% if sale.payment.present? %>
+                  <button id="payment-<%= sale.id %>" class="btn btn-sm btn-purple payment">Show</button>
+                  <% else %>
+
+                  <% end %>
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>
@@ -276,3 +284,38 @@
 
   </div>
 </div>
+
+<% content_for :javascripts do %>
+  <script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+  <script src="/js/demo/form-component.js"></script>
+  <script type="text/javascript">
+    $('#sale_confirm_date').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    });
+
+    // $(document).ready(function() {
+      $('button.payment').on('click', function(){
+        var sale_name = $(this).attr("id");
+        var sale_id = sale_name.split("-")[1];
+        var payment_url;
+        // alert(sale_id);
+        $.getJSON("/sales/"+sale_id, function(data){
+          payment_url = data.url;
+          bootbox.dialog({
+           size: "large",
+           title: "Payment",
+           message: '<div class="media text-center"><img src="'+payment_url+'" alt="Payment image"></div>',
+           buttons: {
+             confirm: {
+               label: "Close"
+             }
+           }
+         });
+        });
+        
+      });
+
+    // });
+  </script>
+<% end %>

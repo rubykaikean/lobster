@@ -1,12 +1,12 @@
 <div id="email_setting-tab" class="tab-pane fade">
       <%= form_tag update_email_setting_product_path(@email),({:class => "panel-body form-horizontal form-padding"}) do %>
       <%= hidden_field_tag :product_id, nil, :value => @product.id %>
-     <!--  <div class="form-group">
+      <div class="form-group">
       <label class="col-md-2 control-label" for="setting_email_subject">From</label>
         <div class="col-md-10">
-        <input type="text" id="setting_email_from" name="setting_email[from]" class="form-control" placeholder="From" value="<%#= @email.from %>">
+        <input type="text" id="setting_email_from" name="setting_email[from]" class="form-control" placeholder="From" value="<%= @email.from %>">
         </div>
-      </div> -->
+      </div>
 
 
       <div class="form-group">

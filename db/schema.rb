@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20150807061832) do
+ActiveRecord::Schema.define(version: 20150809123720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,7 +161,7 @@ ActiveRecord::Schema.define(version: 20150807061832) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 1
+    t.integer  "row_key",                 default: 0
     t.boolean  "is_special_unit",         default: false
   end
 

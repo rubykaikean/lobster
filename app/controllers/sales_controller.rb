@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales]
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
@@ -27,10 +27,11 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
-    # respond_to do |format|
-    #   format.html # show.html.erb
-    #   format.json { render json: @sale }
-    # end
+    respond_to do |format|
+      format.json { 
+        render json: { url: @sale.payment.image.url } 
+      }
+    end
   end
 
   # GET /sales/new
