@@ -19,6 +19,7 @@
                   <% elsif @product.type_id == Product::HIGHRISE %>
                     Floor level
                   <% else %>
+                    Unit Row
                   <% end %>
                 </label>
                 <input type="text" class="form-control" name="q[row_key_eq]" id="q_row_key_eq" >
@@ -79,7 +80,7 @@
                 <th class="text-center">Special</th>
                 <!-- <th class="text-center">Bumiputera Unit</th> -->
                 <th class="text-center">Status</th>
-                <!-- <th class="text-center">Action</th> -->
+                <th class="text-center">Action</th>
               </tr>
             </thead>
             
@@ -120,9 +121,9 @@
                      
                     </select>
                   </td>
-                  <!-- <td>
-                    <%#= link_to 'Delete', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
-                  </td> -->
+                  <td>
+                    <%= link_to 'Delete', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
