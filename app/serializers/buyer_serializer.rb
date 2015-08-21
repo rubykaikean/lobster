@@ -23,9 +23,12 @@
 #  buyer_third_name      :string
 #  second_ic_number      :string
 #  third_ic_number       :string
+#  nationality_id        :integer
+#  postcode              :integer
 #
 # Indexes
 #
+#  index_buyers_on_nationality_id   (nationality_id)
 #  index_buyers_on_region_id        (region_id)
 #  index_buyers_on_slug             (slug) UNIQUE
 #  index_buyers_on_sources_type_id  (sources_type_id)

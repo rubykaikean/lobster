@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809123720) do
+ActiveRecord::Schema.define(version: 20150821102500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,8 +59,11 @@ ActiveRecord::Schema.define(version: 20150809123720) do
     t.string   "buyer_third_name"
     t.string   "second_ic_number"
     t.string   "third_ic_number"
+    t.integer  "nationality_id"
+    t.integer  "postcode"
   end
 
+  add_index "buyers", ["nationality_id"], name: "index_buyers_on_nationality_id", using: :btree
   add_index "buyers", ["region_id"], name: "index_buyers_on_region_id", using: :btree
   add_index "buyers", ["slug"], name: "index_buyers_on_slug", unique: true, using: :btree
   add_index "buyers", ["sources_type_id"], name: "index_buyers_on_sources_type_id", using: :btree
@@ -161,13 +164,20 @@ ActiveRecord::Schema.define(version: 20150809123720) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 0
+    t.integer  "row_key",                 default: 1
     t.boolean  "is_special_unit",         default: false
+    t.integer  "car_park"
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
   add_index "lots", ["product_type_id"], name: "index_lots_on_product_type_id", using: :btree
   add_index "lots", ["slug"], name: "index_lots_on_slug", unique: true, using: :btree
+
+  create_table "nationalities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "payments", force: :cascade do |t|
     t.integer  "sale_id"
