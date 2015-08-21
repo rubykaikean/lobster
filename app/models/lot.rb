@@ -18,7 +18,7 @@
 #  premium                 :integer
 #  extra_land_price        :integer          default(0)
 #  selling_price           :integer          default(0)
-#  row_key                 :integer          default(0)
+#  row_key                 :integer          default(1)
 #  is_special_unit         :boolean          default(FALSE)
 #
 # Indexes
