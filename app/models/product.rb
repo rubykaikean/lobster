@@ -118,6 +118,9 @@ class Product < ActiveRecord::Base
     unless email_setting.present?
       create_email_setting
     end
+    unless reservation_customization.present?
+    	create_reservation_customization
+    end
   end
 
 end
