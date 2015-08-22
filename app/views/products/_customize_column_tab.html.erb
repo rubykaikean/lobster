@@ -1,0 +1,243 @@
+<div id="product_customize-tab" class="tab-pane fade">
+	<div class="panel">
+  <div class="panel-body">
+		<%= form_tag update_reservation_customization_product_path(@customize), :class => "panel-body form-horizontal form-padding" do %>
+
+		<%= hidden_field_tag :product_id, nil, :value => @product.id %>
+		
+		<h3><u>Buyer Info Columns</h3></u>
+		<table class="table table-striped table-hover">
+			<tr>
+				<td>
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_full_name">Full Name</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_full_name_false" name="customize[full_name]" value="0">
+			        <input class="demo-switch" name="customize[full_name]" type="checkbox" <%= @customize.full_name? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_ic_number">IC Number</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_ic_number_false" name="customize[ic_number]" value="0">
+			        <input class="demo-switch" name="customize[ic_number]" type="checkbox" <%= @customize.ic_number? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_home_contact_number">Home Contact Number</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_home_contact_number_false" name="customize[home_contact_number]" value="0">
+			        <input class="demo-switch" name="customize[home_contact_number]" type="checkbox" <%= @customize.home_contact_number? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_address">Address</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_address_false" name="customize[address]" value="0">
+			        <input class="demo-switch" name="customize[address]" type="checkbox" <%= @customize.address? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_email">Email</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_email_false" name="customize[email]" value="0">
+			        <input class="demo-switch" name="customize[email]" type="checkbox" <%= @customize.email? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_is_bumi_putera">Is Bumi Putera</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_is_bumi_putera_false" name="customize[is_bumi_putera]" value="0">
+			        <input class="demo-switch" name="customize[is_bumi_putera]" type="checkbox" <%= @customize.is_bumi_putera? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+		  	</td>
+		  	<!-- =========================================== -->
+		  	<td>
+		  		<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_buyer_second_name">Buyer Second Name</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_buyer_second_name_false" name="customize[buyer_second_name]" value="0">
+			        <input class="demo-switch" name="customize[buyer_second_name]" type="checkbox" <%= @customize.buyer_second_name? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+		  		<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_second_ic_number">Second IC Number</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_second_ic_number_false" name="customize[second_ic_number]" value="0">
+			        <input class="demo-switch" name="customize[second_ic_number]" type="checkbox" <%= @customize.second_ic_number? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+		  		<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_mobile_contact_number">Mobile Contact Number</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_mobile_contact_number_false" name="customize[mobile_contact_number]" value="0">
+			        <input class="demo-switch" name="customize[mobile_contact_number]" type="checkbox" <%= @customize.mobile_contact_number? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_race">Race</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_race_false" name="customize[race]" value="0">
+			        <input class="demo-switch" name="customize[race]" type="checkbox" <%= @customize.race? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_age">Age</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_age_false" name="customize[age]" value="0">
+			        <input class="demo-switch" name="customize[age]" type="checkbox" <%= @customize.age? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    
+
+		  	</td>
+		  		<!-- =========================================== -->
+		  	<td>
+		  		<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_buyer_third_name">Buyer Third Name</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_buyer_third_name_false" name="customize[buyer_third_name]" value="0">
+			        <input class="demo-switch" name="customize[buyer_third_name]" type="checkbox" <%= @customize.buyer_third_name? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_third_ic_number">Third IC Number</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_third_ic_number_false" name="customize[third_ic_number]" value="0">
+			        <input class="demo-switch" name="customize[third_ic_number]" type="checkbox" <%= @customize.third_ic_number? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_office_contact_number">Office Contact Number</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_office_contact_number_false" name="customize[office_contact_number]" value="0">
+			        <input class="demo-switch" name="customize[office_contact_number]" type="checkbox" <%= @customize.office_contact_number? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_postcode">Postcode</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_postcode_false" name="customize[postcode]" value="0">
+			        <input class="demo-switch" name="customize[postcode]" type="checkbox" <%= @customize.postcode? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_gender">Gender</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_gender_false" name="customize[gender]" value="0">
+			        <input class="demo-switch" name="customize[gender]" type="checkbox" <%= @customize.gender? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+		  	</td>
+		  </tr>
+	  </table>
+
+	 	<h3><u>Sale Info Columns</u></h3>
+
+		<table class="table table-striped table-hover">
+			<tr>
+				<td>
+					<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_downpayment">Downpayment</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_downpayment_false" name="customize[gender]" value="0">
+			        <input class="demo-switch" name="customize[gender]" type="checkbox" <%= @customize.gender? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_booking_fee">Booking Fee</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_booking_fee_false" name="customize[booking_fee]" value="0">
+			        <input class="demo-switch" name="customize[booking_fee]" type="checkbox" <%= @customize.booking_fee? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_confirm_date">Confirm Date</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_confirm_date_false" name="customize[confirm_date]" value="0">
+			        <input class="demo-switch" name="customize[confirm_date]" type="checkbox" <%= @customize.confirm_date? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    
+
+				</td>
+
+				<td>
+					<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_downpayment_percentage">Downpayment Percentage</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_gender_false" name="customize[gender]" value="0">
+			        <input class="demo-switch" name="customize[gender]" type="checkbox" <%= @customize.gender? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_reject_reason">Reject Reason</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_reject_reason_false" name="customize[reject_reason]" value="0">
+			        <input class="demo-switch" name="customize[reject_reason]" type="checkbox" <%= @customize.reject_reason? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_confirm_date">Sale Date</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_sale_date_false" name="customize[sale_date]" value="0">
+			        <input class="demo-switch" name="customize[sale_date]" type="checkbox" <%= @customize.sale_date? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+				</td>
+
+				<td>
+					<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_spa">SPA</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_spa_false" name="customize[spa]" value="0">
+			        <input class="demo-switch" name="customize[spa]" type="checkbox" <%= @customize.spa? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_downpayment_type">Downpayment Type</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_downpayment_type_false" name="customize[downpayment_type]" value="0">
+			        <input class="demo-switch" name="customize[downpayment_type]" type="checkbox" <%= @customize.downpayment_type? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_selling_price">Selling Price</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_selling_price_false" name="customize[selling_price]" value="0">
+			        <input class="demo-switch" name="customize[selling_price]" type="checkbox" <%= @customize.selling_price? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+				</td>
+			</tr>
+		</table>
+
+		<%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
+		<% end %>
+	</div>
+	</div>
+</div>

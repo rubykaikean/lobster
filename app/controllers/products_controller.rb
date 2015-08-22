@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
     @product_types = @product.product_types
 
     @product_type = ProductType.new
+
     @setting = @product.product_setting
 
     @region = Region.new
@@ -33,6 +34,9 @@ class ProductsController < ApplicationController
     @sources_types = @product.sources_types
 
     @email = @product.email_setting
+
+    @customize = ReservationCustomization.new
+    # @customize = @product.reservation_customization
 
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true).page(params[:page]).per(10)
@@ -160,6 +164,14 @@ class ProductsController < ApplicationController
     redirect_to "#{product_path(email_setting.product)}#email_setting-tab"
   end
 
+  def update_reservation_customization
+    # render :text => params.to_json
+    customize = ReservationCustomization.find(params[:id])
+    customize.update(customize_params)
+    flash[:notice] = "Reservation Customization has been saved."
+    redirect_to "#{product_path(customize.product)}#product_customize-tab"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -190,5 +202,9 @@ class ProductsController < ApplicationController
     def sources_type_params
       params.require(:sources_type).permit!
     end
-   
+
+    def customize_params
+      params.requier(:customize).permit!
+    end
+
 end
