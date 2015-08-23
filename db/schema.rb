@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823042554) do
+ActiveRecord::Schema.define(version: 20150823171157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -324,6 +324,12 @@ ActiveRecord::Schema.define(version: 20150823042554) do
     t.boolean  "confirm_date_required",           default: false
     t.boolean  "sale_date_required",              default: false
     t.boolean  "selling_price_required",          default: false
+    t.boolean  "region_id",                       default: false
+    t.boolean  "region_id_required",              default: false
+    t.boolean  "nationality_id",                  default: false
+    t.boolean  "nationality_id_required",         default: false
+    t.boolean  "sources_type_id",                 default: false
+    t.boolean  "sources_type_id_required",        default: false
   end
 
   add_index "reservation_customizations", ["product_id"], name: "index_reservation_customizations_on_product_id", using: :btree

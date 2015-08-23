@@ -102,6 +102,14 @@
 			      </div>
 			    </div>
 
+			      <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_age_required">Region (Required?)</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_region_id_required_false" name="customize[region_id_required]" value="0">
+			        <input class="demo-switch" name="customize[region_id_required]" type="checkbox" <%= customize.region_id_required? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
 			    <div class="form-group">
 			      <label class="col-md-6 control-label" for="customize_postcode_required">Postcode (Required?)</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
@@ -123,5 +131,13 @@
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_is_bumi_putera_required_false" name="customize[is_bumi_putera_required]" value="0">
 			        <input class="demo-switch" name="customize[is_bumi_putera_required]" type="checkbox" <%= customize.is_bumi_putera_required? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_is_bumi_putera">Sources type (Required?)</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_sources_type_id_required_false" name="customize[sources_type_id_required]" value="0">
+			        <input class="demo-switch" name="customize[sources_type_id_required]" type="checkbox" <%= customize.sources_type_id_required? ? 'checked' : nil %> >
 			      </div>
 			    </div>

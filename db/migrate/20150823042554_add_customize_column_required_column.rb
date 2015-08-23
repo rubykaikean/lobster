@@ -1,7 +1,7 @@
 class AddCustomizeColumnRequiredColumn < ActiveRecord::Migration
   def change
 
-      add_column :reservation_customizations, :full_name_required, :boolean						 	 , default: false
+      add_column :reservation_customizations, :full_name_required, :boolean		     , default: false
       add_column :reservation_customizations, :ic_number_required, :boolean              , default: false
       add_column :reservation_customizations, :address_required, :boolean                , default: false
       add_column :reservation_customizations, :mobile_contact_number_required, :boolean  , default: false

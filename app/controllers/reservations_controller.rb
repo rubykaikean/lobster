@@ -23,9 +23,11 @@ class ReservationsController < ApplicationController
     # render :text => params
     @lot = Lot.friendly.find(params[:id])
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
-      @sourcestype = @lot.product.sources_types
-      @region = @lot.product.regions
-      @setting = @lot.product.product_setting
+      @product = @lot.product
+      @sourcestype = @product.sources_types
+      @region = @product.regions
+      @setting = @product.product_setting
+      @customization = @product.reservation_customization
       if @lot.available_for_booking?
         @buyer = Buyer.new
         @sale = Sale.new

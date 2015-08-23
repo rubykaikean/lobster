@@ -56,6 +56,12 @@
 #  confirm_date_required           :boolean          default(FALSE)
 #  sale_date_required              :boolean          default(FALSE)
 #  selling_price_required          :boolean          default(FALSE)
+#  region_id                       :boolean          default(FALSE)
+#  region_id_required              :boolean          default(FALSE)
+#  nationality_id                  :boolean          default(FALSE)
+#  nationality_id_required         :boolean          default(FALSE)
+#  sources_type_id                 :boolean          default(FALSE)
+#  sources_type_id_required        :boolean          default(FALSE)
 #
 # Indexes
 #

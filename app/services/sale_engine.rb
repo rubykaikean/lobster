@@ -63,10 +63,12 @@ class SaleEngine
         sale.buyer_id = buyer.id
         sale.status_id = Sale::PENDING
         sale.save
-        if data[:payment_image].present?
-          payment = sale.build_payment
-          payment.image = data[:payment_image]
-          payment.save
+        data[:payment_image].each do |file|
+          if !file.nil?
+            payment = sale.payments.new
+            payment.image = file
+            payment.save
+          end
         end
         SalesNotifier.confirmation(sale.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
         SalesNotifier.inform_admins(sale.id).deliver_later if setting.notify_admin_on_sale_confirmation?
