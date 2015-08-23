@@ -27,11 +27,8 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
-    respond_to do |format|
-      format.json { 
-        render json: { url: @sale.payment.image.url } 
-      }
-    end
+    @payments =  @sale.payments
+    render action: 'show', layout: false
   end
 
   # GET /sales/new

@@ -31,3 +31,17 @@
     </div>
   </div>
 </div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+	  $(document).ready(function() {
+	    var wrapper = $("div#upload_fields");    
+	    $(".upload_payments_wrapper").on('click', ".add_more_photo_button", function(e) {
+	        e.preventDefault();
+	        e.stopPropagation();
+
+	        $(wrapper).append($("input#payment_image")[0].clone());
+	    });
+	  });
+  </script>
+<% end %>

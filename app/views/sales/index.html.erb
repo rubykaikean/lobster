@@ -145,7 +145,7 @@
                   <%#= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
                 </td>
                 <td class="text-center">
-                  <% if sale.payment.present? %>
+                  <% if sale.payments.any? %>
                   <button id="payment-<%= sale.id %>" class="btn btn-sm btn-purple payment">Show</button>
                   <% else %>
 
@@ -300,12 +300,12 @@
         var sale_id = sale_name.split("-")[1];
         var payment_url;
         // alert(sale_id);
-        $.getJSON("/sales/"+sale_id, function(data){
-          payment_url = data.url;
+        $.get("/sales/"+sale_id, function(data){
+          
           bootbox.dialog({
            size: "large",
            title: "Payment",
-           message: '<div class="media text-center"><img src="'+payment_url+'" alt="Payment image"></div>',
+           message: data,
            buttons: {
              confirm: {
                label: "Close"

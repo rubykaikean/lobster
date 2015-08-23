@@ -40,7 +40,7 @@ class Sale < ActiveRecord::Base
   belongs_to :project
   belongs_to :phase
   belongs_to :lot_unit
-  has_one :payment
+  has_many :payments
 
   scope :confirmed, -> { where status_id: COMPLETED }
 

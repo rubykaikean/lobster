@@ -1,34 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div id="payment-carousel" class="carousel slide" data-ride="carousel">
+          
+  <!--Indicators-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <ol class="carousel-indicators dark out">
+    <% @payments.each_with_index do |payment, index| %>
+    <li class="<%= index == 0 ? 'active' : nil %>" data-slide-to="<%= index  %>" data-target="#payment-carousel"></li>
+    <% end %>
+   <!--  <li data-slide-to="1" data-target="#payment-carousel"></li>
+    <li class="" data-slide-to="2" data-target="#payment-carousel"></li> -->
+  </ol>
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-<p>
-  <strong>Project:</strong>
-  <%= @sale.project_id %>
-</p>
+  <div class="carousel-inner text-center">
+    <% @payments.each_with_index do |payment, index| %>
+      <div class="item <%= index == 0 ? 'active' : nil %>">
+        <div class="media text-center"><img src="<%= payment.image.url %>" alt="Payment image"></div>
+      </div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Product:</strong>
-  <%= @sale.product_id %>
-</p>
+  <!--carousel-control-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <a class="carousel-control left" data-slide="prev" href="#payment-carousel"><i class="fa fa-chevron-left fa-2x"></i></a>
+  <a class="carousel-control right" data-slide="next" href="#payment-carousel"><i class="fa fa-chevron-right fa-2x"></i></a>
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-<p>
-  <strong>Lot unit:</strong>
-  <%= @sale.lot_unit_id %>
-</p>
-
-<p>
-  <strong>Phase:</strong>
-  <%= @sale.phase_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @sale.user_id %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @sale.status_id %>
-</p>
-
-<%= link_to 'Edit', edit_sale_path(@sale) %> |
-<%= link_to 'Back', sales_path %>
+</div>
+<!--===================================================-->
+<!--End Carousel-->
