@@ -4,6 +4,7 @@
 
     <%= hidden_field_tag "lot_id", nil, value: @lot.id %>
 
+  <%  %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_full_name">Buyer name: </label>
     <div class="col-md-9">
@@ -166,11 +167,8 @@
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="payment_image">Upload a payment photo: </label>
-    <div class="col-md-9 upload_payments_wrapper">
-      <div class="upload_fields">
-        <input type="file" id="payment_image" name="payment_image[]" class="form-control" <%= @setting.attach_payment_image? ? "required" : nil %> >
-      </div>
-      <button class="add_more_photo_button btn btn-info">Add more photo</button>
+    <div class="col-md-9">
+      <input type="file" id="payment_image" name="payment_image" class="form-control" <%= @setting.attach_payment_image? ? "required" : nil %> >
     </div>
   </div>
   
