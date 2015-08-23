@@ -35,8 +35,8 @@ class ProductsController < ApplicationController
 
     @email = @product.email_setting
 
-    @customize = ReservationCustomization.new
-    # @customize = @product.reservation_customization
+    # @customize = ReservationCustomization.new
+    @customize = @product.reservation_customization
 
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true).page(params[:page]).per(10)
@@ -60,7 +60,6 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    
     @product = Product.new(product_params)
     @product.company_id = current_user.company_id
     @product.status_id = Product::AVAILABLE
@@ -204,7 +203,7 @@ class ProductsController < ApplicationController
     end
 
     def customize_params
-      params.requier(:customize).permit!
+      params.require(:customize).permit!
     end
 
 end
