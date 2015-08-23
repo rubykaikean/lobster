@@ -32,12 +32,14 @@ class Product < ActiveRecord::Base
 	has_many :product_types
 	has_one  :email_setting
 	has_one  :product_setting
+	has_one  :reservation_customization
   has_many :sales
   has_many :floor_plans
   has_many :site_plans
   has_many :regions
   has_many :sources_types
   has_many :enquiries
+  
 
   validates :company_id, presence: true, allow_nil: true
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }
@@ -115,6 +117,9 @@ class Product < ActiveRecord::Base
     end
     unless email_setting.present?
       create_email_setting
+    end
+    unless reservation_customization.present?
+    	create_reservation_customization
     end
   end
 

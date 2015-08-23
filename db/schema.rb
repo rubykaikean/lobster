@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821102500) do
+ActiveRecord::Schema.define(version: 20150823042554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,6 +269,64 @@ ActiveRecord::Schema.define(version: 20150821102500) do
     t.datetime "updated_at", null: false
     t.integer  "product_id"
   end
+
+  create_table "reservation_customizations", force: :cascade do |t|
+    t.integer  "product_id"
+    t.boolean  "full_name",                       default: false
+    t.boolean  "ic_number",                       default: false
+    t.boolean  "address",                         default: false
+    t.boolean  "mobile_contact_number",           default: false
+    t.boolean  "home_contact_number",             default: false
+    t.boolean  "office_contact_number",           default: false
+    t.boolean  "email",                           default: false
+    t.boolean  "gender",                          default: false
+    t.boolean  "is_bumi_putera",                  default: false
+    t.boolean  "race",                            default: false
+    t.boolean  "age",                             default: false
+    t.boolean  "buyer_second_name",               default: false
+    t.boolean  "buyer_third_name",                default: false
+    t.boolean  "second_ic_number",                default: false
+    t.boolean  "third_ic_number",                 default: false
+    t.boolean  "postcode",                        default: false
+    t.boolean  "downpayment",                     default: false
+    t.boolean  "downpayment_percentage",          default: false
+    t.boolean  "spa",                             default: false
+    t.boolean  "booking_fee",                     default: false
+    t.boolean  "reject_reason",                   default: false
+    t.boolean  "downpayment_type",                default: false
+    t.boolean  "confirm_date",                    default: false
+    t.boolean  "sale_date",                       default: false
+    t.boolean  "selling_price",                   default: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.boolean  "full_name_required",              default: false
+    t.boolean  "ic_number_required",              default: false
+    t.boolean  "address_required",                default: false
+    t.boolean  "mobile_contact_number_required",  default: false
+    t.boolean  "home_contact_number_required",    default: false
+    t.boolean  "office_contact_number_required",  default: false
+    t.boolean  "email_required",                  default: false
+    t.boolean  "gender_required",                 default: false
+    t.boolean  "is_bumi_putera_required",         default: false
+    t.boolean  "race_required",                   default: false
+    t.boolean  "age_required",                    default: false
+    t.boolean  "buyer_second_name_required",      default: false
+    t.boolean  "buyer_third_name_required",       default: false
+    t.boolean  "second_ic_number_required",       default: false
+    t.boolean  "third_ic_number_required",        default: false
+    t.boolean  "postcode_required",               default: false
+    t.boolean  "downpayment_required",            default: false
+    t.boolean  "downpayment_percentage_required", default: false
+    t.boolean  "spa_required",                    default: false
+    t.boolean  "booking_fee_required",            default: false
+    t.boolean  "reject_reason_required",          default: false
+    t.boolean  "downpayment_type_required",       default: false
+    t.boolean  "confirm_date_required",           default: false
+    t.boolean  "sale_date_required",              default: false
+    t.boolean  "selling_price_required",          default: false
+  end
+
+  add_index "reservation_customizations", ["product_id"], name: "index_reservation_customizations_on_product_id", using: :btree
 
   create_table "sales", force: :cascade do |t|
     t.integer  "project_id"
