@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20150823171157) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 0
+    t.integer  "row_key",                 default: 1
     t.boolean  "is_special_unit",         default: false
     t.integer  "car_park"
   end
