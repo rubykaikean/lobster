@@ -69,7 +69,6 @@ class ReservationsController < ApplicationController
         @buyer = result[:buyer]
         @sale = result[:sale]
         render action: 'buyer'
-        # redirect_to reservation_path(@lot.product)
       end
 
     else
