@@ -1,12 +1,18 @@
 <%= form_tag cancel_sale_path(sale), {:class => 'panel-body form-horizontal form-padding'}  do %>
 
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_cancel_reason">Cancel Reason:</label>
-    <div class="col-md-9">
-      <input type="text" id="sale_cancel_reason" name="sale[cancel_reason]" class="form-control" placeholder="Cancel Reason" required>
-      <!-- <small class="help-block">This is a help text</small> -->
+  <%# if @customization.reject_reason? %>
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="sale_cancel_reason">Cancel Reason:</label>
+      <div class="col-md-9">
+        <input type="text" id="sale_cancel_reason" name="sale[cancel_reason]" class="form-control" placeholder="Cancel Reason" <%#= @customization.reject_reason_required? ? 'required' : nil %> >
+          <%# if @customization.reject_reason_required? %>
+            <!-- <small class="help-block">Required field</small> -->
+          <%# end %>
+      </div>
     </div>
-  </div>
+  <%# else %>
+    <!-- Unable keyin cancel reason. -->
+  <%# end %>
   <div class="form-group">
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">
