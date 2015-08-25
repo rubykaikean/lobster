@@ -167,6 +167,14 @@
 			<tr>
 				<td>
 					<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_sale_person">Sale Person</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_sale_person_false" name="customize[sale_person]" value="0">
+			        <input class="demo-switch" name="customize[sale_person]" type="checkbox" <%= @customize.sale_person? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+					<div class="form-group">
 			      <label class="col-md-6 control-label" for="customize_downpayment">Downpayment</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_downpayment_false" name="customize[downpayment]" value="0">
@@ -199,7 +207,7 @@
 			    </div>
 
 			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_confirm_date">Confirm Date</label>
+			      <label class="col-md-6 control-label" for="customize_confirm_date">Confirm Date(spa date)</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_confirm_date_false" name="customize[confirm_date]" value="0">
 			        <input class="demo-switch" name="customize[confirm_date]" type="checkbox" <%= @customize.confirm_date? ? 'checked' : nil %> >
@@ -229,6 +237,14 @@
 			        <input class="demo-switch" name="customize[selling_price]" type="checkbox" <%= @customize.selling_price? ? 'checked' : nil %> >
 			      </div>
 			    </div>
+
+					<div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_payment_type">Payment Type</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_payment_type_false" name="customize[payment_type]" value="0">
+			        <input class="demo-switch" name="customize[payment_type]" type="checkbox" <%= @customize.payment_type? ? 'checked' : nil %> >
+			      </div>
+			    </div>			    
 
 			    <div class="form-group">
 			      <label class="col-md-6 control-label" for="customize_reject_reason">Reject Reason</label>
