@@ -66,6 +66,8 @@
 #  sale_person_required            :boolean          default(FALSE)
 #  payment_type                    :boolean          default(FALSE)
 #  payment_type_required           :boolean          default(FALSE)
+#  car_park                        :boolean          default(FALSE)
+#  car_park_required               :boolean          default(FALSE)
 #
 # Indexes
 #

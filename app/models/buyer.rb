@@ -25,6 +25,7 @@
 #  third_ic_number       :string
 #  nationality_id        :integer
 #  postcode              :integer
+#  car_park              :string
 #
 # Indexes
 #

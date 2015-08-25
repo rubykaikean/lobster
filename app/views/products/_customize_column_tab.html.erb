@@ -146,10 +146,18 @@
 			    </div>
 
 			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_is_bumi_putera">Sources type</label>
+			      <label class="col-md-6 control-label" for="customize_sources_type_id">Sources type</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_sources_type_id_false" name="customize[sources_type_id]" value="0">
 			        <input class="demo-switch" name="customize[sources_type_id]" type="checkbox" <%= @customize.sources_type_id? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_car_park">Car Park</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_car_park_false" name="customize[car_park]" value="0">
+			        <input class="demo-switch" name="customize[car_park]" type="checkbox" <%= @customize.car_park? ? 'checked' : nil %> >
 			      </div>
 			    </div>
 

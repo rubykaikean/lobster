@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825060638) do
+ActiveRecord::Schema.define(version: 20150825104721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150825060638) do
     t.string   "third_ic_number"
     t.integer  "nationality_id"
     t.integer  "postcode"
+    t.string   "car_park"
   end
 
   add_index "buyers", ["nationality_id"], name: "index_buyers_on_nationality_id", using: :btree
@@ -166,7 +167,6 @@ ActiveRecord::Schema.define(version: 20150825060638) do
     t.integer  "selling_price",           default: 0
     t.integer  "row_key",                 default: 1
     t.boolean  "is_special_unit",         default: false
-    t.integer  "car_park"
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
@@ -334,6 +334,8 @@ ActiveRecord::Schema.define(version: 20150825060638) do
     t.boolean  "sale_person_required",            default: false
     t.boolean  "payment_type",                    default: false
     t.boolean  "payment_type_required",           default: false
+    t.boolean  "car_park",                        default: false
+    t.boolean  "car_park_required",               default: false
   end
 
   add_index "reservation_customizations", ["product_id"], name: "index_reservation_customizations_on_product_id", using: :btree
