@@ -62,6 +62,10 @@
 #  nationality_id_required         :boolean          default(FALSE)
 #  sources_type_id                 :boolean          default(FALSE)
 #  sources_type_id_required        :boolean          default(FALSE)
+#  sale_person                     :boolean          default(FALSE)
+#  sale_person_required            :boolean          default(FALSE)
+#  payment_type                    :boolean          default(FALSE)
+#  payment_type_required           :boolean          default(FALSE)
 #
 # Indexes
 #

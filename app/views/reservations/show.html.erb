@@ -59,14 +59,18 @@
 								      <% if lot %>
 									      <td class="text-center <%= lot.background_css_name %>">
 									        <div class="pad-btm"></div>
-									        <div>	
-									        	<%#= lot.id %><%= lot.name %>
+									        <div>
+									        	<%= lot.name %>
 									        </div>
 									        <div>	
 									        	<%= lot.product_type.try(:name) %>
 									        </div>
-									         <div>	
+									         <div>
+									         	<% unless lot.is_sold? %>
 									        	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
+									        	<% else %>
+									        	RM 0
+									        	<% end %>
 									        </div> 
 									        <div>
 									          <% if is_top_level_management? || is_low_level_admin? %>

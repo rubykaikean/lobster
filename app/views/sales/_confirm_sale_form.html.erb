@@ -2,80 +2,111 @@
 
   <% if is_top_level_management? %>
 
-        <div class="form-group">
-          <label class="col-md-3 control-label" for="sale_user_id">Sale Person</label>
-          <div class="col-md-9">
-            <!-- Inline radio buttons -->
-            <select class="selectpicker" name="sale[user_id]">
-              <option value="">Select a name</option>
-              <% current_user.company.members.each do |member| %>
-                <option value="<%= member.id %>" <%= member.id == sale.user_id ? "selected='selected'" : nil %> ><%= member.name %></option>
-              <% end %>
-            </select>
-            <small class="help-block"> </small>
-          </div>
-        </div>
+  <% @product = Product.friendly.find(sale.product_id) %>
+  <% @customization = @product.reservation_customization %>
 
-      <input type="hidden" name="sale[admin_confirm_user_id]" class="form-control" value="<%= current_user.id %>">
-      <br>
-    <%# if @customization.confirm_date? %>
+  <% if @customization.sale_person %>
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="sale_user_id">Sale Person</label>
+      <div class="col-md-9">
+        <select class="selectpicker" name="sale[user_id]" <%= @customization.sale_person_required? ? 'required' : nil %> >
+          <option value="">Select a name</option>
+          <% current_user.company.members.each do |member| %>
+            <option value="<%= member.id %>" <%= member.id == sale.user_id ? "selected='selected'" : nil %> ><%= member.name %></option>
+          <% end %>
+        </select>
+        <% if @customization.sale_person_required?  %>
+          <small class="help-block">Required field</small>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
+    <input type="hidden" name="sale[admin_confirm_user_id]" class="form-control" value="<%= current_user.id %>">
+    <br>
+  
+  <% if @customization.confirm_date? %>
     <div class="form-group">
       <label class="col-md-3 control-label" for="sale_confirm_date">SPA Date</label>
       <div class="col-md-9">
         <div class="input-group date">
-          <input type="text" class="form-control" name="sale[confirm_date]" id="sale_confirm_date" value="">
+          <input type="text" class="form-control" name="sale[confirm_date]" id="sale_confirm_date" value="" <%= @customization.confirm_date_required? ? 'required' : nil %> >
           <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
         </div>
-        <small class="text-muted">Click to select the SPA date</small>
+        
+        <small class="text-muted">Click to select the SPA date. </small>
+        <% if @customization.confirm_date_required?  %>
+          <small class="help-block">Required field</small>
+        <% end %>
       </div>
     </div>
     <% end %>
     <br>
-  <%# end %>
+  <% end %>
 
+  <% if @customization.downpayment? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment">Down Payment(RM):</label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment" name="sale[downpayment]" class="form-control" placeholder="DownPayment" value="" required>
-      <small class="help-block">Required field</small>
+      <input type="text" id="sale_downpayment" name="sale[downpayment]" class="form-control" placeholder="DownPayment" value="" <%= @customization.downpayment_required? ? 'required' : nil %> >
+      <% if @customization.downpayment_required?  %>
+          <small class="help-block">Required field</small>
+        <% end %>
     </div>
   </div>
+  <% end %>
   <br>
 
+  <% if @customization.downpayment_percentage? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_percentage">Down Payment(%): </label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="DownPayment percentage" value="">
-      <small class="help-block"> </small>
+      <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="DownPayment percentage" value="" <%= @customization.downpayment_percentage_required? ? 'required' : nil %> >
+      <% if @customization.downpayment_percentage_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
   <br>
 
+  <% if @customization.downpayment_type? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_type">Payment Type: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Down Payment Type" value="">
-      <small class="help-block"> </small>
+      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Down Payment Type" value="" <%= @customization.downpayment_type_required? ? 'required' : nil %> >
+      <% if @customization.downpayment_type_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
   <br>
-
+  <% if @customization.payment_type? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Bank Loan" value="">
-      <small class="help-block"> </small>
+      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Bank Loan" value="" <%= @customization.payment_type_required? ? 'required' : nil %> >
+      <% if @customization.payment_type_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
   <br>
 
+  <% if @customization.spa? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_spa">Lawyer Firm: </label>
+    <label class="col-md-3 control-label" for="sale_spa">Lawyer Firm(SPA): </label>
     <div class="col-md-9">
-      <input type="text" id="sale_spa" name="sale[spa]" class="form-control" placeholder="SPA Lawyer Firm" value="" required>
-      <small class="help-block">Required field</small>
+      <input type="text" id="sale_spa" name="sale[spa]" class="form-control" placeholder="SPA Lawyer Firm" value="" <%= @customization.spa_required? ? 'required' : nil %> >
+      <% if @customization.spa_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
   <br>
 
   <div class="form-group">
