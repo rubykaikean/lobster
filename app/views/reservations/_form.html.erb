@@ -266,9 +266,9 @@
     <label class="col-md-3 control-label" for="payment_image">Upload payment images: </label>
     <div class="col-md-9 upload_payments_wrapper">
       <div class="upload_fields">
-      <%# 5.times do %>
+      <% 5.times do %>
         <input type="file" name="payment_image[]" class="form-control" <% @setting.attach_payment_image? ? "required" : nil %> >
-      <%# end %>
+      <% end %>
       </div>
       <!-- <button class="add_more_photo_button btn btn-info">Add more photo</button> -->
     </div>
