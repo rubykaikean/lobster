@@ -3,7 +3,6 @@
   <% @product = Product.friendly.find(sale.product_id) %>
   <% @customization = @product.reservation_customization %>
 
-  <% if @customization.reject_reason? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_reject_reason">Reject Reason:</label>
     <div class="col-md-9">
@@ -13,9 +12,6 @@
     <% end %>
     </div>
   </div>
-  <% else %>
-  Unable KeyIn Reject Reason
-  <% end %>
 
   <div class="form-group">
     <div class="row">

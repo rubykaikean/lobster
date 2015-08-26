@@ -250,17 +250,17 @@
   </div>
   <% end %>
 
-  <!-- <%# if @customization.car_park? %>
+  <% if @customization.car_park? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_car_park"></label>
     <div class="col-md-9">
-      <input type="text" id="buyer_car_park" name="buyer[car_park]" class="form-control" placeholder="Car Park" value="<%#= @buyer.car_park %>" <%#= @customization.car_park_required? ? 'required' : nil %> >
-      <%# if @customization.car_park_required?  %>
+      <input type="text" id="buyer_car_park" name="buyer[car_park]" class="form-control" placeholder="Car Park" value="<%= @buyer.car_park %>" <%= @customization.car_park_required? ? 'required' : nil %> >
+      <% if @customization.car_park_required?  %>
         <small class="help-block">Required field</small>
-      <%# end %>
+      <% end %>
     </div>
   </div>
-  <%# end %> -->
+  <% end %>
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="payment_image">Upload payment images: </label>
