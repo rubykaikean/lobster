@@ -70,11 +70,6 @@ class SaleEngine
             payment.save
           end
         end
-        # if !data[:payment_image].nil?
-        #   payment = sale.payments.new
-        #     payment.image = file
-        #     payment.save
-        # end
         SalesNotifier.confirmation(sale.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
         SalesNotifier.inform_admins(sale.id).deliver_later if setting.notify_admin_on_sale_confirmation?
         result[:status] = 201

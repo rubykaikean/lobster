@@ -16,13 +16,13 @@ class Payment < ActiveRecord::Base
   belongs_to :sale
 
   has_attached_file :image,
-                    # :styles => {:large => "500x500>", :medium => "300x300>", :thumb => "100x100>" },
+                    #:styles => {:large => "500x500>", :medium => "300x300>", :thumb => "100x100>" },
                     #:default_url => ActionController::Base.helpers.asset_path('wechat/missing.jpg'),
                     #:processors => [:thumbnail, :paperclip_optimizer],
                     :path => "payments/:id/:filename"
                     #:url  => "/system/:attachment/:id/:style/:filename"
 
-  validates :image_file_name, presence: true
+  # validates :image_file_name, presence: true
   validates_attachment :image, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpg"] }
   validates_attachment_size :image, :less_than => 5.megabytes
 end
