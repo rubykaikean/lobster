@@ -38,12 +38,14 @@
 					<div class="panel-body" style="padding-top:0px;">
 					  <div class="col-lg-5 text-lg-left">
 					    <div class="bg-light text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Available </div>
+					    <div class="bg-info text-center" style="width:70px;float:left;border:1px;border-color:black;border-style:solid;"> Booked</div>
 					    <div class="bg-orange text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Reserved </div>
 					    <div class="bg-danger text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Sold </div>
 					    <div class="bg-pink text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Blocked </div>
 				    </div>
 				</div>
-
+				
+				
 				<div class="panel-body" style="padding-top:0px;">
 				<div class="table-responsive">
 				  
@@ -74,7 +76,11 @@
 									        </div> 
 									        <div>
 									          <% if is_top_level_management? || is_low_level_admin? %>
+									          <% unless lot.status_id == Lot::CONFIRM_RESERVATION %>
 									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
+									        	  <% else %>
+									        	  <u>Unit Confirm Reserved</u>
+									        	<% end %>
 									        	<% end %>
 									        </div>
 									        <div class="pad-top"></div>

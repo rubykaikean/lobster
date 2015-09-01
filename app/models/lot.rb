@@ -42,6 +42,7 @@ class Lot < ActiveRecord::Base
   RESERVED  = 2
   SOLD      = 3
   BLOCKED   = 4
+  CONFIRM_RESERVATION    = 5
 
   def is_available?
     status_id == AVAILABLE
@@ -57,6 +58,10 @@ class Lot < ActiveRecord::Base
 
   def is_blocked?
     status_id == BLOCKED
+  end
+
+  def is_confirm_reservation?
+    status_id == CONFIRM_RESERVATION
   end
 
   def available_for_booking?
@@ -78,6 +83,8 @@ class Lot < ActiveRecord::Base
       "Sold"
     when BLOCKED
       "Blocked"
+    when CONFIRM_RESERVATION
+      "Confirm Reservation"
     end
   end
 
@@ -91,6 +98,8 @@ class Lot < ActiveRecord::Base
       "bg-danger"
     when BLOCKED
       "bg-pink"
+    when CONFIRM_RESERVATION
+      "bg-info"
     end
   end
 

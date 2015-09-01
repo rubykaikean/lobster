@@ -59,8 +59,8 @@
     <div class="col-md-9">
       <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" <%= @customization.ic_number_required? ? 'required' : nil %>  maxlength="12" minlength="12">
       <small class="help-block">
-        <% if @customization.email_required?  %>Required field.<% end %>
         Example : 801023075488
+        <% if @customization.ic_number_required? %>, Required field.<% end %>
       </small>
     </div>
   </div>
@@ -266,8 +266,9 @@
     <label class="col-md-3 control-label" for="payment_image">Upload payment images: </label>
     <div class="col-md-9 upload_payments_wrapper">
       <div class="upload_fields">
-      <% 5.times do %>
         <input type="file" name="payment_image[]" class="form-control" <% @setting.attach_payment_image? ? "required" : nil %> >
+      <% 4.times do %>
+        <input type="file" name="payment_image[]" class="form-control" >
       <% end %>
       </div>
       <!-- <button class="add_more_photo_button btn btn-info">Add more photo</button> -->

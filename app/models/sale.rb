@@ -49,17 +49,26 @@ class Sale < ActiveRecord::Base
   COMPLETED = 2
   REJECTED = 3
   CANCELLED = 4
+  PENDING_RESERVATION = 5
+  CONFIRM_RESERVATION = 6
+
 
   def status
   	case status_id
     when PENDING
       "Pending"
+    when BOOKED
+      "Booked"
     when COMPLETED
       "completed"
     when REJECTED
       "Rejected"
     when CANCELLED
       "Cancelled"
+    when PENDING_RESERVATION
+      "Pending Reservation"
+    when CONFIRM_RESERVATION
+      "Confirm Reservation"
     end
   end
 
@@ -69,6 +78,12 @@ class Sale < ActiveRecord::Base
 
   def lot
     Lot.find_by(id: lot_unit_id)
+  end
+
+
+
+  def is_same_unit_confirm_reservation?
+
   end
 
   # def confirm_sale(confirm_params)

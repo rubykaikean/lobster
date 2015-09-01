@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     collection do
       post "create_lot"
+      get "confirm_reservation"
     end
   end
 
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
 
   resources :sales do
     member do
+      # post "prebook"
       post "confirm"
       post "reject"
       post "cancel"

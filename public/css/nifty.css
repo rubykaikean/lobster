@@ -5475,6 +5475,13 @@ a.list-group-item-dark:focus {
 .bg-pink a {
   color: #ffffff;
 }
+.bg-blue {
+  background-color: #d9edf7;
+}
+.bg-blue,
+.bg-blue a {
+  color: #ffffff;
+}
 .bg-dark {
   background-color: #3b4146;
 }

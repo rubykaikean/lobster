@@ -44,9 +44,9 @@
 
     <%#= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
     <% if @product_types.any? %>
-      <button data-target="#generate_lot" data-toggle="modal" class="btn btn-primary">Generate Lot</button>
+      <button data-target="#generate_lot" data-toggle="modal" class="btn btn-primary">Generate Unit</button>
     <% else %>
-      <button data-toggle="modal" class="btn btn-primary" onclick="alert('Please create product type first.');">Generate Lot</button>
+      <button data-toggle="modal" class="btn btn-primary" onclick="alert('Please create product type first.');">Generate Unit</button>
     <% end %>
       <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
       <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
@@ -61,7 +61,7 @@
     <!--Nav Tabs-->
     <ul class="nav nav-tabs" id="product_options_tabs">
       <li class="active">
-        <a data-toggle="tab" href="#lot-tab">Lot list</a>
+        <a data-toggle="tab" href="#lot-tab">Unit list</a>
       </li>
       <li>
         <a data-toggle="tab" href="#product_type-tab">Types <!-- <span class="badge badge-purple">27</span> --></a>
@@ -118,7 +118,7 @@
           <button data-dismiss="modal" class="close" type="button">
           <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title">Generate Lot (<%= @product.title %>)</h4>
+          <h4 class="modal-title">Generate Unit (<%= @product.title %>)</h4>
         </div>
 
         <!--Modal body-->

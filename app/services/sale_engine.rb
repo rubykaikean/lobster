@@ -22,6 +22,7 @@ class SaleEngine
     end
   end
 
+
   def reject
     @sale.status_id = Sale::REJECTED
     @sale.reject_reason = @related_params[:reject_reason]
@@ -63,11 +64,13 @@ class SaleEngine
         sale.buyer_id = buyer.id
         sale.status_id = Sale::PENDING
         sale.save
-        data[:payment_image].each do |file|
-          if !file.nil?
-            payment = sale.payments.new
-            payment.image = file
-            payment.save
+        if data[:payment_image]
+          data[:payment_image].each do |file|
+            if !file.nil?
+              payment = sale.payments.new
+              payment.image = file
+              payment.save
+            end
           end
         end
         SalesNotifier.confirmation(sale.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
