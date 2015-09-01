@@ -16,7 +16,7 @@ class SalesController < ApplicationController
     else
       @q = current_user.sales.ransack(params[:q])
     end
-    @sales = @q.result(distinct: true).page(params[:page]).per(50)
+    @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(50)
 
     respond_to do |format|
       format.html # index.html.erb

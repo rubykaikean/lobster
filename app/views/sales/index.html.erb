@@ -120,7 +120,7 @@
               <tr>
                 <td><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
                 <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
-                <td><%#= sale.booking_fee %><%= sale.user.company.name rescue "Company not found" %></td>
+                <td><%= sale.user.company.name rescue "Company not found" %></td>
                 <td class="text-center"><%= sale.user.name rescue "User not found" %></td>
                 <td class="text-left">
                   <% if is_top_level_management? || (sale.user_id == current_user.id) %>
@@ -161,9 +161,9 @@
                   <% elsif sale.status_id == Sale::COMPLETED %>
                     <span class="label label-success">Sold</span>
                 <% elsif sale.status_id == Sale::PENDING_RESERVATION %>
-                <span class="label label-danger">Pending Reservation</span>
+                <span class="label label-danger">Pending</span>
                 <% elsif sale.status_id == Sale::CONFIRM_RESERVATION %>
-                <span class="label label-success">Confirm Reservation</span>
+                <span class="label label-success">Booked</span>
                   <% end %>
                 </td>
         

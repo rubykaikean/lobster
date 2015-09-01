@@ -42,7 +42,7 @@ class Lot < ActiveRecord::Base
   RESERVED  = 2
   SOLD      = 3
   BLOCKED   = 4
-  CONFIRM_RESERVATION    = 5
+  CONFIRM_RESERVATION   = 5
 
   def is_available?
     status_id == AVAILABLE

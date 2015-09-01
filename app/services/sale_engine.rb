@@ -28,7 +28,13 @@ class SaleEngine
     @sale.reject_reason = @related_params[:reject_reason]
     if @sale.save
       if @setting.allow_multiple_booking?
-
+        pending_sale_unit = Sale.find_by(lot_unit_id: @sale.lot_unit_id, status_id: Sale::PENDING)
+        if pending_sale_unit
+          
+        else
+          @sold_lot.status_id = Lot::AVAILABLE
+          @sold_lot.save
+        end
       else
         @sold_lot.status_id = Lot::AVAILABLE
         @sold_lot.save
