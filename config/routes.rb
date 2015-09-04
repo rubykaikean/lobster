@@ -132,6 +132,11 @@ Rails.application.routes.draw do
   authenticate :admin do
     mount Sidekiq::Web => '/sidekiq'
   end
+
+  match 'molpay/subscribe' => "molpay#subscribe", via: [:post, :get]
+  match 'molpay/gift_code' => "molpay#gift_code", via: [:post, :get]
+  match 'molpay/return_url' => "molpay#return_url", via: [:post, :get]
+  match 'molpay/molpay' => "molpay#molpay", via: [:get, :post]
   
   get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   # root 'companies#profile'

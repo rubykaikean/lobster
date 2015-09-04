@@ -1,0 +1,123 @@
+<% header "Make Order" %>
+
+<% if @agent_transaction %>
+	<% a = @agent_transaction.order_id %>
+	<% order_id = a + 1 %>
+<% end %>
+		<%= form_tag molpay_agent_transactions_path do %>
+				<li data-role="fieldcontain">
+				  <div class="hr hr-dotted hr-5"></div>
+				  <label>Payment Method</label>
+				  <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
+				  	<label for="molpay_payment_year">Year</label>
+				    <input type="radio" name="payment_method" value="year" id="molpay_payment_year" checked>
+						<label for="molpay_payment_month">Month</label>
+						<input type="radio" name="payment_method" value="month" id="molpay_payment_month">
+				  </fieldset>
+				</li>
+
+				<li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Amount(RM)</label>
+		      <div id="amount_field">9.90</div>
+		      <div style="display:none;"><%= text_field_tag "amount" %></div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Gift Code</label>
+		      <% if params[:result] %>
+						<%= params[:result] %>
+						<div style="display:none;">
+							<%= text_field_tag "gift_code", value="#{params[:result]}" %>
+						</div>
+					<% else %>
+						EK8888
+						<div style="display:none;">
+							<%= text_field_tag "gift_code", value="EK8888" %>
+						</div>
+					<% end %>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Order ID</label>
+			      <% unless order_id %>
+						0001
+						<div style="display:none;">
+							<%= text_field_tag "order_id", value="0001" %>
+						</div>
+					<% else %>
+						<%= order_id %>
+						<div style="display:none;">
+							<%= text_field_tag "order_id", value="#{order_id}" %>
+						</div>
+					<% end %>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Name</label>
+		      <%= current_agent.nickname %>
+					<div style="display:none;">
+						<%= text_field_tag "bill_name", value="#{current_agent.nickname}" %>
+					</div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Mobile</label>
+		      <%= current_agent.contact_number %>
+						<div style="display:none;">
+							<%= text_field_tag "bill_mobile", value="#{current_agent.contact_number}" %>
+						</div>
+		    </li>
+		
+				<li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Email</label>
+		      <%= current_agent.email %>
+						<div style="display:none;">
+							<%= text_field_tag "bill_email", value="#{current_agent.email}" %>
+						</div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Description</label>
+		      	<div id="molpay_description">One Year Subscribe.</div>
+						<div style="display:none;">
+							<%= text_field_tag "bill_desc", value="One Year Subscribe" %>
+						</div>
+		    </li>
+		
+		 <li data-role="fieldcontain">
+        <button type="submit" >
+          <i class='lIcon fa fa-floppy-o'></i>Submit Order
+        </button>
+      </li>
+		<% end %>
+	
+
+<script type="text/javascript">
+$(document).ready(function () {
+		var month_payment = "9.90"
+		var year_payment = "99.00"
+  $('input[name="payment_method"]').on('change', function(){
+    if ($(this).val()=='month') {
+         $("#amount_field").text("9.90");
+         $("#amount").val("9.90");
+         $("#bill_desc").val("One Month Subscribe.");
+         $("#molpay_description").text("One Month Subscribe.");
+    } else  
+    {
+        $("#amount").val("99.00");
+        $("#amount_field").text("99.00");
+        $("#bill_desc").val("One Year Subscribe.");
+        $("#molpay_description").text("One Year Subscribe.");
+    }
+});
+
+ 
+});
+</script>

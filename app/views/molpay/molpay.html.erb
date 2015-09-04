@@ -1,0 +1,123 @@
+<%#= render :text => @molpay_order.to_json %>
+
+  <% header "Subscribe Us for Unlimit Listing" %>
+
+
+<% merchant_id = "estatekitkat" %>
+<% verify_key = "09f318dd2c8acd160df1691870ce2abe" %>
+<% a = [@molpay_order.amount, merchant_id, @molpay_order.order_id, verify_key].join %>
+<% vcode = Digest::MD5.hexdigest(a) %>
+<%#= vcode %>
+
+	<form action="https://www.onlinepayment.com.my/NBepay/pay/estatekitkat/index.php" method="post">
+				<li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Amount</label>
+		      RM <%= @molpay_order.amount %>
+		      <div style="display:none;">
+		      	<input type="text" name="amount" value="<%= @molpay_order.amount %>">
+		    	</div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Order ID</label>
+		      <%= @molpay_order.order_id %>
+		      <div style="display:none;">
+		      	<input type="text" name="orderid" value="<%= @molpay_order.order_id %>">
+		    	</div>
+		    </li>
+				
+				<!-- <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      	<label>Country</label>
+		      	<%#= label_tag "Malaysia" %>
+		    	</div>
+		    </li> -->
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Name:</label>
+		      <%= @molpay_order.bill_name %>
+		      <div style="display:none;">
+		      	<input type="text" name="orderid" value="<%= @molpay_order.order_id %>">
+		    	</div>
+		    </li>
+				
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Email:</label>
+		      <%= @molpay_order.bill_email %>
+		      <div style="display:none;">
+		      	<input type="text" name="bill_email" value="<%= @molpay_order.bill_email %>">
+		    	</div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Mobile:</label>
+		      <%= current_agent.contact_number %>
+					<div style="display:none;">
+						<input type="text" name="bill_mobile" value="<%= current_agent.contact_number %>">
+					</div>
+		    </li>
+						
+				<li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Mobile:</label>
+		      	
+		      	One Year Subscribe
+					<div style="display:none;">
+						<input type="text" name="bill_desc" value="One Year Subscribe">
+					</div>
+		    </li>
+		<!-- 	<tr class="warning">
+				<td><strong>Bill Description: </strong></td> 
+				<td>
+					<%# if @molpay_order.amount > 10 %>
+						One Year Subscribe
+						<div style="display:none;">
+							<input type="text" name="bill_desc" value="One Year Subscribe">
+						</div>
+					<%# else %>
+						<!-- One Month Subscribe
+						<div style="display:none;">
+							<input type="text" name="bill_desc" value="One Month Subscribe">
+						</div> -->
+					<%# end %>
+
+					<div style="display:none;">
+						<input type="text" name="country" value="MY">
+					</div>
+					<div style="display:none;">
+						<input type="text" name="cur" value="rm">
+					</div>
+					<div style="display:none;">
+						<input type="text" name="returnurl" value="http://wechat.estatekitkat.com/molpay/return_url">
+					</div>
+					<div style="display:none;">
+						<input type="text" name="vcode" value="<%= vcode %>">
+					</div>
+
+			<li data-role="fieldcontain">
+        <button type="submit" >
+          <i class='lIcon fa fa-floppy-o'></i>Submit Order
+        </button>
+      </li>
+	</form>
+
+		<%#= amount = 100.00 %>
+<!--<%#= bill_name = "Mr.Khongkk" %><br>
+		<%#= bill_email = "khongkk89@gmail.com" %><br>
+		<%#= bill_mobile = "012-4889338" %><br>
+		<%#= bill_desc = "testing molpay rm100" %><br>
+		<%#= cur = "rm" %><br>
+		<%#= country = "MY" %><br>
+		<%#= return_url = "http://wechat.estatekitkat.com/home/return_url" %><br> -->
+		<!-- <%#= merchant_id = "estatekitkat" %><br>
+		<%#= order_id = "EK8888" %><br>
+		<%#= verify_key = "09f318dd2c8acd160df1691870ce2abe" %><br>
+		<%# b = [amount, merchant_id, order_id, verify_key].join %>
+		<%# code = Digest::MD5.hexdigest(b) %>
+		<%#= code %><br> -->
+
