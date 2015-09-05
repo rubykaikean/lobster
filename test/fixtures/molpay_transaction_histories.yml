@@ -1,0 +1,36 @@
+# == Schema Information
+#
+# Table name: molpay_transaction_histories
+#
+#  id          :integer          not null, primary key
+#  order_id    :integer
+#  amount      :float
+#  is_paid     :boolean
+#  status      :boolean
+#  bill_name   :string
+#  bill_email  :string
+#  bill_mobile :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  order_id: 1
+  amount: 1.5
+  is_paid: false
+  status: false
+  bill_name: MyString
+  bill_email: MyString
+  bill_mobile: MyString
+
+two:
+  order_id: 1
+  amount: 1.5
+  is_paid: false
+  status: false
+  bill_name: MyString
+  bill_email: MyString
+  bill_mobile: MyString

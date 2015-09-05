@@ -3,7 +3,7 @@ class MolpayController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => :return_url
 
 	def subscribe
-		@agent_transaction = AgentTransaction.last
+		@molpay_history = MolpayTransactionHistory.last
 	end
 
 	# girft code to get discount
@@ -23,7 +23,7 @@ class MolpayController < ApplicationController
 
 	def molpay
 		
-		@molpay_order = AgentTransaction.where("order_id = ?", params[:order_id]).first
+		@molpay_order = MolpayTransactionHistory.where("order_id = ?", params[:order_id]).first
 
 		#	here is logger info params
 		# Parameters: {"skey"=>"8e0486d4786a7a22a21fe7b32ce041a3", 

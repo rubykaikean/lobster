@@ -1,48 +1,46 @@
-<% header "Make Order" %>
 
-<% if @agent_transaction %>
-	<% a = @agent_transaction.order_id %>
+<% if @molpay_history %>
+	<% a = @molpay_history.order_id %>
 	<% order_id = a + 1 %>
 <% end %>
-		<%= form_tag molpay_agent_transactions_path do %>
-				<li data-role="fieldcontain">
-				  <div class="hr hr-dotted hr-5"></div>
-				  <label>Payment Method</label>
-				  <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
-				  	<label for="molpay_payment_year">Year</label>
-				    <input type="radio" name="payment_method" value="year" id="molpay_payment_year" checked>
-						<label for="molpay_payment_month">Month</label>
-						<input type="radio" name="payment_method" value="month" id="molpay_payment_month">
-				  </fieldset>
-				</li>
+		<%= form_tag molpay_molpay_transaction_histories_path do %>
 
-				<li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Amount(RM)</label>
-		      <div id="amount_field">9.90</div>
-		      <div style="display:none;"><%= text_field_tag "amount" %></div>
-		    </li>
+<div class="row" id="content_div">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Product detail</h3>
+      </div>
+      <div class="panel-body">
 
-		    <li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Gift Code</label>
-		      <% if params[:result] %>
-						<%= params[:result] %>
-						<div style="display:none;">
-							<%= text_field_tag "gift_code", value="#{params[:result]}" %>
-						</div>
-					<% else %>
-						EK8888
-						<div style="display:none;">
-							<%= text_field_tag "gift_code", value="EK8888" %>
-						</div>
-					<% end %>
-		    </li>
+    	<div class="form-group">
+			  <label class="col-md-3 control-label" for="payment_method">Payment Method:</label>
+			  <div class="col-md-9">
+			  	<label for="molpay_payment_year">Year</label>
+			    <input type="radio" name="payment_method" value="year" id="molpay_payment_year">
+					<label for="molpay_payment_month">Month</label>
+					<input type="radio" name="payment_method" value="month" id="molpay_payment_month">
+			  </div>
+      </div>
 
-		    <li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Order ID</label>
-			      <% unless order_id %>
+      <div class="form-group">
+     		<label class="col-md-3 control-label">
+     			Amount(RM)
+     		</label>
+     		<div class="col-md-9"><%= text_field_tag "product[prepend_title]", nil, class: "form-control" %>
+     			<div id="amount_field">1.10</div>
+     			<div style="display:none;">
+     				<%= text_field_tag "molpay[amount]" %>
+     			</div>
+     		</div>
+      </div>
+
+      <div class="form-group">
+     		<label class="col-md-3 control-label">
+     			Order Id
+     		</label>
+     		<div class="col-md-9">
+     			<% unless order_id %>
 						0001
 						<div style="display:none;">
 							<%= text_field_tag "order_id", value="0001" %>
@@ -53,32 +51,77 @@
 							<%= text_field_tag "order_id", value="#{order_id}" %>
 						</div>
 					<% end %>
+     		</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+				
+
+				<!-- <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Amount(RM)</label>
+		      <div id="amount_field">1.10</div>
+		      <div style="display:none;"><%#= text_field_tag "amount" %></div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Gift Code</label>
+		      <%# if params[:result] %>
+						<%#= params[:result] %>
+						<div style="display:none;">
+							<%#= text_field_tag "gift_code", value="#{params[:result]}" %>
+						</div>
+					<%# else %>
+						EK8888
+						<div style="display:none;">
+							<%#= text_field_tag "gift_code", value="EK8888" %>
+						</div>
+					<%# end %>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Order ID</label>
+			      <%# unless order_id %>
+						0001
+						<div style="display:none;">
+							<%#= text_field_tag "order_id", value="0001" %>
+						</div>
+					<%# else %>
+						<%#= order_id %>
+						<div style="display:none;">
+							<%#= text_field_tag "order_id", value="#{order_id}" %>
+						</div>
+					<%# end %>
 		    </li>
 
 		    <li data-role="fieldcontain">
 		      <div class="hr hr-dotted hr-5"></div>
 		      <label>Bill Name</label>
-		      <%= current_agent.nickname %>
+		      <%#= current_user.name %>
 					<div style="display:none;">
-						<%= text_field_tag "bill_name", value="#{current_agent.nickname}" %>
+						<%#= text_field_tag "bill_name", value="#{current_user.name}" %>
 					</div>
 		    </li>
 
 		    <li data-role="fieldcontain">
 		      <div class="hr hr-dotted hr-5"></div>
 		      <label>Bill Mobile</label>
-		      <%= current_agent.contact_number %>
+		      <%#= current_user.ontact_number %>
 						<div style="display:none;">
-							<%= text_field_tag "bill_mobile", value="#{current_agent.contact_number}" %>
+							<%#= text_field_tag "bill_mobile", value="#{current_user.contact_number}" %>
 						</div>
 		    </li>
 		
 				<li data-role="fieldcontain">
 		      <div class="hr hr-dotted hr-5"></div>
 		      <label>Email</label>
-		      <%= current_agent.email %>
+		      <%#= current_user.email %>
 						<div style="display:none;">
-							<%= text_field_tag "bill_email", value="#{current_agent.email}" %>
+							<%#= text_field_tag "bill_email", value="#{current_user.email}" %>
 						</div>
 		    </li>
 
@@ -87,9 +130,9 @@
 		      <label>Bill Description</label>
 		      	<div id="molpay_description">One Year Subscribe.</div>
 						<div style="display:none;">
-							<%= text_field_tag "bill_desc", value="One Year Subscribe" %>
+							<%#= text_field_tag "bill_desc", value="One Year Subscribe" %>
 						</div>
-		    </li>
+		    </li> -->
 		
 		 <li data-role="fieldcontain">
         <button type="submit" >

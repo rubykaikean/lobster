@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
 
+  resources :molpay_transaction_histories do
+    collection do 
+      post "molpay"
+    end
+  end
+
+  resources :receipts
+  
   resources :email_settings
+  
   resources :regions
+  
   resources :sources_types
+  
   resources :product_settings
+  
   resources :reservations do
     member do
       get "buyer"

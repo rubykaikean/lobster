@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @molpay_transaction_history.order_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @molpay_transaction_history.amount %>
+</p>
+
+<p>
+  <strong>Is paid:</strong>
+  <%= @molpay_transaction_history.is_paid %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @molpay_transaction_history.status %>
+</p>
+
+<p>
+  <strong>Bill name:</strong>
+  <%= @molpay_transaction_history.bill_name %>
+</p>
+
+<p>
+  <strong>Bill email:</strong>
+  <%= @molpay_transaction_history.bill_email %>
+</p>
+
+<p>
+  <strong>Bill mobile:</strong>
+  <%= @molpay_transaction_history.bill_mobile %>
+</p>
+
+<%= link_to 'Edit', edit_molpay_transaction_history_path(@molpay_transaction_history) %> |
+<%= link_to 'Back', molpay_transaction_histories_path %>
