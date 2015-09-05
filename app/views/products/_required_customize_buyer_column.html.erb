@@ -149,3 +149,11 @@
 			        <input class="demo-switch" name="customize[car_park_required]" type="checkbox" <%= customize.car_park_required? ? 'checked' : nil %> >
 			      </div>
 			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_remark">Remark (Required?)</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_remark_required_false" name="customize[remark_required]" value="0">
+			        <input class="demo-switch" name="customize[remark_required]" type="checkbox" <%= customize.remark_required? ? 'checked' : nil %> >
+			      </div>
+			    </div>

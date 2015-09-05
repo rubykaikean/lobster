@@ -58,6 +58,10 @@ class ReservationsController < ApplicationController
         lot: @lot, 
         setting: @setting,
         buyer_data: buyer_params,
+        cash: params[:cash],
+        bank_loan: params[:bank_loan],
+        government_loan: params[:government_loan],
+        staff_loan: params[:staff_loan],
         booking_fee: params[:booking_fee],
         payment_image: params[:payment_image],
         user_id: current_user.id

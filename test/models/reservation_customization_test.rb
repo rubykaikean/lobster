@@ -68,6 +68,16 @@
 #  payment_type_required           :boolean          default(FALSE)
 #  car_park                        :boolean          default(FALSE)
 #  car_park_required               :boolean          default(FALSE)
+#  cash                            :boolean          default(FALSE)
+#  cash_required                   :boolean          default(FALSE)
+#  bank_loan                       :boolean          default(FALSE)
+#  bank_loan_required              :boolean          default(FALSE)
+#  government_loan                 :boolean          default(FALSE)
+#  government_loan_required        :boolean          default(FALSE)
+#  staff_loan                      :boolean          default(FALSE)
+#  staff_loan_required             :boolean          default(FALSE)
+#  remark                          :boolean          default(FALSE)
+#  remark_required                 :boolean          default(FALSE)
 #
 # Indexes
 #

@@ -62,7 +62,7 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_downpayment_percentage">Down Payment(%): </label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="DownPayment percentage" value="" <%= @customization.downpayment_percentage_required? ? 'required' : nil %> >
+      <input type="text" id="sale_downpayment_percentage" name="sale[downpayment_percentage]" class="form-control" placeholder="Downpayment percentage" value="" <%= @customization.downpayment_percentage_required? ? 'required' : nil %> >
       <% if @customization.downpayment_percentage_required?  %>
         <small class="help-block">Required field</small>
       <% end %>
@@ -73,9 +73,9 @@
 
   <% if @customization.downpayment_type? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_downpayment_type">Payment Type: </label>
+    <label class="col-md-3 control-label" for="sale_downpayment_type">Downpayment Type: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Down Payment Type" value="" <%= @customization.downpayment_type_required? ? 'required' : nil %> >
+      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Downpayment Type" value="" <%= @customization.downpayment_type_required? ? 'required' : nil %> >
       <% if @customization.downpayment_type_required?  %>
         <small class="help-block">Required field</small>
       <% end %>
@@ -85,9 +85,9 @@
   <br>
   <% if @customization.payment_type? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
+    <label class="col-md-3 control-label" for="sale_payment_type">Payment Type: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Bank Loan" value="" <%= @customization.payment_type_required? ? 'required' : nil %> >
+      <input type="text" id="sale_bank_loan" name="sale[payment_type]" class="form-control" placeholder="Payment Type" value="" <%= @customization.payment_type_required? ? 'required' : nil %> >
       <% if @customization.payment_type_required?  %>
         <small class="help-block">Required field</small>
       <% end %>
@@ -98,7 +98,7 @@
 
   <% if @customization.spa? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_spa">Lawyer Firm(SPA): </label>
+    <label class="col-md-3 control-label" for="sale_spa">SPA/Solicitor: </label>
     <div class="col-md-9">
       <input type="text" id="sale_spa" name="sale[spa]" class="form-control" placeholder="SPA Lawyer Firm" value="" <%= @customization.spa_required? ? 'required' : nil %> >
       <% if @customization.spa_required?  %>
@@ -108,6 +108,60 @@
   </div>
   <% end %>
   <br>
+
+  <% if @customization.cash? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_cash">Cash: </label>
+    <div class="col-md-9">
+      <input type="text" id="sale_cash" name="sale[cash]" class="form-control" placeholder="Cash" value="<%= sale.cash? ? sale.cash : nil %>" <%= @customization.cash_required? ? 'required' : nil %> >
+      <% if @customization.cash_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <br>
+
+  <% if @customization.bank_loan? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
+    <div class="col-md-9">
+      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Bank Loan" value="<%= sale.bank_loan ? sale.bank_loan : nil %>" <%= @customization.cash_required? ? 'required' : nil %> >
+      <% if @customization.bank_loan_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <br>
+
+  <% if @customization.government_loan? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_government_loan">Bank Loan: </label>
+    <div class="col-md-9">
+      <input type="text" id="sale_government_loan" name="sale[government_loan]" class="form-control" placeholder="Bank Loan" value="<%= sale.government_loan ? sale.government_loan : nil %>" <%= @customization.government_loan_required? ? 'required' : nil %> >
+      <% if @customization.government_loan_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <br>
+
+  <% if @customization.staff_loan? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_staff_loan">Staff Loan: </label>
+    <div class="col-md-9">
+      <input type="text" id="sale_staff_loan" name="sale[staff_loan]" class="form-control" placeholder="Staff Loan" value="<%= sale.staff_loan ? sale.staff_loan : nil %>" <%= @customization.staff_loan? ? 'required' : nil %> >
+      <% if @customization.staff_loan_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <br>
+
+  
   <% end %>
   <div class="form-group">
     <div class="row">

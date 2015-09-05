@@ -26,6 +26,7 @@
 #  nationality_id        :integer
 #  postcode              :integer
 #  car_park              :string
+#  remark                :text
 #
 # Indexes
 #

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826154016) do
+ActiveRecord::Schema.define(version: 20150905061928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150826154016) do
     t.integer  "nationality_id"
     t.integer  "postcode"
     t.string   "car_park"
+    t.text     "remark"
   end
 
   add_index "buyers", ["nationality_id"], name: "index_buyers_on_nationality_id", using: :btree
@@ -173,6 +174,18 @@ ActiveRecord::Schema.define(version: 20150826154016) do
   add_index "lots", ["product_type_id"], name: "index_lots_on_product_type_id", using: :btree
   add_index "lots", ["slug"], name: "index_lots_on_slug", unique: true, using: :btree
 
+  create_table "molpay_transaction_histories", force: :cascade do |t|
+    t.integer  "order_id"
+    t.float    "amount"
+    t.boolean  "is_paid"
+    t.boolean  "status"
+    t.string   "bill_name"
+    t.string   "bill_email"
+    t.string   "bill_mobile"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "nationalities", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -263,6 +276,24 @@ ActiveRecord::Schema.define(version: 20150826154016) do
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
+  create_table "receipts", force: :cascade do |t|
+    t.string   "skey"
+    t.integer  "tran_id"
+    t.string   "domain"
+    t.string   "currency"
+    t.datetime "paydate"
+    t.string   "orderid"
+    t.string   "appcode"
+    t.string   "error_code"
+    t.string   "error_desc"
+    t.string   "channel"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "receipts", ["user_id"], name: "index_receipts_on_user_id", using: :btree
+
   create_table "regions", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -336,6 +367,16 @@ ActiveRecord::Schema.define(version: 20150826154016) do
     t.boolean  "payment_type_required",           default: false
     t.boolean  "car_park",                        default: false
     t.boolean  "car_park_required",               default: false
+    t.boolean  "cash",                            default: false
+    t.boolean  "cash_required",                   default: false
+    t.boolean  "bank_loan",                       default: false
+    t.boolean  "bank_loan_required",              default: false
+    t.boolean  "government_loan",                 default: false
+    t.boolean  "government_loan_required",        default: false
+    t.boolean  "staff_loan",                      default: false
+    t.boolean  "staff_loan_required",             default: false
+    t.boolean  "remark",                          default: false
+    t.boolean  "remark_required",                 default: false
   end
 
   add_index "reservation_customizations", ["product_id"], name: "index_reservation_customizations_on_product_id", using: :btree
@@ -359,6 +400,9 @@ ActiveRecord::Schema.define(version: 20150826154016) do
     t.string   "downpayment_type"
     t.datetime "confirm_date"
     t.integer  "admin_confirm_user_id"
+    t.string   "cash"
+    t.string   "government_loan"
+    t.string   "staff_loan"
   end
 
   add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree
