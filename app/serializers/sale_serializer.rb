@@ -21,6 +21,9 @@
 #  downpayment_type       :string
 #  confirm_date           :datetime
 #  admin_confirm_user_id  :integer
+#  cash                   :string
+#  government_loan        :string
+#  staff_loan             :string
 #
 # Indexes
 #

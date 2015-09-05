@@ -79,6 +79,38 @@
   </div>
 
   <div class="form-group">
+    <label class="col-md-6 control-label" for="customize_cash_required">Cash (Required?)</label>
+    <div class="col-md-6" style="padding-top: 5px;">
+      <input type="hidden" id="customize_cash_required_false" name="customize[cash_required]" value="0">
+      <input class="demo-switch" name="customize[cash_required]" type="checkbox" <%= customize.cash_required? ? 'checked' : nil %> >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="customize_bank_loan_required">Bank Loan (Required?)</label>
+    <div class="col-md-6" style="padding-top: 5px;">
+      <input type="hidden" id="customize_bank_loan_required_false" name="customize[bank_loan_required]" value="0">
+      <input class="demo-switch" name="customize[bank_loan_required]" type="checkbox" <%= customize.bank_loan_required? ? 'checked' : nil %> >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="customize_government_loan_required">Government Loan (Required?)</label>
+    <div class="col-md-6" style="padding-top: 5px;">
+      <input type="hidden" id="customize_government_loan_required_false" name="customize[government_loan_required]" value="0">
+      <input class="demo-switch" name="customize[government_loan_required]" type="checkbox" <%= customize.government_loan_required? ? 'checked' : nil %> >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="customize_staff_loan_required">Staff Loan (Required?)</label>
+    <div class="col-md-6" style="padding-top: 5px;">
+      <input type="hidden" id="customize_staff_loan_required_false" name="customize[staff_loan_required]" value="0">
+      <input class="demo-switch" name="customize[staff_loan_required]" type="checkbox" <%= customize.staff_loan_required? ? 'checked' : nil %> >
+    </div>
+  </div>
+
+  <div class="form-group">
     <label class="col-md-6 control-label" for="customize_reject_reason_required">Reject Reason (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
       <input type="hidden" id="customize_reject_reason_required_false" name="customize[reject_reason_required]" value="0">

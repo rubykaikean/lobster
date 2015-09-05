@@ -92,7 +92,7 @@
 
   <% if @customization.address? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_address">Address</label>
+    <label class="col-md-3 control-label" for="buyer_address">Address: </label>
     <div class="col-md-9">
       <textarea id="buyer_address" name="buyer[address]" rows="4" class="form-control" <%= @customization.address_required? ? 'required' : nil %>><%= @buyer.address %></textarea>
       <% if @customization.address_required?  %>
@@ -104,7 +104,7 @@
 
   <% if @customization.postcode? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_postcode">Postcode</label>
+    <label class="col-md-3 control-label" for="buyer_postcode">Postcode: </label>
     <div class="col-md-9">
       <input type="text" id="buyer_postcode" name="buyer[postcode]" rows="4" class="form-control" <%= @customization.postcode_required? ? 'required' : nil %>><%= @buyer.postcode %></input>
       <% if @customization.postcode_required?  %>
@@ -252,7 +252,7 @@
 
   <% if @customization.car_park? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_car_park">Car Park</label>
+    <label class="col-md-3 control-label" for="buyer_car_park">Car Park: </label>
     <div class="col-md-9">
       <input type="text" id="buyer_car_park" name="buyer[car_park]" class="form-control" placeholder="Car Park" value="<%= @buyer.car_park %>" <%= @customization.car_park_required? ? 'required' : nil %> >
       <% if @customization.car_park_required?  %>
@@ -261,7 +261,57 @@
     </div>
   </div>
   <% end %>
+  <hr>
+  <% if @customization.cash? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_cash">Cash: </label>
+    <div class="col-md-9">
+        <input type="text" id="sale_cash" name="cash" class="form-control" placeholder="Cash" value="<%= @sale.cash? ? @sale.cash : nil %>" <%= @customization.cash_required? ? 'required' : nil %> >
+      <% if @customization.cash_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
 
+  <% if @customization.bank_loan? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
+    <div class="col-md-9">
+      <input type="text" id="sale_bank_loan" name="bank_loan" class="form-control" placeholder="Bank Loan" value="<%= @sale.bank_loan? ? @sale.bank_loan : nil %>" <%= @customization.bank_loan_required? ? 'required' : nil %> >
+      <% if @customization.bank_loan_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @customization.government_loan? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_government_loan">Government Loan: </label>
+    <div class="col-md-9">
+      
+        <input type="text" id="sale_government_loan" name="government_loan" class="form-control" placeholder="Government Loan" value="<%= @sale.government_loan? ? @sale.government_loan : nil %>" <%= @customization.government_loan_required? ? 'required' : nil %> >
+      
+      <% if @customization.government_loan_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @customization.staff_loan? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="sale_staff_loan">Staff Loan: </label>
+    <div class="col-md-9">
+      <input type="text" id="sale_staff_loan" name="staff_loan" class="form-control" placeholder="Staff Loan" value="<%= @sale.staff_loan? ? @sale.staff_loan : nil %>" <%= @customization.staff_loan_required? ? 'required' : nil %> >
+      <% if @customization.staff_loan_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <hr>
   <div class="form-group">
     <label class="col-md-3 control-label" for="payment_image">Upload payment images: </label>
     <div class="col-md-9 upload_payments_wrapper">
@@ -274,6 +324,18 @@
       <!-- <button class="add_more_photo_button btn btn-info">Add more photo</button> -->
     </div>
   </div>
+
+  <% if @customization.remark? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_remark">Remark: </label>
+    <div class="col-md-9">
+      <textarea id="buyer_remark" name="buyer[remark]" rows="4" class="form-control" <%= @customization.remark_required? ? 'required' : nil %>><%= @buyer.remark %></textarea>
+      <% if @customization.remark_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
   
  <!--  <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_is_bumi_putera">Bumi Putera unit: </label>
