@@ -183,7 +183,9 @@
                     <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject Sale</button>
                   <% end %>
                 <% elsif sale.status_id == Sale::REJECTED || sale.status_id == Sale::CANCELLED %>
-                  <button class="btn btn-default btn-hover-info add-tooltip" data-placement="top" data-toggle="tooltip" data-original-title="<%= sale.reject_reason %>">Show reason</button>
+                  <!-- <button class="btn btn-default btn-hover-info add-tooltip" data-placement="top" data-toggle="tooltip" data-original-title="">Show reason</button> -->
+
+                  <button class="btn btn-default btn-active-success add-popover" data-toggle="popover" data-placement="top" data-original-title="Rejected/Cancelled Reason" data-content="<%= sale.reject_reason %>">Show reason</button>
 
                 <!-- after confirm reservation  -->
                 <% elsif sale.status_id == Sale::CONFIRM_RESERVATION %>
