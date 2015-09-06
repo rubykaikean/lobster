@@ -83,27 +83,9 @@ class Sale < ActiveRecord::Base
     Lot.find_by(id: lot_unit_id)
   end
 
-
-
   def is_same_unit_confirm_reservation?
 
   end
-
-  # def confirm_sale(confirm_params)
-  #   self.status_id = COMPLETED
-  #   self.confirm_date = Time.current if confirm_date.nil?
-  #   if self.update(confirm_params)
-  #     sold_lot = self.lot
-  #     if sold_lot
-  #       sold_lot.status_id = Lot::SOLD
-  #       if sold_lot.save
-  #         setting = product.product_setting
-  #         SalesNotifier.confirmation(self.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
-  #         SalesNotifier.inform_admins(self.id).deliver_later if setting.notify_admin_on_sale_confirmation?
-  #       end
-  #     end
-  #   end
-  # end
 
   def actual_price
     original_price = lot.selling_price

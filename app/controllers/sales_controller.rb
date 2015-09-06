@@ -65,12 +65,14 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        if params[:payment_image]
-          params[:payment_image].each do |file|
-            if !file.nil?
-              payment = @sale.payments.new
-              payment.image = file
-              payment.save
+        if @sale.user_id == current_user.id
+          if params[:payment_image]
+            params[:payment_image].each do |file|
+              if !file.nil?
+                payment = @sale.payments.new
+                payment.image = file
+                payment.save
+              end
             end
           end
         end
