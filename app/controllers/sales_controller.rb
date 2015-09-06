@@ -1,7 +1,7 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales, :new_payment]
-  before_action :set_sale, only: [:show, :edit, :update, :destroy, :new_payment]
+  before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales]
+  before_action :set_sale, only: [:show, :edit, :update, :destroy, :new_payment, :add_payment]
 
   # GET /sales
   # GET /sales.json
@@ -65,17 +65,6 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        if @sale.user_id == current_user.id
-          if params[:payment_image]
-            params[:payment_image].each do |file|
-              if !file.nil?
-                payment = @sale.payments.new
-                payment.image = file
-                payment.save
-              end
-            end
-          end
-        end
         format.html { redirect_to sales_path, notice: 'Sale was successfully updated.' }
         format.json { head :no_content }
       else
@@ -96,10 +85,27 @@ class SalesController < ApplicationController
   end
 
   def new_payment
-    unless is_top_level_management?
-      flash[:alert] = "Sorry, you don't have the access right."
+    unless @sale.user_id == current_user.id
+      flash[:alert] = "Only the agent of the sale can edit."
       redirect_to sales_path
     end
+  end
+
+  def add_payment
+    if @sale.user_id == current_user.id
+      if params[:payment_image]
+        params[:payment_image].each do |file|
+          if !file.nil?
+            payment = @sale.payments.new
+            payment.image = file
+            payment.save
+          end
+        end
+      end
+    else
+      flash[:alert] = "Only the agent of the sale can edit."
+    end
+    redirect_to sales_path
   end
 
   def confirm

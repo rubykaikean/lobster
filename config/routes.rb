@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       post "reject"
       post "cancel"
       get "new_payment"
+      post "add_payment"
     end
   end
 
