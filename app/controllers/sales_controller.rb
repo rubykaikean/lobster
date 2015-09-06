@@ -65,6 +65,15 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
+        if params[:payment_image]
+          params[:payment_image].each do |file|
+            if !file.nil?
+              payment = @sale.payments.new
+              payment.image = file
+              payment.save
+            end
+          end
+        end
         format.html { redirect_to sales_path, notice: 'Sale was successfully updated.' }
         format.json { head :no_content }
       else

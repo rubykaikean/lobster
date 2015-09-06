@@ -150,6 +150,8 @@
                   <% else %>
 
                   <% end %>
+                  <a href="<%= edit_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add image</button>
+                  </a>
                 </td>
                 <td class="text-center">
                   <% if sale.status_id == Sale::PENDING %>

@@ -1,4 +1,4 @@
-<%= form_for(@sale, html: {:class => 'panel-body form-horizontal form-padding'}) do |f| %>
+<%= form_for(@sale, html: {:class => 'panel-body form-horizontal form-padding', :multipart => true }) do |f| %>
 
      <div class="form-group">
           <label class="col-md-3 control-label" for="sale_user_id">Sale Person</label>
@@ -59,6 +59,18 @@
     <label class="col-md-3 control-label" for="sale_spa">Lawyer Firm: </label>
     <div class="col-md-9">
       <input type="text" id="sale_spa" name="sale[spa]" class="form-control" placeholder="SPA" value="<%= @sale.spa %>">
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="payment_image">Payment images: </label>
+    <div class="col-md-9 upload_payments_wrapper">
+      <div class="upload_fields">
+        <% 4.times do %>
+          <input type="file" id="payment_image" name="payment_image[]" class="form-control" >
+        <% end %>
+      </div>
+      <!-- <button class="add_more_photo_button btn btn-info">Add more photo</button> -->
     </div>
   </div>
 

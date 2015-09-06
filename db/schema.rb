@@ -166,25 +166,13 @@ ActiveRecord::Schema.define(version: 20150905061928) do
     t.integer  "premium"
     t.integer  "extra_land_price",        default: 0
     t.integer  "selling_price",           default: 0
-    t.integer  "row_key",                 default: 1
+    t.integer  "row_key",                 default: 0
     t.boolean  "is_special_unit",         default: false
   end
 
   add_index "lots", ["product_id"], name: "index_lots_on_product_id", using: :btree
   add_index "lots", ["product_type_id"], name: "index_lots_on_product_type_id", using: :btree
   add_index "lots", ["slug"], name: "index_lots_on_slug", unique: true, using: :btree
-
-  create_table "molpay_transaction_histories", force: :cascade do |t|
-    t.integer  "order_id"
-    t.float    "amount"
-    t.boolean  "is_paid"
-    t.boolean  "status"
-    t.string   "bill_name"
-    t.string   "bill_email"
-    t.string   "bill_mobile"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "nationalities", force: :cascade do |t|
     t.string   "name"
@@ -275,24 +263,6 @@ ActiveRecord::Schema.define(version: 20150905061928) do
 
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
-
-  create_table "receipts", force: :cascade do |t|
-    t.string   "skey"
-    t.integer  "tran_id"
-    t.string   "domain"
-    t.string   "currency"
-    t.datetime "paydate"
-    t.string   "orderid"
-    t.string   "appcode"
-    t.string   "error_code"
-    t.string   "error_desc"
-    t.string   "channel"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "receipts", ["user_id"], name: "index_receipts_on_user_id", using: :btree
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"
