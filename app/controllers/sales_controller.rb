@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales]
+  before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales, :new_payment, :add_payment]
   before_action :set_sale, only: [:show, :edit, :update, :destroy, :new_payment, :add_payment]
 
   # GET /sales
