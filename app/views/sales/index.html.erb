@@ -149,7 +149,7 @@
                     <button id="payment-<%= sale.id %>" class="btn btn-sm btn-purple payment">Show</button>
                   <% end %>
                   <% if sale.user_id == current_user.id %>
-                    <a href="<%= edit_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add image</button>
+                    <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add image</button>
                   <% end %>
                   </a>
                 </td>

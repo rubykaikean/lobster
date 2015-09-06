@@ -83,10 +83,6 @@ class Sale < ActiveRecord::Base
     Lot.find_by(id: lot_unit_id)
   end
 
-  def is_same_unit_confirm_reservation?
-
-  end
-
   def actual_price
     original_price = lot.selling_price
     if buyer.is_bumiputera? && lot.is_special_unit == false

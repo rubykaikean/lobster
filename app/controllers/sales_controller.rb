@@ -1,7 +1,7 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales]
-  before_action :set_sale, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_project_owner!, except: [:index, :edit, :confirm_sales, :reject_sales, :new_payment]
+  before_action :set_sale, only: [:show, :edit, :update, :destroy, :new_payment]
 
   # GET /sales
   # GET /sales.json
@@ -93,6 +93,13 @@ class SalesController < ApplicationController
     #   format.html { redirect_to sales_url }
     #   format.json { head :no_content }
     # end
+  end
+
+  def new_payment
+    unless is_top_level_management?
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to sales_path
+    end
   end
 
   def confirm

@@ -1,0 +1,62 @@
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $("#back_btn").click(function(e){
+      e.preventDefault();
+      window.location.href='<%= sales_path %>';
+    });
+
+  </script>
+<% end %>
+<div class="row" id="content_div">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Editing Sale detail</h3>
+      </div>
+      <%= form_for(@sale, html: {:class => 'panel-body form-horizontal form-padding', :multipart => true }) do |f| %>
+        <div style="display:none;">
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="sale_user_id">Sale Person</label>
+            <div class="col-md-9">
+                <!-- Inline radio buttons -->
+              <select class="selectpicker" name="sale[user_id]">
+                <option value="">Select a name</option>
+                <% current_user.company.members.each do |member| %>
+                  <option value="<%= member.id %>" <%= member.id == @sale.user_id ? "selected='selected'" : nil %> ><%= member.name %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <% if @sale.user_id == current_user.id %>
+            <br>
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="payment_image">Payment images: </label>
+              <div class="col-md-9 upload_payments_wrapper">
+                <div class="upload_fields">
+                  <% 4.times do %>
+                    <input type="file" id="payment_image" name="payment_image[]" class="form-control" >
+                  <% end %>
+                </div>
+                <!-- <button class="add_more_photo_button btn btn-info">Add more photo</button> -->
+              </div>
+            </div>
+        <% end %>
+
+        <br>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-9 col-sm-offset-3">
+                <br>
+              <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+              <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset" id="back_btn">Back</button>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
