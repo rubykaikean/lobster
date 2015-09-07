@@ -3,80 +3,123 @@
 <%= form_for(@buyer, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
     <%= hidden_field_tag "sale_id", nil, value: @sale.id %>
-
-   <div class="form-group">
+  <% if @customization.full_name? %>
+  <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_full_name">Full name: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_name" name="buyer[full_name]" class="form-control" placeholder="Full name" value="<%= @buyer.full_name %>" required>
-      <small class="help-block">Required field</small>
+      <input type="text" id="buyer_name" name="buyer[full_name]" class="form-control" placeholder="Full name" value="<%= @buyer.full_name %>" <%= @customization.full_name_required? ? 'required' : nil %> >
+      <% if @customization.full_name_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.buyer_second_name? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_buyer_second_name"></label>
     <div class="col-md-9">
-      <input type="text" id="buyer_buyer_second_name" name="buyer[buyer_second_name]" class="form-control" placeholder="Second Buyer Name" value="<%= @buyer.buyer_second_name %>">
+      <input type="text" id="buyer_buyer_second_name" name="buyer[buyer_second_name]" class="form-control" placeholder="Second Buyer Name" value="<%= @buyer.buyer_second_name %>" <%= @customization.buyer_second_name_required? ? 'required' : nil %> >
+      <% if @customization.buyer_second_name?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.buyer_third_name? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_buyer_third_name"></label>
     <div class="col-md-9">
-      <input type="text" id="buyer_buyer_third_name" name="buyer[buyer_third_name]" class="form-control" placeholder="Third Buyer Name" value="<%= @buyer.buyer_third_name %>">
-    </div>
-  </div> 
-
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_email">Email: </label>
-    <div class="col-md-9">
-      <input type="text" id="buyer_email" name="buyer[email]" class="form-control" placeholder="Email" value="<%= @buyer.email %>">
+      <input type="text" id="buyer_buyer_third_name" name="buyer[buyer_third_name]" class="form-control" placeholder="Third Buyer Name" value="<%= @buyer.buyer_third_name %>" <%= @customization.buyer_third_name_required? ? 'required' : nil %> >
+      <% if @customization.buyer_third_name?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.email? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_email">Email:</label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_email" name="buyer[email]" class="form-control" placeholder="Email" value="<%= @buyer.email %>" <%= @customization.email_required? ? 'required' : nil %> >
+      <small class="help-block">You can separate multiple email addresses with a comma.</small>
+      <small class="help-block">Example : user1@domain.com, user2@domain.com</small>
+      <% if @customization.email?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @customization.ic_number? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_ic_number">IC Number: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" required maxlength="12" minlength="12">
-      <small class="help-block">Required field. Example : 801023075488</small>
+      <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" maxlength="12" minlength="12" <%= @customization.ic_number_required? ? 'required' : nil %> >
+      <small class="help-block">Example : 801023075488</small>
+      <% if @customization.ic_number_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.second_ic_number? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_second_ic_number"></label>
     <div class="col-md-9">
-      <input type="text" id="buyer_second_ic_number" name="buyer[second_ic_number]" class="form-control" placeholder="Second Buyer IC Number" value="<%= @buyer.second_ic_number %>" maxlength="12" minlength="12">
+      <input type="text" id="buyer_second_ic_number" name="buyer[second_ic_number]" class="form-control" placeholder="Second Buyer IC Number" value="<%= @buyer.second_ic_number %>" maxlength="12" minlength="12" <%= @customization.second_ic_number_required? ? 'required' : nil %> >
+      <% if @customization.second_ic_number_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.third_ic_number? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_third_ic_number"></label>
     <div class="col-md-9">
-      <input type="text" id="buyer_third_ic_number" name="buyer[third_ic_number]" class="form-control" placeholder="Third Buyer IC Number" value="<%= @buyer.third_ic_number %>" maxlength="12" minlength="12">
+      <input type="text" id="buyer_third_ic_number" name="buyer[third_ic_number]" class="form-control" placeholder="Third Buyer IC Number" value="<%= @buyer.third_ic_number %>" maxlength="12" minlength="12" <%= @customization.third_ic_number_required? ? 'required' : nil %> >
+      <% if @customization.third_ic_number_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.address? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_address">Address</label>
     <div class="col-md-9">
-      <textarea id="company_address" name="buyer[address]" rows="4" class="form-control" required><%= @buyer.address %></textarea>
+      <textarea id="company_address" name="buyer[address]" rows="4" class="form-control" <%= @customization.address_required? ? 'required' : nil %> ><%= @buyer.address %></textarea>
+      <% if @customization.address_required? %>
       <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.gender? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_gender">Gender: </label>
     <div class="col-md-9">
       <%= radio_button_tag "buyer[gender]", 1,  @buyer.gender == 1  %> Male
       <%= radio_button_tag "buyer[gender]", 2,  @buyer.gender == 2  %> Female
-      <small class="help-block">Required field</small>
+      <% if @customization.gender_required?  %>
+        <small class="help-block">Required</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.age? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_age">Age: </label>
     <div class="col-md-9">
-      <!-- <input type="text" id="buyer_age" name="buyer[age]" class="form-control" placeholder="Age" value=""> -->
-    <select class="selectpicker" name="buyer[age]" required>
+    <select class="selectpicker" name="buyer[age]" <%= @customization.age_required? ? 'required' : nil %>>
       <option value="">Select An Option</option>
       <option value="1" <%= @buyer.age == 1 ? "selected='selected'" : nil %> >18-30</option>
       <option value="2" <%= @buyer.age == 2 ? "selected='selected'" : nil %> >31-40</option>
@@ -84,80 +127,139 @@
       <option value="4" <%= @buyer.age == 4 ? "selected='selected'" : nil %> >51-60</option>
       <option value="5" <%= @buyer.age == 5 ? "selected='selected'" : nil %> >61 & above</option>
     </select>
-    <small class="help-block">Required field</small>
+    <% if @customization.age_required? %>
+      <small class="help-block">Required field</small>
+    <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.region_id? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_region_id">Region: </label>
     <div class="col-md-9">
       <!-- <input type="text" id="buyer_region" name="buyer[region]" class="form-control" placeholder="Region" value=""> -->
-      <select class="selectpicker" name="buyer[region_id]" required>
+      <select class="selectpicker" name="buyer[region_id]" <%= @customization.region_id_required? ? 'required' : nil %> >
         <option value="">Select An Option</option>
         <% @region.each do |p| %>
-          <option value="<%= p.id %>" <%= @buyer.region_id == p.id ? "selected='selected'" : nil %> ><%= p.name %></option>
+          <option value="<%= p.id %>" <%= @buyer.region_id == p.id ? 'selected' : nil %> ><%= p.name %></option>
         <% end %>
       </select>
-      <small class="help-block">Required field</small>
+      <% if @customization.region_id_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.race? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_race">Race: </label>
     <div class="col-md-9">
-    <select class="selectpicker" name="buyer[race]" id="buyer_race" required>
+    <select class="selectpicker" name="buyer[race]" id="buyer_race" <%= @customization.race_required? ? 'required' : nil %> >
       <option value="">Select An Option</option>
       <option value="1" <%= @buyer.race == Buyer::CHINESE ? "selected='selected'" : nil %> >Chinese</option>
       <option value="2" <%= @buyer.race == Buyer::BUMIPUTERA ? "selected='selected'" : nil %> >Melayu</option>
       <option value="3" <%= @buyer.race == Buyer::INDIAN ? "selected='selected'" : nil %> >Indian</option>
       <option value="4" <%= @buyer.race == Buyer::OTHER ? "selected='selected'" : nil %> >Other</option>
     </select>
-    <small class="help-block">Required field</small>
+    <% if @customization.race_required? %>
+      <small class="help-block">Required field</small>
+    <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.mobile_contact_number? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Contact Number: </label>
     <div class="col-md-9">
-      <input type="number" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="<%= @buyer.mobile_contact_number %>">
-      <small class="help-block">Required field. Example : 0129998888</small>
+      <input type="number" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="<%= @buyer.mobile_contact_number %>" <%= @customization.mobile_contact_number_required? ? 'required' : nil %> >
+      <small class="help-block"> Example : 0129998888 </small>
+      <% if @customization.mobile_contact_number_required? %>
+      <small class="help-block">Required field.</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
+
+  <% if @customization.home_contact_number? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_home_contact_number"></label>
     <div class="col-md-9">
-      <input type="number" id="buyer_home_contact_number" name="buyer[home_contact_number]" class="form-control" placeholder="Home Contact Number" value="<%= @buyer.home_contact_number %>">
+      <input type="number" id="buyer_home_contact_number" name="buyer[home_contact_number]" class="form-control" placeholder="Home Contact Number" value="<%= @buyer.home_contact_number %>" <%= @customization.home_contact_number_required? ? "required" : nil %> >
+      <% if @customization.home_contact_number_required? %>
+        <small class="help-block">Required field.</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.office_contact_number? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_office_contact_number"></label>
     <div class="col-md-9">
-      <input type="number" id="buyer_office_contact_number" name="buyer[office_contact_number]" class="form-control" placeholder="Office Contact Number" value="<%= @buyer.office_contact_number %>">
+      <input type="number" id="buyer_office_contact_number" name="buyer[office_contact_number]" class="form-control" placeholder="Office Contact Number" value="<%= @buyer.office_contact_number %>" <%= @customization.office_contact_number_required? ? "required" : nil %> >
+      <% if @customization.office_contact_number_required? %>
+        <small class="help-block">Required field.</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.sources_type_id? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_sources_type_id">How did you hear about us? </label>
     <div class="col-md-9">
      <!--  <input type="text" id="buyer_sources" name="buyer[sources]" class="form-control" placeholder="Newspaper? Internet?" value=""> -->
-     <select class="selectpicker" name="buyer[sources_type_id]" required>
-        <option>Select An Option</option>
-        <% @sourcestype.each do |type| %>
-          <option value="<%= type.id %>" <%= @buyer.sources_type_id == type.id ? "selected='selected'" : nil %> ><%= type.name %></option>
+     <select class="selectpicker" name="buyer[sources_type_id]" <%= @customization.sources_type_id_required? ? 'required' : nil %> >
+        <option value="">Select An Option</option>
+        <% @sourcestype.each do |p| %>
+          <option value="<%= p.id %>" <%= @buyer.sources_type_id == p.id ? 'selected' : nil %> ><%= p.name %></option>
         <% end %>
       </select>
-      <small class="help-block">Required field</small>
+      <% if @customization.sources_type_id_required? %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.booking_fee %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_booking_fee">Booking Fee: </label>
     <div class="col-md-9">
-      <input type="number" id="buyer_booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="<%= @sale.booking_fee %>">
+      <input type="number" id="buyer_booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="<%= @sale.booking_fee %>" <%= @customization.booking_fee_required? ? 'required' : nil %> >
+      <% if @customization.booking_fee_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
+  <% if @customization.car_park? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_car_park">Car Park: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_car_park" name="buyer[car_park]" class="form-control" placeholder="Car Park" value="<%= @buyer.car_park %>" <%= @customization.car_park_required? ? 'required' : nil %> >
+      <% if @customization.car_park_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  
+  <% if @customization.remark? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_remark">Remark: </label>
+    <div class="col-md-9">
+      <textarea id="buyer_remark" name="buyer[remark]" rows="4" class="form-control" <%= @customization.remark_required? ? 'required' : nil %>><%= @buyer.remark %></textarea>
+      <% if @customization.remark_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
   
   <div class="panel-footer">
     <div class="row">

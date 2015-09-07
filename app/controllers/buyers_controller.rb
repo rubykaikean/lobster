@@ -30,6 +30,7 @@ class BuyersController < ApplicationController
   # GET /buyers/1/edit
   def edit
     @sale = Sale.find(params[:sale_id])
+    @customization = @sale.product.reservation_customization
     if is_top_level_management? || @sale.user_id == current_user.id
       @region = @sale.product.regions
       @sourcestype = @sale.product.sources_types
