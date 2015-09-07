@@ -3,7 +3,7 @@
 	<% a = @molpay_history.order_id %>
 	<% order_id = a + 1 %>
 <% end %>
-		<%= form_tag molpay_molpay_transaction_histories_path do %>
+<%= form_tag molpay_molpay_transaction_histories_path do %>
 
 <div class="row" id="content_div">
   <div class="col-lg-12">
@@ -14,50 +14,56 @@
       <div class="panel-body">
 
     	<div class="form-group">
-			  <label class="col-md-3 control-label" for="payment_method">Payment Method:</label>
+			  <label class="col-md-3 control-label" for="payment_period">Payment Period:</label>
 			  <div class="col-md-9">
-			  	<label for="molpay_payment_year">Year</label>
+			  	
 			    <input type="radio" name="payment_method" value="year" id="molpay_payment_year">
-					<label for="molpay_payment_month">Month</label>
+			    <label for="molpay_payment_year">Year</label>
+					
 					<input type="radio" name="payment_method" value="month" id="molpay_payment_month">
+					<label for="molpay_payment_month">Month</label>
 			  </div>
       </div>
 
       <div class="form-group">
-     		<label class="col-md-3 control-label">
-     			Amount(RM)
-     		</label>
-     		<div class="col-md-9"><%= text_field_tag "product[prepend_title]", nil, class: "form-control" %>
-     			<div id="amount_field">1.10</div>
-     			<div style="display:none;">
-     				<%= text_field_tag "molpay[amount]" %>
-     			</div>
-     		</div>
+      	<label class="col-md-3 control-label" for="amount">
+      		Amount :
+      	</label>
+      	<div class="col-md-9">
+      		<label id="amount_field">1.10</label>
+      		<div style="display:none;"><%= text_field_tag "amount" %></div>
+      	</div>
       </div>
 
       <div class="form-group">
-     		<label class="col-md-3 control-label">
-     			Order Id
-     		</label>
-     		<div class="col-md-9">
-     			<% unless order_id %>
+      	<label class="col-md-3 control-label">
+      		Order ID :
+      	</label>
+      	<div class="col-md-9">
+      		<% unless order_id %>
 						0001
-						<div style="display:none;">
-							<%= text_field_tag "order_id", value="0001" %>
-						</div>
+						<%= hidden_field_tag "order_id", value="0001" %>
 					<% else %>
 						<%= order_id %>
-						<div style="display:none;">
-							<%= text_field_tag "order_id", value="#{order_id}" %>
-						</div>
+						<%= hidden_field_tag "order_id", value="#{order_id}" %>
 					<% end %>
-     		</div>
+      	</div>
+      </div>
+
+      <div class="form-group">
+      	<label class="col-md-3 control-label">
+      		Bill Name :
+      	<label>
+				<div class="col-md-9">
+					<%= current_user.name %>
+					<%= hidden_field_tag "bill_name", value="#{current_user.name}" %>
+				</div>
       </div>
 
     </div>
   </div>
 </div>
-				
+<% end %>	
 
 				<!-- <li data-role="fieldcontain">
 		      <div class="hr hr-dotted hr-5"></div>
@@ -134,13 +140,11 @@
 						</div>
 		    </li> -->
 		
-		 <li data-role="fieldcontain">
+		 <!-- <li data-role="fieldcontain">
         <button type="submit" >
           <i class='lIcon fa fa-floppy-o'></i>Submit Order
         </button>
-      </li>
-		<% end %>
-	
+      </li> -->
 
 <script type="text/javascript">
 $(document).ready(function () {
