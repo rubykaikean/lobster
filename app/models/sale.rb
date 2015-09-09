@@ -44,6 +44,7 @@ class Sale < ActiveRecord::Base
   belongs_to :phase
   belongs_to :lot_unit
   has_many :payments
+  has_one :molpay_transaction_history
 
   scope :confirmed, -> { where status_id: COMPLETED }
 

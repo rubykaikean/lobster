@@ -3,27 +3,17 @@ class MolpayController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => :return_url
 
 	def subscribe
-		@agent_transaction = AgentTransaction.last
-	end
-
-	# girft code to get discount
-	def gift_code
-		# render :text => params
-		unless params[:code] == ""
-			@code = Agent.where("gift_code = ?", params[:code]).first
-			if @code.present?
-				redirect_to molpay_subscribe_path(:result => @code.gift_code), notice: "Gift code is valid."
-			else
-				redirect_to molpay_subscribe_path, alert: "Invalid gift code !"
-			end
-		else
-			redirect_to molpay_subscribe_path, alert: "Gift code cannot be empty"
-		end
+		@sale = Sale.find(params[:id])
+		@order = MolpayTransactionHistory.where("sale_id = ?",@sale.id).last
 	end
 
 	def molpay
-		
-		@molpay_order = AgentTransaction.where("order_id = ?", params[:order_id]).first
+		# render :text => molpay_params
+		transaction = MolpayTransactionHistory.new(molpay_params)
+		transaction.save
+		@molpay = MolpayTransactionHistory.first
+		# render :text => @molpay.to_json
+
 
 		#	here is logger info params
 		# Parameters: {"skey"=>"8e0486d4786a7a22a21fe7b32ce041a3", 
@@ -92,6 +82,11 @@ class MolpayController < ApplicationController
 		# # end
 	end
 
+	private
+
+	def molpay_params
+      params.require(:molpay).permit!
+  end
 
 
 end

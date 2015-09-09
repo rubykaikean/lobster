@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
 
   belongs_to :company
   has_many :sales
+  has_many :molpay_transaction_histories
 
   validates :display_name, presence: true
   validates :display_name, uniqueness: { scope: :company_id }

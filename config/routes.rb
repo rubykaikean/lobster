@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :molpay_transaction_histories
   resources :email_settings
   resources :regions
   resources :sources_types
