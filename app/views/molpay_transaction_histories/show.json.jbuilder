@@ -1,0 +1,1 @@
+json.extract! @molpay_transaction_history, :id, :amount, :is_paid, :status, :bill_name, :bill_email, :bill_mobile, :bill_desc, :tran_id, :domain, :currency, :paydate, :order_id, :appcode, :error_code, :error_desc, :channel, :sale_id, :created_at, :updated_at
