@@ -31,6 +31,7 @@
               </div>
             </div>
 
+            <%# if is_top_level_admin? %>
             <div class="form-group">
               <label class="col-md-3 control-label">
                 Booking Fee pay with molpay:
@@ -38,12 +39,14 @@
               <div class="col-md-9">
                 <!-- hide button if found at transaction history -->
                 <% if @molpay_payment %>
-                  <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">View Paid Payment</button>
+                  return url on process
+                  <!-- <a href="<%#= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">View Paid Payment</button> -->
                 <% else %>
                   <%= link_to "Pay With Molpay", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
                 <% end %>
               </div>
             </div>
+            <%# end %>
         <% end %>
 
         <br>
