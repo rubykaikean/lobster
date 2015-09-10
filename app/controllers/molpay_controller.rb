@@ -4,14 +4,22 @@ class MolpayController < ApplicationController
 
 	def subscribe
 		@sale = Sale.find(params[:id])
-		@order = MolpayTransactionHistory.where("sale_id = ?",@sale.id).last
+		@order = MolpayTransactionHistory.last
+	end
+
+	def create_molpay_transaction
+		# render :text => molpay_params
+		transaction = MolpayTransactionHistory.new(molpay_params)
+		if transaction.save
+			redirect_to molpay_molpay_path
+		else
+			redirect_to molpay_subscribe_path(:id => molpay_params[:sale_id]), :notice => "Order ID had been duplicate! Submit Again."
+		end
 	end
 
 	def molpay
 		# render :text => molpay_params
-		transaction = MolpayTransactionHistory.new(molpay_params)
-		transaction.save
-		@molpay = MolpayTransactionHistory.first
+		@molpay = MolpayTransactionHistory.last
 		# render :text => @molpay.to_json
 
 
@@ -27,7 +35,7 @@ class MolpayController < ApplicationController
 	end
 
 	def return_url
-		render :text => "this is return url"
+		render :text => params.to_json
 		# # nbcb = params[:nbcb]
 		# receipt_params = {
 		# 					:amount => params[:amount],

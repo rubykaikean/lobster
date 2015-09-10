@@ -6,7 +6,7 @@
 <% vcode = Digest::MD5.hexdigest(a) %>
 <%#= vcode %>
 
-	<form action="https://www.onlinepayment.com.my/NBepay/pay/estatekitkat/index.php" method="post">
+<form action="https://www.onlinepayment.com.my/NBepay/pay/estatekitkat/index.php" method="post">
 				
 <div class="row" id="content_div">
   <div class="col-lg-12">
@@ -21,80 +21,74 @@
       			<td>Amount:</td>
       			<td>
       				RM <%= number_with_precision(@molpay.amount, precision: 0, separator: ".", delimiter: ",") %>
-      				<%= hidden_field_tag "molpay[amount]", value= @molpay.amount %>
+              <div style="display: none;">
+      				  <input type="text" name="amount" value="<%= @molpay.order_id %>">
+              </div>
       			</td>
       		</tr>
       		<tr>
       			<td>Order ID:</td>
       			<td>
       				<%= @molpay.order_id %>
-      				<div style="display:none;">
-				      	<input type="text" name="amount" value="<%= @molpay.order_id %>">
-				    	</div>
+              <div style="display: none;">
+				        <input type="text" name="orderid" value="<%= @molpay.order_id %>">
+              </div>
       			</td>
       		</tr>
       		<tr>
       			<td>Bill Name:</td>
       			<td>
-      				<%= @molpay.bill_name %>
-      				<div style="display:none;">
-				      	<input type="text" name="orderid" value="<%= @molpay.order_id %>">
-				    	</div>
+      				<%= @molpay.bill_name rescue "-" %>
+              <div style="display: none;">
+				        <input type="text" name="bill_name" value="<%= @molpay.bill_name %>">
+              </div>
       			</td>
       		</tr>
 
       		<tr>
       			<td>Bill Email:</td>
       			<td>
-      				<%= @molpay.bill_email %>
-      				<div style="display:none;">
-				      	<input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
-				    	</div>
+      				<%= @molpay.bill_email rescue "-" %>
+              <div style="display: none;">
+				        <input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
+              </div>
       			</td>
       		</tr>
 
       		<tr>
       			<td>Bill Mobile:</td>
       			<td>
-      				<%= @molpay.bill_mobile %>
-      				<div style="display:none;">
-				      	<input type="text" name="bill_mobile" value="<%= @molpay.bill_mobile %>">
-				    	</div>
+      				<%= @molpay.bill_mobile rescue "-" %>
+              <div style="display: none;">
+				        <input type="text" name="bill_mobile" value="<%= @molpay.bill_mobile %>">
+              </div>
       			</td>
       		</tr>
 
       		<tr>
       			<td>Bill Email:</td>
       			<td>
-      				<%= @molpay.bill_email %>
-      				<div style="display:none;">
-				      	<input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
-				    	</div>
+      				<%= @molpay.bill_email rescue "-" %>
+              <div style="display: none;">
+				        <input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
+              </div>
       			</td>
       		</tr>
 
       	</table>
-
-      		<div style="display:none;">
-						<input type="text" name="country" value="MY">
-					</div>
-					<div style="display:none;">
-						<input type="text" name="cur" value="rm">
-					</div>
-					<div style="display:none;">
-						<input type="text" name="returnurl" value="http://wechat.estatekitkat.com/molpay/return_url">
-					</div>
-					<div style="display:none;">
-						<input type="text" name="vcode" value="<%= vcode %>">
-					</div>
-
-	      	<div class="panel-footer">
-				    <div class="row">
-				      <div class="col-sm-3 col-sm-offset-8">
-				        <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-				      </div>
-				    </div>
-				  </div>
+    <div style="display: none;">
+  		<input type="text" name="country" value="MY">
+  		<input type="text" name="cur" value="rm">
+  		<input type="text" name="returnurl" value="http://wechat.estatekitkat.com/molpay/return_url">
+  		<input type="text" name="vcode" value="<%= vcode %>">
+    </div>
+    	  <div class="panel-footer">
+    		  <div class="row">
+    		    <div class="col-sm-3 col-sm-offset-8">
+    		      <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Pay through Molpay</button>
+    		    </div>
+    		  </div>
+    		</div>
       </div>
     </div>
   </div>

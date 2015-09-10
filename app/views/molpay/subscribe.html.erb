@@ -1,8 +1,8 @@
 <% if @order %>
-	<% a = @order.order_id %>
+	<% a = @order.order_id.to_i %>
 	<% order_id = a + 1 %>
 <% end %>
-<%= form_tag molpay_molpay_path do %>
+<%= form_tag molpay_create_molpay_transaction_path do %>
 <div class="row" id="content_div">
   <div class="col-lg-12">
     <div class="panel">
@@ -20,20 +20,20 @@
       		<tr>
       			<td class="text-center">Amount :</td>
       			<td class="text-center">
-      				RM <%= number_with_precision(@sale.booking_fee, precision: 0, separator: ".", delimiter: ",") %>
-      				<%= hidden_field_tag "molpay[amount]", value= @sale.booking_fee %>
+      				RM 2.0<%#= number_with_precision(@sale.booking_fee, precision: 0, separator: ".", delimiter: ",") %>
+      				<%= hidden_field_tag "molpay[amount]", value= "2.0" %>
       			</td>
       		</tr>
       		<tr>
       			<td class="text-center">Order ID :</td>
       			<td class="text-center">
       				<% unless order_id %>
-								0001
-								<%= hidden_field_tag "molpay[order_id]", value="0001" %>
-							<% else %>
-								<%= order_id %>
-								<%= hidden_field_tag "molpay[order_id]", value="#{order_id}" %>
-							<% end %>
+						10000
+						<%= hidden_field_tag "molpay[order_id]", value="10000" %>
+					<% else %>
+						<%= order_id %>
+						<%= hidden_field_tag "molpay[order_id]", value="#{order_id}" %>
+					<% end %>
       			</td>
       		</tr>
       		<tr>
