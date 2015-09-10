@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Amount</th>
-      <th>Is paid</th>
       <th>Status</th>
       <th>Bill name</th>
       <th>Bill email</th>
@@ -30,7 +29,6 @@
     <% @molpay_transaction_histories.each do |molpay_transaction_history| %>
       <tr>
         <td><%= molpay_transaction_history.amount %></td>
-        <td><%= molpay_transaction_history.is_paid %></td>
         <td><%= molpay_transaction_history.status %></td>
         <td><%= molpay_transaction_history.bill_name %></td>
         <td><%= molpay_transaction_history.bill_email %></td>

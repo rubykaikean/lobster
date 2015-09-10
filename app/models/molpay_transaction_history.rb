@@ -4,7 +4,6 @@
 #
 #  id          :integer          not null, primary key
 #  amount      :float
-#  is_paid     :boolean
 #  status      :boolean
 #  bill_name   :string
 #  bill_email  :string

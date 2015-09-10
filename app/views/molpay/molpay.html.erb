@@ -21,27 +21,18 @@
       			<td>Amount:</td>
       			<td>
       				RM <%= number_with_precision(@molpay.amount, precision: 0, separator: ".", delimiter: ",") %>
-              <div style="display: none;">
-      				  <input type="text" name="amount" value="<%= @molpay.order_id %>">
-              </div>
       			</td>
       		</tr>
       		<tr>
       			<td>Order ID:</td>
       			<td>
       				<%= @molpay.order_id %>
-              <div style="display: none;">
-				        <input type="text" name="orderid" value="<%= @molpay.order_id %>">
-              </div>
       			</td>
       		</tr>
       		<tr>
       			<td>Bill Name:</td>
       			<td>
       				<%= @molpay.bill_name rescue "-" %>
-              <div style="display: none;">
-				        <input type="text" name="bill_name" value="<%= @molpay.bill_name %>">
-              </div>
       			</td>
       		</tr>
 
@@ -49,9 +40,6 @@
       			<td>Bill Email:</td>
       			<td>
       				<%= @molpay.bill_email rescue "-" %>
-              <div style="display: none;">
-				        <input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
-              </div>
       			</td>
       		</tr>
 
@@ -59,29 +47,29 @@
       			<td>Bill Mobile:</td>
       			<td>
       				<%= @molpay.bill_mobile rescue "-" %>
-              <div style="display: none;">
-				        <input type="text" name="bill_mobile" value="<%= @molpay.bill_mobile %>">
-              </div>
       			</td>
       		</tr>
 
       		<tr>
-      			<td>Bill Email:</td>
+      			<td>Bill Description:</td>
       			<td>
-      				<%= @molpay.bill_email rescue "-" %>
-              <div style="display: none;">
-				        <input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
-              </div>
+      				<%= @molpay.bill_desc rescue "-" %>
       			</td>
       		</tr>
 
       	</table>
-    <div style="display: none;">
-  		<input type="text" name="country" value="MY">
-  		<input type="text" name="cur" value="rm">
-  		<input type="text" name="returnurl" value="http://wechat.estatekitkat.com/molpay/return_url">
-  		<input type="text" name="vcode" value="<%= vcode %>">
-    </div>
+  <div style="display: none;">
+    <input type="text" name="amount" value="<%= @molpay.amount %>">
+    <input type="text" name="orderid" value="<%= @molpay.order_id %>">
+    <input type="text" name="bill_name" value="<%= @molpay.bill_name %>">
+    <input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
+    <input type="text" name="bill_mobile" value="<%= @molpay.bill_mobile %>">
+    <input type="text" name="bill_desc" value="<%= @molpay.bill_desc %>">
+		<input type="text" name="country" value="MY">
+		<input type="text" name="cur" value="rm">
+		<input type="text" name="returnurl" value="http://dev.estatekitkat.com/molpay/return_url">
+		<input type="text" name="vcode" value="<%= vcode %>">
+  </div>
     	  <div class="panel-footer">
     		  <div class="row">
     		    <div class="col-sm-3 col-sm-offset-8">

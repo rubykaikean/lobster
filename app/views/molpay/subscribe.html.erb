@@ -21,7 +21,7 @@
       			<td class="text-center">Amount :</td>
       			<td class="text-center">
       				RM 2.0<%#= number_with_precision(@sale.booking_fee, precision: 0, separator: ".", delimiter: ",") %>
-      				<%= hidden_field_tag "molpay[amount]", value= "2.0" %>
+      				<%= hidden_field_tag "molpay[amount]",nil, :value=> "2.0" %>
       			</td>
       		</tr>
       		<tr>
@@ -70,7 +70,7 @@
 			    <div class="row">
 			      <div class="col-sm-3 col-sm-offset-8">
 			      <% unless @sale.booking_fee %>
-			      	Booking fee cannot empty
+			               Booking fee cannot empty 
 			      <% else %>
 			        <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
 			      <% end %>

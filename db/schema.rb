@@ -176,7 +176,6 @@ ActiveRecord::Schema.define(version: 20150909093853) do
 
   create_table "molpay_transaction_histories", force: :cascade do |t|
     t.float    "amount"
-    t.boolean  "is_paid"
     t.boolean  "status"
     t.string   "bill_name"
     t.string   "bill_email"

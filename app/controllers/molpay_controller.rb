@@ -11,7 +11,7 @@ class MolpayController < ApplicationController
 		# render :text => molpay_params
 		transaction = MolpayTransactionHistory.new(molpay_params)
 		if transaction.save
-			redirect_to molpay_molpay_path
+			redirect_to molpay_molpay_path(:sale_id => molpay_params[:sale_id])
 		else
 			redirect_to molpay_subscribe_path(:id => molpay_params[:sale_id]), :notice => "Order ID had been duplicate! Submit Again."
 		end
@@ -19,7 +19,7 @@ class MolpayController < ApplicationController
 
 	def molpay
 		# render :text => molpay_params
-		@molpay = MolpayTransactionHistory.last
+		@molpay = MolpayTransactionHistory.find_by(sale_id: params[:sale_id])
 		# render :text => @molpay.to_json
 
 
@@ -37,58 +37,51 @@ class MolpayController < ApplicationController
 	def return_url
 		render :text => params.to_json
 		# # nbcb = params[:nbcb]
-		# receipt_params = {
-		# 					:amount => params[:amount],
-		# 					:tran_id => params[:tranID],
-		# 					:order_id => params[:orderid],
-		# 					:status => params[:status],
-		# 					:domain => params[:domain],
-		# 					:currency => params[:currency],
-		# 					:appcode => params[:appcode],
-		# 					:paydate => params[:paydate],
-		# 					:channel => params[:channel],
-		# 					:error_code => params[:error_code],
-		# 					:error_desc => params[:error_desc],
-		# 					:skey => params[:skey]
-		# 				}
+		transaction_params = {
+							:amount => params[:amount],
+							:tran_id => params[:tranID],
+							:order_id => params[:orderid],
+							:status => params[:status],
+							:domain => params[:domain],
+							:currency => params[:currency],
+							:appcode => params[:appcode],
+							:paydate => params[:paydate],
+							:channel => params[:channel],
+							:error_code => params[:error_code],
+							:error_desc => params[:error_desc],
+							:skey => params[:skey]
+						}
+			molpay = MolpayTransactionHistory.find_by(order_id: transaction_params[:order_id])
+			molpay.update(transaction_params)
+			if params[:status] == "00"
+				logger.info {"molpay -- status success "}
+				redirect_to 		
 
-		# # vkey = "09f318dd2c8acd160df1691870ce2abe"
 
-		# # c = [receipt_params[:tran_id], 
-		# # 			receipt_params[:order_id], 
-		# # 			receipt_params[:status], 
-		# # 			receipt_params[:domain], 
-		# # 			receipt_params[:amount], 
-		# # 			receipt_paramse[:currency]
-		# # 		].join
-		# # key0 = Digest::MD5.hexdigest(c)
-	
-		# # z = [receipt_params[:paydate],
-		# # 		 receipt_params[:domain], 
-		# # 		 key0,
-		# # 		 receipt_params[:appcode],
-		# # 		 vkey
-		# # 		].join
-		# # key1 = Digest::MD5.hexdigest(z)
-		
-		# # if skey != key1
-		# 		if params[:status] == "00"
-		# 				#sucess
-		# 				logger.info {"molpay -- status success "}
-		# 				TransactionProcessService.new(receipt_params).process
-		# 				# redirect_to molpay_receipt_receipts_path(:order_id => receipt_params[:order_id]), :notice => "Thank Your subscribed"
-		# 				redirect_to root_url, notice: "Thank Your Subscribe."
-		# 		elsif params[:status] == "22"
-		# 			logger.info {"molpay -- Status still pending"}
-		# 			redirect_to root_url, :notice => "Molpay payment still pending. Any question contact admin!"
-		# 		else
-		# 			logger.info {"molpay -- Status failure"}
-		# 			redirect_to root_url, :notice => "Molpay payment had failure. Any question contact admin!"
-		# 		end
-		# # else
-		# # 		redirect_to root_url, notice: "skey is equal to key1. Please contact admin!"
-		# # end
+			elsif params[:status] == "22"
+				logger.info {"molpay -- Status still pending"}
+				redirect_to root_url, :notice => "Molpay payment still pending. Any question contact admin!"
+			else
+				logger.info {"molpay -- Status failure"}
+				redirect_to root_url, :notice => "Molpay payment had failure. Any question contact admin!"
+			end
 	end
+
+	# def molpay_failure
+	# 	# {"skey"=>"4dd56692aaabd2da5fbdd6c5cd91458c",
+	# 	#  "tranID"=>"5309405",
+	# 	#  "domain"=>"estatekitkat",
+	# 	#  "status"=>"11",
+	# 	#  "amount"=>"2.00",
+	# 	#  "currency"=>"RM",
+	# 	#  "paydate"=>"2015-09-10 16:29:13",
+	# 	#  "orderid"=>"10004",
+	# 	#  "appcode"=>"",
+	# 	#  "error_code"=>"",
+	# 	#  "error_desc"=>"",
+	# 	#  "channel"=>"CIMB-Clicks"}
+
+	# end
 
 	private
 
