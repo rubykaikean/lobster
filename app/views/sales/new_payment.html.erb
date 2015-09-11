@@ -37,7 +37,7 @@
                 Booking Fee pay with molpay:
               </label>
               <div class="col-md-9">
-                <% if @molpay_transaction && @molpay_transaction.status == MolpayTranactionHostory::SUCCESS %>
+                <% if @molpay_transaction && @molpay_transaction.status == MolpayTransactionHostory::SUCCESS %>
                   <%= link_to "View Molpay Transaction", molpay_transaction_history_path(@sale.id) %>
                 <% else %>
                   <%= link_to "Pay With Molpay", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
