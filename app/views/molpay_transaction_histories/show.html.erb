@@ -1,0 +1,102 @@
+<div class="row" id="content_div">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Product detail</h3>
+      </div>
+      <div class="panel-body">
+        <p>
+          <strong>Booking Fee:</strong>
+          <%= number_with_precision(@molpay_transaction_history.amount, precision: 0, separator: ".", delimiter: ",") %>
+        </p>
+
+        <p>
+          <strong>Status:</strong>
+          <% if @molpay_transaction_history.status == "00" %>
+            Success
+          <% elsif @molpay_transaction_history.status == "11" %>
+            Failure
+          <% elsif @molpay_transaction_history.status == "22" %>
+            Pending
+          <% else %>
+            -
+          <% end %>
+        </p>
+
+        <p>
+          <strong>Bill name:</strong>
+          <%= @molpay_transaction_history.bill_name %>
+        </p>
+
+        <p>
+          <strong>Bill email:</strong>
+          <%= @molpay_transaction_history.bill_email %>
+        </p>
+
+        <p>
+          <strong>Bill mobile:</strong>
+          <%= @molpay_transaction_history.bill_mobile %>
+        </p>
+
+        <p>
+          <strong>Bill desc:</strong>
+          <%= @molpay_transaction_history.bill_desc %>
+        </p>
+
+        <p>
+          <strong>Tran:</strong>
+          <%= @molpay_transaction_history.tran_id %>
+        </p>
+
+        <p>
+          <strong>Domain:</strong>
+          <%= @molpay_transaction_history.domain %>
+        </p>
+
+        <p>
+          <strong>Currency:</strong>
+          <%= @molpay_transaction_history.currency %>
+        </p>
+
+        <p>
+          <strong>Paydate:</strong>
+          <%= @molpay_transaction_history.paydate %>
+        </p>
+
+        <p>
+          <strong>Order:</strong>
+          <%= @molpay_transaction_history.order_id %>
+        </p>
+
+        <p>
+          <strong>Appcode:</strong>
+          <%= @molpay_transaction_history.appcode %>
+        </p>
+
+        <p>
+          <strong>Error code:</strong>
+          <%= @molpay_transaction_history.error_code %>
+        </p>
+
+        <p>
+          <strong>Error desc:</strong>
+          <%= @molpay_transaction_history.error_desc %>
+        </p>
+
+        <p>
+          <strong>Channel:</strong>
+          <%= @molpay_transaction_history.channel %>
+        </p>
+
+        <p>
+          <strong>Sale:</strong>
+          <%= @molpay_transaction_history.sale.lot.name %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%#= link_to 'Edit', edit_molpay_transaction_history_path(@molpay_transaction_history) %>
+<%= link_to 'Back', molpay_transaction_histories_path, :class=>"btn btn-default" %>

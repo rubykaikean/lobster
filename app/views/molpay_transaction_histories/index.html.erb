@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Molpay Transaction Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Bill name</th>
+      <th>Bill email</th>
+      <th>Bill mobile</th>
+      <th>Bill desc</th>
+      <th>Tran</th>
+      <th>Domain</th>
+      <th>Currency</th>
+      <th>Paydate</th>
+      <th>Order</th>
+      <th>Appcode</th>
+      <th>Error code</th>
+      <th>Error desc</th>
+      <th>Channel</th>
+      <th>Sale</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @molpay_transaction_histories.each do |molpay_transaction_history| %>
+      <tr>
+        <td><%= molpay_transaction_history.amount %></td>
+        <td><%= molpay_transaction_history.status %></td>
+        <td><%= molpay_transaction_history.bill_name %></td>
+        <td><%= molpay_transaction_history.bill_email %></td>
+        <td><%= molpay_transaction_history.bill_mobile %></td>
+        <td><%= molpay_transaction_history.bill_desc %></td>
+        <td><%= molpay_transaction_history.tran_id %></td>
+        <td><%= molpay_transaction_history.domain %></td>
+        <td><%= molpay_transaction_history.currency %></td>
+        <td><%= molpay_transaction_history.paydate %></td>
+        <td><%= molpay_transaction_history.order_id %></td>
+        <td><%= molpay_transaction_history.appcode %></td>
+        <td><%= molpay_transaction_history.error_code %></td>
+        <td><%= molpay_transaction_history.error_desc %></td>
+        <td><%= molpay_transaction_history.channel %></td>
+        <td><%= molpay_transaction_history.sale_id %></td>
+        <td><%= link_to 'Show', molpay_transaction_history %></td>
+        <td><%= link_to 'Edit', edit_molpay_transaction_history_path(molpay_transaction_history) %></td>
+        <td><%= link_to 'Destroy', molpay_transaction_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Molpay transaction history', new_molpay_transaction_history_path %>

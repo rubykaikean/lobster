@@ -1,110 +1,89 @@
-<%#= render :text => @molpay_order.to_json %>
-
-  <% header "Subscribe Us for Unlimit Listing" %>
 
 
 <% merchant_id = "estatekitkat" %>
 <% verify_key = "09f318dd2c8acd160df1691870ce2abe" %>
-<% a = [@molpay_order.amount, merchant_id, @molpay_order.order_id, verify_key].join %>
+<% a = [@molpay.amount, merchant_id, @molpay.order_id, verify_key].join %>
 <% vcode = Digest::MD5.hexdigest(a) %>
 <%#= vcode %>
 
-	<form action="https://www.onlinepayment.com.my/NBepay/pay/estatekitkat/index.php" method="post">
-				<li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Amount</label>
-		      RM <%= @molpay_order.amount %>
-		      <div style="display:none;">
-		      	<input type="text" name="amount" value="<%= @molpay_order.amount %>">
-		    	</div>
-		    </li>
-
-		    <li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Order ID</label>
-		      <%= @molpay_order.order_id %>
-		      <div style="display:none;">
-		      	<input type="text" name="orderid" value="<%= @molpay_order.order_id %>">
-		    	</div>
-		    </li>
+<form action="https://www.onlinepayment.com.my/NBepay/pay/estatekitkat/index.php" method="post">
 				
-				<!-- <li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      	<label>Country</label>
-		      	<%#= label_tag "Malaysia" %>
-		    	</div>
-		    </li> -->
+<div class="row" id="content_div">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Molpay - Booking Fee</h3>
+      </div>
+      <div class="panel-body">
 
-		    <li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Bill Name:</label>
-		      <%= @molpay_order.bill_name %>
-		      <div style="display:none;">
-		      	<input type="text" name="orderid" value="<%= @molpay_order.order_id %>">
-		    	</div>
-		    </li>
-				
-		    <li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Bill Email:</label>
-		      <%= @molpay_order.bill_email %>
-		      <div style="display:none;">
-		      	<input type="text" name="bill_email" value="<%= @molpay_order.bill_email %>">
-		    	</div>
-		    </li>
+      	<table class="table table-bordered">
+      		<tr>
+      			<td>Amount:</td>
+      			<td>
+      				RM <%= number_with_precision(@molpay.amount, precision: 0, separator: ".", delimiter: ",") %>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td>Order ID:</td>
+      			<td>
+      				<%= @molpay.order_id %>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td>Bill Name:</td>
+      			<td>
+      				<%= @molpay.bill_name rescue "-" %>
+      			</td>
+      		</tr>
 
-		    <li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Bill Mobile:</label>
-		      <%= current_agent.contact_number %>
-					<div style="display:none;">
-						<input type="text" name="bill_mobile" value="<%= current_agent.contact_number %>">
-					</div>
-		    </li>
-						
-				<li data-role="fieldcontain">
-		      <div class="hr hr-dotted hr-5"></div>
-		      <label>Bill Mobile:</label>
-		      	
-		      	One Year Subscribe
-					<div style="display:none;">
-						<input type="text" name="bill_desc" value="One Year Subscribe">
-					</div>
-		    </li>
-		<!-- 	<tr class="warning">
-				<td><strong>Bill Description: </strong></td> 
-				<td>
-					<%# if @molpay_order.amount > 10 %>
-						One Year Subscribe
-						<div style="display:none;">
-							<input type="text" name="bill_desc" value="One Year Subscribe">
-						</div>
-					<%# else %>
-						<!-- One Month Subscribe
-						<div style="display:none;">
-							<input type="text" name="bill_desc" value="One Month Subscribe">
-						</div> -->
-					<%# end %>
+      		<tr>
+      			<td>Bill Email:</td>
+      			<td>
+      				<%= @molpay.bill_email rescue "-" %>
+      			</td>
+      		</tr>
 
-					<div style="display:none;">
-						<input type="text" name="country" value="MY">
-					</div>
-					<div style="display:none;">
-						<input type="text" name="cur" value="rm">
-					</div>
-					<div style="display:none;">
-						<input type="text" name="returnurl" value="http://wechat.estatekitkat.com/molpay/return_url">
-					</div>
-					<div style="display:none;">
-						<input type="text" name="vcode" value="<%= vcode %>">
-					</div>
+      		<tr>
+      			<td>Bill Mobile:</td>
+      			<td>
+      				<%= @molpay.bill_mobile rescue "-" %>
+      			</td>
+      		</tr>
 
-			<li data-role="fieldcontain">
-        <button type="submit" >
-          <i class='lIcon fa fa-floppy-o'></i>Submit Order
-        </button>
-      </li>
-	</form>
+      		<tr>
+      			<td>Bill Description:</td>
+      			<td>
+      				<%= @molpay.bill_desc rescue "-" %>
+      			</td>
+      		</tr>
+
+      	</table>
+  <div style="display: none;">
+    <input type="text" name="amount" value="<%= @molpay.amount %>">
+    <input type="text" name="orderid" value="<%= @molpay.order_id %>">
+    <input type="text" name="bill_name" value="<%= @molpay.bill_name %>">
+    <input type="text" name="bill_email" value="<%= @molpay.bill_email %>">
+    <input type="text" name="bill_mobile" value="<%= @molpay.bill_mobile %>">
+    <input type="text" name="bill_desc" value="<%= @molpay.bill_desc %>">
+		<input type="text" name="country" value="MY">
+		<input type="text" name="cur" value="rm">
+		<input type="text" name="returnurl" value="http://dev.estatekitkat.com/molpay/return_url">
+		<input type="text" name="vcode" value="<%= vcode %>">
+  </div>
+    	  <div class="panel-footer">
+    		  <div class="row">
+    		    <div class="col-sm-3 col-sm-offset-8">
+    		      <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Pay through Molpay</button>
+    		    </div>
+    		  </div>
+    		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+
 
 		<%#= amount = 100.00 %>
 <!--<%#= bill_name = "Mr.Khongkk" %><br>

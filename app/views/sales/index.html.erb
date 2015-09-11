@@ -149,7 +149,9 @@
                     <button id="payment-<%= sale.id %>" class="btn btn-sm btn-purple payment">Show</button>
                   <% end %>
                   <% if sale.user_id == current_user.id %>
-                    <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add image</button>
+                    <% unless sale.status_id == Sale::REJECTED || sale.status_id == Sale::CANCELLED %>
+                      <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add image</button>
+                    <% end %>
                   <% end %>
                   </a>
                 </td>

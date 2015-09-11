@@ -1,0 +1,69 @@
+# == Schema Information
+#
+# Table name: molpay_transaction_histories
+#
+#  id          :integer          not null, primary key
+#  amount      :float
+#  status      :boolean
+#  bill_name   :string
+#  bill_email  :string
+#  bill_mobile :string
+#  bill_desc   :string
+#  tran_id     :integer
+#  domain      :string
+#  currency    :string
+#  paydate     :datetime
+#  order_id    :string
+#  appcode     :string
+#  error_code  :string
+#  error_desc  :string
+#  channel     :string
+#  sale_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_molpay_transaction_histories_on_sale_id  (sale_id)
+#
+
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  amount: 1.5
+  is_paid: false
+  status: false
+  bill_name: MyString
+  bill_email: MyString
+  bill_mobile: MyString
+  bill_desc: MyString
+  tran_id: 1
+  domain: MyString
+  currency: MyString
+  paydate: 2015-09-09 17:38:53
+  order_id: MyString
+  appcode: MyString
+  error_code: MyString
+  error_desc: MyString
+  channel: MyString
+  sale_id: 1
+
+two:
+  amount: 1.5
+  is_paid: false
+  status: false
+  bill_name: MyString
+  bill_email: MyString
+  bill_mobile: MyString
+  bill_desc: MyString
+  tran_id: 1
+  domain: MyString
+  currency: MyString
+  paydate: 2015-09-09 17:38:53
+  order_id: MyString
+  appcode: MyString
+  error_code: MyString
+  error_desc: MyString
+  channel: MyString
+  sale_id: 1
