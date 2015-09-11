@@ -86,7 +86,7 @@ class SalesController < ApplicationController
   end
 
   def new_payment
-    @molpay_payment = MolpayTransactionHistory.find_by(sale_id: @sale.id)
+    @molpay_transaction = MolpayTransactionHistory.find_by(sale_id: @sale.id)
     # render :text => @sale.id.to_json
     unless @sale.user_id == current_user.id
       flash[:alert] = "Only the agent of the sale can edit."

@@ -68,23 +68,22 @@
       	</table>
 
       	<div class="panel-footer">
-			    <div class="row">
-			      <div class="col-sm-3 col-sm-offset-8">
-			      <% unless @sale.booking_fee %>
-			               Booking fee cannot empty 
-			      <% else %>
-			        <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-			      <% end %>
-			      </div>
-			    </div>
-			  </div>
+      	    <div class="row">
+      	      <div class="col-sm-3 col-sm-offset-8">
+      	      <% unless @sale.booking_fee %>
+      	               Booking fee cannot empty 
+      	      <% else %>
+      	        <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+      	      <% end %>
+      	      </div>
+      	    </div>
+      	  </div>
 
       </div>
     </div>
   </div>
 </div>
 <% end %>
-		  
 <script type="text/javascript">
 $(document).ready(function () {
 // 		var month_payment = "9.90"

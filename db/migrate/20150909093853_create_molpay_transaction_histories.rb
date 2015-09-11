@@ -2,7 +2,7 @@ class CreateMolpayTransactionHistories < ActiveRecord::Migration
   def change
     create_table :molpay_transaction_histories do |t|
       t.float :amount
-      t.boolean :status
+      t.integer :status
       t.string :bill_name
       t.string :bill_email
       t.string :bill_mobile

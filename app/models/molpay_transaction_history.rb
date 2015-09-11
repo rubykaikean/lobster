@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  amount      :float
-#  status      :boolean
+#  status      :integer
 #  bill_name   :string
 #  bill_email  :string
 #  bill_mobile :string
@@ -32,5 +32,9 @@ class MolpayTransactionHistory < ActiveRecord::Base
 	belongs_to :sale
 
 	validates :order_id, uniqueness: true
+
+	SUCCESS = 00
+	FAILURE = 11
+	PENDING = 22
 
 end

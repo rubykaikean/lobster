@@ -1,6 +1,6 @@
 class MolpayTransactionHistoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_molpay_transaction_history, only: [:show, :edit, :update, :destroy]
+  before_action :set_molpay_transaction_history, only: [:edit, :update, :destroy]
 
   # GET /molpay_transaction_histories
   # GET /molpay_transaction_histories.json
@@ -16,6 +16,7 @@ class MolpayTransactionHistoriesController < ApplicationController
   # GET /molpay_transaction_histories/1
   # GET /molpay_transaction_histories/1.json
   def show
+    @molpay_transaction_history = MolpayTransactionHistory.find_by(sale_id: params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @molpay_transaction_history }

@@ -37,10 +37,8 @@
                 Booking Fee pay with molpay:
               </label>
               <div class="col-md-9">
-                <!-- hide button if found at transaction history -->
-                <% if @molpay_payment %>
-                  return url on process
-                  <!-- <a href="<%#= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">View Paid Payment</button> -->
+                <% if @molpay_transaction && @molpay_transaction.status == MolpayTranactionHostory::SUCCESS %>
+                  <%= link_to "View Molpay Transaction", molpay_transaction_history_path(@sale.id) %>
                 <% else %>
                   <%= link_to "Pay With Molpay", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
                 <% end %>
