@@ -16,6 +16,7 @@ class CreateMolpayTransactionHistories < ActiveRecord::Migration
       t.string :error_code
       t.string :error_desc
       t.string :channel
+      t.string :skey
       t.integer :sale_id
 
       t.timestamps null: false

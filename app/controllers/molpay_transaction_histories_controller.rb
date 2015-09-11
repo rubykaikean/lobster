@@ -80,6 +80,6 @@ class MolpayTransactionHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def molpay_transaction_history_params
-      params.require(:molpay_transaction_history).permit(:amount, :status, :bill_name, :bill_email, :bill_mobile, :bill_desc, :tran_id, :domain, :currency, :paydate, :order_id, :appcode, :error_code, :error_desc, :channel, :sale_id)
+      params.require(:molpay_transaction_history).permit(:amount, :status, :bill_name, :bill_email, :bill_mobile, :bill_desc, :tran_id, :domain, :currency, :paydate, :order_id, :appcode, :error_code, :error_desc, :channel, :skey ,:sale_id)
     end
 end

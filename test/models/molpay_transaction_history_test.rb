@@ -18,6 +18,7 @@
 #  error_code  :string
 #  error_desc  :string
 #  channel     :string
+#  skey        :string
 #  sale_id     :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

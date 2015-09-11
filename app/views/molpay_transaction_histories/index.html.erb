@@ -20,6 +20,7 @@
       <th>Error code</th>
       <th>Error desc</th>
       <th>Channel</th>
+      <th>Skey</th>
       <th>Sale</th>
       <th colspan="3"></th>
     </tr>
@@ -43,6 +44,7 @@
         <td><%= molpay_transaction_history.error_code %></td>
         <td><%= molpay_transaction_history.error_desc %></td>
         <td><%= molpay_transaction_history.channel %></td>
+        <td><%= molpay_transaction_history.skey %></td>
         <td><%= molpay_transaction_history.sale_id %></td>
         <td><%= link_to 'Show', molpay_transaction_history %></td>
         <td><%= link_to 'Edit', edit_molpay_transaction_history_path(molpay_transaction_history) %></td>

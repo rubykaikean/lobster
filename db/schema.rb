@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 20150909093853) do
     t.string   "error_code"
     t.string   "error_desc"
     t.string   "channel"
+    t.string   "skey"
     t.integer  "sale_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
