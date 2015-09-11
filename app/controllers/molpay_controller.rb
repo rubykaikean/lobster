@@ -53,14 +53,14 @@ class MolpayController < ApplicationController
 						}
 			molpay = MolpayTransactionHistory.find_by(order_id: transaction_params[:order_id])
 			molpay.update(transaction_params)
-			if params[:status] == 00
+			if params[:status] == "00"
 				logger.info {"molpay -- Status success "}
 				redirect_to molpay_transaction_histories_path(order_id: transaction_params[:order_id]), :notice => "Molpay payment successfully Paid."
 
-			elsif params[:status] == 22
+			elsif params[:status] == "22"
 				logger.info {"molpay -- Status still pending"}
 				redirect_to root_url, :notice => "Molpay payment still pending. Any question contact admin!"
-			elsif params[:status] == 11
+			elsif params[:status] == "11"
 				logger.info {"molpay -- Status Failure"}
 				redirect_to root_url, :notice => "Molpay payment still failure. Any question contact admin!"			
 			else
