@@ -35,7 +35,7 @@ class MolpayController < ApplicationController
 	end
 
 	def return_url
-		render :text => params.to_json
+		# render :text => params.to_json
 		# # nbcb = params[:nbcb]
 		transaction_params = {
 							:amount => params[:amount],
