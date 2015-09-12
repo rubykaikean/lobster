@@ -21,8 +21,8 @@
       		<tr>
       			<td class="text-center">Amount :</td>
       			<td class="text-center">
-      				RM 2.0<%#= number_with_precision(@sale.booking_fee, precision: 0, separator: ".", delimiter: ",") %>
-      				<%= hidden_field_tag "molpay[amount]",nil, :value=> "2.0" %>
+      				RM <%= number_with_precision(@sale.booking_fee, precision: 0, separator: ".", delimiter: ",") %>
+      				<%= hidden_field_tag "molpay[amount]",nil, :value=> @sale.booking_fee %>
       			</td>
       		</tr>
       		<tr>
