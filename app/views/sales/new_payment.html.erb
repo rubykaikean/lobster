@@ -38,7 +38,8 @@
               </label>
               <div class="col-md-9">
                 <% if @molpay_transaction && @molpay_transaction.status == MolpayTransactionHistory::SUCCESS %>
-                  <%= link_to "View Molpay Transaction", molpay_transaction_history_path(@sale.id) %>
+                  <%#= link_to "View Molpay Transaction", molpay_transaction_history_path(@sale.id) %>
+                  Molpay Successfully Paid
                 <% else %>
                   <%= link_to "Pay With Molpay", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
                 <% end %>
