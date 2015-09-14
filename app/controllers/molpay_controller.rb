@@ -55,7 +55,7 @@ class MolpayController < ApplicationController
 			molpay.update(transaction_params)
 			if params[:status] == "00"
 				logger.info {"molpay -- Status success "}
-				transaction = MolpayTransactionHistory.find(params[:orderid])
+				transaction = MolpayTransactionHistory.find_by(order_id: params[:orderid])
 				SaleConfirmReservation.new(transaction.sale_id).sale_confirm_and_pending_reservation
 				redirect_to molpay_transaction_histories_path(order_id: transaction_params[:order_id]), :notice => "Molpay payment successfully Paid."
 
