@@ -10,7 +10,7 @@
             <tr>
               <td>Booking Fee:</td>
               <td>
-                RM <%= number_with_precision(@molpay_transaction_history.amount, precision: 0, separator: ".", delimiter: ",") %>
+                <%= @molpay_transaction_history.currency.upcase %> <%= number_with_precision(@molpay_transaction_history.amount, precision: 0, separator: ".", delimiter: ",") %>
               </td>
             </tr>
 
@@ -60,13 +60,8 @@
             </tr>
 
             <tr>
-              <td>Currency:</td>
-              <td><%= @molpay_transaction_history.currency %></td>
-            </tr>
-
-            <tr>
               <td>Paydate:</td>
-              <td><%= @molpay_transaction_history.paydate %></td>
+              <td><%= @molpay_transaction_history.paydate.strftime("%d/%m/%Y") %></td>
             </tr>
 
             <tr>
