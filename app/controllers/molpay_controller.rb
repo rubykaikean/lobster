@@ -4,7 +4,7 @@ class MolpayController < ApplicationController
 
 	def subscribe
 		@sale = Sale.find(params[:id])
-		@order = MolpayTransactionHistory.last
+		@order = MolpayTransactionHistory.last 
 	end
 
 	def create_molpay_transaction
@@ -19,7 +19,7 @@ class MolpayController < ApplicationController
 
 	def molpay
 		# render :text => molpay_params
-		@molpay = MolpayTransactionHistory.find_by(sale_id: params[:sale_id])
+		@molpay = MolpayTransactionHistory.find_by(sale_id: params[:sale_id]).where.not()
 		# render :text => @molpay.to_json
 
 
@@ -57,7 +57,7 @@ class MolpayController < ApplicationController
 				logger.info {"molpay -- Status success "}
 				transaction = MolpayTransactionHistory.find_by(order_id: params[:orderid])
 				SaleConfirmReservation.new(transaction.sale_id).sale_confirm_and_pending_reservation
-				redirect_to molpay_transaction_histories_path(order_id: transaction_params[:order_id]), :notice => "Molpay payment successfully Paid."
+				redirect_to molpay_transaction_history_path(order_id: transaction_params[:order_id]), :notice => "Molpay payment successfully Paid."
 
 			elsif params[:status] == "22"
 				logger.info {"molpay -- Status still pending"}

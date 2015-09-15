@@ -4,6 +4,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">Sale Molpay Status - <%= @molpay_transaction_history.sale.lot.name %></h3>
       </div>
+
       <div class="panel-body">
         <table class="table table-bordered">
             <tr>
@@ -16,11 +17,11 @@
             <tr>
               <td>Status:</td>
               <td>
-                <% if @molpay_transaction_history.status == molpay_transaction_history::SUCCESS %>
+                <% if @molpay_transaction_history.status == MolpayTransactionHistory::SUCCESS %>
                   Success
-                <% elsif @molpay_transaction_history.status == molpay_transaction_history::FAILURE %>
+                <% elsif @molpay_transaction_history.status == MolpayTransactionHistory::FAILURE %>
                   Failure
-                <% elsif @molpay_transaction_history.status == PENDING %>
+                <% elsif @molpay_transaction_history.status == MolpayTransactionHistory::PENDING %>
                   Pending
                 <% else %>
                   -
@@ -35,7 +36,7 @@
 
             <tr>
               <td>Bill email:</td>
-              <%= @molpay_transaction_history.bill_email %>
+              <td><%= @molpay_transaction_history.bill_email %></td>
             </tr>
 
             <tr>
@@ -77,28 +78,11 @@
               <td>Appcode:</td>
               <td><%= @molpay_transaction_history.appcode %></td>
             </tr>
-            <!-- 
-            <tr>
-              <td>Error code:</td>
-              <td><%#= @molpay_transaction_history.error_code %></td>
-            </tr>
-
-            <tr>
-              <td>Error desc:</td>
-              <td><%#= @molpay_transaction_history.error_desc %></td>
-            </tr>
-
-            <tr>
-              <td>Skey:</td>
-              <td><%#= @molpay_transaction_history.skey %></td>
-            </tr>
- -->
             <tr>
               <td>Channel:</td>
               <td><%= @molpay_transaction_history.channel %></td>
             </tr>
 
-            
         </table>
 
         <div class="panel-footer">

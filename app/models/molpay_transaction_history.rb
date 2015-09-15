@@ -32,7 +32,8 @@ class MolpayTransactionHistory < ActiveRecord::Base
 
 	belongs_to :sale
 
-	validates :order_id, uniqueness: true
+	validates :order_id, :sale_id, uniqueness: true
+
 
 	SUCCESS = 00
 	FAILURE = 11
