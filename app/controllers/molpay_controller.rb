@@ -4,38 +4,28 @@ class MolpayController < ApplicationController
 
 	def subscribe
 		@sale = Sale.find(params[:id])
-		@order = MolpayTransactionHistory.last 
+		@order = MolpayTransactionHistory.all.max_by(&:order_id)
+		# render :text => @order.to_json
 	end
 
 	def create_molpay_transaction
 		# render :text => molpay_params
-		transaction = MolpayTransactionHistory.new(molpay_params)
-		if transaction.save
+
+		sale = MolpayTransactionHistory.find_by(sale_id: molpay_params[:sale_id])
+		# render :text => sale.to_json
+		if sale
+			# update
+			sale.update(molpay_params)
 			redirect_to molpay_molpay_path(:sale_id => molpay_params[:sale_id])
 		else
-			redirect_to molpay_subscribe_path(:id => molpay_params[:sale_id]), :notice => "Order ID had been duplicate! Submit Again."
+			# create
+			transaction = MolpayTransactionHistory.new(molpay_params)
+			if transaction.save
+				redirect_to molpay_molpay_path(:sale_id => molpay_params[:sale_id])
+			else
+				redirect_to molpay_subscribe_path(:id => molpay_params[:sale_id]), :notice => "Order ID had been duplicate! Submit Again."				
+			end
 		end
-		# transaction = MolpayTransactionHistory.new(molpay_params)
-		# if transaction.save
-		# 	redirect_to molpay_molpay_path(:sale_id => molpay_params[:sale_id])
-		# else
-		# 	redirect_to molpay_subscribe_path(:id => molpay_params[:sale_id]), :notice => "Order ID had been duplicate! Submit Again."
-		# end
-
-		# sale = MolpayTransactionHistory.find_by(sale_id: molpay_params[:sale_id])
-		# if sale
-		# 	# update
-		# 	MolpayTransactionHistory.update(molpay_params)
-		# 	redirect_to molpay_molpay_path(:sale_id => molpay_params[:sale_id])
-		# else
-		# 	# create
-		# 	transaction = MolpayTransactionHistory.new(molpay_params)
-		# 	if transaction.save
-		# 		redirect_to molpay_molpay_path(:sale_id => molpay_params[:sale_id])
-		# 	else
-		# 		redirect_to molpay_subscribe_path(:id => molpay_params[:sale_id]), :notice => "Order ID had been duplicate! Submit Again."				
-		# 	end
-		# end
 	end
 
 	def molpay
