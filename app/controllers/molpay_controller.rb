@@ -15,7 +15,6 @@ class MolpayController < ApplicationController
 		else
 			redirect_to molpay_subscribe_path(:id => molpay_params[:sale_id]), :notice => "Order ID had been duplicate! Submit Again."
 		end
-	end
 		# transaction = MolpayTransactionHistory.new(molpay_params)
 		# if transaction.save
 		# 	redirect_to molpay_molpay_path(:sale_id => molpay_params[:sale_id])
