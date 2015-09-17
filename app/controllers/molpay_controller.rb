@@ -26,7 +26,7 @@ class MolpayController < ApplicationController
 
 	def molpay
 		# render :text => molpay_params
-		@molpay = MolpayTransactionHistory.find_by(sale_id: params[:sale_id]).where.not()
+		@molpay = MolpayTransactionHistory.find_by(sale_id: params[:sale_id])
 		# render :text => @molpay.to_json
 
 
