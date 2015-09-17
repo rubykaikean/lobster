@@ -191,8 +191,9 @@
 
                 <!-- after confirm reservation  -->
                 <% elsif sale.status_id == Sale::CONFIRM_RESERVATION %>
-                  <button data-target="#confirm_sale<%= sale.id %>" data-toggle="modal" class="btn btn-success btn-sm">Confirm Sale</button>
-                  
+                  <% if is_top_level_management? %>
+                    <button data-target="#confirm_sale<%= sale.id %>" data-toggle="modal" class="btn btn-success btn-sm">Confirm Sale</button>
+                  <% end %>
                   <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject Sale</button>
                 <% elsif sale.status_id == Sale::PENDING_RESERVATION %>
                   <button data-target="#reject_sale<%= sale.id %>" data-toggle="modal" class="btn btn-danger btn-sm">Reject Sale</button>
