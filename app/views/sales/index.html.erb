@@ -150,7 +150,7 @@
                   <% end %>
                   <% if sale.user_id == current_user.id %>
                     <% unless sale.status_id == Sale::REJECTED || sale.status_id == Sale::CANCELLED %>
-                      <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add image</button>
+                      <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add Payment</button>
                     <% end %>
                   <% end %>
                   </a>
