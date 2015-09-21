@@ -47,7 +47,7 @@
                   <%= link_to "View Molpay Transaction", molpay_transaction_history_path(@sale.id) %>
                   <!-- Molpay Successfully Paid -->
                 <% else %>
-                  <%= link_to "Pay With Molpay", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
+                  <%= link_to "Pay Now", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
                 <% end %>
               </div>
               <div class="col-md-4">
