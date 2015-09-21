@@ -24,7 +24,7 @@
             <%= text_field_tag "product_type[#{p.id}][description]", p.description, :class=>"form-control" %>
           </td>
           <td class="text-center">
-            <%= link_to 'Destroy', product_type_path(p), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
+            <%= link_to 'Delete', product_type_path(p), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
           </td>
         </tr>
         

@@ -44,7 +44,7 @@
                 <td><%= lot.name %></td>
                 <td><%= lot.product_type.try(:name) %></td>
                 <td>
-                <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
+                <%= link_to 'Delete', lot, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-small" %>
                 </td>
               </tr>
             <% end %>
