@@ -3,14 +3,20 @@ class ReservationsController < ApplicationController
 
   def index
     company = current_user.company
+    # to be remove
     if company.is_developer?
       @products = Product.where(company_id: current_user.company_id, is_published: true)
     else
       if company.parent_id.to_i > 0
+        # check parent company id
         @products = Product.where(company_id: current_user.company.parent_id, is_published: true)
+        # check self
       else
+        # check self id
         @products = Product.where(company_id: current_user.company_id, is_published: true)
       end
+    # check company_product_linage
+    # check other product id then self compeny id, append to @products
     end
   end
 

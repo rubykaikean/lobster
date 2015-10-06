@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909093853) do
+ActiveRecord::Schema.define(version: 20151006080037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,10 +86,21 @@ ActiveRecord::Schema.define(version: 20150909093853) do
     t.string   "slug"
     t.integer  "parent_id"
     t.integer  "status_id",                      default: 1
+    t.string   "extended_url"
   end
 
   add_index "companies", ["parent_id"], name: "index_companies_on_parent_id", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
+
+  create_table "company_products_linkages", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "company_products_linkages", ["company_id"], name: "index_company_products_linkages_on_company_id", using: :btree
+  add_index "company_products_linkages", ["product_id"], name: "index_company_products_linkages_on_product_id", using: :btree
 
   create_table "company_settings", force: :cascade do |t|
     t.integer  "company_id"
@@ -287,6 +298,24 @@ ActiveRecord::Schema.define(version: 20150909093853) do
 
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
+
+  create_table "receipts", force: :cascade do |t|
+    t.string   "skey"
+    t.integer  "tran_id"
+    t.string   "domain"
+    t.string   "currency"
+    t.datetime "paydate"
+    t.string   "orderid"
+    t.string   "appcode"
+    t.string   "error_code"
+    t.string   "error_desc"
+    t.string   "channel"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "receipts", ["user_id"], name: "index_receipts_on_user_id", using: :btree
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"
