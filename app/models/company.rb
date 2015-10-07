@@ -112,6 +112,14 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def has_extended_url?
+    if extended_url.any? 
+      return true
+    else
+      return false
+    end
+  end
+
   private
 
 end
