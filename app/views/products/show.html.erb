@@ -53,61 +53,65 @@
       <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
       <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
       <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
+      <button data-target="#new_agency_assign" data-toggle="modal" class="btn btn-primary">New Agency Assign</button>
     </div>
   </div>
 
   <div class="tab-base">
           
-    <!--Nav Tabs-->
-    <ul class="nav nav-tabs" id="product_options_tabs">
-      <li class="active">
-        <a data-toggle="tab" href="#lot-tab">Unit list</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#product_type-tab">Types <!-- <span class="badge badge-purple">27</span> --></a>
-      </li>
-       <li>
-        <a data-toggle="tab" href="#new_region-tab">Region</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#new_sources_type-tab">Source Types</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#site_plan-tab">Site Plan <!-- <span class="badge badge-purple">27</span> --></a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#floor_plan-tab">Floor Plan</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#email_setting-tab">Email Template</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#product_setting-tab">Setting</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#product_customize-tab">Customize</a>
-      </li>
-    </ul>
+      <!--Nav Tabs-->
+      <ul class="nav nav-tabs" id="product_options_tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#lot-tab">Unit list</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#product_type-tab">Types <!-- <span class="badge badge-purple">27</span> --></a>
+        </li>
+         <li>
+          <a data-toggle="tab" href="#new_region-tab">Region</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#new_sources_type-tab">Source Types</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#site_plan-tab">Site Plan <!-- <span class="badge badge-purple">27</span> --></a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#floor_plan-tab">Floor Plan</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#agency_assign-tab">Agency Assgin</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#email_setting-tab">Email Template</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#product_setting-tab">Setting</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#product_customize-tab">Customize</a>
+        </li>
+      </ul>
 
-    <!--Tabs Content-->
-     <div class="tab-content">
+      <!--Tabs Content-->
+      <div class="tab-content">
         <%= render "/products/lot_tab" %>
         <%= render "/products/product_type_tab" %>
         <%= render "/products/product_setting_tab" %>
         <%= render "/products/email_setting_tab" %>
         <%= render "/products/floor_plan_tab" %>
         <%= render "/products/site_plan_tab" %>
+        <%= render "/products/agency_tab" %>
         <%= render "/products/region_tab" %>
         <%= render "/products/sources_type_tab" %>
         <%= render "/products/customize_column_tab" %>
-     </div>
+      </div>
     </div>
               <!--===================================================-->
               <!--End Default Tabs (Left Aligned)-->
     
   </div>
 </div>
- 
 
   <div class="modal fade" id="generate_lot" role="dialog" tabindex="-1" aria-labelledby="generate_lot" aria-hidden="true">
     <div class="modal-dialog">
@@ -224,6 +228,26 @@
         <!--Modal body-->
         <div class="modal-body">
           <%= render "/sources_types/form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new_agency_assign" role="dialog" tabindex="-1" aria-labelledby="new_agency_assign" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Assign New Agency</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "add_agency_form" %>
         </div>
       </div>
     </div>

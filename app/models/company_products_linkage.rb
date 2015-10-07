@@ -16,6 +16,9 @@
 
 class CompanyProductsLinkage < ActiveRecord::Base
 
+	belongs_to :company
+	belongs_to :product
+
 	validates :company_id, presence: true, uniqueness: { scope: :product_id }
 
 end

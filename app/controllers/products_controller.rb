@@ -38,6 +38,9 @@ class ProductsController < ApplicationController
     # @customize = ReservationCustomization.new
     @customize = @product.reservation_customization
 
+    @agency = CompanyProductsLinkage.new
+
+
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true).page(params[:page]).per(10)
     
@@ -169,6 +172,10 @@ class ProductsController < ApplicationController
     customize.update(customize_params)
     flash[:notice] = "Reservation Customization has been saved."
     redirect_to "#{product_path(customize.product)}#product_customize-tab"
+  end
+
+  def update_agency_linkage
+    render :text => params
   end
 
   private

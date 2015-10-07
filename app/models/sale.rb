@@ -56,6 +56,10 @@ class Sale < ActiveRecord::Base
   PENDING_RESERVATION = 5
   CONFIRM_RESERVATION = 6
 
+  CASH = 1
+  BANK_LOAN = 2
+  GOVERNMENT_LOAN = 3
+  STAFF_LOAN = 4
 
   def status
   	case status_id
@@ -74,6 +78,10 @@ class Sale < ActiveRecord::Base
     when CONFIRM_RESERVATION
       "Confirm Reservation"
     end
+  end
+
+  def payment_type
+    
   end
 
   def confirm_date_short_format

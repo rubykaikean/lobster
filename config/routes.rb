@@ -89,6 +89,7 @@ Rails.application.routes.draw do
       post "update_region"
       post "update_sources_type"
       post "update_reservation_customization"
+      post "update_agency_linkage"
       get "site_plans"
       get "floor_plans"
     end

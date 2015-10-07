@@ -28,17 +28,18 @@ class Product < ActiveRecord::Base
 
 	belongs_to :phase
 	belongs_to :company
-	has_many :lots
-	has_many :product_types
 	has_one  :email_setting
 	has_one  :product_setting
 	has_one  :reservation_customization
+	has_many :lots
+	has_many :product_types
   has_many :sales
   has_many :floor_plans
   has_many :site_plans
   has_many :regions
   has_many :sources_types
   has_many :enquiries
+  has_many :company_products_linkage
   
 
   validates :company_id, presence: true, allow_nil: true
