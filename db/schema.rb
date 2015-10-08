@@ -299,24 +299,6 @@ ActiveRecord::Schema.define(version: 20151006080037) do
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
-  create_table "receipts", force: :cascade do |t|
-    t.string   "skey"
-    t.integer  "tran_id"
-    t.string   "domain"
-    t.string   "currency"
-    t.datetime "paydate"
-    t.string   "orderid"
-    t.string   "appcode"
-    t.string   "error_code"
-    t.string   "error_desc"
-    t.string   "channel"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "receipts", ["user_id"], name: "index_receipts_on_user_id", using: :btree
-
   create_table "regions", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

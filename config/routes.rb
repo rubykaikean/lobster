@@ -139,6 +139,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get 'iqi' => "extended_pages#iqi"
+
   match 'molpay/subscribe' => "molpay#subscribe", via: [:post, :get]
   match 'molpay/create_molpay_transaction' => "molpay#create_molpay_transaction", via: [:post, :get]
   match 'molpay/return_url' => "molpay#return_url", via: [:post, :get]
