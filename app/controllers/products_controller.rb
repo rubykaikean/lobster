@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
     @customize = @product.reservation_customization
 
     @agency = CompanyProductsLinkage.new
-
+    @agencies = @product.company_products_linkages
 
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true).page(params[:page]).per(10)
@@ -130,6 +130,28 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
+  #create linkage agency with company
+  def create_agency_linkage
+    # render :text => agency_params
+    linkage = CompanyProductsLinkage.new(agency_params)
+    # linkage.create(company_id: agency_params[:company_id], product_id: agency_params[:product_id])
+    if linkage.save
+      redirect_to "#{product_path(linkage.product)}/#agency_assign-tab", notice: "Agency bad been successfully added"
+    else
+      redirect_to "#{product_path(linkage.product)}/#agency_assign-tab", notice: "Agency cannot duplicate!"
+    end
+  end
+
+  def remove_agency_linkage
+    # render :text => params
+    linkage = CompanyProductsLinkage.find(params[:id])
+    linkage.destroy
+    respond_to do |format|
+      format.html { redirect_to "#{product_path(linkage.product)}/#agency_assign-tab" }
+      format.json { head :no_content }
+    end
+  end
+
   def update_setting
     setting = ProductSetting.find(params[:id])
     setting.update(setting_params)
@@ -187,6 +209,10 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :type_id, :description, :status_id, :phase_id, :e_brochure_url)
+    end
+
+    def agency_params
+      params.require(:agency_linkage).permit(:company_id, :product_id)
     end
 
     def lot_params

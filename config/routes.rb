@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   resources :products do 
     collection do
       post "create_lot"
+      post "create_agency_linkage"
       get "published"
     end
     member do
@@ -90,6 +91,7 @@ Rails.application.routes.draw do
       post "update_sources_type"
       post "update_reservation_customization"
       post "update_agency_linkage"
+      delete "remove_agency_linkage"
       get "site_plans"
       get "floor_plans"
     end

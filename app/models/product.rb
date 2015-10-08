@@ -39,7 +39,7 @@ class Product < ActiveRecord::Base
   has_many :regions
   has_many :sources_types
   has_many :enquiries
-  has_many :company_products_linkage
+  has_many :company_products_linkages
   
 
   validates :company_id, presence: true, allow_nil: true
