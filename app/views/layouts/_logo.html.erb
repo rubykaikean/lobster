@@ -1,20 +1,28 @@
 <!--Brand logo & name-->
-	<!--================================-->
-	<div class="navbar-header">
+			<!--================================-->
+			<div class="navbar-header">
+<% unless is_super_admin? %> 
 	<% if current_user.company.extended_url.nil? %>
-		<a href="/" class="navbar-brand">
-		<img src="/img/logo.png" alt="ekDeveloper" class="brand-icon">
-		<div class="brand-title">
-			<span class="brand-text">ekDeveloper</span>
-		</div>
+				<a href="/" class="navbar-brand">
+				<img src="/img/logo.png" alt="ekDeveloper" class="brand-icon">
+				<div class="brand-title">
+					<span class="brand-text">ekDeveloper</span>
+				</div>
 	<% else %>
-		<a href="/<%= current_user.company.extended_url %>" class="navbar-brand">
-		<img src="/img/logo.png" alt="<%=current_user.company.name%>" class="brand-icon">
-		<div class="brand-title">
-			<span class="brand-text"><%=current_user.company.name%></span>
-		</div>
+				<a href="/<%= current_user.company.extended_url %>" class="navbar-brand">
+				<img src="/img/logo.png" alt="<%= current_user.company.name %>" class="brand-icon">
+				<div class="brand-title">
+					<span class="brand-text"><%= current_user.company.name %></span>
+				</div>
 	<% end %>
-		</a>
-	</div>
-	<!--================================-->
-	<!--End brand logo & name-->
+<% else %>
+				<a href="/" class="navbar-brand">
+				<img src="/img/logo.png" alt="ekDeveloper" class="brand-icon">
+				<div class="brand-title">
+					<span class="brand-text">ekDeveloper</span>
+				</div>
+<% end %>
+				</a>
+			</div>
+			<!--================================-->
+			<!--End brand logo & name-->
