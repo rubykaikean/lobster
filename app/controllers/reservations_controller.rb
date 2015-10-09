@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  # before_action :authenticate_reservation!, only: [:show]
   before_action :authenticate_user!
 
   def index
@@ -25,8 +26,20 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @product = Product.friendly.find params[:id]
-    @lots = @product.lots.order("row_key, name").group_by {|lot| lot.row_key }
+    @product = Product.friendly.find(params[:id])
+    company = current_user.company
+    authorise = CompanyProductsLinkage.find_by(company_id: company.id)
+    # render :text => authorise.to_json
+    if company.id == @product.company_id
+      @lots = @product.lots.order("row_key, name").group_by {|lot| lot.row_key }
+    else
+      if authorise.product_id == @product.id
+        @lots = @product.lots.order("row_key, name").group_by {|lot| lot.row_key }        
+      else
+        flash[:alert] = "You are not allow to enter!"
+        return redirect_to root_path
+      end
+    end
   end
 
   def buyer

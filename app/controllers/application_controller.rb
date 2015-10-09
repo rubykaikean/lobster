@@ -104,6 +104,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # def authenticate_reservation!
+  #   company = current_user.company
+  #   authorise = CompanyProductsLinkage.find_by(company_id: company.id)
+  #   if company.id == 
+  #   unless authorise
+  #     flash[:alert] = "You are not allow to enter!"
+  #     return redirect_to root_path
+  #   end
+  # end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password) }
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:display_name, :email, :type_id, :company_id, :password, :password_confirmation) }
