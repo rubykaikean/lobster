@@ -1,6 +1,5 @@
-
 <%= form_tag create_lot_reservations_path, :multipart => true, :class => "panel-body form-horizontal form-padding" do %>
-
+  
   <%= hidden_field_tag "lot_id", nil, value: @lot.id %>
 
   <% if @customization.full_name? %>

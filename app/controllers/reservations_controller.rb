@@ -4,21 +4,22 @@ class ReservationsController < ApplicationController
   def index
 
     company = current_user.company
-    agency_linkage = CompanyProductsLinkage.where("company_id = ?", current_user.company_id)
-    @products = []
-    agency_linkage.each do |p|
-      @products << Product.find_by(id: p.product_id)
-    end
+    linkage = CompanyProductsLinkage.where("company_id = ?", current_user.company_id)
+    # product_id = linkage.map(&:product_id).join(', ')
+    product_id = linkage.map(&:product_id)
     if company.parent_id.to_i > 0
       # check parent company id
       @products = Product.where(company_id: current_user.company.parent_id, is_published: true)
       # check self
     else
       # check self id
-      @products = Product.where("company_id = ? AND is_published = ?", current_user.company_id, true)
-
+      @products = Product.where("company_id = ? OR id IN (?) AND is_published = ?", current_user.company_id, product_id, true)
       # render :text => @products.to_json
     end
+    
+    # linkage.each do |p|
+    #   @linkage_products << Product.find_by(id: p.product_id).map(&:inspect).join(', ')
+    # end
     # # check company_product_linage
     # # check other product id then self compeny id, append to @products
   end
