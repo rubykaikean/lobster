@@ -43,4 +43,8 @@ class Admin < ActiveRecord::Base
   def should_generate_new_friendly_id?
     display_name_changed?
   end
+
+  def is_super_admin?
+    return true
+  end
 end
