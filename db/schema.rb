@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909093853) do
+ActiveRecord::Schema.define(version: 20151012085735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,10 +86,21 @@ ActiveRecord::Schema.define(version: 20150909093853) do
     t.string   "slug"
     t.integer  "parent_id"
     t.integer  "status_id",                      default: 1
+    t.string   "extended_url"
   end
 
   add_index "companies", ["parent_id"], name: "index_companies_on_parent_id", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
+
+  create_table "company_products_linkages", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "company_products_linkages", ["company_id"], name: "index_company_products_linkages_on_company_id", using: :btree
+  add_index "company_products_linkages", ["product_id"], name: "index_company_products_linkages_on_product_id", using: :btree
 
   create_table "company_settings", force: :cascade do |t|
     t.integer  "company_id"
@@ -375,20 +386,12 @@ ActiveRecord::Schema.define(version: 20150909093853) do
     t.boolean  "sources_type_id_required",        default: false
     t.boolean  "sale_person",                     default: false
     t.boolean  "sale_person_required",            default: false
-    t.boolean  "payment_type",                    default: false
-    t.boolean  "payment_type_required",           default: false
     t.boolean  "car_park",                        default: false
     t.boolean  "car_park_required",               default: false
-    t.boolean  "cash",                            default: false
-    t.boolean  "cash_required",                   default: false
-    t.boolean  "bank_loan",                       default: false
-    t.boolean  "bank_loan_required",              default: false
-    t.boolean  "government_loan",                 default: false
-    t.boolean  "government_loan_required",        default: false
-    t.boolean  "staff_loan",                      default: false
-    t.boolean  "staff_loan_required",             default: false
     t.boolean  "remark",                          default: false
     t.boolean  "remark_required",                 default: false
+    t.boolean  "payment_type_id",                 default: false
+    t.boolean  "payment_type_id_required",        default: false
   end
 
   add_index "reservation_customizations", ["product_id"], name: "index_reservation_customizations_on_product_id", using: :btree
@@ -405,16 +408,14 @@ ActiveRecord::Schema.define(version: 20150909093853) do
     t.integer  "buyer_id"
     t.integer  "downpayment"
     t.integer  "downpayment_percentage"
-    t.string   "bank_loan"
     t.string   "spa"
     t.integer  "booking_fee"
     t.string   "reject_reason"
-    t.string   "downpayment_type"
     t.datetime "confirm_date"
     t.integer  "admin_confirm_user_id"
-    t.string   "cash"
-    t.string   "government_loan"
-    t.string   "staff_loan"
+    t.integer  "payment_type_id"
+    t.string   "chq_number"
+    t.string   "credit_card_number"
   end
 
   add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree

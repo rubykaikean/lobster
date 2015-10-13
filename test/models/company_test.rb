@@ -18,6 +18,7 @@
 #  slug                :string
 #  parent_id           :integer
 #  status_id           :integer          default(1)
+#  extended_url        :string
 #
 # Indexes
 #
