@@ -49,14 +49,16 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
 
   ADMIN = 1
-  STAFF = 2
+  SUPERVISOR = 2
+  STAFF = 3
 
   ACTIVE = 1
   INACTIVE = 2
 
   TYPE_OPTIONS = [
     ["Admin", ADMIN],
-    ["Staff", STAFF]
+    ["Supervisor", SUPERVISOR],
+    ["Staff", STAFF],
   ].freeze
 
   def slug_candidates
@@ -89,6 +91,10 @@ class User < ActiveRecord::Base
     type_id == ADMIN
   end
 
+  def is_supervisor?
+    type_id == SUPERVISOR
+  end
+
   def is_staff?
     type_id == STAFF
   end
@@ -97,6 +103,8 @@ class User < ActiveRecord::Base
     case type_id
     when ADMIN
       "Admin"
+    when SUPERVISOR
+      "Supervisor"
     when STAFF
       "Staff"
     end

@@ -50,9 +50,9 @@
 				
 				
 				<div class="panel-body" style="padding-top:0px;">
-				<div class="table-responsive">
+				<div class="table-responsive" id="reload_table">
 				  
-						<table class="table table-bordered" id="reload_table">
+						<table class="table table-bordered">
 <!-- 						  <thead>
 							</thead> -->
 							<tbody>
@@ -122,9 +122,10 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
+
     setInterval(function() {
       $('#reload_table').load(location.href + " #reload_table");
-      	// alert("123");
     	}, 5000);
+    
   });
 </script>

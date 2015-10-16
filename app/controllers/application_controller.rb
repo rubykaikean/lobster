@@ -32,6 +32,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  helper_method :is_top_level_supervisor?
+  def is_top_level_supervisor?
+    if current_user && current_user.company.parent_id.to_i == 0
+      current_user.is_supervisor?
+    else
+      return false
+    end
+  end
+
   helper_method :is_top_level_staff?
   def is_top_level_staff?
     if current_user && current_user.company.parent_id.to_i == 0
