@@ -77,16 +77,16 @@
     <div class="col-md-9">
       <select class="selectpicker" name="sale[payment_type_id]" <%= @customization.payment_type_id_required? ? 'required' : nil %> >
           <option value="">Select an option</option>
-          <option value="<%= Sale::CASH %>" <%= sale.payment_type_id == Sale::CASH ? "selected='selected'" : nil %> >
+          <option value="<%= Sale::CASH %>" <%= sale.payment_type_id == Sale::CASH ? "selected" : nil %> >
             Cash
           </option>
-          <option value="<%= Sale::BANK_LOAN %>" <%= sale.payment_type_id == Sale::BANK_LOAN ? "selected='selected'" : nil %> >
+          <option value="<%= Sale::BANK_LOAN %>" <%= sale.payment_type_id == Sale::BANK_LOAN ? "selected" : nil %> >
             Bank Loan
           </option>
-          <option value="<%= Sale::GOVERNMENT_LOAN %>" <%= sale.payment_type_id == Sale::GOVERNMENT_LOAN ? "selected='selected'" : nil %> >
+          <option value="<%= Sale::GOVERNMENT_LOAN %>" <%= sale.payment_type_id == Sale::GOVERNMENT_LOAN ? "selected" : nil %> >
             Government Loan
           </option>
-          <option value="<%= Sale::STAFF_LOAN %>" <%= sale.payment_type_id == Sale::STAFF_LOAN ? "selected='selected'" : nil %> >
+          <option value="<%= Sale::STAFF_LOAN %>" <%= sale.payment_type_id == Sale::STAFF_LOAN ? "selected" : nil %> >
             Staff Loan
           </option>
         </select>

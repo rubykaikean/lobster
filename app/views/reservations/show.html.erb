@@ -37,6 +37,7 @@
 				</div>
 					<div class="panel-body" style="padding-top:0px;">
 					  <div class="col-lg-5 text-lg-left">
+					  	
 					    <div class="bg-light text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Available </div>
 
 					    <div class="bg-orange text-center" style="width:70px;float:left;border:1px;border-color:black;border-style:solid;">Prebook</div>
@@ -51,9 +52,9 @@
 				<div class="panel-body" style="padding-top:0px;">
 				<div class="table-responsive">
 				  
-						<table class="table table-bordered">
-						  <thead>
-							</thead>
+						<table class="table table-bordered" id="reload_table">
+<!-- 						  <thead>
+							</thead> -->
 							<tbody>
 							<% num = @product.product_setting.unit_per_row || 5 %>
 							<% @lots.each do |key, lot_group| %>
@@ -61,7 +62,7 @@
 								  <tr>
 								    <% lot_arry.each do |lot| %>
 								      <% if lot %>
-									      <td class="text-center <%= lot.background_css_name %>">
+									      <td class="text-center <%= lot.background_css_name %>" id="autoload">
 									        <div class="pad-btm"></div>
 									        <div>
 									        	<%= lot.name %>
@@ -116,3 +117,14 @@
 		</div> <!-- panel -->
   </div>
 </div>  <!-- row -->
+
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+    setInterval(function() {
+      $('#reload_table').load(location.href + " #reload_table");
+      	// alert("123");
+    	}, 5000);
+  });
+</script>

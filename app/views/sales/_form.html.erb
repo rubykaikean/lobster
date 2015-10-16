@@ -42,24 +42,21 @@
     </div>
   </div>
   <br>
-  <% if @customization.payment_type_id? %>
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_payment_type_id">Downpayment Type: </label>
-    <div class="col-md-9">
-      <select class="selectpicker" name="sale[payment_type_id]" <%= @customization.payment_type_id_required? ? 'required' : nil %> >
-          <option value="">Select an option</option>
-          <option value="<%= Sale::CASH %>" <%= @sale.payment_type_id == Sale::CASH ? "selected='selected'" : nil %> >Cash</option>
-          <option value="<%= Sale::BANK_LOAN %>" <%= @sale.payment_type_id == Sale::CASH ? "selected='selected'" : nil %> >Bank Loan</option>
-          <option value="<%= Sale::GOVERNMENT_LOAN %>" <%= @sale.payment_type_id == Sale::GOVERNMENT_LOAN ? "selected='selected'" : nil %> >Government Loan</option>
-          <option value="<%= Sale::STAFF_LOAN %>" <%= @sale.payment_type_id == Sale::STAFF_LOAN ? "selected='selected'" : nil %> >Staff Loan</option>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="sale_payment_type_id">Payment Type</label>
+      <div class="col-md-9">
+          <!-- Inline radio buttons -->
+        <select class="selectpicker" name="sale[payment_type_id]">
+          <option>Select An Option</option>
+          <option value="<%= Sale::CASH %>" <%= @sale.payment_type_id == Sale::CASH ? "selected" : nil %> >Cash</option>
+          <option value="<%= Sale::BANK_LOAN %>" <%= @sale.payment_type_id == Sale::BANK_LOAN ? "selected" : nil %> >Bank Loan</option>
+          <option value="<%= Sale::GOVERNMENT_LOAN %>" <%= @sale.payment_type_id == Sale::GOVERNMENT_LOAN ? "selected" : nil %> >Government Loan</option>
+          <option value="<%= Sale::STAFF_LOAN %>" <%= @sale.payment_type_id == Sale::STAFF_LOAN ? "selected" : nil %> >Staff Loan</option>
         </select>
-      <% if @customization.payment_type_id_required?  %>
-        <small class="help-block">Required field</small>
-      <% end %>
+      </div>
     </div>
-  </div>
-  <% end %>
-  <br>
+  
   <!-- <div class="form-group">
     <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
     <div class="col-md-9">
