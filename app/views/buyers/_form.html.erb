@@ -57,7 +57,7 @@
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_ic_number">IC Number: </label>
     <div class="col-md-9">
-      <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" maxlength="12" minlength="12" <%= @customization.ic_number_required? ? 'required' : nil %> >
+      <input type="text" id="buyer_ic_number" name="buyer[ic_number]" class="form-control" placeholder="IC number" value="<%= @buyer.ic_number %>" <%= @customization.ic_number_required? ? 'required' : nil %> >
       <small class="help-block">Example : 801023075488</small>
       <% if @customization.ic_number_required?  %>
         <small class="help-block">Required field</small>
