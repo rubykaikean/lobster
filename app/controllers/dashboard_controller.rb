@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   def index
     redirect_to supermin_board_path and return if is_super_admin?
     
-    if is_top_level_admin? || is_top_level_staff?
+    if is_top_level_admin? || is_top_level_staff? || is_top_level_supervisor?
       @company = current_user.company
       @projects_count = @company.projects.count
       products        = @company.products

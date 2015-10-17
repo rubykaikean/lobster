@@ -55,10 +55,10 @@
   </div>
   
   <div class="form-group">
-    <label class="col-md-6 control-label" for="customize_downpayment_type_required">Downpayment Type (Required?)</label>
+    <label class="col-md-6 control-label" for="customize_payment_type_id_required">Payment Type (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
-      <input type="hidden" id="customize_downpayment_type_false" name="customize[downpayment_type_required]" value="0">
-      <input class="demo-switch" name="customize[downpayment_type_required]" type="checkbox" <%= customize.downpayment_type_required? ? 'checked' : nil %> >
+      <input type="hidden" id="customize_payment_type_id_false" name="customize[payment_type_id_required]" value="0">
+      <input class="demo-switch" name="customize[payment_type_id_required]" type="checkbox" <%= customize.payment_type_id_required? ? 'checked' : nil %> >
     </div>
   </div>
 
@@ -70,19 +70,20 @@
     </div>
   </div>
 
+  <!-- 
   <div class="form-group">
-    <label class="col-md-6 control-label" for="customize_payment_type_required">Payment Type (Required?)</label>
+    <label class="col-md-6 control-label" for="customize_payment_type_id_required">Payment Type (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
-      <input type="hidden" id="customize_payment_type_required_false" name="customize[payment_type_required]" value="0">
-      <input class="demo-switch" name="customize[payment_type_required]" type="checkbox" <%= customize.payment_type_required? ? 'checked' : nil %> >
+      <input type="hidden" id="customize_payment_type_required_false" name="customize[payment_type_id_required]" value="0">
+      <input class="demo-switch" name="customize[payment_type_id_required]" type="checkbox" <%#= customize.payment_type_id_required? ? 'checked' : nil %> >
     </div>
-  </div>
+  </div> -->
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label class="col-md-6 control-label" for="customize_cash_required">Cash (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
       <input type="hidden" id="customize_cash_required_false" name="customize[cash_required]" value="0">
-      <input class="demo-switch" name="customize[cash_required]" type="checkbox" <%= customize.cash_required? ? 'checked' : nil %> >
+      <input class="demo-switch" name="customize[cash_required]" type="checkbox" <%#= customize.cash_required? ? 'checked' : nil %> >
     </div>
   </div>
 
@@ -90,7 +91,7 @@
     <label class="col-md-6 control-label" for="customize_bank_loan_required">Bank Loan (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
       <input type="hidden" id="customize_bank_loan_required_false" name="customize[bank_loan_required]" value="0">
-      <input class="demo-switch" name="customize[bank_loan_required]" type="checkbox" <%= customize.bank_loan_required? ? 'checked' : nil %> >
+      <input class="demo-switch" name="customize[bank_loan_required]" type="checkbox" <%#= customize.bank_loan_required? ? 'checked' : nil %> >
     </div>
   </div>
 
@@ -98,7 +99,7 @@
     <label class="col-md-6 control-label" for="customize_government_loan_required">Government Loan (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
       <input type="hidden" id="customize_government_loan_required_false" name="customize[government_loan_required]" value="0">
-      <input class="demo-switch" name="customize[government_loan_required]" type="checkbox" <%= customize.government_loan_required? ? 'checked' : nil %> >
+      <input class="demo-switch" name="customize[government_loan_required]" type="checkbox" <%#= customize.government_loan_required? ? 'checked' : nil %> >
     </div>
   </div>
 
@@ -106,9 +107,9 @@
     <label class="col-md-6 control-label" for="customize_staff_loan_required">Staff Loan (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
       <input type="hidden" id="customize_staff_loan_required_false" name="customize[staff_loan_required]" value="0">
-      <input class="demo-switch" name="customize[staff_loan_required]" type="checkbox" <%= customize.staff_loan_required? ? 'checked' : nil %> >
+      <input class="demo-switch" name="customize[staff_loan_required]" type="checkbox" <%#= customize.staff_loan_required? ? 'checked' : nil %> >
     </div>
-  </div>
+  </div> -->
 
   <div class="form-group">
     <label class="col-md-6 control-label" for="customize_reject_reason_required">Reject Reason (Required?)</label>

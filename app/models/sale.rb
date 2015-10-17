@@ -14,16 +14,14 @@
 #  buyer_id               :integer
 #  downpayment            :integer
 #  downpayment_percentage :integer
-#  bank_loan              :string
 #  spa                    :string
 #  booking_fee            :integer
 #  reject_reason          :string
-#  downpayment_type       :string
 #  confirm_date           :datetime
 #  admin_confirm_user_id  :integer
-#  cash                   :string
-#  government_loan        :string
-#  staff_loan             :string
+#  payment_type_id        :integer
+#  chq_number             :string
+#  credit_card_number     :string
 #
 # Indexes
 #
@@ -56,6 +54,23 @@ class Sale < ActiveRecord::Base
   PENDING_RESERVATION = 5
   CONFIRM_RESERVATION = 6
 
+  CASH = 1
+  BANK_LOAN = 2
+  GOVERNMENT_LOAN = 3
+  STAFF_LOAN = 4
+
+  def payment_type
+    case payment_type_id
+    when CASH
+      "Cash"
+    when BANK_LOAN
+      "Bank Loan"
+    when GOVERNMENT_LOAN
+      "Government Loan"
+    when STAFF_LOAN
+      "Staff Loan"
+    end
+  end
 
   def status
   	case status_id

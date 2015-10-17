@@ -1,5 +1,6 @@
 <%= form_for(@sale, html: {:class => 'panel-body form-horizontal form-padding', :multipart => true }) do |f| %>
-
+    <% product = Product.find(@sale.product_id) %>
+    <% @customization = product.reservation_customization %>
     <div class="form-group">
       <label class="col-md-3 control-label" for="sale_user_id">Sale Person</label>
       <div class="col-md-9">
@@ -41,20 +42,28 @@
     </div>
   </div>
   <br>
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_downpayment_type">Payment Type: </label>
-    <div class="col-md-9">
-      <input type="text" id="sale_downpayment_type" name="sale[downpayment_type]" class="form-control" placeholder="Down Payment Type" value="<%= @sale.downpayment_type %>">
+
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="sale_payment_type_id">Payment Type</label>
+      <div class="col-md-9">
+          <!-- Inline radio buttons -->
+        <select class="selectpicker" name="sale[payment_type_id]">
+          <option>Select An Option</option>
+          <option value="<%= Sale::CASH %>" <%= @sale.payment_type_id == Sale::CASH ? "selected" : nil %> >Cash</option>
+          <option value="<%= Sale::BANK_LOAN %>" <%= @sale.payment_type_id == Sale::BANK_LOAN ? "selected" : nil %> >Bank Loan</option>
+          <option value="<%= Sale::GOVERNMENT_LOAN %>" <%= @sale.payment_type_id == Sale::GOVERNMENT_LOAN ? "selected" : nil %> >Government Loan</option>
+          <option value="<%= Sale::STAFF_LOAN %>" <%= @sale.payment_type_id == Sale::STAFF_LOAN ? "selected" : nil %> >Staff Loan</option>
+        </select>
+      </div>
     </div>
-  </div>
-  <br>
-  <div class="form-group">
+  
+  <!-- <div class="form-group">
     <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
     <div class="col-md-9">
-      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Bank Loan" value="<%= @sale.bank_loan %>">
+      <input type="text" id="sale_bank_loan" name="sale[bank_loan]" class="form-control" placeholder="Bank Loan" value="<%#= @sale.bank_loan %>">
     </div>
-  </div>
-  <br>
+  </div> 
+  <br>-->
   <div class="form-group">
     <label class="col-md-3 control-label" for="sale_spa">Lawyer Firm: </label>
     <div class="col-md-9">

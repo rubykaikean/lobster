@@ -37,6 +37,7 @@
 				</div>
 					<div class="panel-body" style="padding-top:0px;">
 					  <div class="col-lg-5 text-lg-left">
+					  	
 					    <div class="bg-light text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Available </div>
 
 					    <div class="bg-orange text-center" style="width:70px;float:left;border:1px;border-color:black;border-style:solid;">Prebook</div>
@@ -49,11 +50,11 @@
 				
 				
 				<div class="panel-body" style="padding-top:0px;">
-				<div class="table-responsive">
+				<div class="table-responsive" id="reload_table">
 				  
 						<table class="table table-bordered">
-						  <thead>
-							</thead>
+<!-- 						  <thead>
+							</thead> -->
 							<tbody>
 							<% num = @product.product_setting.unit_per_row || 5 %>
 							<% @lots.each do |key, lot_group| %>
@@ -61,7 +62,7 @@
 								  <tr>
 								    <% lot_arry.each do |lot| %>
 								      <% if lot %>
-									      <td class="text-center <%= lot.background_css_name %>">
+									      <td class="text-center <%= lot.background_css_name %>" id="autoload">
 									        <div class="pad-btm"></div>
 									        <div>
 									        	<%= lot.name %>
@@ -77,11 +78,13 @@
 									        	<% end %>
 									        </div> 
 									        <div>
-									          <% if is_top_level_management? || is_low_level_admin? %>
-									          <% unless lot.status_id == Lot::CONFIRM_RESERVATION %>
-									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
-									        	  <% else %>
+									          <% if is_top_level_management? || is_low_level_admin? || is_top_level_staff? %>
+									          <% if lot.status_id == Lot::CONFIRM_RESERVATION %>
 									        	  <u>Unit Booked</u>
+									        	  <% elsif lot.status_id == Lot::SOLD %>
+									        	  <u>Unit Sold</u>
+									        	  <% else %>
+									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
 									        	<% end %>
 									        	<% end %>
 									        </div>
@@ -116,3 +119,15 @@
 		</div> <!-- panel -->
   </div>
 </div>  <!-- row -->
+
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+    setInterval(function() {
+      $('#reload_table').load(location.href + " #reload_table");
+    	}, 5000);
+    
+  });
+</script>
