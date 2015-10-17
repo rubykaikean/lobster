@@ -37,8 +37,8 @@
         <div class="radio">
           <!-- Inline radio buttons -->
           <label class="form-radio form-normal active"><input type="radio" name="user_type_id" <%= @user.type_id == User::ADMIN ? "checked" : nil %> value="1">Admin</label>
-          <label class="form-radio form-normal active"><input type="radio" name="user_type_id" <%= @user.type_id == User::SUPERVISOR ? "checked" : nil %> value="1">Supervisor</label>
-          <label class="form-radio form-normal"><input type="radio" name="user_type_id" <%= @user.type_id == User::STAFF ? "checked" : nil %> value="2"> Staff</label>
+          <label class="form-radio form-normal active"><input type="radio" name="user_type_id" <%= @user.type_id == User::SUPERVISOR ? "checked" : nil %> value="2">Supervisor</label>
+          <label class="form-radio form-normal"><input type="radio" name="user_type_id" <%= @user.type_id == User::STAFF ? "checked" : nil %> value="3"> Staff</label>
         </div>
       </div>
     </div>
