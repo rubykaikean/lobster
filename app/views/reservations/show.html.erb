@@ -78,11 +78,13 @@
 									        	<% end %>
 									        </div> 
 									        <div>
-									          <% if is_top_level_management? || is_low_level_admin? %>
-									          <% unless lot.status_id == Lot::CONFIRM_RESERVATION %>
-									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
-									        	  <% else %>
+									          <% if is_top_level_management? || is_low_level_admin? || is_top_level_staff? %>
+									          <% if lot.status_id == Lot::CONFIRM_RESERVATION %>
 									        	  <u>Unit Booked</u>
+									        	  <% elsif lot.status_id == Lot::SOLD %>
+									        	  <u>Unit Sold</u>
+									        	  <% else %>
+									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
 									        	<% end %>
 									        	<% end %>
 									        </div>
