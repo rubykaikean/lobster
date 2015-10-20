@@ -46,6 +46,13 @@
 					    <div class="bg-danger text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Sold </div>
 					    <div class="bg-pink text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Blocked </div>
 				    </div>
+				    <div class="text-lg-right" id="reload_div">
+				    	<label>Time Reload Table :</label>
+ 				    	<input type="radio" onclick="handler3sec()" name="reload" > 3sec
+				    	<input type="radio" onclick="handler8sec()" name="reload" > 8sec
+				    	<input type="radio" onclick="handler12sec()" name="reload" > 12sec
+				    	<input type="radio" onclick="stopHandler()" name="reload" value="stop" > Stop
+				    </div>
 				</div>
 				
 				
@@ -122,12 +129,51 @@
 
 
 <script type="text/javascript">
+		var watch3sec;
+		var handler8sec;
+		var handler12sec;
 
-	$(document).ready(function() {
+		function handler3sec() {
+				stopHandler();
+		    watch3sec = setInterval(reload_table, 3000);
+		}
 
-    setInterval(function() {
-      $('#reload_table').load(location.href + " #reload_table");
-    	}, 5000);
+		function handler8sec() {
+				stopHandler();
+		    handler8sec = setInterval(reload_table, 8000);
+		}
+
+		function handler12sec() {
+				stopHandler();
+		    handler12sec = setInterval(reload_table, 12000);
+		}
+
+		function reload_table() {
+		  $('#reload_table').load(location.href + " #reload_table");
+		}
+
+		function stopHandler() {
+		  clearInterval(watch3sec);
+		  clearInterval(handler8sec);
+		  clearInterval(handler12sec);
+		}
+
+	// $(document).ready(function () {
+
+	//    //  setInterval(function() {
+	//    //  	// $('#reload_table').load(location.href + " #reload_table");
+	//    //  	alert("abc");
+	//   	// }, sec);
+	// 	// $('#reload_div input').on('change', function() {
+	// 	//    // alert($('input[name="reload"]:checked', '#reload_div').val()); 
+	// 	// });
+
+ //    function myFunction() {
+	// 	    alert("halo 123");
+	// 	}
+
     
-  });
+
+
+	// });
 </script>
