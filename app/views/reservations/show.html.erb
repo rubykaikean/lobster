@@ -47,11 +47,11 @@
 					    <div class="bg-pink text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Blocked </div>
 				    </div>
 				    <div class="text-lg-right" id="reload_div">
-				    	<input type="radio" onclick="handler3sec()" name="reload" value="3000" > 3sec
-				    	<input type="radio" onclick="handler10sec()" name="reload" value="10000" > 10sec
+				    	<label>Time Reload Table :</label>
+ 				    	<input type="radio" onclick="handler3sec()" name="reload" > 3sec
+				    	<input type="radio" onclick="handler8sec()" name="reload" > 8sec
+				    	<input type="radio" onclick="handler12sec()" name="reload" > 12sec
 				    	<input type="radio" onclick="stopHandler()" name="reload" value="stop" > Stop
-				    	<!-- <button type="radio" onclick="handler10sec()" name="reload" value="10000" > 10sec</button>
-				    	<button type="radio" onclick="stopHandler()" name="reload" value="stop" > Stop</button> -->
 				    </div>
 				</div>
 				
@@ -130,16 +130,22 @@
 
 <script type="text/javascript">
 		var watch3sec;
-		var watch10sec;
+		var handler8sec;
+		var handler12sec;
 
 		function handler3sec() {
 				stopHandler();
 		    watch3sec = setInterval(reload_table, 3000);
 		}
 
-		function handler10sec() {
+		function handler8sec() {
 				stopHandler();
-		    watch10sec = setInterval(reload_table, 10000);
+		    handler8sec = setInterval(reload_table, 8000);
+		}
+
+		function handler12sec() {
+				stopHandler();
+		    handler12sec = setInterval(reload_table, 12000);
 		}
 
 		function reload_table() {
@@ -148,7 +154,8 @@
 
 		function stopHandler() {
 		  clearInterval(watch3sec);
-		  clearInterval(watch10sec);
+		  clearInterval(handler8sec);
+		  clearInterval(handler12sec);
 		}
 
 	// $(document).ready(function () {
