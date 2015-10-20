@@ -98,6 +98,8 @@ class ProductTypesController < ApplicationController
       product_type.save!
     end
     redirect_to "#{product_path(product)}/#product_type-tab", notice: "Product Type update successfully."
+    rescue ActiveRecord::RecordInvalid
+    redirect_to "#{product_path(product)}/#product_type-tab", notice: "Product Type cannot be duplicated."
   end
 
   private
