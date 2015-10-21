@@ -70,6 +70,7 @@
 #  remark_required                 :boolean          default(FALSE)
 #  payment_type_id                 :boolean          default(FALSE)
 #  payment_type_id_required        :boolean          default(FALSE)
+#  payment_image                   :boolean          default(FALSE)
 #
 # Indexes
 #
