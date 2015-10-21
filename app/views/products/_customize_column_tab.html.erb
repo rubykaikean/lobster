@@ -253,6 +253,15 @@
 			        <input class="demo-switch" name="customize[selling_price]" type="checkbox" <%= @customize.selling_price? ? 'checked' : nil %> >
 			      </div>
 			    </div>
+			    
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_payment_image">Payment Image</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_payment_image_false" name="customize[payment_image]" value="0">
+			        <input class="demo-switch" name="customize[payment_image]" type="checkbox" <%= @customize.payment_image? ? 'checked' : nil %> >
+			      </div>
+			    </div>
 
 					<!-- <div class="form-group">
 			      <label class="col-md-6 control-label" for="customize_payment_type">Payment Type</label>

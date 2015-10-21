@@ -340,6 +340,8 @@
     </div>
   </div>
   <%# end %> -->
+
+  <% if @customization.payment_image? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="payment_image">Upload payment images: </label>
     <div class="col-md-9 upload_payments_wrapper">
@@ -352,6 +354,7 @@
       <!-- <button class="add_more_photo_button btn btn-info">Add more photo</button> -->
     </div>
   </div>
+  <% end %>
 
   <% if @customization.remark? %>
   <div class="form-group">
