@@ -13,5 +13,5 @@ class SourcesType < ActiveRecord::Base
 	has_many :buyers
   belongs_to :product
 
-
+  validates :name, presence: true, uniqueness: { scope: :product_id }
 end
