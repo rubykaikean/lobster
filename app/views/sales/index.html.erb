@@ -119,7 +119,7 @@
             <% @sales.each do |sale| %>
               <tr>
                 <td><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
-                <td><%= sale.id %> / <%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
+                <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
                 <td><%= sale.user.company.name rescue "Company not found" %></td>
                 <td class="text-center"><%= sale.user.name rescue "User not found" %></td>
                 <td class="text-left">

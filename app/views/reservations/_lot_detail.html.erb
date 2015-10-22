@@ -1,0 +1,26 @@
+<div class="pad-btm"></div>
+									        <div>
+									        	<%= lot.name %>
+									        </div>
+									        <div>	
+									        	<%= lot.product_type.try(:name) %>
+									        </div>
+									         <div>
+									         	<% unless lot.is_sold? %>
+									        	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
+									        	<% else %>
+									        	RM 0
+									        	<% end %>
+									        </div> 
+									        <div>
+									          <% if is_top_level_management? || is_low_level_admin? || is_top_level_staff? %>
+										          <% if lot.status_id == Lot::CONFIRM_RESERVATION %>
+										        	  <u>Unit Booked</u>
+										        	  <% elsif lot.status_id == Lot::SOLD %>
+										        	  <u>Unit Sold</u>
+										        	  <% else %>
+										        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
+										        	<% end %>
+									        	<% end %>
+									        </div>
+									        <div class="pad-top"></div>

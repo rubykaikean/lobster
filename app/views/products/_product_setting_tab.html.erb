@@ -49,6 +49,14 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="setting_hide_detail_blocked_unit">Hide detail of blocked unit</label>
+        <div class="col-md-9" style="padding-top: 5px;">
+          <input type="hidden" id="setting_hide_detail_blocked_unit_false" name="setting[hide_detail_blocked_unit]" value="0">
+          <input class="demo-switch" name="setting[hide_detail_blocked_unit]" type="checkbox" <%= @setting.hide_detail_blocked_unit? ? 'checked' : nil %> >
+        </div>
+      </div>
+
   <br>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
 

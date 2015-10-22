@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021072359) do
+ActiveRecord::Schema.define(version: 20151022095849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -248,6 +248,7 @@ ActiveRecord::Schema.define(version: 20151021072359) do
     t.boolean  "notify_admin_on_sale_confirmation", default: false
     t.integer  "bumiputera_discount",               default: 5
     t.boolean  "attach_payment_image",              default: false
+    t.boolean  "hide_detail_blocked_unit",          default: false
   end
 
   create_table "product_types", force: :cascade do |t|
