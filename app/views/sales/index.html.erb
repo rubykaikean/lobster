@@ -119,7 +119,7 @@
             <% @sales.each do |sale| %>
               <tr>
                 <td><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
-                <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
+                <td><%= sale.id %> / <%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
                 <td><%= sale.user.company.name rescue "Company not found" %></td>
                 <td class="text-center"><%= sale.user.name rescue "User not found" %></td>
                 <td class="text-left">
@@ -188,7 +188,7 @@
                   <!-- <button class="btn btn-default btn-hover-info add-tooltip" data-placement="top" data-toggle="tooltip" data-original-title="">Show reason</button> -->
 
                   <button class="btn btn-default btn-active-success add-popover" data-toggle="popover" data-placement="top" data-original-title="Rejected/Cancelled Reason" data-content="<%= sale.reject_reason %>">Show reason</button>
-
+                  
                 <!-- after confirm reservation  -->
                 <% elsif sale.status_id == Sale::CONFIRM_RESERVATION %>
                   <% if is_top_level_management? %>
