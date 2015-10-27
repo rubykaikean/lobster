@@ -298,8 +298,12 @@
           </tbody>
         </table>
 
-          
         <%= paginate @sales, :theme => 'twitter-bootstrap-3'  %>
+        <div class="panel-footer text-right">
+          <% if is_top_level_management? %>  
+            <%= link_to "Export Excel", export_purchaser_excel_sales_path(format: "xls"), :class=>"btn btn-warning " %>
+          <% end %>
+        </div>
         </div> <!-- table responsive-->
         </div>
       </div>

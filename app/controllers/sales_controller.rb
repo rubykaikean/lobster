@@ -16,11 +16,20 @@ class SalesController < ApplicationController
     else
       @q = current_user.sales.ransack(params[:q])
     end
-    @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(50)
+    @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sales }
+    end
+  end
+
+  def export_purchaser_excel
+    @sales = Sale.where("product_id IN(?)", current_user.company.product_ids).order("created_at DESC")
+    # @ideal_export_excel = DeveloperCustomer.where("remark = 'ideal'")
+    respond_to do |format|
+      format.csv { render text: @sales.to_csv }
+      format.xls
     end
   end
 
