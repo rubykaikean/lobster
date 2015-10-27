@@ -50,6 +50,9 @@ Rails.application.routes.draw do
       get "new_payment"
       post "add_payment"
     end
+    collection do
+      get "export_purchaser_excel"
+    end
   end
 
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,

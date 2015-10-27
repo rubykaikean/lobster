@@ -1,0 +1,22 @@
+
+<h4><u><%= current_user.company.name %>- Excel</u></h4>
+<table class="table table-bordered">
+	<tr>
+		<th>Agent</th>
+		<th>Product</th>
+		<th>Unit</th>
+		<th>Price</th>
+		<th>Purchaser</th>
+		<th>Remark</th>
+	</tr>
+	<% @sales.each do |p| %>
+	<tr>
+		<td><%= p.user.name rescue "User not found" %></td>
+		<td><%= p.lot.product.name rescue "Lot not found" %></td>
+		<td><%= p.lot.name rescue "Unit not found" %></td>
+		<td><%= number_with_precision(p.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %></td>
+		<td><%= p.buyer.try(:full_name) %></td>
+		<td><%= p.buyer.try(:remark) %></td>
+	</tr>
+	<% end %>
+</table>
