@@ -13,6 +13,8 @@
 #  bumiputera_discount               :integer          default(5)
 #  attach_payment_image              :boolean          default(FALSE)
 #  hide_detail_blocked_unit          :boolean          default(FALSE)
+#  hide_price_of_sold_unit           :boolean          default(FALSE)
+#  notify_agent_on_booking_unit      :boolean          default(FALSE)
 #
 
 require "test_helper"
