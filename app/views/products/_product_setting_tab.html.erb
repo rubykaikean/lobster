@@ -18,11 +18,10 @@
               <input type="text" id="setting_bumiputera_discount" name="setting[bumiputera_discount]" class="form-control" placeholder="Bumiputera discount rate" value="<%= @setting.bumiputera_discount %>">
             </div>
         </div>
-    <div class="col-md-12"> 
-      <div class="col-md-6">
+        <hr>
         <div class="form-group">
-          <label class="col-md-9 control-label" for="setting_allow_multiple_booking">Allow multiple booking</label>
-          <div class="col-md-3" style="padding-top: 5px;">
+          <label class="col-md-3 control-label" for="setting_allow_multiple_booking">Allow multiple booking</label>
+          <div class="col-md-9" style="padding-top: 5px;">
             <input type="hidden" id="setting_allow_multiple_booking_false" name="setting[allow_multiple_booking]" value="0">
             <input class="demo-switch" name="setting[allow_multiple_booking]" type="checkbox" <%= @setting.allow_multiple_booking? ? 'checked' : nil %> >
           </div>
@@ -30,48 +29,44 @@
 
         
         <div class="form-group">
-          <label class="col-md-9 control-label" for="setting_hide_price_of_sold_unit">Hide price of sold unit</label>
-          <div class="col-md-3" style="padding-top: 5px;">
+          <label class="col-md-3 control-label" for="setting_hide_price_of_sold_unit">Hide price of sold unit</label>
+          <div class="col-md-9" style="padding-top: 5px;">
             <input type="hidden" id="setting_hide_price_of_sold_unit_false" name="setting[hide_price_of_sold_unit]" value="0">
             <input class="demo-switch" name="setting[hide_price_of_sold_unit]" type="checkbox" <%= @setting.hide_price_of_sold_unit? ? 'checked' : nil %> >
           </div>
         </div>
 
-         <div class="form-group">
-          <label class="col-md-9 control-label" for="setting_notify_agent_on_booking_unit">Notify agent on booking unit</label>
-          <div class="col-md-3" style="padding-top: 5px;">
-            <input type="hidden" id="setting_notify_agent_on_booking_unit_false" name="setting[notify_agent_on_booking_unit]" value="0">
-            <input class="demo-switch" name="setting[notify_agent_on_booking_unit]" type="checkbox" <%= @setting.notify_agent_on_booking_unit? ? 'checked' : nil %> >
-          </div>
-        </div>
-
         <div class="form-group">
-          <label class="col-md-9 control-label" for="setting_hide_detail_blocked_unit">Hide detail of blocked unit</label>
-          <div class="col-md-3" style="padding-top: 5px;">
+          <label class="col-md-3 control-label" for="setting_hide_detail_blocked_unit">Hide detail of blocked unit</label>
+          <div class="col-md-9" style="padding-top: 5px;">
             <input type="hidden" id="setting_hide_detail_blocked_unit_false" name="setting[hide_detail_blocked_unit]" value="0">
             <input class="demo-switch" name="setting[hide_detail_blocked_unit]" type="checkbox" <%= @setting.hide_detail_blocked_unit? ? 'checked' : nil %> >
           </div>
         </div>
-      </div>
-
-      <div class="col-md-6">
+        <hr>
         <div class="form-group">
-            <label class="col-md-9 control-label" for="setting_notify_buyer_on_sale_confirmation">Notify buyer on sale confirmation</label>
-            <div class="col-md-3" style="padding-top: 5px;">
+            <label class="col-md-3 control-label" for="setting_notify_buyer_on_sale_confirmation">Notify buyer on sale confirmation</label>
+            <div class="col-md-9" style="padding-top: 5px;">
               <input type="hidden" id="setting_notify_buyer_on_sale_confirmation_false" name="setting[notify_buyer_on_sale_confirmation]" value="0">
               <input class="demo-switch" name="setting[notify_buyer_on_sale_confirmation]" type="checkbox" <%= @setting.notify_buyer_on_sale_confirmation? ? 'checked' : nil %> >
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-9 control-label" for="setting_notify_admin_on_sale_confirmation">Notify admin on sale confirmation</label>
-            <div class="col-md-3" style="padding-top: 5px;">
+            <label class="col-md-3 control-label" for="setting_notify_admin_on_sale_confirmation">Notify admin on sale confirmation</label>
+            <div class="col-md-9" style="padding-top: 5px;">
               <input type="hidden" id="setting_notify_admin_on_sale_confirmation_false" name="setting[notify_admin_on_sale_confirmation]" value="0">
               <input class="demo-switch" name="setting[notify_admin_on_sale_confirmation]" type="checkbox" <%= @setting.notify_admin_on_sale_confirmation? ? 'checked' : nil %> >
             </div>
           </div>
-        </div>
-      </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="setting_notify_agent_on_booking_unit">Notify agent on unit get booked</label>
+            <div class="col-md-9" style="padding-top: 5px;">
+              <input type="hidden" id="setting_notify_agent_on_booking_unit_false" name="setting[notify_agent_on_booking_unit]" value="0">
+              <input class="demo-switch" name="setting[notify_agent_on_booking_unit]" type="checkbox" <%= @setting.notify_agent_on_booking_unit? ? 'checked' : nil %> >
+            </div>
+          </div>
 
   <br>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
