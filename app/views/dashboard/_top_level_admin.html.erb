@@ -1,15 +1,18 @@
 <% if @company.is_developer? %>
 
- 	<div class="col-sm-12 col-md-4 col-lg-4">
+<div class="col-sm-12 col-md-4 col-lg-4">
 	<!--Projects-->
+	<a href="<%= projects_path %>">
 	<div class="panel panel-purple panel-colorful">
 		<div class="pad-all text-center">
 			<span class="text-5x text-thin"><%= @projects_count %></span>
-			<p>Projects</p>
+			<p>Project</p>
 			<i class="fa fa-university"></i>
 		</div>
 	</div>
+	</a>
 </div>
+
 
 <div class="col-sm-12 col-md-4 col-lg-4">
 	<!--Task-->
@@ -24,6 +27,7 @@
 
 	<div class="col-sm-12 col-md-4 col-lg-4">				
 		<!--New Items-->
+		<a href="<%= companies_path %>">
 		<div class="panel panel-info panel-colorful">
 			<div class="pad-all text-center">
 				<span class="text-5x text-thin"><%= @agency_count  %></span>
@@ -31,10 +35,12 @@
 				<i class="fa fa-users"></i>
 			</div>
 		</div>
+		</a>
 	</div>
 
 	<div class="col-sm-12 col-md-4 col-lg-4">				
 		<!--Reports-->
+		<a href="<%= users_path %>">
 		<div class="panel panel-dark panel-colorful">
 			<div class="pad-all text-center">
 				<span class="text-5x text-thin"><%= @agent_count %></span>
@@ -42,21 +48,25 @@
 				<i class="fa fa-user"></i>
 			</div>
 		</div>
+		</a>
 	</div>
 		
-<div class="col-sm-12 col-md-4 col-lg-4">					
-<!--Sales-->
-<div class="panel panel-primary panel-colorful">
-	<div class="pad-all text-center">
-		<span class="text-5x text-thin"><%= @sales_count %></span>
-		<p>Sales</p>
-		<i class="fa fa-shopping-cart"></i>
+	<div class="col-sm-12 col-md-4 col-lg-4">					
+	<!--Sales-->
+		<a href="<%= sales_path %>">
+		<div class="panel panel-primary panel-colorful">
+			<div class="pad-all text-center">
+				<span class="text-5x text-thin"><%= @sales_count %></span>
+				<p>Sales</p>
+				<i class="fa fa-shopping-cart"></i>
+			</div>
+		</div>
+		</a>
 	</div>
-</div>
-</div>
 <div class="col-sm-12 col-md-4 col-lg-4">
 
 	<!--Messages-->
+	<a href="<%= reports_path %>">
 	<div class="panel panel-warning panel-colorful">
 		<div class="pad-all text-center">
 			<span class="text-5x text-thin"><%= number_with_precision(@earnings, precision: 0, separator: ".", delimiter: ",") %></span>
@@ -64,7 +74,7 @@
 			<i class="fa fa-money"></i>
 		</div>
 	</div>
-
+	</a>
 </div>
 
 <% else %>
@@ -115,6 +125,7 @@
 <div class="col-sm-12 col-md-6 col-lg-6">
 
 	<!--Messages-->
+	<a href="<%= reports_path %>">
 	<div class="panel panel-warning panel-colorful">
 		<div class="pad-all text-center">
 			<span class="text-5x text-thin"><%= number_with_precision(@earnings, precision: 0, separator: ".", delimiter: ",") %></span>
@@ -122,7 +133,7 @@
 			<i class="fa fa-money"></i>
 		</div>
 	</div>
-
+	</a>
 </div>
 
 
