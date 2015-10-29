@@ -24,7 +24,7 @@ class UserAccessible
     if action == :view
       true
     elsif action == :reserve
-      is_top_level_management? || is_low_level_admin?
+      is_top_level_management? || is_low_level_admin? || is_top_level_supervisor?
     elsif action == :confirm_sale
       is_top_level_management?
     elsif action == :cancel_sale
@@ -45,6 +45,14 @@ class UserAccessible
   def is_top_level_staff?
     if user && user.company.parent_id.to_i == 0
       user.is_staff?
+    else
+      return false
+    end
+  end
+
+  def is_top_level_supervisor?
+    if user && user.company.parent_id.to_i == 0
+      user.is_supervisor?
     else
       return false
     end
