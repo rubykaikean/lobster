@@ -85,7 +85,7 @@ Rails.application.configure do
     address: "smtp.gmail.com",
     # address: "smtp.office365.com",
     port: 587,
-    domain: "gmail.com",
+    domain: "estatekitkat.com",
     authentication: :plain,
     # authentication: :login,
     enable_starttls_auto: true,
