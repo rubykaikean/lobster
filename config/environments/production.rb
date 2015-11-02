@@ -81,7 +81,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'dev.estatekitkat.com' }
   config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
   #   address: "smtp.gmail.com",
   #   # address: "smtp.office365.com",
   #   port: 587,
@@ -94,16 +94,24 @@ Rails.application.configure do
   #   # user_name: "sasa@outsq.com",
   #   # password: "Vusu3761"
   # }
-
-  config.action_mailer.smtp_settings = {
-    address: "smtp.office365.com",
-    port: 587,
+    address: "smtpout.asia.secureserver.net",
+    port: 25,
     domain: "estatekitkat.com",
-    authentication: :login,
+    authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "sasa@outsq.com",
-    password: "Vusu3761"
+    user_name: "noreply@estatekitkat.com",
+    password: "ContactEK8888"
   }
+
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.office365.com",
+  #   port: 587,
+  #   domain: "estatekitkat.com",
+  #   authentication: :login,
+  #   enable_starttls_auto: true,
+  #   user_name: "sasa@outsq.com",
+  #   password: "Vusu3761"
+  # }
 end
 
 Lobster::Application.config.middleware.use ExceptionNotification::Rack,
