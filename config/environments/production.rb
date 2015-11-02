@@ -96,7 +96,7 @@ Rails.application.configure do
   # }
     address: "smtpout.asia.secureserver.net",
     port: 25,
-    domain: "estatekitkat.com",
+    domain: "dev.estatekitkat.com",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "noreply@estatekitkat.com",
