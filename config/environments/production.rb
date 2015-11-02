@@ -85,7 +85,7 @@ Rails.application.configure do
     address: "smtp.gmail.com",
     # address: "smtp.office365.com",
     port: 587,
-    domain: "estatekitkat.com",
+    domain: "dev.estatekitkat.com",
     authentication: :plain,
     # authentication: :login,
     enable_starttls_auto: true,
@@ -93,6 +93,16 @@ Rails.application.configure do
     password: "kitkat123123"
     # user_name: "sasa@outsq.com",
     # password: "Vusu3761"
+  }
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.office365.com",
+    port: 587,
+    domain: "estatekitkat.com",
+    authentication: :login,
+    enable_starttls_auto: true,
+    user_name: "sasa@outsq.com",
+    password: "Vusu3761"
   }
 end
 
