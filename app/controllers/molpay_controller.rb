@@ -31,9 +31,6 @@ class MolpayController < ApplicationController
 	def molpay
 		# render :text => molpay_params
 		@molpay = MolpayTransactionHistory.find_by(sale_id: params[:sale_id])
-		# render :text => @molpay.to_json
-
-
 		#	here is logger info params
 		# Parameters: {"skey"=>"8e0486d4786a7a22a21fe7b32ce041a3", 
 		# "tranID"=>"3742126", "domain"=>"estatekitkat", "status"=>"00", 
