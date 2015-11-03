@@ -1,0 +1,52 @@
+# == Schema Information
+#
+# Table name: receipts
+#
+#  id         :integer          not null, primary key
+#  skey       :string
+#  tran_id    :integer
+#  domain     :string
+#  currency   :string
+#  paydate    :datetime
+#  orderid    :string
+#  appcode    :string
+#  error_code :string
+#  error_desc :string
+#  channel    :string
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_receipts_on_user_id  (user_id)
+#
+
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  skey: MyString
+  tran_id: 1
+  domain: MyString
+  currency: MyString
+  paydate: 2015-09-04 13:08:24
+  orderid: MyString
+  appcode: MyString
+  error_code: MyString
+  error_desc: MyString
+  channel: MyString
+  user_id: 1
+
+two:
+  skey: MyString
+  tran_id: 1
+  domain: MyString
+  currency: MyString
+  paydate: 2015-09-04 13:08:24
+  orderid: MyString
+  appcode: MyString
+  error_code: MyString
+  error_desc: MyString
+  channel: MyString
+  user_id: 1

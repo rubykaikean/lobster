@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Skey:</strong>
+  <%= @receipt.skey %>
+</p>
+
+<p>
+  <strong>Tran:</strong>
+  <%= @receipt.tran_id %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @receipt.domain %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @receipt.currency %>
+</p>
+
+<p>
+  <strong>Paydate:</strong>
+  <%= @receipt.paydate %>
+</p>
+
+<p>
+  <strong>Orderid:</strong>
+  <%= @receipt.orderid %>
+</p>
+
+<p>
+  <strong>Appcode:</strong>
+  <%= @receipt.appcode %>
+</p>
+
+<p>
+  <strong>Error code:</strong>
+  <%= @receipt.error_code %>
+</p>
+
+<p>
+  <strong>Error desc:</strong>
+  <%= @receipt.error_desc %>
+</p>
+
+<p>
+  <strong>Channel:</strong>
+  <%= @receipt.channel %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @receipt.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to 'Back', receipts_path %>

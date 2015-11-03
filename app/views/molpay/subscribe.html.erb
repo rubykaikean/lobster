@@ -1,84 +1,149 @@
-<% if @order %>
-	<% a = @order.order_id.to_i %>
+<% if @molpay_history %>
+	<% a = @molpay_history.order_id %>
 	<% order_id = a + 1 %>
 <% end %>
+<%= form_tag molpay_molpay_transaction_histories_path do %>
 
-<%= form_tag molpay_create_molpay_transaction_path do %>
 <div class="row" id="content_div">
   <div class="col-lg-12">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">Payment</h3>
+        <h3 class="panel-title">Product detail</h3>
       </div>
       <div class="panel-body">
-      	<%= hidden_field_tag "molpay[sale_id]", value=@sale.id %>
-      	<table class="table table-bordered">
-      		
-      		<tr>
-      			<td class="text-center">Unit No.</td>
-      			<td class="text-center"><%= @sale.lot.name %></td>
-      		</tr>
-      		<tr>
-      			<td class="text-center">Amount :</td>
-      			<td class="text-center">
-      				RM <%= number_with_precision(@sale.booking_fee, precision: 0, separator: ".", delimiter: ",") %>
-      				<%= hidden_field_tag "molpay[amount]",nil, :value=> @sale.booking_fee %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<td class="text-center">Order ID :</td>
-      			<td class="text-center">
-      				<% unless order_id %>
-						10000
-						<%= hidden_field_tag "molpay[order_id]", value="10000" %>
+
+    	<div class="form-group">
+			  <label class="col-md-3 control-label" for="payment_period">Payment Period:</label>
+			  <div class="col-md-9">
+			  	
+			    <input type="radio" name="payment_method" value="year" id="molpay_payment_year">
+			    <label for="molpay_payment_year">Year</label>
+					
+					<input type="radio" name="payment_method" value="month" id="molpay_payment_month">
+					<label for="molpay_payment_month">Month</label>
+			  </div>
+      </div>
+
+      <div class="form-group">
+      	<label class="col-md-3 control-label" for="amount">
+      		Amount :
+      	</label>
+      	<div class="col-md-9">
+      		<label id="amount_field">1.10</label>
+      		<div style="display:none;"><%= text_field_tag "amount" %></div>
+      	</div>
+      </div>
+
+      <div class="form-group">
+      	<label class="col-md-3 control-label">
+      		Order ID :
+      	</label>
+      	<div class="col-md-9">
+      		<% unless order_id %>
+						0001
+						<%= hidden_field_tag "order_id", value="0001" %>
 					<% else %>
 						<%= order_id %>
-						<%= hidden_field_tag "molpay[order_id]", value="#{order_id}" %>
+						<%= hidden_field_tag "order_id", value="#{order_id}" %>
 					<% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<td class="text-center">Bill Name: </td>
-      			<td class="text-center">
-      				<%= @sale.buyer.full_name rescue '-' %>
-      				<%= hidden_field_tag "molpay[bill_name]", nil, :value=>@sale.buyer.full_name %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<td class="text-center">Bill Email: </td>
-      			<td class="text-center">
-      				<%= @sale.buyer.email rescue '-' %>
-      				<%= hidden_field_tag "molpay[bill_email]", nil, :value=>@sale.buyer.email %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<td class="text-center">Bill Mobile Number: </td>
-      			<td class="text-center">
-      				<%= @sale.buyer.mobile_contact_number rescue '-' %>
-      				<%= hidden_field_tag "molpay[bill_mobile]", nil, :value=>@sale.buyer.mobile_contact_number %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<td class="text-center">Bill Description: </td>
-      			<td class="text-center">
-      				<%= @sale.buyer.remark rescue '-' %>
-      				<%= hidden_field_tag "molpay[bill_desc]", nil, :value=>@sale.buyer.remark %>
-      			</td>
-      		</tr>
-      	</table>
+      	</div>
+      </div>
 
-      	<div class="panel-footer">
-      	    <div class="row">
-      	      <div class="col-sm-3 col-sm-offset-8">
-      	      <% unless @sale.booking_fee %>
-      	           Booking fee cannot empty 
-      	      <% else %>
-      	        <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Proceed with Payment</button>
-                    
-      	      <% end %>
-      	      </div>
-      	    </div>
-      	  </div>
+      <div class="form-group">
+      	<label class="col-md-3 control-label">
+      		Bill Name :
+      	<label>
+				<div class="col-md-9">
+					<%= current_user.name %>
+					<%= hidden_field_tag "bill_name", value="#{current_user.name}" %>
+				</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<% end %>	
+
+				<!-- <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Amount(RM)</label>
+		      <div id="amount_field">1.10</div>
+		      <div style="display:none;"><%#= text_field_tag "amount" %></div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Gift Code</label>
+		      <%# if params[:result] %>
+						<%#= params[:result] %>
+						<div style="display:none;">
+							<%#= text_field_tag "gift_code", value="#{params[:result]}" %>
+						</div>
+					<%# else %>
+						EK8888
+						<div style="display:none;">
+							<%#= text_field_tag "gift_code", value="EK8888" %>
+						</div>
+					<%# end %>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Order ID</label>
+			      <%# unless order_id %>
+						0001
+						<div style="display:none;">
+							<%#= text_field_tag "order_id", value="0001" %>
+						</div>
+					<%# else %>
+						<%#= order_id %>
+						<div style="display:none;">
+							<%#= text_field_tag "order_id", value="#{order_id}" %>
+						</div>
+					<%# end %>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Name</label>
+		      <%#= current_user.name %>
+					<div style="display:none;">
+						<%#= text_field_tag "bill_name", value="#{current_user.name}" %>
+					</div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Mobile</label>
+		      <%#= current_user.ontact_number %>
+						<div style="display:none;">
+							<%#= text_field_tag "bill_mobile", value="#{current_user.contact_number}" %>
+						</div>
+		    </li>
+		
+				<li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Email</label>
+		      <%#= current_user.email %>
+						<div style="display:none;">
+							<%#= text_field_tag "bill_email", value="#{current_user.email}" %>
+						</div>
+		    </li>
+
+		    <li data-role="fieldcontain">
+		      <div class="hr hr-dotted hr-5"></div>
+		      <label>Bill Description</label>
+		      	<div id="molpay_description">One Year Subscribe.</div>
+						<div style="display:none;">
+							<%#= text_field_tag "bill_desc", value="One Year Subscribe" %>
+						</div>
+		    </li> -->
+		
+		 <!-- <li data-role="fieldcontain">
+        <button type="submit" >
+          <i class='lIcon fa fa-floppy-o'></i>Submit Order
+        </button>
+      </li> -->
 
       </div>
     </div>
