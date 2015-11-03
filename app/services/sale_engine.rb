@@ -82,6 +82,7 @@ class SaleEngine
         end
         SalesNotifier.confirmation(sale.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
         SalesNotifier.inform_admins(sale.id).deliver_later if setting.notify_admin_on_sale_confirmation?
+        SalesNotifier.inform_agents(sale.id).deliver_later if setting.notify_agent_on_booking_unit?
         result[:status] = 201
         result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}."
       else

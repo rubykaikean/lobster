@@ -81,24 +81,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'dev_staging.estatekitkat.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    # address: "smtp.office365.com",
-    # port: 587,
-    # # domain: "estatekitkat.com",
-    # authentication: :login,
-    # enable_starttls_auto: true,
-    # user_name: "sasa@outsq.com",
-    # password: "Vusu3761"
-    address: "smtp.gmail.com",
-    # address: "smtp.office365.com",
-    port: 587,
-    domain: "gmail.com",
-    authentication: :plain,
-    # authentication: :login,
+    address: "smtpout.asia.secureserver.net",
+    port: 25,
+    domain: "estatekitkat.com",
+    authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "estatekitkat@gmail.com",
-    password: "kitkat123123"
-    # user_name: "sasa@outsq.com",
-    # password: "Vusu3761"
+    user_name: "noreply@estatekitkat.com",
+    password: "ContactEK8888"
   }
 end
 
