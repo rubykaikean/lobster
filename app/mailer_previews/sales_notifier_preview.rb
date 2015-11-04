@@ -8,7 +8,7 @@ class SalesNotifierPreview
     SalesNotifier.inform_admins sale_id
   end
 
-  def confirmation
+  def inform_agents
     SalesNotifier.inform_agents sale_id
   end
 end
