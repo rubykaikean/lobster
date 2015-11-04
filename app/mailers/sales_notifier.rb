@@ -21,7 +21,7 @@ class SalesNotifier < ApplicationMailer
     mail(to: "#{admin_emails}", subject: "New confirmed sale!", from: "#{email_template.from}")
   end
 
-  def inform_agent(sale_id)
+  def inform_agents(sale_id)
     @sale = Sale.find_by(id: sale_id)
     lot = @sale.lot
     email_template = @sale.product.email_setting
