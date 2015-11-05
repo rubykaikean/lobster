@@ -31,12 +31,6 @@ class EmailTemplateRenderer
     "PRODUCT": [
       "name"
     ]
-    "COMPANY": [
-      "name"
-    ]
-    "USER": [
-      "display_name"
-    ]
   }
 
   def initialize(content, sale, buyer)
