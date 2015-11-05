@@ -39,10 +39,18 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-6 control-label" for="customize_confirm_date_required">Confirm Date(spa date) (Required?)</label>
+    <label class="col-md-6 control-label" for="customize_confirm_date_required">Confirm Date(SPA date) (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
       <input type="hidden" id="customize_confirm_date_required_false" name="customize[confirm_date_required]" value="0">
       <input class="demo-switch" name="customize[confirm_date_required]" type="checkbox" <%= customize.confirm_date_required? ? 'checked' : nil %> >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="customize_cancel_date_required">Cancel Date (Required?)</label>
+    <div class="col-md-6" style="padding-top: 5px;">
+      <input type="hidden" id="customize_cancel_date_required_false" name="customize[cancel_date_required]" value="0">
+      <input class="demo-switch" name="customize[cancel_date_required]" type="checkbox" <%= customize.cancel_date_required? ? 'checked' : nil %> >
     </div>
   </div>
 

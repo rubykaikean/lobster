@@ -45,6 +45,7 @@ class SaleEngine
   def cancel
     @sale.status_id = Sale::CANCELLED
     @sale.reject_reason = @related_params[:cancel_reason]
+    @sale.cancel_date = @related_params[:cancel_date]
     if @sale.save
       @sold_lot.status_id = Lot::AVAILABLE
       @sold_lot.save

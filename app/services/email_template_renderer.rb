@@ -1,5 +1,5 @@
 class EmailTemplateRenderer
-  attr_reader :renderer, :body, :sale, :lot, :buyer, :product
+  attr_reader :renderer, :body, :sale, :lot, :buyer, :product, :company, :user
 
   OPTIONS = {
     hard_wrap: true,
@@ -30,6 +30,12 @@ class EmailTemplateRenderer
     ],
     "PRODUCT": [
       "name"
+    ]
+    "COMPANY": [
+      "name"
+    ]
+    "USER": [
+      "display_name"
     ]
   }
 
@@ -62,6 +68,7 @@ class EmailTemplateRenderer
     PREFIXES[:PRODUCT].each do |attr|
       self.body.gsub!("[product_#{attr}]", self.product.public_send("#{attr}").to_s)
     end
+    
   end
 
 end

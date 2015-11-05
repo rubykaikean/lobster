@@ -8,7 +8,7 @@ class SalesNotifier < ApplicationMailer
     @content = EmailTemplateRenderer.new(email_template.body, @sale, @buyer).render
     @text = strip_tags(@content)
 
-    mail(to: "#{@buyer.email}", subject: "#{email_template.subject}", from: "#{email_template.from}")  #from: "Sasa <sasa@outsq.com>")
+    mail(to: "#{@buyer.email}", subject: "#{email_template.subject}", from: "#{email_template.from}", body: "#{@text}")  #from: "Sasa <sasa@outsq.com>")
   end
 
   def inform_admins(sale_id)

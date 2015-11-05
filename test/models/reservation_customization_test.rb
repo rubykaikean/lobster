@@ -71,6 +71,8 @@
 #  payment_type_id                 :boolean          default(FALSE)
 #  payment_type_id_required        :boolean          default(FALSE)
 #  payment_image                   :boolean          default(FALSE)
+#  cancel_date                     :boolean          default(FALSE)
+#  cancel_date_required            :boolean          default(FALSE)
 #
 # Indexes
 #
