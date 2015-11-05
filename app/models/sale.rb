@@ -22,6 +22,7 @@
 #  payment_type_id        :integer
 #  chq_number             :string
 #  credit_card_number     :string
+#  cancel_date            :datetime
 #
 # Indexes
 #

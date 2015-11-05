@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023041705) do
+ActiveRecord::Schema.define(version: 20151105061219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -396,6 +396,8 @@ ActiveRecord::Schema.define(version: 20151023041705) do
     t.boolean  "payment_type_id",                 default: false
     t.boolean  "payment_type_id_required",        default: false
     t.boolean  "payment_image",                   default: false
+    t.boolean  "cancel_date",                     default: false
+    t.boolean  "cancel_date_required",            default: false
   end
 
   add_index "reservation_customizations", ["product_id"], name: "index_reservation_customizations_on_product_id", using: :btree
@@ -420,6 +422,7 @@ ActiveRecord::Schema.define(version: 20151023041705) do
     t.integer  "payment_type_id"
     t.string   "chq_number"
     t.string   "credit_card_number"
+    t.datetime "cancel_date"
   end
 
   add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree

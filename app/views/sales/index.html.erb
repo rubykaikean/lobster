@@ -267,33 +267,10 @@
             <!--Modal body-->
             <div class="modal-body">
               <%= render partial: "cancel_sale_form",  :locals => { :sale => sale } %>
-              <%#= render :text => params %>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="modal fade" id="reject_sale<%= sale.id %>" role="dialog" tabindex="-1" aria-labelledby="confirm_sale" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-
-            <!--Modal header-->
-            <div class="modal-header">
-              <button data-dismiss="modal" class="close" type="button">
-              <span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title">Reject Sale</h4>
-            </div>
-
-            <!--Modal body-->
-            <div class="modal-body">
-              <%= render partial: "reject_sale_form",  :locals => { :sale => sale } %>
-              <%#= render :text => params %>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <% end %>
     </tbody>
   </table>
@@ -316,6 +293,11 @@
   <script src="/js/demo/form-component.js"></script>
   <script type="text/javascript">
     $('#sale_confirm_date').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    });
+
+    $('#sale_cancel_date').datepicker({
       format: 'dd/mm/yyyy',
       autoclose: true
     });
