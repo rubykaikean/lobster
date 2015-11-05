@@ -6,14 +6,15 @@
   <% if is_top_level_management? %>
     <% if @customization.sale_person? %>
     <div class="form-group">
-      <label class="col-md-3 control-label" for="buyer_user_id">Choose a sale person</label>
+      <label class="col-md-3 control-label" for="user_id">Choose a sale person</label>
       <div class="col-md-9">
-        <select class="selectpicker" name="buyer[user_id]" <%= @customization.sale_person_required? ? 'required' : nil %> >
-          <option value="">Select a name</option>
+        <select class="selectpicker" name="user_id" <%= @customization.sale_person_required? ? 'required' : nil %> >
+          <option value="<%= current_user.id %>"><%= current_user.display_name %></option>
           <% current_user.company.members.each do |member| %>
-            <option value="<%= member.id %>" ><%= member.name %></option>
+            <option value="<%= member.id %>" <%= current_user.id == member.id ? "selected" : nil %> ><%= member.name %></option>
           <% end %>
         </select>
+        <small class="help-block">you can select other agent.</small>
         <% if @customization.sale_person_required?  %>
           <small class="help-block">Required field</small>
         <% end %>
