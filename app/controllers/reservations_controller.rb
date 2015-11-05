@@ -66,7 +66,7 @@ class ReservationsController < ApplicationController
         payment_type_id: params[:payment_type_id],
         booking_fee: params[:booking_fee],
         payment_image: params[:payment_image],
-        user_id: current_user.id
+        user_id: params[:user_id]
       }
       result = SaleEngine.reserve(data)
       case result[:status]

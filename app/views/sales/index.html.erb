@@ -11,7 +11,7 @@
       </div>
         
 <%= search_form_for(@q, :html => {class: "form-horizontal"}) do |f| %>
-    <% if is_top_level_admin? %>
+    <% if is_middle_level_management? %>
     <div class="panel-body">
       <div class="row">
 
@@ -127,7 +127,7 @@
             <a href="<%= edit_buyer_path(sale.buyer, sale_id: sale.id) rescue '#' %>"><button class="btn btn-primary btn-sm"><%= (sale.buyer.try(:full_name) || "Unknown").truncate(30, omission: '...') %></button>
             </a>
           <% else %>
-            <span class="label label-primary">Reserved</span>
+            <span class="label label-primary"><%= sale.buyer.try(:full_name) %></span>
           <% end %>
 
           <!-- Sources : <%#= sale.buyer.try(:sources_type_id) %>

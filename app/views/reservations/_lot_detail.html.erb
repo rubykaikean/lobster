@@ -13,7 +13,7 @@
 	<% end %>
 </div> 
 <div>
-  <% if is_top_level_management? || is_low_level_admin? || is_top_level_staff? %>
+  <% if is_middle_level_management? || is_low_level_admin? || is_top_level_staff? %>
     <% if lot.status_id == Lot::CONFIRM_RESERVATION %>
   	  <u>Unit Booked</u>
   	  <% elsif lot.status_id == Lot::SOLD %>

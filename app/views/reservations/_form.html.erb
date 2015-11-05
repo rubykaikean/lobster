@@ -2,6 +2,27 @@
 <%= form_tag create_lot_reservations_path, :multipart => true, :class => "panel-body form-horizontal form-padding" do %>
 
   <%= hidden_field_tag "lot_id", nil, value: @lot.id %>
+  
+  <% if is_top_level_management? %>
+    <% if @customization.sale_person? %>
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="buyer_user_id">Choose a sale person</label>
+      <div class="col-md-9">
+        <select class="selectpicker" name="buyer[user_id]" <%= @customization.sale_person_required? ? 'required' : nil %> >
+          <option value="">Select a name</option>
+          <% current_user.company.members.each do |member| %>
+            <option value="<%= member.id %>" ><%= member.name %></option>
+          <% end %>
+        </select>
+        <% if @customization.sale_person_required?  %>
+          <small class="help-block">Required field</small>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <% else %>
+    <%= hidden_field_tag "user_id", nil, value: current_user.id %>
+  <% end %>
 
   <% if @customization.full_name? %>
     <div class="form-group">

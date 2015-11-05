@@ -7,7 +7,7 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     return redirect_to root_path, alert: "Sorry, you don't have the access right." if is_low_level_staff?
-    if is_top_level_management?
+    if is_middle_level_management?
       @agencies = []
       @agencies << current_user.company.agencies
       @agencies << current_user.company

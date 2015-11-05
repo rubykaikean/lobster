@@ -2,7 +2,10 @@
 
 <%= form_for(@buyer, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
-    <%= hidden_field_tag "sale_id", nil, value: @sale.id %>
+  <%= hidden_field_tag "sale_id", nil, value: @sale.id %>
+
+  <% if @customization. %>
+
   <% if @customization.full_name? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_full_name">Full name: </label>

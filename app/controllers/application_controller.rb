@@ -52,6 +52,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_top_level_management?
   def is_top_level_management?
+    is_top_level_admin?
+  end
+
+  helper_method :is_middle_level_management?
+  def is_middle_level_management?
     is_top_level_admin? || is_top_level_supervisor?
   end
 
