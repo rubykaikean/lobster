@@ -10,6 +10,8 @@
 #  image_updated_at   :datetime
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  cheque_number      :string
+#  transaction_number :string
 #
 
 require "test_helper"
