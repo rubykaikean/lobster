@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106061716) do
+ActiveRecord::Schema.define(version: 20151109101728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,8 +223,6 @@ ActiveRecord::Schema.define(version: 20151106061716) do
     t.datetime "image_updated_at"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "cheque_number"
-    t.string   "transaction_number"
   end
 
   create_table "phases", force: :cascade do |t|
@@ -425,6 +423,8 @@ ActiveRecord::Schema.define(version: 20151106061716) do
     t.string   "chq_number"
     t.string   "credit_card_number"
     t.datetime "cancel_date"
+    t.string   "cheque_number"
+    t.string   "transaction_number"
   end
 
   add_index "sales", ["buyer_id"], name: "index_sales_on_buyer_id", using: :btree

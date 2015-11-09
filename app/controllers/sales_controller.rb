@@ -114,6 +114,9 @@ class SalesController < ApplicationController
           end
         end
       end
+    @sale.cheque_number = params[:payment][:cheque_number] if params[:payment][:cheque_number]
+    @sale.transaction_number = params[:payment][:transaction_number] if params[:payment][:transaction_number]
+    @sale.save
     else
       flash[:alert] = "Only the agent of the sale can edit."
     end
@@ -168,7 +171,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:admin_confirm_user_id ,:user_id, :downpayment, :downpayment_percentage, :payment_type_id, :cash, :bank_loan, :government_loan, :staff_loan , :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number, :cancel_date)
+      params.require(:sale).permit(:admin_confirm_user_id ,:user_id, :downpayment, :downpayment_percentage, :payment_type_id, :cash, :bank_loan, :government_loan, :staff_loan , :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number, :cancel_date, :cheque_number, :transaction_number)
     end
 
     def reject_reason_params

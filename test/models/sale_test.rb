@@ -23,6 +23,8 @@
 #  chq_number             :string
 #  credit_card_number     :string
 #  cancel_date            :datetime
+#  cheque_number          :string
+#  transaction_number     :string
 #
 # Indexes
 #
