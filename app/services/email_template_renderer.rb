@@ -32,7 +32,7 @@ class EmailTemplateRenderer
       "name"
     ],
     "AGENT": [
-      "display_name"
+      "name"
     ],
     "COMPANY": [
       "name"
@@ -72,7 +72,7 @@ class EmailTemplateRenderer
       self.body.gsub!("[product_#{attr}]", self.product.public_send("#{attr}").to_s)
     end
     PREFIXES[:AGENT].each do |attr|
-      self.body.gsub!("[agent_#{attr}", self.user.public_send("#{attr}").to_s)
+      self.body.gsub!("[agent_#{attr}", self.agent.public_send("#{attr}").to_s)
     end
     PREFIXES[:COMPANY].each do |attr|
       self.body.gsub!("[company_#{attr}", self.company.public_send("#{attr}").to_s)
