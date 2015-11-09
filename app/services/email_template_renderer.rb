@@ -19,7 +19,8 @@ class EmailTemplateRenderer
       "ic_number",
       "address",
       "mobile_contact_number",
-      "email"
+      "email",
+      "remark"
     ],
     "SALE": [
       "booking_fee",
@@ -44,7 +45,7 @@ class EmailTemplateRenderer
     @sale = sale
     @lot = @sale.lot
     user = User.find(@sale.user_id)
-    @agent = user.display_name
+    @display_name = user.display_name
     @company = user.company.name
     @product = @sale.product
     @buyer = buyer
