@@ -5,7 +5,7 @@ class SalesNotifier < ApplicationMailer
     @sale = Sale.find_by(id: sale_id)
     @buyer = @sale.buyer
     email_template = @sale.product.email_setting
-    @content = EmailTemplateRenderer.new(email_template.body, @sale, @buyer, current_user.id).render
+    @content = EmailTemplateRenderer.new(email_template.body, @sale, @buyer).render
     @text = strip_tags(@content)
 
     mail(to: "#{@buyer.email}", subject: "#{email_template.subject}", from: "#{email_template.from}", body: "#{@text}")  #from: "Sasa <sasa@outsq.com>")
