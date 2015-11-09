@@ -1,5 +1,5 @@
 class EmailTemplateRenderer
-  attr_reader :renderer, :body, :sale, :lot, :buyer, :product, :company, :user
+  attr_reader :renderer, :body, :sale, :lot, :buyer, :product, :company, :agent
 
   OPTIONS = {
     hard_wrap: true,
@@ -31,7 +31,7 @@ class EmailTemplateRenderer
     "PRODUCT": [
       "name"
     ],
-    "USER": [
+    "AGENT": [
       "display_name"
     ],
     "COMPANY": [
