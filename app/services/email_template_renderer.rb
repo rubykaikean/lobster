@@ -32,7 +32,7 @@ class EmailTemplateRenderer
       "name"
     ],
     "USER": [
-      "name"
+      "display_name"
     ],
     "COMPANY": [
       "name"
