@@ -1,7 +1,9 @@
 <% content_for :stylesheets do %>
   <link href="/plugins/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
 <% end %>
-<%= current_user.company.users.map {|user| user.email if (user.status_id == 1)}.join(", ") %>
+<%#= current_user.company.name %>
+
+<%#= current_user.company.users.map {|user| user.email if (user.status_id == 1)}.join(", ") %>
 <div class="row" id="content_div">
   <div class="col-lg-12">
 

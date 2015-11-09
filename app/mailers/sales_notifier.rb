@@ -18,7 +18,7 @@ class SalesNotifier < ApplicationMailer
     @product = @sale.product
     email_template = @product.email_setting
     admin_emails = @sale.project.company.users.select {|user| user.is_admin? if (user.status_id == 1) }.map {|user| user.email }.join(", ")
-    mail(to: "#{admin_emails}", subject: "New confirmed sale!", from: "#{email_template.from}")
+    mail(to: "#{admin_emails}", subject: "New confirmed sale!", from: "#{email_template.from}", body: "#{@text}")
   end
 
   def inform_agents(sale_id)
