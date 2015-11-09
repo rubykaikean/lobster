@@ -45,7 +45,7 @@ class EmailTemplateRenderer
     @lot = @sale.lot
     user = User.find(@sale.user_id)
     @agent = user.display_name
-    @company = @agent.company.name
+    @company = user.company.name
     @product = @sale.product
     @buyer = buyer
     @body = content
