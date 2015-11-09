@@ -54,7 +54,7 @@ gem 'redcarpet'
 # gem 'capistrano-rails', group: :development
 
 group :development do
-  gem 'pry-rails'
+  # gem 'pry-rails'
   gem "better_errors"
 end
 
