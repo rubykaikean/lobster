@@ -42,14 +42,14 @@ class EmailTemplateRenderer
 
   def initialize(content, sale, buyer)
     @renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(OPTIONS), EXTENSIONS)
-    @sale = sale
-    @lot = @sale.lot
-    user = User.find(@sale.user_id)
-    @agent = user.display_name
-    @company = user.company.name
-    @product = @sale.product
-    @buyer = buyer
-    @body = content
+    # @sale = sale
+    # @lot = @sale.lot
+    # user = User.find(@sale.user_id)
+    # @user = user.display_name
+    # @company = user.company.name
+    # @product = @sale.product
+    # @buyer = buyer
+    # @body = content
   end
 
   def render
