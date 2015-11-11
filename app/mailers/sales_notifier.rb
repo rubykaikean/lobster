@@ -13,7 +13,7 @@ class SalesNotifier < ApplicationMailer
 
   def inform_admins(sale_id)
     @sale = Sale.find_by(id: sale_id)
-    @lot = @sale.lot
+    lot = @sale.lot
     @buyer = @sale.buyer
     @product = @sale.product
     email_template = @product.email_setting
