@@ -72,9 +72,9 @@ class EmailTemplateRenderer
     PREFIXES[:PRODUCT].each do |attr|
       self.body.gsub!("[product_#{attr}]", self.product.public_send("#{attr}").to_s)
     end
-    PREFIXES[:USER].each do |attr|
-      self.body.gsub!("[agent_#{attr}", self.user.public_send("#{attr}").to_s)
-    end
+    # PREFIXES[:USER].each do |attr|
+    #   self.body.gsub!("[agent_#{attr}", self.user.public_send("#{attr}").to_s)
+    # end
     PREFIXES[:COMPANY].each do |attr|
       self.body.gsub!("[company_#{attr}", self.company.public_send("#{attr}").to_s)
     end
