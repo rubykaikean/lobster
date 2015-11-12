@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       get "monthly_sales"
       get "agency_sales"
       get "cancellation"
+      get "rejection"
       get "export_summary_report_excel"
       get "export_analysis_unit_excel"
       get "export_analysis_age_race_excel"
