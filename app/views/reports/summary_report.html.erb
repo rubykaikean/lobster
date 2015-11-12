@@ -9,16 +9,16 @@
           <li>
             <a data-toggle="tab" href="#completed_order-tab">Completed Sales</a>
           </li>
-          <li>
+          <!-- <li>
             <a data-toggle="tab" href="#rejected_order-tab">Rejected Sales</a>
-          </li>
+          </li> -->
         </ul>
 
         <!--Tabs Content-->
         <div class="tab-content">
             <%= render "/reports/all_order" %>
             <%= render "/reports/completed_order" %>
-            <%= render "/reports/rejected_order" %>
+            <%#= render "/reports/rejected_order" %>
         </div>
         <%= link_to "Export to Excel", export_summary_report_excel_report_path(@product, format: "xls"), :class=>"btn btn-primary" %>
   </div>
