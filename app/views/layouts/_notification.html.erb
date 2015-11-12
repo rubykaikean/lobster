@@ -2,7 +2,7 @@
 <div id="page-alert"><div class="alert-wrap in"><div class="alert alert-danger" role="alert"><button class="close" type="button"><i class="fa fa-times-circle"></i></button><div class="media"><div class="media-left"><span class="icon-wrap icon-wrap-xs icon-circle alert-icon"><i class="fa fa-times fa-lg"></i></span></div><div class="media-body">
 <h4 class="alert-title">Warning</h4>
 <p class="alert-message">
-	<%=raw flash[:alert]  %>
+	<%=raw flash[:alert] %>
 </p>
 </div></div></div></div></div>
 <% end %>
@@ -10,6 +10,6 @@
 <% if flash[:notice].present? %>
 <div id="page-alert"><div class="alert-wrap in"><div class="alert alert-mint" role="alert"><button class="close" type="button"><i class="fa fa-times-circle"></i></button><div class="media"><div class="media-left"><span class="icon-wrap icon-wrap-xs icon-circle alert-icon"><i class="fa fa-leaf fa-lg"></i></span></div><div class="media-body">
 <h4 class="alert-title">Info</h4><p class="alert-message">
-	<%=raw flash[:notice]  %>
+	<%=raw flash[:notice] %>
 </p></div></div></div></div></div>
 <% end %>

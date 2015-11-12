@@ -13,7 +13,7 @@
 		$("#report_content").load("<%= analysis_unit_report_report_path(@product) %>");
 	});
 </script>
-
+	
 <div style="padding: 5px;" class="pull-left">
 	<a href="#" id="monthly_sales">
 	<button class="btn btn-primary">
@@ -91,6 +91,22 @@
 	$("#cancellation").on("click", function(e){
 		e.preventDefault();
 		$("#report_content").load("<%= cancellation_report_path(@product) %>");
+	});
+</script>
+
+<div style="padding: 5px;" class="pull-left">
+  <a href="#" id="rejection">
+	<button class="btn btn-primary">
+	<i class="fa fa-bar-chart"></i>
+	<span class="menu-title">Rejection</span>
+	</button>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$("#rejection").on("click", function(e){
+		e.preventDefault();
+		$("#report_content").load("<%= rejection_report_path(@product) %>");
 	});
 </script>
 

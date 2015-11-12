@@ -79,8 +79,6 @@ class Sale < ActiveRecord::Base
   	case status_id
     when PENDING
       "Pending"
-    when BOOKED
-      "Booked"
     when COMPLETED
       "completed"
     when REJECTED
