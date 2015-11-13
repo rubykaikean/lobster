@@ -46,31 +46,28 @@
               </div> 
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="col-md-6 control-label">
                 <h4>Or</h4>
               </label>
             </div>
             <hr>
 
-            <%# if is_top_level_admin? %>
             <div class="form-group">
               <label class="col-md-3 control-label">
                 With Credit Card / Online Banking:
               </label>
               <div class="col-md-5">
-                <% if @molpay_transaction && @molpay_transaction.status == MolpayTransactionHistory::SUCCESS %>
-                  <%= link_to "View Molpay Transaction", molpay_transaction_history_path(@sale.id) %>
-                  <!-- Molpay Successfully Paid -->
-                <% else %>
-                  <%= link_to "Pay Now", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
-                <% end %>
+                <%# if @molpay_transaction && @molpay_transaction.status == MolpayTransactionHistory::SUCCESS %>
+                  <%#= link_to "View Molpay Transaction", molpay_transaction_history_path(@sale.id) %>
+                <%# else %>
+                  <%#= link_to "Pay Now", molpay_subscribe_path(:id => @sale.id), :class=>"btn btn-warning" %>
+                <%# end %>
               </div>
               <div class="col-md-4">
                 <img class="img-responsive" src="/img/slack-imgs.com.jpeg" alt="Image">
               </div>
-            </div>
-            <%# end %>
+            </div> -->
         <% end %>
 
         <br>

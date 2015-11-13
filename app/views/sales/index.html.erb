@@ -143,16 +143,13 @@
         <%# binding.pry %>
         <td class="text-center">
           <%= number_with_precision(sale.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
-          <%#= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %>
         </td>
         <td class="text-center">
-          <% if sale.payments.any? %>
+          <% unless sale.status_id == Sale::REJECTED || sale.status_id == Sale::CANCELLED %>
+          <%# if sale.payments.any? %>
             <button id="payment-<%= sale.id %>" class="btn btn-sm btn-purple payment">Show</button>
-          <% end %>
-          <% if sale.user_id == current_user.id %>
-            <% unless sale.status_id == Sale::REJECTED || sale.status_id == Sale::CANCELLED %>
-              <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add Payment</button>
-            <% end %>
+          <%# end %>
+            <a href="<%= new_payment_sale_path(sale) %>"><button class="btn btn-primary btn-sm">Add Payment</button>
           <% end %>
           </a>
         </td>
