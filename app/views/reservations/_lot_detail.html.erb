@@ -6,7 +6,7 @@
 	<%= lot.product_type.try(:name) %>
 </div>
  <div>
- 	<% unless @setting.hide_price_of_sold_unit? %>
+ 	<% unless @setting.hide_price_of_sold_unit? && lot.status_id == Lot::SOLD %>
 	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
 	<% else %>
 	RM 0

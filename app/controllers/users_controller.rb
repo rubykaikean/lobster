@@ -48,7 +48,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.company_id = current_user.company_id if @user.company_id.blank?
     @user.type_id = params[:user_type_id]
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
