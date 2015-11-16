@@ -20,10 +20,13 @@
         <% end %>
       </div>
     </div>
-  <% end %>
+    <% else %>
+    <%= hidden_field_tag "user_id", nil, value: current_user.id %>
+    <% end %>
   <% else %>
     <%= hidden_field_tag "user_id", nil, value: current_user.id %>
   <% end %>
+
 
   <% if @customization.full_name? %>
     <div class="form-group">
