@@ -169,6 +169,10 @@ class SalesController < ApplicationController
       @sale = Sale.find(params[:id])
     end
 
+    def llk_developer_params
+      params.require(:customize).permit(:transaction_id, :full_name, :buyer_second_name, :buyer_third_name, :buyer_ic_number, :second_buyer_ic_number, :third_buyer_ic_number, :buyer_address, :buyer_postcode, :booking_fee, :car_park_unit, :payment_type, :lot_number, :selling_price, :cheque_number, :credit_card_number)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
       params.require(:sale).permit(:admin_confirm_user_id ,:user_id, :downpayment, :downpayment_percentage, :payment_type_id, :cash, :bank_loan, :government_loan, :staff_loan , :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number, :cancel_date, :cheque_number, :transaction_number)
