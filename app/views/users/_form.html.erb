@@ -52,9 +52,15 @@
       <div class="col-md-9">
         <div class="radio">
           <!-- Inline radio buttons -->
-          <label class="form-radio form-normal active"><input type="radio" name="user_type_id" <%= @user.type_id == User::ADMIN ? "checked" : nil %> value="1">Admin</label>
-          <label class="form-radio form-normal active"><input type="radio" name="user_type_id" <%= @user.type_id == User::SUPERVISOR ? "checked" : nil %> value="2">Supervisor</label>
-          <label class="form-radio form-normal"><input type="radio" name="user_type_id" <%= @user.type_id == User::STAFF ? "checked" : nil %> value="3"> Staff</label>
+          <label class="form-radio form-normal active">
+            <input type="radio" name="user_type_id" <%= @user.type_id == User::ADMIN ? "checked" : nil %> value="1">Admin
+          </label>
+          <label class="form-radio form-normal user_type_supervisor">
+            <input type="radio" name="user_type_id" <%= @user.type_id == User::SUPERVISOR ? "checked" : nil %> value="2">Supervisor
+          </label>
+          <label class="form-radio form-normal">
+            <input type="radio" name="user_type_id" <%= @user.type_id == User::STAFF ? "checked" : nil %> value="3"> Staff
+          </label>
         </div>
         <small class="help-block">Create For Agency (Supervisor and Staff are same)</small>
       </div>
@@ -99,9 +105,36 @@
     <% end %>
   });
 
-  $( "#current_company").change(function() {
-    alert("123");
+  $(".user_type_supervisor").hide();
+  $('select').change(function () {
+    var optionSelected = $(this).find("option:selected");
+    var valueSelected = optionSelected.val();
+    var radio_button = $(".user_type_supervisor");
+    // alert(valueSelected);
+      if (valueSelected == 1)
+      { 
+        radio_button.show();
+      }
+      else
+      {
+        radio_button.hide();
+      }
   });
+
+  // $("#agent_setting_notified_on_price_amount").hide();
+    // $("#agent_setting_notified_on_price_gte_on").click(function() {
+    //     var checked = $(this).prop('checked');
+    // var field_amount = $("#agent_setting_notified_on_price_amount");
+
+    //     if (checked)
+    //     { 
+    //       field_amount.show();
+    //     }
+    //     else
+    //     {
+    //       field_amount.hide();
+    //     }
+    // });
 
 </script>
 

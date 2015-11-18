@@ -53,9 +53,12 @@ gem 'redcarpet'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+
 group :development do
   # gem 'pry-rails'
   gem "better_errors"
+  # gem 'rack-mini-profiler', require: false
 end
 
 group :development, :test do
