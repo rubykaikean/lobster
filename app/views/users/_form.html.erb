@@ -110,8 +110,7 @@
     var optionSelected = $(this).find("option:selected");
     var valueSelected = optionSelected.val();
     var radio_button = $(".user_type_supervisor");
-    // alert(valueSelected);
-      if (valueSelected == 1)
+      if (valueSelected == <%= current_user.company_id %>)
       { 
         radio_button.show();
       }
