@@ -49,7 +49,6 @@ class ReservationsController < ApplicationController
   end
 
   def create_lot
-    # render :text => params.to_json
     @lot = Lot.find(params[:lot_id])
     @sourcestype = @lot.product.sources_types
     @region = @lot.product.regions
@@ -64,21 +63,30 @@ class ReservationsController < ApplicationController
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-      result = SaleEngine.reserve(data)
+
+      # customize_data = {
+      #   lot: @lot,
+      #   booking_fee: params[:booking_fee],
+      #   buyer_data: buyer_params
+      # }
+
+    result = SaleEngine.reserve(data)
       case result[:status]
+      # created
       when 201
         flash[:notice] = result[:message]
         redirect_to reservation_path(@lot.product)
+      # Forbidden
       when 403
         flash[:alert] = result[:message]
         redirect_to reservation_path(@lot.product)
+      # Bad Request
       when 400
         flash.now[:alert] = result[:message]
         @buyer = result[:buyer]
         @sale = result[:sale]
         render action: 'buyer'
       end
-
     else
       flash[:alert] = "Sorry, you don't have the access right."
       redirect_to reservation_path(@lot.product)
@@ -87,6 +95,10 @@ class ReservationsController < ApplicationController
 
 
   private
+
+  def llk_developer_params
+    params.require(:customize).permit(:transaction_id, :full_name, :buyer_second_name, :buyer_third_name, :buyer_ic_number, :second_buyer_ic_number, :third_buyer_ic_number, :buyer_address, :buyer_postcode, :booking_fee, :car_park_unit, :payment_type, :lot_number, :selling_price, :cheque_number, :credit_card_number)
+  end
 
   def buyer_params
     params.require(:buyer).permit!
