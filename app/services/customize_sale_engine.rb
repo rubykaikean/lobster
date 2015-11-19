@@ -6,51 +6,21 @@ class SaleEngine
     product = @sale.product
     @buyer = @sale.buyer
     @setting = product.product_setting
-    @related_params = related_params
+    # @related_params = related_params
   end
 
-  def confirm
-    @sale.status_id = Sale::COMPLETED
-    @sale.confirm_date = Time.current if @sale.confirm_date.nil?
-    if @sale.update(@related_params)
-      if @sold_lot
-        @sold_lot.status_id = Lot::SOLD
-        if @sold_lot.save
-          reject_the_rest_of_sales_for_the_same_lot
-        end
-      end
-    end
-  end
-
-
-  def reject
-    @sale.status_id = Sale::REJECTED
-    @sale.reject_reason = @related_params[:reject_reason]
-    if @sale.save
-      if @setting.allow_multiple_booking?
-        pending_sale_unit = Sale.find_by(lot_unit_id: @sale.lot_unit_id, status_id: Sale::PENDING)
-        if pending_sale_unit
-          
-        else
-          @sold_lot.status_id = Lot::AVAILABLE
-          @sold_lot.save
-        end
-      else
-        @sold_lot.status_id = Lot::AVAILABLE
-        @sold_lot.save
-      end
-    end
-  end
-
-  def cancel
-    @sale.status_id = Sale::CANCELLED
-    @sale.reject_reason = @related_params[:cancel_reason]
-    @sale.cancel_date = @related_params[:cancel_date]
-    if @sale.save
-      @sold_lot.status_id = Lot::AVAILABLE
-      @sold_lot.save
-    end
-  end
+  # def confirm
+  #   @sale.status_id = Sale::COMPLETED
+  #   @sale.confirm_date = Time.current if @sale.confirm_date.nil?
+  #   if @sale.update(@related_params)
+  #     if @sold_lot
+  #       @sold_lot.status_id = Lot::SOLD
+  #       if @sold_lot.save
+  #         reject_the_rest_of_sales_for_the_same_lot
+  #       end
+  #     end
+  #   end
+  # end
 
   def self.reserve(data)
     lot = data[:lot]
@@ -84,8 +54,26 @@ class SaleEngine
         SalesNotifier.confirmation(sale.id).deliver_now unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
         SalesNotifier.inform_admins(sale.id).deliver_now if setting.notify_admin_on_sale_confirmation?
         SalesNotifier.inform_agents(sale.id).deliver_now if setting.notify_agent_on_booking_unit?
+        
+        booking = {
+          transaction_id: sale.id,
+          full_name: sale.buyer.full_name,
+          buyer_second_name: sale.buyer.buyer_second_name,
+          buyer_third_name: sale.buyer.buyer_third_name,
+          buyer_ic_number: sale.buyer.ic_number,
+          second_buyer_ic_number: sale.buyer.second_ic_number,
+          third_buyer_ic_number: sale.buyer.third_ic_number,
+          buyer_address: sale.buyer.address,
+          buyer_postcode: sale.buyer.postcode,
+          booking_fee: sale.booking_fee,
+          car_park_unit: sale.buyer.car_park,
+          payment_type: sale.payment_type_id,
+          lot_number: lot.name,
+          selling_price: lot.selling_price
+        }
+        RestClient.post "http://117.53.153.87:8889/postprebook", {booking}.to_json, :content_type => :json, :accept => :json
         result[:status] = 201
-        result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}."
+        result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}. And had been updated to eversolf"
       else
         result[:status] = 400
         result[:buyer] = buyer

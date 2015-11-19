@@ -64,12 +64,7 @@ class ReservationsController < ApplicationController
         user_id: params[:user_id]
       }
 
-      # customize_data = {
-      #   lot: @lot,
-      #   booking_fee: params[:booking_fee],
-      #   buyer_data: buyer_params
-      # }
-
+    if current_user.company.id == 9
     result = SaleEngine.reserve(data)
       case result[:status]
       # created

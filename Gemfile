@@ -43,7 +43,7 @@ gem 'sidekiq'
 gem "devise-async"
 gem 'sinatra', :require => nil
 gem 'redcarpet'
-
+gem "rest-client"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -58,7 +58,7 @@ gem 'redcarpet'
 group :development do
   # gem 'pry-rails'
   gem "better_errors"
-  # gem 'rack-mini-profiler', require: false
+
 end
 
 group :development, :test do
@@ -71,6 +71,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem "minitest-rails"
+  gem 'rack-mini-profiler', require: false
 end
 
 group :test do
