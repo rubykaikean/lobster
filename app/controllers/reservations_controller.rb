@@ -64,8 +64,11 @@ class ReservationsController < ApplicationController
         user_id: params[:user_id]
       }
 
-    if current_user.company.id == 9
-    result = SaleEngine.reserve(data)
+    # if current_user.company.id == "9"
+    #   result = CustomizeSaleEngine.reserve(data)
+    # else
+      result = SaleEngine.reserve(data)
+    # end
       case result[:status]
       # created
       when 201
