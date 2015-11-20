@@ -21,25 +21,25 @@ class ReservationsController < ApplicationController
   end
 
   def buyer
-    # render :text => params
-    @lot = Lot.friendly.find(params[:id])
-    if UserAccessible.new(current_user, :reservation, :reserve).can_access?
-      @product = @lot.product
-      @sourcestype = @product.sources_types
-      @region = @product.regions
-      @setting = @product.product_setting
-      @customization = @product.reservation_customization
-      if @lot.available_for_booking?
-        @buyer = Buyer.new
-        @sale = Sale.new
-      else
-        flash[:alert] = "Lot #{@lot.name} is already reserved."
-        redirect_to reservation_path(@lot.product)
-      end
-    else
-      flash[:alert] = "Sorry, you don't have the access right."
-      redirect_to reservation_path(@lot.product)
-    end
+    render :text => params
+    # @lot = Lot.friendly.find(params[:id])
+    # if UserAccessible.new(current_user, :reservation, :reserve).can_access?
+    #   @product = @lot.product
+    #   @sourcestype = @product.sources_types
+    #   @region = @product.regions
+    #   @setting = @product.product_setting
+    #   @customization = @product.reservation_customization
+    #   if @lot.available_for_booking?
+    #     @buyer = Buyer.new
+    #     @sale = Sale.new
+    #   else
+    #     flash[:alert] = "Lot #{@lot.name} is already reserved."
+    #     redirect_to reservation_path(@lot.product)
+    #   end
+    # else
+    #   flash[:alert] = "Sorry, you don't have the access right."
+    #   redirect_to reservation_path(@lot.product)
+    # end
   end
 
   # confirm booking and hide book unit button
