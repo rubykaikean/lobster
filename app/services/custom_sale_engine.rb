@@ -1,4 +1,4 @@
-class SaleEngine
+class CustomSaleEngine
 
   def initialize(sale, related_params)
     @sale = sale
@@ -25,9 +25,11 @@ class SaleEngine
   def self.reserve(data)
     lot = data[:lot]
     setting = data[:setting]
-    buyer = Buyer.new(data[:buyer_data])
-    # sale = Sale.new(booking_fee: data[:booking_fee], cash: data[:cash], bank_loan: data[:bank_loan], government_loan: data[:government_loan], staff_loan: data[:staff_loan])
-    sale = Sale.new(booking_fee: data[:booking_fee], payment_type_id: data[:payment_type_id])
+    buyer = Buyer.new(data[:buyer_data])    
+    sale = Sale.new(booking_fee: data[:booking_fee], 
+                    payment_type_id: data[:payment_type_id],
+                    cheque_number: data[:cheque_number], 
+                    transaction_number: data[:transaction_number])
     result = {}
     if lot.available_for_booking?
       if buyer.save
@@ -69,9 +71,11 @@ class SaleEngine
           car_park_unit: sale.buyer.car_park,
           payment_type: sale.payment_type_id,
           lot_number: lot.name,
-          selling_price: lot.selling_price
+          selling_price: lot.selling_price,
+          cheque_number: sale.cheque_number,
+          transaction_number: sale.transaction_number
         }
-        RestClient.post "http://117.53.153.87:8889/postprebook", {booking}.to_json, :content_type => :json, :accept => :json
+        RestClient.post "http://117.53.153.87:8889/postprebook", booking.to_json, :content_type => :json, :accept => :json
         result[:status] = 201
         result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}. And had been updated to eversolf"
       else
@@ -84,6 +88,7 @@ class SaleEngine
       result[:status] = 403
       result[:message] = "Lot #{lot.name} is already reserved."
     end
+    result
   end
 
   private

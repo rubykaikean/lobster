@@ -60,25 +60,20 @@ class ReservationsController < ApplicationController
         buyer_data: buyer_params,
         payment_type_id: params[:payment_type_id],
         booking_fee: params[:booking_fee],
+        cheque_number: params[:cheque_number],
+        transaction_number: params[:transaction_number],
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-
-    # if current_user.company.id == "9"
-    #   result = CustomizeSaleEngine.reserve(data)
-    # else
-      result = SaleEngine.reserve(data)
-    # end
+      # result = SaleEngine.reserve(data)
+      result = CustomSaleEngine.reserve(data)
       case result[:status]
-      # created
       when 201
         flash[:notice] = result[:message]
         redirect_to reservation_path(@lot.product)
-      # Forbidden
       when 403
         flash[:alert] = result[:message]
         redirect_to reservation_path(@lot.product)
-      # Bad Request
       when 400
         flash.now[:alert] = result[:message]
         @buyer = result[:buyer]

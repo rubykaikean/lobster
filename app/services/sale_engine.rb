@@ -57,7 +57,10 @@ class SaleEngine
     setting = data[:setting]
     buyer = Buyer.new(data[:buyer_data])
     # sale = Sale.new(booking_fee: data[:booking_fee], cash: data[:cash], bank_loan: data[:bank_loan], government_loan: data[:government_loan], staff_loan: data[:staff_loan])
-    sale = Sale.new(booking_fee: data[:booking_fee], payment_type_id: data[:payment_type_id])
+    sale = Sale.new(booking_fee: data[:booking_fee], 
+                    payment_type_id: data[:payment_type_id],
+                    cheque_number: data[:cheque_number], 
+                    transaction_number: data[:transaction_number])
     result = {}
     if lot.available_for_booking?
       if buyer.save
@@ -96,6 +99,7 @@ class SaleEngine
       result[:status] = 403
       result[:message] = "Lot #{lot.name} is already reserved."
     end
+    result
   end
 
   private

@@ -73,6 +73,10 @@
 #  payment_image                   :boolean          default(FALSE)
 #  cancel_date                     :boolean          default(FALSE)
 #  cancel_date_required            :boolean          default(FALSE)
+#  cheque_number                   :boolean          default(FALSE)
+#  transaction_number              :boolean          default(FALSE)
+#  cheque_number_required          :boolean          default(FALSE)
+#  transaction_number_required     :boolean          default(FALSE)
 #
 # Indexes
 #

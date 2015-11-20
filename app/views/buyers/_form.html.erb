@@ -256,6 +256,30 @@
   </div>
   <% end %>
 
+  <% if @customization.cheque_number %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_cheque_number">Cheque Number: </label>
+    <div class="col-md-9">
+      <input type="number" id="buyer_cheque_number" name="cheque_number" class="form-control" placeholder="Cheque Number" value="<%= @sale.cheque_number %>" <%= @customization.cheque_number_required? ? 'required' : nil %> >
+      <% if @customization.cheque_number_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @customization.transaction_number %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_transaction_number">Transaction Number: </label>
+    <div class="col-md-9">
+      <input type="number" id="buyer_transaction_number" name="transaction_number" class="form-control" placeholder="Transaction Number" value="<%= @sale.transaction_number %>" <%= @customization.cheque_number_required? ? 'required' : nil %> >
+      <% if @customization.transaction_number_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
   <% if @customization.car_park? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_car_park">Car Park: </label>
