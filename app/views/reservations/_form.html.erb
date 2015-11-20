@@ -2,9 +2,9 @@
 <%= form_tag create_lot_reservations_path, :multipart => true, :class => "panel-body form-horizontal form-padding" do %>
 
   <%= hidden_field_tag "lot_id", nil, value: @lot.id %>
-  
+  <%#= render :text => @customization.to_json %>
   <% if is_top_level_management? %>
-    <% if @customization.sale_person? %>
+    <%# if @customization.sale_person? %>
     <div class="form-group">
       <label class="col-md-3 control-label" for="user_id">Choose a sale person</label>
       <div class="col-md-9">
@@ -20,9 +20,9 @@
         <% end %>
       </div>
     </div>
-    <% else %>
-    <%= hidden_field_tag "user_id", nil, value: current_user.id %>
-    <% end %>
+    <%# else %>
+    <%#= hidden_field_tag "user_id", nil, value: current_user.id %>
+    <%# end %>
   <% else %>
     <%= hidden_field_tag "user_id", nil, value: current_user.id %>
   <% end %>
@@ -265,7 +265,7 @@
 
   <% if @customization.booking_fee %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_booking_fee">Booking Fee123: </label>
+    <label class="col-md-3 control-label" for="buyer_booking_fee">Booking Fee: </label>
     <div class="col-md-9">
       <input type="number" id="buyer_booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="<%= @sale.booking_fee %>" <%= @customization.booking_fee_required? ? 'required' : nil %> >
       <% if @customization.booking_fee_required?  %>
