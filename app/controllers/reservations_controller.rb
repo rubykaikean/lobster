@@ -49,42 +49,42 @@ class ReservationsController < ApplicationController
   end
 
   def create_lot
-    render :text => params.to_json
-    # @lot = Lot.find(params[:lot_id])
-    # @sourcestype = @lot.product.sources_types
-    # @region = @lot.product.regions
-    # @setting = @lot.product.product_setting
-    # if UserAccessible.new(current_user, :reservation, :reserve).can_access?
-    #   data = { 
-    #     lot: @lot, 
-    #     setting: @setting,
-    #     buyer_data: buyer_params,
-    #     payment_type_id: params[:payment_type_id],
-    #     booking_fee: params[:booking_fee],
-    #     cheque_number: params[:cheque_number],
-    #     transaction_number: params[:transaction_number],
-    #     payment_image: params[:payment_image],
-    #     user_id: params[:user_id]
-    #   }
-    #   # result = SaleEngine.reserve(data)
-    #   result = CustomSaleEngine.reserve(data)
-    #   case result[:status]
-    #   when 201
-    #     flash[:notice] = result[:message]
-    #     redirect_to reservation_path(@lot.product)
-    #   when 403
-    #     flash[:alert] = result[:message]
-    #     redirect_to reservation_path(@lot.product)
-    #   when 400
-    #     flash.now[:alert] = result[:message]
-    #     @buyer = result[:buyer]
-    #     @sale = result[:sale]
-    #     render action: 'buyer'
-    #   end
-    # else
-    #   flash[:alert] = "Sorry, you don't have the access right."
-    #   redirect_to reservation_path(@lot.product)
-    # end
+    # render :text => params.to_json
+    @lot = Lot.find(params[:lot_id])
+    @sourcestype = @lot.product.sources_types
+    @region = @lot.product.regions
+    @setting = @lot.product.product_setting
+    if UserAccessible.new(current_user, :reservation, :reserve).can_access?
+      data = { 
+        lot: @lot, 
+        setting: @setting,
+        buyer_data: buyer_params,
+        payment_type_id: params[:payment_type_id],
+        booking_fee: params[:booking_fee],
+        cheque_number: params[:cheque_number],
+        transaction_number: params[:transaction_number],
+        payment_image: params[:payment_image],
+        user_id: params[:user_id]
+      }
+      # result = SaleEngine.reserve(data)
+      result = CustomSaleEngine.reserve(data)
+      case result[:status]
+      when 201
+        flash[:notice] = result[:message]
+        redirect_to reservation_path(@lot.product)
+      when 403
+        flash[:alert] = result[:message]
+        redirect_to reservation_path(@lot.product)
+      when 400
+        flash.now[:alert] = result[:message]
+        @buyer = result[:buyer]
+        @sale = result[:sale]
+        render action: 'buyer'
+      end
+    else
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to reservation_path(@lot.product)
+    end
   end
 
 
