@@ -398,6 +398,7 @@ DEPENDENCIES
   kaminari
   minitest-rails
   minitest-rails-capybara
+  nokogiri
   paperclip (~> 4.2)
   pg
   puma

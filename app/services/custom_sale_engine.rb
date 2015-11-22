@@ -57,6 +57,7 @@ class CustomSaleEngine
         SalesNotifier.inform_admins(sale.id).deliver_now if setting.notify_admin_on_sale_confirmation?
         SalesNotifier.inform_agents(sale.id).deliver_now if setting.notify_agent_on_booking_unit?
         
+        # TransactionExportWorker.perform(data)
         booking = {
           transaction_id: sale.id,
           full_name: sale.buyer.full_name,
@@ -69,13 +70,14 @@ class CustomSaleEngine
           buyer_postcode: sale.buyer.postcode,
           booking_fee: sale.booking_fee,
           car_park_unit: sale.buyer.car_park,
-          payment_type: sale.payment_type_id,
+          payment_type: sale.payment_type,
           lot_number: lot.name,
           selling_price: lot.selling_price,
           cheque_number: sale.cheque_number,
           transaction_number: sale.transaction_number
         }
         RestClient.post "http://117.53.153.87:8889/postprebook", booking.to_json, :content_type => :json, :accept => :json
+
         result[:status] = 201
         result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}. And had been updated to eversolf"
       else
