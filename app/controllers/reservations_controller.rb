@@ -66,8 +66,11 @@ class ReservationsController < ApplicationController
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-      # result = SaleEngine.reserve(data)
-      result = CustomSaleEngine.reserve(data)
+      # if current_user.company_id == 9
+        result = CustomSaleEngine.reserve(data)
+      # else
+      #   result = SaleEngine.reserve(data)
+      # end
       case result[:status]
       when 201
         flash[:notice] = result[:message]

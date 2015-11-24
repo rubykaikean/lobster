@@ -30,4 +30,10 @@ class SalesNotifier < ApplicationMailer
     agent_emails = @sale.project.company.users.map {|user| user.email if (user.status_id == 1)}.join(", ")
     mail(to: "#{agent_emails}", subject: "#{email_template.subject}", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
   end
+
+  def inform_api_transfer_fail(sale_id)
+    sale = Sale.find_by(id: sale_id)
+    lot = sale.lot
+    mail(to: "leon@outsq.com", subject: "Contact Admin Lot #{lot.name} fail", from: "admin@llkproperties.com.my", body: "#{lot.name} unit cannot transfer to eversolf.")
+  end
 end
