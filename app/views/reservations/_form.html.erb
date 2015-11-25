@@ -2,8 +2,6 @@
 <%= form_tag create_lot_reservations_path, :multipart => true, :class => "panel-body form-horizontal form-padding" do %>
 
   <%= hidden_field_tag "lot_id", nil, value: @lot.id %>
-  <%#= render :text => @customization.to_json %>
-  <%#= @customization.sale_person %>
   <% if is_top_level_management? %>
     <% if @customization.sale_person? %>
     <div class="form-group">
