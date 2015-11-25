@@ -1,6 +1,5 @@
 <%= form_for(@product, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
 
-  <%#= render :text => phase_id %>
   <% if phase_id.present? %>
     <%= f.hidden_field :phase_id, value: phase_id %>
   <% end %>

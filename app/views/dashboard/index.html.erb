@@ -37,8 +37,10 @@
 					<div class="row">
 						<% if is_top_level_admin? %>
 						  <%= render "top_level_admin"  %>
+						<% elsif is_top_level_supervisor? %>
+						  <%= render "top_level_supervisor"  %>
 						<% elsif is_top_level_staff? %>
-						  <%= render "top_level_staff"  %>
+							<%= render "top_level_staff" %>
 						<% elsif is_low_level_admin? %>
 						  <%= render "low_level_admin"  %>
 						<% elsif is_low_level_staff? %>

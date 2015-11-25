@@ -229,6 +229,14 @@
 			        <input class="demo-switch" name="customize[confirm_date]" type="checkbox" <%= @customize.confirm_date? ? 'checked' : nil %> >
 			      </div>
 			    </div>
+			    
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_cancel_date">Cancel Date</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_cancel_date_false" name="customize[cancel_date]" value="0">
+			        <input class="demo-switch" name="customize[cancel_date]" type="checkbox" <%= @customize.cancel_date? ? 'checked' : nil %> >
+			      </div>
+			    </div>
 
 			    <div class="form-group">
 			      <label class="col-md-6 control-label" for="customize_spa">SPA or Solicitor</label>
@@ -239,10 +247,10 @@
 			    </div>
 			    
 			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_downpayment_type">Downpayment Type</label>
+			      <label class="col-md-6 control-label" for="customize_payment_type_id">Payment Type</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
-			        <input type="hidden" id="customize_downpayment_type_false" name="customize[downpayment_type]" value="0">
-			        <input class="demo-switch" name="customize[downpayment_type]" type="checkbox" <%= @customize.downpayment_type? ? 'checked' : nil %> >
+			        <input type="hidden" id="customize_payment_type_id_false" name="customize[payment_type_id]" value="0">
+			        <input class="demo-switch" name="customize[payment_type_id]" type="checkbox" <%= @customize.payment_type_id? ? 'checked' : nil %> >
 			      </div>
 			    </div>
 
@@ -253,54 +261,17 @@
 			        <input class="demo-switch" name="customize[selling_price]" type="checkbox" <%= @customize.selling_price? ? 'checked' : nil %> >
 			      </div>
 			    </div>
-
-					<div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_payment_type">Payment Type</label>
-			      <div class="col-md-6" style="padding-top: 5px;">
-			        <input type="hidden" id="customize_payment_type_false" name="customize[payment_type]" value="0">
-			        <input class="demo-switch" name="customize[payment_type]" type="checkbox" <%= @customize.payment_type? ? 'checked' : nil %> >
-			      </div>
-			    </div>
-
-					<div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_cash">Cash</label>
-			      <div class="col-md-6" style="padding-top: 5px;">
-			        <input type="hidden" id="customize_cash_false" name="customize[cash]" value="0">
-			        <input class="demo-switch" name="customize[cash]" type="checkbox" <%= @customize.cash? ? 'checked' : nil %> >
-			      </div>
-			    </div>			    
+			    
 
 			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_bank_loan">Bank Loan</label>
+			      <label class="col-md-6 control-label" for="customize_payment_image">Payment Image</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
-			        <input type="hidden" id="customize_bank_loan_false" name="customize[bank_loan]" value="0">
-			        <input class="demo-switch" name="customize[bank_loan]" type="checkbox" <%= @customize.payment_type? ? 'checked' : nil %> >
+			        <input type="hidden" id="customize_payment_image_false" name="customize[payment_image]" value="0">
+			        <input class="demo-switch" name="customize[payment_image]" type="checkbox" <%= @customize.payment_image? ? 'checked' : nil %> >
 			      </div>
 			    </div>
 
-			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_government_loan">Government Loan</label>
-			      <div class="col-md-6" style="padding-top: 5px;">
-			        <input type="hidden" id="customize_government_loan_false" name="customize[government_loan]" value="0">
-			        <input class="demo-switch" name="customize[government_loan]" type="checkbox" <%= @customize.government_loan? ? 'checked' : nil %> >
-			      </div>
-			    </div>
-
-			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_staff_loan">Staff Loan</label>
-			      <div class="col-md-6" style="padding-top: 5px;">
-			        <input type="hidden" id="customize_staff_loan_false" name="customize[staff_loan]" value="0">
-			        <input class="demo-switch" name="customize[staff_loan]" type="checkbox" <%= @customize.staff_loan? ? 'checked' : nil %> >
-			      </div>
-			    </div>
-
-			    <!-- <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_reject_reason">Reject Reason</label>
-			      <div class="col-md-6" style="padding-top: 5px;">
-			        <input type="hidden" id="customize_reject_reason_false" name="customize[reject_reason]" value="0">
-			        <input class="demo-switch" name="customize[reject_reason]" type="checkbox" <%#= @customize.reject_reason? ? 'checked' : nil %> >
-			      </div>
-			    </div> -->
+					
 				</td>
 
 				<td>

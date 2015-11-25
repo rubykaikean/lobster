@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
 
-  resources :molpay_transaction_histories
+  resources :molpay_transaction_histories do
+    collection do 
+      post "molpay"
+    end
+  end
+
+  resources :receipts
+  
   resources :email_settings
+  
   resources :regions
+  
   resources :sources_types
+  
   resources :product_settings
+  
   resources :reservations do
     member do
       get "buyer"
@@ -28,6 +39,7 @@ Rails.application.routes.draw do
       get "monthly_sales"
       get "agency_sales"
       get "cancellation"
+      get "rejection"
       get "export_summary_report_excel"
       get "export_analysis_unit_excel"
       get "export_analysis_age_race_excel"
@@ -49,6 +61,9 @@ Rails.application.routes.draw do
       post "cancel"
       get "new_payment"
       post "add_payment"
+    end
+    collection do
+      get "export_purchaser_excel"
     end
   end
 

@@ -14,16 +14,17 @@
 #  buyer_id               :integer
 #  downpayment            :integer
 #  downpayment_percentage :integer
-#  bank_loan              :string
 #  spa                    :string
 #  booking_fee            :integer
 #  reject_reason          :string
-#  downpayment_type       :string
 #  confirm_date           :datetime
 #  admin_confirm_user_id  :integer
-#  cash                   :string
-#  government_loan        :string
-#  staff_loan             :string
+#  payment_type_id        :integer
+#  chq_number             :string
+#  credit_card_number     :string
+#  cancel_date            :datetime
+#  cheque_number          :string
+#  transaction_number     :string
 #
 # Indexes
 #

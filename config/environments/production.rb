@@ -82,17 +82,25 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'dev.estatekitkat.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    # address: "smtp.office365.com",
-    port: 587,
-    domain: "gmail.com",
-    authentication: :plain,
-    # authentication: :login,
+  #   address: "smtp.gmail.com",
+  #   # address: "smtp.office365.com",
+  #   port: 587,
+  #   domain: "dev.estatekitkat.com",
+  #   authentication: :plain,
+  #   # authentication: :login,
+  #   enable_starttls_auto: true,
+  #   user_name: "estatekitkat@gmail.com",
+  #   password: "kitkat123123"
+  #   # user_name: "sasa@outsq.com",
+  #   # password: "Vusu3761"
+  # }
+    address: "smtpout.asia.secureserver.net",
+    port: 25,
+    domain: "estatekitkat.com",
+    authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "estatekitkat@gmail.com",
-    password: "kitkat123123"
-    # user_name: "sasa@outsq.com",
-    # password: "Vusu3761"
+    user_name: "noreply@estatekitkat.com",
+    password: "ContactEK8888"
   }
 end
 
@@ -100,5 +108,6 @@ Lobster::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[ekDeveloper] ",
     :sender_address => %{"production notifier" <no-reply@estatekitkat.com>},
-    :exception_recipients => %w{angmeng@gmail.com khongkk89@gmail.com}
+    :exception_recipients => %w{khongkk89@gmail.com}
   }
+# angmeng@gmail.com

@@ -38,7 +38,12 @@ class ReportsController < ApplicationController
   end
 
   def cancellation
-    @sales = @product.sales.where({status_id: [Sale::REJECTED, Sale::CANCELLED] }).order(:status_id)
+    # @sales = @product.sales.where({status_id: [Sale::REJECTED, Sale::CANCELLED] }).order(:status_id)
+    @sales = @product.sales.where(status_id: Sale::CANCELLED).order(:status_id)
+  end
+
+  def rejection
+    @sales = @product.sales.where(status_id: Sale::REJECTED).order(:status_id)
   end
 
 	def analysis_sources_type_report

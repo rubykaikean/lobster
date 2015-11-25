@@ -7,7 +7,7 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     return redirect_to root_path, alert: "Sorry, you don't have the access right." if is_low_level_staff?
-    if is_top_level_management?
+    if is_middle_level_management?
       @agencies = []
       @agencies << current_user.company.agencies
       @agencies << current_user.company
@@ -16,11 +16,20 @@ class SalesController < ApplicationController
     else
       @q = current_user.sales.ransack(params[:q])
     end
-    @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(50)
+    @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sales }
+    end
+  end
+
+  def export_purchaser_excel
+    @sales = Sale.where("product_id IN(?)", current_user.company.product_ids).order("created_at DESC")
+    # @ideal_export_excel = DeveloperCustomer.where("remark = 'ideal'")
+    respond_to do |format|
+      format.csv { render text: @sales.to_csv }
+      format.xls
     end
   end
 
@@ -105,6 +114,9 @@ class SalesController < ApplicationController
           end
         end
       end
+    @sale.cheque_number = params[:payment][:cheque_number] if params[:payment][:cheque_number]
+    @sale.transaction_number = params[:payment][:transaction_number] if params[:payment][:transaction_number]
+    @sale.save
     else
       flash[:alert] = "Only the agent of the sale can edit."
     end
@@ -159,7 +171,7 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:admin_confirm_user_id ,:user_id, :downpayment, :downpayment_percentage ,:downpayment_type, :cash, :bank_loan, :government_loan, :staff_loan , :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number)
+      params.require(:sale).permit(:admin_confirm_user_id ,:user_id, :downpayment, :downpayment_percentage, :payment_type_id, :cash, :bank_loan, :government_loan, :staff_loan , :spa, :confirm_date, :purchaser_name, :purchaser_address, :purchaser_ic_number, :purchaser_contact_number, :cancel_date, :cheque_number, :transaction_number)
     end
 
     def reject_reason_params

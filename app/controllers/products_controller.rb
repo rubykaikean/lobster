@@ -168,6 +168,8 @@ class ProductsController < ApplicationController
     end
     flash[:notice] = "Region has been saved."
     redirect_to "#{product_path(@product)}/#new_region-tab"
+    rescue ActiveRecord::RecordInvalid
+    redirect_to "#{product_path(@product)}/#new_region-tab", notice: "Region cannot be duplicated."
   end
 
   def update_sources_type
@@ -179,13 +181,15 @@ class ProductsController < ApplicationController
     end
     flash[:notice] = "Sources Type has been saved."
     redirect_to "#{product_path(@product)}/#new_sources_type-tab"
+    rescue ActiveRecord::RecordInvalid
+    redirect_to "#{product_path(@product)}/#new_sources_type-tab", notice: "Source Type cannot be duplicated."
   end
 
   def update_email_setting
     email_setting = EmailSetting.find(params[:id])
     email_setting.update(setting_email_params)
     flash[:notice] = "Email Setting has been saved."
-    redirect_to "#{product_path(email_setting.product)}#email_setting-tab"
+    redirect_to "#{product_path(email_setting.product)}/#email_setting-tab"
   end
 
   def update_reservation_customization
@@ -193,7 +197,7 @@ class ProductsController < ApplicationController
     customize = ReservationCustomization.find(params[:id])
     customize.update(customize_params)
     flash[:notice] = "Reservation Customization has been saved."
-    redirect_to "#{product_path(customize.product)}#product_customize-tab"
+    redirect_to "#{product_path(customize.product)}/#product_customize-tab"
   end
 
   def update_agency_linkage
@@ -220,7 +224,7 @@ class ProductsController < ApplicationController
     end
 
     def setting_params
-      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking, :notify_buyer_on_sale_confirmation, :notify_admin_on_sale_confirmation, :bumiputera_discount, :attach_payment_image)
+      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking, :notify_buyer_on_sale_confirmation, :notify_admin_on_sale_confirmation, :bumiputera_discount, :attach_payment_image, :hide_detail_blocked_unit, :notify_agent_on_booking_unit, :hide_price_of_sold_unit)
     end
 
     def setting_email_params

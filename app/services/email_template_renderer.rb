@@ -1,5 +1,5 @@
 class EmailTemplateRenderer
-  attr_reader :renderer, :body, :sale, :lot, :buyer, :product
+  attr_reader :renderer, :body, :sale, :lot, :buyer, :product, :user, :company
 
   OPTIONS = {
     hard_wrap: true,
@@ -19,7 +19,8 @@ class EmailTemplateRenderer
       "ic_number",
       "address",
       "mobile_contact_number",
-      "email"
+      "email",
+      "remark"
     ],
     "SALE": [
       "booking_fee",
@@ -30,13 +31,21 @@ class EmailTemplateRenderer
     ],
     "PRODUCT": [
       "name"
+    ],
+    "USER": [
+      "display_name"
+    ],
+    "COMPANY": [
+      "name"
     ]
   }
 
-  def initialize(content, sale, buyer)
+  def initialize(content, sale, buyer, user, company)
     @renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(OPTIONS), EXTENSIONS)
     @sale = sale
     @lot = @sale.lot
+    @user = user
+    @company = company
     @product = @sale.product
     @buyer = buyer
     @body = content
@@ -61,6 +70,12 @@ class EmailTemplateRenderer
     end
     PREFIXES[:PRODUCT].each do |attr|
       self.body.gsub!("[product_#{attr}]", self.product.public_send("#{attr}").to_s)
+    end
+    PREFIXES[:USER].each do |attr|
+      self.body.gsub!("[agent_#{attr}]", self.user.public_send("#{attr}").to_s)
+    end
+    PREFIXES[:COMPANY].each do |attr|
+      self.body.gsub!("[company_#{attr}]", self.company.public_send("#{attr}").to_s)
     end
   end
 

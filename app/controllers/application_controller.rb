@@ -48,6 +48,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  helper_method :is_top_level_supervisor?
+  def is_top_level_supervisor?
+    if current_user && current_user.company.parent_id.to_i == 0
+      current_user.is_supervisor?
+    else
+      return false
+    end
+  end
+
   helper_method :is_top_level_staff?
   def is_top_level_staff?
     if current_user && current_user.company.parent_id.to_i == 0
@@ -59,7 +68,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_top_level_management?
   def is_top_level_management?
-    is_top_level_admin? || is_top_level_staff?
+    is_top_level_admin?
+  end
+
+  helper_method :is_middle_level_management?
+  def is_middle_level_management?
+    is_top_level_admin? || is_top_level_supervisor?
   end
 
   helper_method :is_low_level_admin?
@@ -103,8 +117,8 @@ class ApplicationController < ActionController::Base
   def authenticate_project_owner!
     company = current_user.company
     if company.type_id == Company::DEVELOPER
-      unless current_user.type_id == User::ADMIN
-        flash[:alert] = "You need to sign in as an admin before continue."
+      unless current_user.type_id == User::ADMIN || current_user.type_id == User::SUPERVISOR
+        flash[:alert] = "You need to sign in as an admin or supervisor before continue."
         return redirect_to root_path
       end
     else
@@ -112,7 +126,7 @@ class ApplicationController < ActionController::Base
         flash[:alert] = "You need to sign in as a developer admin before continue."
         return redirect_to root_path
       else
-        unless current_user.type_id == User::ADMIN
+        unless current_user.type_id == User::ADMIN || current_user.type_id == User::SUPERVISOR
           flash[:alert] = "You need to sign in as an admin before continue."
           return redirect_to root_path
         end

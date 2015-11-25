@@ -25,94 +25,136 @@
 <div class="row" id="content_div">
   <div class="col-lg-12">
 
-			<div class="panel">
-				<div class="panel-body">
-					<div class="col-lg-5 text-lg-left">
-						<a href="<%= site_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Site Plan</button></a>
-						<a href="<%= floor_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Floor Plan</button></a>
-						<% if @product.e_brochure_url.present? %>
-						  <a href="<%= @product.e_brochure_url %>"><button class="btn btn-sm btn-primary">i-Brochure</button></a>
-						<% end %>
-					</div>
+		<div class="panel">
+			<div class="panel-body">
+				<div class="col-lg-5 text-lg-left">
+					<a href="<%= site_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Site Plan</button></a>
+					<a href="<%= floor_plans_product_path(@product) %>"><button class="btn btn-sm btn-primary">Floor Plan</button></a>
+					<% if @product.e_brochure_url.present? %>
+					  <a href="<%= @product.e_brochure_url %>"><button class="btn btn-sm btn-primary">i-Brochure</button></a>
+					<% end %>
 				</div>
-					<div class="panel-body" style="padding-top:0px;">
-					  <div class="col-lg-5 text-lg-left">
-					    <div class="bg-light text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Available </div>
-
-					    <div class="bg-orange text-center" style="width:70px;float:left;border:1px;border-color:black;border-style:solid;">Prebook</div>
-
-					    <div class="bg-info text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;">Booked</div>
-					    <div class="bg-danger text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Sold </div>
-					    <div class="bg-pink text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Blocked </div>
-				    </div>
-				</div>
-				
-				
+			</div>
 				<div class="panel-body" style="padding-top:0px;">
-				<div class="table-responsive">
-				  
-						<table class="table table-bordered">
-						  <thead>
-							</thead>
-							<tbody>
-							<% num = @product.product_setting.unit_per_row || 5 %>
-							<% @lots.each do |key, lot_group| %>
-								<% lot_group.in_groups_of(num).each do |lot_arry| %>
-								  <tr>
-								    <% lot_arry.each do |lot| %>
-								      <% if lot %>
-									      <td class="text-center <%= lot.background_css_name %>">
-									        <div class="pad-btm"></div>
-									        <div>
-									        	<%= lot.name %>
-									        </div>
-									        <div>	
-									        	<%= lot.product_type.try(:name) %>
-									        </div>
-									         <div>
-									         	<% unless lot.is_sold? %>
-									        	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
-									        	<% else %>
-									        	RM 0
-									        	<% end %>
-									        </div> 
-									        <div>
-									          <% if is_top_level_management? || is_low_level_admin? %>
-									          <% unless lot.status_id == Lot::CONFIRM_RESERVATION %>
-									        	  <%= link_to "Book It", buyer_reservation_path(lot), :class=>"btn btn-primary btn-labeled fa fa-plus #{lot.available_for_booking? ? nil : 'disabled' }", data: {:confirm => "Confirm to book #{lot.name} ?"} %>
-									        	  <% else %>
-									        	  <u>Unit Booked</u>
-									        	<% end %>
-									        	<% end %>
-									        </div>
-									        <div class="pad-top"></div>
-									      </td>
-									     <% else %>
-									       <td class="text-center">
-									        <div class="pad-btm"></div>
-									        <div>	
-									        	
-									        </div>
-									        <div>	
-									        	
-									        </div>
-									         <div>	
-									        	
-									        </div> 
-									        <div>
-									        </div>
-									        <div class="pad-top"></div>
-									      </td>
-									    <% end %>
+				  <div class="col-lg-5 text-lg-left">
+				  	
+				    <div class="bg-light text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Available </div>
+
+				    <div class="bg-orange text-center" style="width:70px;float:left;border:1px;border-color:black;border-style:solid;">Prebook</div>
+
+				    <div class="bg-info text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;">Booked</div>
+				    <div class="bg-danger text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Sold </div>
+				    <div class="bg-pink text-center" style="width: 70px;float:left;border:1px;border-color:black;border-style:solid;"> Blocked </div>
+			    </div>
+			    <!-- <div class="text-lg-right" id="reload_div">
+			    	<label>Time Reload Table :</label>
+				    	<input type="radio" onclick="handler3sec()" name="reload" > 3sec
+			    	<input type="radio" onclick="handler8sec()" name="reload" > 8sec
+			    	<input type="radio" onclick="handler12sec()" name="reload" > 12sec
+			    	<input type="radio" onclick="stopHandler()" name="reload" value="stop" > Stop
+			    </div> -->
+			</div>
+			
+			
+			<div class="panel-body" style="padding-top:0px;">
+			<div class="table-responsive" id="reload_table">
+			  
+					<table class="table table-bordered">
+<!-- 						  <thead>
+						</thead> -->
+						<tbody>
+						<% num = @product.product_setting.unit_per_row || 5 %>
+						<% @lots.each do |key, lot_group| %>
+							<% lot_group.in_groups_of(num).each do |lot_arry| %>
+							  <tr>
+							    <% lot_arry.each do |lot| %>
+							      <% if lot %>
+								      <td class="text-center <%= lot.background_css_name %>" id="autoload">
+								      <% if @setting.hide_detail_blocked_unit? %>
+								      	<% unless lot.status_id == Lot::BLOCKED %>
+								      		<%= render :partial => "/reservations/lot_detail", :locals => { :lot => lot } %>
+								        <% end %>
+							        <% else %>
+							        		<%= render :partial => "/reservations/lot_detail", :locals => { :lot => lot } %>
+							        <% end %>
+								      </td>
+								    <% else %>
+								       <td class="text-center">
+								        <div class="pad-btm"></div>
+								        <div>	
+								        	
+								        </div>
+								        <div>	
+								        	
+								        </div>
+								         <div>	
+								        	
+								        </div> 
+								        <div>
+								        </div>
+								        <div class="pad-top"></div>
+								      </td>
 								    <% end %>
-								  </tr>
-								<% end %>
+							    <% end %>
+							  </tr>
 							<% end %>
-							</tbody>
-						</table>
-					</div>
-			</div> <!-- panel body -->
+						<% end %>
+						</tbody>
+					</table>
+				</div>
+		</div> <!-- panel body -->
 
 		</div> <!-- panel -->
   </div>
 </div>  <!-- row -->
+
+
+<script type="text/javascript">
+		var watch3sec;
+		var handler8sec;
+		var handler12sec;
+
+		function handler3sec() {
+				stopHandler();
+		    watch3sec = setInterval(reload_table, 3000);
+		}
+
+		function handler8sec() {
+				stopHandler();
+		    handler8sec = setInterval(reload_table, 8000);
+		}
+
+		function handler12sec() {
+				stopHandler();
+		    handler12sec = setInterval(reload_table, 12000);
+		}
+
+		function reload_table() {
+		  $('#reload_table').load(location.href + " #reload_table");
+		}
+
+		function stopHandler() {
+		  clearInterval(watch3sec);
+		  clearInterval(handler8sec);
+		  clearInterval(handler12sec);
+		}
+
+	// $(document).ready(function () {
+
+	//    //  setInterval(function() {
+	//    //  	// $('#reload_table').load(location.href + " #reload_table");
+	//    //  	alert("abc");
+	//   	// }, sec);
+	// 	// $('#reload_div input').on('change', function() {
+	// 	//    // alert($('input[name="reload"]:checked', '#reload_div').val()); 
+	// 	// });
+
+ //    function myFunction() {
+	// 	    alert("halo 123");
+	// 	}
+
+    
+
+
+	// });
+</script>

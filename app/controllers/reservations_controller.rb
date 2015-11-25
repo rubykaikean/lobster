@@ -26,20 +26,9 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @product = Product.friendly.find(params[:id])
-    company = current_user.company
-    authorise = CompanyProductsLinkage.find_by(company_id: company.id)
-    # render :text => authorise.to_json
-    if company.id == @product.company_id
-      @lots = @product.lots.order("row_key, name").group_by {|lot| lot.row_key }
-    else
-      if authorise.product_id == @product.id
-        @lots = @product.lots.order("row_key, name").group_by {|lot| lot.row_key }        
-      else
-        flash[:alert] = "You are not allow to enter!"
-        return redirect_to root_path
-      end
-    end
+    @product = Product.friendly.find params[:id]
+    @lots = @product.lots.order("row_key, name").group_by {|lot| lot.row_key }
+    @setting = @product.product_setting
   end
 
   def buyer
@@ -71,7 +60,7 @@ class ReservationsController < ApplicationController
   end
 
   def create_lot
-    # render :text => params
+    # render :text => params.to_json
     @lot = Lot.find(params[:lot_id])
     @sourcestype = @lot.product.sources_types
     @region = @lot.product.regions
@@ -81,13 +70,10 @@ class ReservationsController < ApplicationController
         lot: @lot, 
         setting: @setting,
         buyer_data: buyer_params,
-        cash: params[:cash],
-        bank_loan: params[:bank_loan],
-        government_loan: params[:government_loan],
-        staff_loan: params[:staff_loan],
+        payment_type_id: params[:payment_type_id],
         booking_fee: params[:booking_fee],
         payment_image: params[:payment_image],
-        user_id: current_user.id
+        user_id: params[:user_id]
       }
       result = SaleEngine.reserve(data)
       case result[:status]

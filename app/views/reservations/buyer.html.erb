@@ -20,6 +20,10 @@
 						<td>Selling Price: </td>
 						<td class="text-center">RM <%= number_with_precision(@lot.selling_price, precision: 0, separator: ".", delimiter: ",")  %></td>
 					</tr>
+					<tr>
+						<td>Lot Status: </td>
+						<td class="text-center"><%= @lot.status %></td>
+					</tr>
 
 				</table>
 			</div>

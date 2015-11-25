@@ -45,6 +45,7 @@ class SaleEngine
   def cancel
     @sale.status_id = Sale::CANCELLED
     @sale.reject_reason = @related_params[:cancel_reason]
+    @sale.cancel_date = @related_params[:cancel_date]
     if @sale.save
       @sold_lot.status_id = Lot::AVAILABLE
       @sold_lot.save
@@ -55,7 +56,8 @@ class SaleEngine
     lot = data[:lot]
     setting = data[:setting]
     buyer = Buyer.new(data[:buyer_data])
-    sale = Sale.new(booking_fee: data[:booking_fee], cash: data[:cash], bank_loan: data[:bank_loan], government_loan: data[:government_loan], staff_loan: data[:staff_loan])
+    # sale = Sale.new(booking_fee: data[:booking_fee], cash: data[:cash], bank_loan: data[:bank_loan], government_loan: data[:government_loan], staff_loan: data[:staff_loan])
+    sale = Sale.new(booking_fee: data[:booking_fee], payment_type_id: data[:payment_type_id])
     result = {}
     if lot.available_for_booking?
       if buyer.save
@@ -79,8 +81,9 @@ class SaleEngine
             end
           end
         end
-        SalesNotifier.confirmation(sale.id).deliver_later unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
-        SalesNotifier.inform_admins(sale.id).deliver_later if setting.notify_admin_on_sale_confirmation?
+        SalesNotifier.confirmation(sale.id).deliver_now unless buyer.email.blank? if setting.notify_buyer_on_sale_confirmation?
+        SalesNotifier.inform_admins(sale.id).deliver_now if setting.notify_admin_on_sale_confirmation?
+        SalesNotifier.inform_agents(sale.id).deliver_now if setting.notify_agent_on_booking_unit?
         result[:status] = 201
         result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}."
       else

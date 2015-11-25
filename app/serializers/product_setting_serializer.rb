@@ -12,6 +12,9 @@
 #  notify_admin_on_sale_confirmation :boolean          default(FALSE)
 #  bumiputera_discount               :integer          default(5)
 #  attach_payment_image              :boolean          default(FALSE)
+#  hide_detail_blocked_unit          :boolean          default(FALSE)
+#  hide_price_of_sold_unit           :boolean          default(FALSE)
+#  notify_agent_on_booking_unit      :boolean          default(FALSE)
 #
 
 class ProductSettingSerializer < ActiveModel::Serializer

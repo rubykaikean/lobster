@@ -98,6 +98,8 @@ class ProductTypesController < ApplicationController
       product_type.save!
     end
     redirect_to "#{product_path(product)}/#product_type-tab", notice: "Product Type update successfully."
+    rescue ActiveRecord::RecordInvalid
+    redirect_to "#{product_path(product)}/#product_type-tab", notice: "Product Type cannot be duplicated."
   end
 
   private
@@ -108,7 +110,7 @@ class ProductTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_type_params
-      params.require(:product_type).permit(:name, :description, :product_id, :land_area_square_meter, :land_area_square_feet, :extra_land_square_meter, :extra_land_square_feet, :extra_land_price)
+      params.require(:product_type).permit(:name, :description, :product_id, :land_area_square_meter, :land_area_square_feet, :extra_land_square_meter, :extra_land_square_feet, :extra_land_price, :hide_detail_blocked_unit, :hide_price_of_sold_unit, :notify_agent_on_booking_unit)
     end
 
     def update_product_type_params
