@@ -34,6 +34,6 @@ class SalesNotifier < ApplicationMailer
   def inform_api_transfer_fail(sale_id)
     sale = Sale.find_by(id: sale_id)
     lot = sale.lot
-    mail(to: "leon@outsq.com", subject: "Contact Admin Lot #{lot.name} fail", from: "admin@llkproperties.com.my", body: "#{lot.name} unit cannot transfer to eversolf.")
+    mail(to: "khongkk89@gmail.com", subject: "Contact Admin Lot fail", from: "admin@llkproperties.com.my", body: "#{lot.name} unit cannot transfer to eversolf.")
   end
 end
