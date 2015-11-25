@@ -29,5 +29,5 @@
 #
 
 class LotSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :product_id
+  attributes :id, :name, :description, :product_id, :slug, :created_at, :updated_at, :product_type_id, :status_id, :selling_price, :row_key, :is_special_unit
 end

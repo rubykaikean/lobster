@@ -134,6 +134,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :reservations, only: [:index, :create, :show, :update, :destroy, :test]
+    end
+  end
+
   require 'sidekiq/web'
   authenticate :admin do
     mount Sidekiq::Web => '/sidekiq'
@@ -145,6 +151,8 @@ Rails.application.routes.draw do
   match 'molpay/create_molpay_transaction' => "molpay#create_molpay_transaction", via: [:post, :get]
   match 'molpay/return_url' => "molpay#return_url", via: [:post, :get]
   match 'molpay/molpay' => "molpay#molpay", via: [:get, :post]
+
+  match '*any' => 'application#options', :via => [:options]
   
   get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   # root 'companies#profile'
