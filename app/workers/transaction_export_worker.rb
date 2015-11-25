@@ -26,7 +26,7 @@ class TransactionExportWorker
     # result = RestClient.post "http://117.53.153.87:8889/postprebook", booking.to_json, :content_type => :json, :accept => :json
     doc = JSON.parse result
     # doc.class
-    unless doc["PostPrebook_response"]["Result"]["BookingSuccess"] == 1
+    if doc["PostPrebook_response"]["Result"]["BookingSuccess"] == "0"
       SalesNotifier.inform_api_transfer_fail(sale_id).deliver_now
     end
 	end
