@@ -22,7 +22,7 @@ class TransactionExportWorker
           cheque_number: data[:cheque_number],
           transaction_number: data[:transaction_number]
         }
-    result = RestClient.post "http://117.53.153.87:8889/postprebook", {"booking": [{"transaction_id": "123","full_name":"admin"}]}.to_json, :content_type => :json, :accept => :json
+    result = RestClient.post "http://117.53.153.87:8889/postprebook", {"booking": {"transaction_id": "123","full_name": "admin"}}.to_json, :content_type => :json, :accept => :json
     # result = RestClient.post "http://117.53.153.87:8889/postprebook", booking.to_json, :content_type => :json, :accept => :json
     doc = JSON.parse result
     # doc.class
