@@ -22,15 +22,15 @@ class TransactionExportWorker
           cheque_number: data[:cheque_number],
           transaction_number: data[:transaction_number]
         }
-    result = RestClient.post "http://117.53.153.87:8889/postprebook", {"booking": {"transaction_id": "123","full_name": "admin"}}.to_json, :content_type => :json, :accept => :json
-    # result = RestClient.post "http://117.53.153.87:8889/postprebook", booking.to_json, :content_type => :json, :accept => :json
+    # result = RestClient.post "http://117.53.153.87:8889/postprebook", {"booking": {"transaction_id": "123","full_name": "admin"}}.to_json, :content_type => :json, :accept => :json
+    result = RestClient.post "http://117.53.153.87:8889/postprebook", booking.to_json, :content_type => :json, :accept => :json
     doc = JSON.parse result
     # doc.class
     if doc["PostPrebook_response"]["Result"]["BookingSuccess"].to_i == 0
       SalesNotifier.inform_api_transfer_fail(sale_id).deliver_now
-      logger.info "this email side!"
+      # logger.info "this email side!"
     end
-    logger.info "this is text return!"
+    # logger.info "this is text return!"
 	end
 
 
