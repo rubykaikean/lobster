@@ -56,23 +56,6 @@
 #  confirm_date_required           :boolean          default(FALSE)
 #  sale_date_required              :boolean          default(FALSE)
 #  selling_price_required          :boolean          default(FALSE)
-#  region_id                       :boolean          default(FALSE)
-#  region_id_required              :boolean          default(FALSE)
-#  nationality_id                  :boolean          default(FALSE)
-#  nationality_id_required         :boolean          default(FALSE)
-#  sources_type_id                 :boolean          default(FALSE)
-#  sources_type_id_required        :boolean          default(FALSE)
-#  sale_person                     :boolean          default(FALSE)
-#  sale_person_required            :boolean          default(FALSE)
-#  car_park                        :boolean          default(FALSE)
-#  car_park_required               :boolean          default(FALSE)
-#  remark                          :boolean          default(FALSE)
-#  remark_required                 :boolean          default(FALSE)
-#  payment_type_id                 :boolean          default(FALSE)
-#  payment_type_id_required        :boolean          default(FALSE)
-#  payment_image                   :boolean          default(FALSE)
-#  cancel_date                     :boolean          default(FALSE)
-#  cancel_date_required            :boolean          default(FALSE)
 #
 # Indexes
 #
