@@ -13,31 +13,32 @@ before_action :set_lot, only: [:show, :update, :destroy]
   end
   
   def update
-    if @lot.update(lot_params)
-      render json: @lot
-    else
-      render json: @lot.errors, status: :unprocessable_entity
+    #render :text => params.to_json
+    #reservation_data = JSON.parse(params["reservation"].to_json)
+    #render json: reservation_data["reserve"]["buyer_info"].to_json
+    params.permit!
+
+    @lot = Lot.find(params[:id])
+    @setting = @lot.product.product_setting
+
+    data = { 
+      lot: @lot,
+      setting: @setting,
+      buyer_data: params[:buyer],
+      payment_type_id: params["sale"]["payment_type_id"],
+      booking_fee: params["sale"]["payment_type_id"],
+      user_id: 1
+    }
+    
+    result = SaleEngine.reserve(data)
+    case result[:status]
+    when 201
+      render :text => result[:message]
+    when 403
+      render :text => result[:message]
+    when 400
+      render :text => result[:message]
     end
-
-    @buyer = Buyer.new(buyer_params)
-    @sale = Sale.new(sale_params)
-  end
-
-  #   respond_to do |format|
-  #     if @activity.update_attributes(params[:activity])
-  #       format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
-  #       format.json { head :no_content }
-  #     else
-  #       format.html { render action: "edit" }
-  #       format.json { render json: @activity.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  def test
-    lots = Lot.find(1)
-
-    render(json: Api::V1::ReservationSerializer.new(lots).to_json)
   end
 
   private
@@ -47,14 +48,6 @@ before_action :set_lot, only: [:show, :update, :destroy]
   end
 
   def lot_params
-    params.permit(:status_id)
-  end
-
-  def buyer_params
-    params.permit(:full_name, :ic_number)
-  end
-
-  def sale_params
     params.permit(:status_id)
   end
 end
