@@ -1,124 +1,124 @@
 
-					<!--Menu-->
-					<!--================================-->
-					<div id="mainnav-menu-wrap">
-						<div class="nano">
-							<div class="nano-content">
-								<ul id="mainnav-menu" class="list-group">
-						
-									<!--Category name-->
-									<li class="list-header">Navigation</li>
-						
-									<!--Menu list item-->
-									<li>
-										<a href="/">
-											<i class="fa fa-dashboard"></i>
-											<span class="menu-title">
-												<strong>Dashboard</strong>
-												<!-- <span class="label label-success pull-right">Top</span> -->
-											</span>
-										</a>
-									</li>
-									
-									<!-- <li class="list-divider"></li> -->
-									
-									<!--Category name-->
-									<li class="list-header">System</li>
-						
-									<!--Menu list item-->
-									<li>
-										<a href="<%= reservations_path %>">
-											<i class="fa fa-shopping-cart"></i>
-											<span class="menu-title">Reservation</span>
-											<!-- <i class="arrow"></i> -->
-										</a>
-									</li>
+<!--Menu-->
+<!--================================-->
+<div id="mainnav-menu-wrap">
+	<div class="nano">
+		<div class="nano-content">
+			<ul id="mainnav-menu" class="list-group">
+	
+				<!--Category name-->
+				<li class="list-header">Navigation</li>
+	
+				<!--Menu list item-->
+				<li>
+					<a href="/">
+						<i class="fa fa-dashboard"></i>
+						<span class="menu-title">
+							<strong>Dashboard</strong>
+							<!-- <span class="label label-success pull-right">Top</span> -->
+						</span>
+					</a>
+				</li>
+				
+				<!-- <li class="list-divider"></li> -->
+				
+				<!--Category name-->
+				<li class="list-header">System</li>
+	
+				<!--Menu list item-->
+				<li>
+					<a href="<%= reservations_path %>">
+						<i class="fa fa-shopping-cart"></i>
+						<span class="menu-title">Reservation</span>
+						<!-- <i class="arrow"></i> -->
+					</a>
+				</li>
 
-									<li class="list-header">Sales History</li>
-						
-									<!--Menu list item-->
-									<li>
-										<a href="<%= sales_path %>">
-											<i class="fa fa-calculator"></i>
-											<span class="menu-title">Personal Sales</span>
-											<!-- <i class="arrow"></i> -->
-										</a>
-									</li>
+				<li class="list-header">Sales History</li>
+	
+				<!--Menu list item-->
+				<li>
+					<a href="<%= sales_path %>">
+						<i class="fa fa-calculator"></i>
+						<span class="menu-title">Personal Sales</span>
+						<!-- <i class="arrow"></i> -->
+					</a>
+				</li>
 
-									<!--Category name-->
-									<li class="list-header">Management</li>
-									  <!--Menu list item-->
+				<!--Category name-->
+				<li class="list-header">Management</li>
+				  <!--Menu list item-->
 
-									  <li>
-											<a href="<%= reports_path %>">
-												<i class="fa fa-bar-chart"></i>
-												<span class="menu-title">Report</span>
-											</a>
-										</li>
+				  <li>
+						<a href="<%= reports_path %>">
+							<i class="fa fa-bar-chart"></i>
+							<span class="menu-title">Report</span>
+						</a>
+					</li>
 
-										<li>
-											<a href="<%= users_path %>">
-												<i class="fa fa-user"></i>
-												<span class="menu-title">&nbsp;User</span>
-											</a>
-										</li>
-									<li class="list-divider"></li>
-						
-									<!--Category name-->
-									<li class="list-header">Components</li>
-						
-									<!--Menu list item-->
-									<li>
-										<a href="<%= projects_path %>">
-											<i class="fa fa-university"></i>
-											<span class="menu-title">Project</span>
-											<!-- <i class="arrow"></i> -->
-										</a>
-									</li>
+					<li>
+						<a href="<%= users_path %>">
+							<i class="fa fa-user"></i>
+							<span class="menu-title">&nbsp;User</span>
+						</a>
+					</li>
+				<li class="list-divider"></li>
+	
+				<!--Category name-->
+				<li class="list-header">Components</li>
+	
+				<!--Menu list item-->
+				<li>
+					<a href="<%= projects_path %>">
+						<i class="fa fa-university"></i>
+						<span class="menu-title">Project</span>
+						<!-- <i class="arrow"></i> -->
+					</a>
+				</li>
 
-									<!--Menu list item-->
-									<li>
-										<a href="<%= companies_path %>">
-											<i class="fa fa-users"></i>
-											<span class="menu-title">Agency</span>
-											<!-- <i class="arrow"></i> -->
-										</a>
-									</li>
+				<!--Menu list item-->
+				<li>
+					<a href="<%= companies_path %>">
+						<i class="fa fa-users"></i>
+						<span class="menu-title">Agency</span>
+						<!-- <i class="arrow"></i> -->
+					</a>
+				</li>
 
-                  <% if is_top_level_admin? %>
-                    <% if current_user.company.products.any? %>
-                      <li>
-												<a href="#">
-													<i class="fa fa-building"></i>
-													<span class="menu-title">Product</span>
-													<i class="arrow"></i>
-												</a>
-											<!--Submenu-->
-											<ul class="collapse">
-											  <% current_user.company.products.each do |product| %>
-												  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
-												<% end %>
-											</ul>
-										</li>
-										<% end %>
-									<% end %>
+        <% if is_top_level_admin? %>
+          <% if current_user.company.products.any? %>
+            <li>
+							<a href="#">
+								<i class="fa fa-building"></i>
+								<span class="menu-title">Product</span>
+								<i class="arrow"></i>
+							</a>
+						<!--Submenu-->
+						<ul class="collapse">
+						  <% current_user.company.products.each do |product| %>
+							  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
+							<% end %>
+						</ul>
+					</li>
+					<% end %>
+				<% end %>
 
-									<!--Menu list item-->
-									<!-- <li  class="active-link"> -->
-								<!-- 	<li>
-										<a href="<%#= profile_companies_path %>">
-											<i class="fa fa-pencil-square-o"></i>
-											<span class="menu-title">
-												Company Profile
-												<span class="label label-success pull-right">Top</span>
-											</span>
-										</a>
-									</li> -->
-						
-									
-						
-							</div>
-						</div>
-					</div>
-					<!--================================-->
-					<!--End menu-->
+				<!--Menu list item-->
+				<!-- <li  class="active-link"> -->
+			<!-- 	<li>
+					<a href="<%#= profile_companies_path %>">
+						<i class="fa fa-pencil-square-o"></i>
+						<span class="menu-title">
+							Company Profile
+							<span class="label label-success pull-right">Top</span>
+						</span>
+					</a>
+				</li> -->
+	
+				
+	
+		</div>
+	</div>
+</div>
+<!--================================-->
+<!--End menu-->
