@@ -2,7 +2,6 @@
 <%= form_tag create_lot_reservations_path, :multipart => true, :class => "panel-body form-horizontal form-padding" do %>
 
   <%= hidden_field_tag "lot_id", nil, value: @lot.id %>
-  
   <% if is_top_level_management? %>
     <% if @customization.sale_person? %>
     <div class="form-group">
@@ -210,7 +209,7 @@
 
   <% if @customization.mobile_contact_number? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Contact Number: </label>
+    <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Mobile Contact Number: </label>
     <div class="col-md-9">
       <input type="text" id="buyer_mobile_contact_number" name="buyer[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="<%= @buyer.mobile_contact_number %>">
       <small class="help-block">
@@ -223,7 +222,7 @@
   
   <% if @customization.home_contact_number? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_home_contact_number"></label>
+    <label class="col-md-3 control-label" for="buyer_home_contact_number">Home Contact Number:</label>
     <div class="col-md-9">
       <input type="text" id="buyer_home_contact_number" name="buyer[home_contact_number]" class="form-control" placeholder="Second Contact Number" value="<%= @buyer.home_contact_number %>" <%= @customization.home_contact_number_required? ? 'required' : nil %> >
       <% if @customization.home_contact_number_required?  %>
@@ -235,7 +234,7 @@
 
   <% if @customization.office_contact_number? %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_office_contact_number"></label>
+    <label class="col-md-3 control-label" for="buyer_office_contact_number">Office Contact Number:</label>
     <div class="col-md-9">
       <input type="text" id="buyer_office_contact_number" name="buyer[office_contact_number]" class="form-control" placeholder="Third Contact Number" value="<%= @buyer.office_contact_number %>" <%= @customization.office_contact_number_required? ? 'required' : nil %> >
       <% if @customization.office_contact_number_required?  %>
@@ -269,6 +268,30 @@
     <div class="col-md-9">
       <input type="number" id="buyer_booking_fee" name="booking_fee" class="form-control" placeholder="Booking Fee" value="<%= @sale.booking_fee %>" <%= @customization.booking_fee_required? ? 'required' : nil %> >
       <% if @customization.booking_fee_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @customization.cheque_number? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_cheque_number">Cheque Number: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_cheque_number" name="cheque_number" class="form-control" placeholder="Cheque Number" value="<%= @sale.cheque_number %>" <%= @customization.cheque_number_required? ? 'required' : nil %> >
+      <% if @customization.cheque_number_required?  %>
+        <small class="help-block">Required field</small>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @customization.transaction_number? %>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="buyer_transaction_number">Transaction Number: </label>
+    <div class="col-md-9">
+      <input type="text" id="buyer_transaction_number" name="transaction_number" class="form-control" placeholder="Transaction Number" value="<%= @sale.transaction_number %>" <%= @customization.transaction_number_required? ? 'required' : nil %> >
+      <% if @customization.transaction_number_required?  %>
         <small class="help-block">Required field</small>
       <% end %>
     </div>
@@ -316,55 +339,6 @@
   <% end %>
 
   <hr>
-  <%# if @customization.cash? %>
-  <!-- <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_cash">Cash: </label>
-    <div class="col-md-9">
-        <input type="text" id="sale_cash" name="cash" class="form-control" placeholder="Cash" value="<%#= @sale.cash? ? @sale.cash : nil %>" <%#= @customization.cash_required? ? 'required' : nil %> >
-      <%# if @customization.cash_required?  %>
-        <small class="help-block">Required field</small>
-      <%# end %>
-    </div>
-  </div>
-  <%# end %>
-
-  <%# if @customization.bank_loan? %>
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_bank_loan">Bank Loan: </label>
-    <div class="col-md-9">
-      <input type="text" id="sale_bank_loan" name="bank_loan" class="form-control" placeholder="Bank Loan" value="<%#= @sale.bank_loan? ? @sale.bank_loan : nil %>" <%#= @customization.bank_loan_required? ? 'required' : nil %> >
-      <%# if @customization.bank_loan_required?  %>
-        <small class="help-block">Required field</small>
-      <%# end %>
-    </div>
-  </div>
-  <%# end %>
-
-  <%# if @customization.government_loan? %>
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_government_loan">Government Loan: </label>
-    <div class="col-md-9">
-      
-        <input type="text" id="sale_government_loan" name="government_loan" class="form-control" placeholder="Government Loan" value="<%#= @sale.government_loan? ? @sale.government_loan : nil %>" <%#= @customization.government_loan_required? ? 'required' : nil %> >
-      
-      <%# if @customization.government_loan_required?  %>
-        <small class="help-block">Required field</small>
-      <%# end %>
-    </div>
-  </div>
-  <%# end %>
-
-  <%# if @customization.staff_loan? %>
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="sale_staff_loan">Staff Loan: </label>
-    <div class="col-md-9">
-      <input type="text" id="sale_staff_loan" name="staff_loan" class="form-control" placeholder="Staff Loan" value="<%#= @sale.staff_loan? ? @sale.staff_loan : nil %>" <%#= @customization.staff_loan_required? ? 'required' : nil %> >
-      <%# if @customization.staff_loan_required?  %>
-        <small class="help-block">Required field</small>
-      <%# end %>
-    </div>
-  </div>
-  <%# end %> -->
 
   <% if @customization.payment_image? %>
   <div class="form-group">
@@ -393,13 +367,6 @@
   </div>
   <% end %>
   
- <!--  <div class="form-group">
-    <label class="col-md-3 control-label" for="buyer_is_bumi_putera">Bumi Putera unit: </label>
-    <div class="col-md-9">
-      <input name="buyer[is_bumi_putera]" type="checkbox" value="true" />
-    </div>
-  </div> -->
-
   
   <div class="panel-footer">
     <div class="row">

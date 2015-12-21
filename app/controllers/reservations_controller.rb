@@ -61,10 +61,16 @@ class ReservationsController < ApplicationController
         buyer_data: buyer_params,
         payment_type_id: params[:payment_type_id],
         booking_fee: params[:booking_fee],
+        cheque_number: params[:cheque_number],
+        transaction_number: params[:transaction_number],
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-      result = SaleEngine.reserve(data)
+      if current_user.company_id.to_i == 9
+        result = CustomSaleEngine.reserve(data)
+      else
+        result = SaleEngine.reserve(data)
+      end
       case result[:status]
       when 201
         flash[:notice] = result[:message]
@@ -78,7 +84,6 @@ class ReservationsController < ApplicationController
         @sale = result[:sale]
         render action: 'buyer'
       end
-
     else
       flash[:alert] = "Sorry, you don't have the access right."
       redirect_to reservation_path(@lot.product)
@@ -87,6 +92,10 @@ class ReservationsController < ApplicationController
 
 
   private
+
+  def llk_developer_params
+    params.require(:customize).permit(:transaction_id, :full_name, :buyer_second_name, :buyer_third_name, :buyer_ic_number, :second_buyer_ic_number, :third_buyer_ic_number, :buyer_address, :buyer_postcode, :booking_fee, :car_park_unit, :payment_type, :lot_number, :selling_price, :cheque_number, :credit_card_number)
+  end
 
   def buyer_params
     params.require(:buyer).permit!

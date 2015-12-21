@@ -20,8 +20,6 @@
 #  confirm_date           :datetime
 #  admin_confirm_user_id  :integer
 #  payment_type_id        :integer
-#  chq_number             :string
-#  credit_card_number     :string
 #  cancel_date            :datetime
 #  cheque_number          :string
 #  transaction_number     :string

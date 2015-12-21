@@ -79,6 +79,22 @@
   </div>
 
   <div class="form-group">
+    <label class="col-md-6 control-label" for="customize_cheque_number_required">Cheque Number (Required?)</label>
+    <div class="col-md-6" style="padding-top: 5px;">
+      <input type="hidden" id="customize_cheque_number_required_false" name="customize[cheque_number_required]" value="0">
+      <input class="demo-switch" name="customize[cheque_number_required]" type="checkbox" <%= customize.cheque_number_required? ? 'checked' : nil %> >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-6 control-label" for="customize_transaction_number_required">Transaction Number (Required?)</label>
+    <div class="col-md-6" style="padding-top: 5px;">
+      <input type="hidden" id="customize_transaction_number_required_false" name="customize[transaction_number_required]" value="0">
+      <input class="demo-switch" name="customize[transaction_number_required]" type="checkbox" <%= customize.transaction_number_required? ? 'checked' : nil %> >
+    </div>
+  </div>  
+
+  <div class="form-group">
     <label class="col-md-6 control-label" for="customize_selling_price_required">Payment Image (Required?)</label>
     <div class="col-md-6" style="padding-top: 5px;">
       No Checkbox
