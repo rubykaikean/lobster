@@ -83,6 +83,12 @@
 #  index_reservation_customizations_on_product_id  (product_id)
 #
 
+#
+# Indexes
+#
+#  index_reservation_customizations_on_product_id  (product_id)
+#
+
 class ReservationCustomization < ActiveRecord::Base
 
 	belongs_to :product

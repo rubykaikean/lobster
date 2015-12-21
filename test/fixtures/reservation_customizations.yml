@@ -83,6 +83,12 @@
 #  index_reservation_customizations_on_product_id  (product_id)
 #
 
+#
+# Indexes
+#
+#  index_reservation_customizations_on_product_id  (product_id)
+#
+
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
