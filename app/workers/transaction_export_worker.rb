@@ -21,7 +21,8 @@ class TransactionExportWorker
           selling_price: data[:lot].selling_price,
           cheque_number: data[:cheque_number],
           transaction_number: data[:transaction_number]
-        # }"http://117.53.153.87:8889/postprebook"
+        }
+        # http://117.53.153.87:8889/postprebook
     result = RestClient.post "http://117.53.153.87:8800", {"booking": {"transaction_id": "123","full_name": "admin"}}.to_json, :content_type => :json, :accept => :json
     # result = RestClient.post "http://117.53.153.87:8800", booking.to_json, :content_type => :json, :accept => :json
     doc = JSON.parse result
