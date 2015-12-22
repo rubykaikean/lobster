@@ -24,7 +24,7 @@ class TransactionExportWorker
         }
         # http://117.53.153.87:8889/postprebook
     # result = RestClient.post "http://117.53.153.87:8800", {"booking": {"transaction_id": "123","full_name": "admin"}}.to_json, :content_type => :json, :accept => :json
-    result = RestClient.post "http://117.53.153.87:8800/postprebook", booking.to_json, :content_type => :json, :accept => :json
+    result = RestClient.post "http://117.54.153.87:8800/postprebook", booking.to_json, :content_type => :json, :accept => :json
     doc = JSON.parse result
     # doc.class
     if doc["PostPrebook_response"]["Result"]["BookingSuccess"].to_i == 0
