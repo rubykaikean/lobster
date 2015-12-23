@@ -32,7 +32,6 @@ class TransactionExportWorker
     # doc.class
     if doc["PostPrebook_response"]["Result"]["BookingSuccess"].to_i == 0
       SalesNotifier.inform_api_transfer_fail(sale_id).deliver_now
-      logger.info "this email side!"
     end
 	end
 

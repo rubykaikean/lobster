@@ -22,6 +22,7 @@ class ReservationsController < ApplicationController
 
   def buyer
     # render :text => params
+    
     @lot = Lot.friendly.find(params[:id])
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
       @product = @lot.product
