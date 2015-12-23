@@ -49,6 +49,7 @@ class ReservationsController < ApplicationController
   end
 
   def create_lot
+    # render :text => booking
     @lot = Lot.find(params[:lot_id])
     @sourcestype = @lot.product.sources_types
     @region = @lot.product.regions
