@@ -58,24 +58,23 @@ class CustomSaleEngine
         SalesNotifier.inform_agents(sale.id).deliver_now if setting.notify_agent_on_booking_unit?
         
         # TransactionExportWorker.perform_async(data, sale.id)
-        sale = Sale.find(sale.id)
         record = [{
               transaction_id: sale.id,
-              full_name: data[:full_name],
-              buyer_second_name: data[:buyer_second_name],
-              buyer_third_name: data[:buyer_third_name],
-              buyer_ic_number: data[:ic_number],
-              second_buyer_ic_number: data[:second_ic_number],
-              third_buyer_ic_number: data[:third_ic_number],
-              buyer_address: data[:address],
-              buyer_postcode: data[:postcode],
-              booking_fee: data[:booking_fee],
-              car_park_unit: data[:car_park],
+              full_name: data[:buyer_data][:full_name],
+              buyer_second_name: data[:buyer_data][:buyer_second_name],
+              buyer_third_name: data[:buyer_data][:buyer_third_name],
+              buyer_ic_number: data[:buyer_data][:ic_number],
+              second_buyer_ic_number: data[:buyer_data][:second_ic_number],
+              third_buyer_ic_number: data[:buyer_data][:third_ic_number],
+              buyer_address: data[:buyer_data][:address],
+              buyer_postcode: data[:buyer_data][:postcode],
+              booking_fee: data[:buyer_data][:booking_fee],
+              car_park_unit: data[:buyer_data][:car_park],
               payment_type: sale.payment_type,
-              lot_number: data[:lot].name,
-              selling_price: data[:lot].selling_price,
-              cheque_number: data[:cheque_number],
-              transaction_number: data[:transaction_number]
+              lot_number: data[:lot],
+              # selling_price: data[:lot].selling_price,
+              cheque_number: data[:buyer_data][:cheque_number],
+              transaction_number: data[:buyer_data][:transaction_number]
             }]
         group_data = {:booking => ""}
         group_data[:booking] = record
@@ -88,7 +87,6 @@ class CustomSaleEngine
           SalesNotifier.inform_api_transfer_fail(sale.id).deliver_now
         end
 
-        
         result[:status] = 201
         result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}. And had been updated to eversolf"
       else

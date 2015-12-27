@@ -50,7 +50,7 @@ class ReservationsController < ApplicationController
   end
 
   def create_lot
-    # render :text => booking
+    # render :text => params
     @lot = Lot.find(params[:lot_id])
     @sourcestype = @lot.product.sources_types
     @region = @lot.product.regions
@@ -67,6 +67,7 @@ class ReservationsController < ApplicationController
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
+      # render :text => params
       # if current_user.company_id.to_i == 9
         result = CustomSaleEngine.reserve(data)
       # else
