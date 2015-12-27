@@ -55,7 +55,7 @@ class ReservationsController < ApplicationController
     @sourcestype = @lot.product.sources_types
     @region = @lot.product.regions
     @setting = @lot.product.product_setting
-    # if UserAccessible.new(current_user, :reservation, :reserve).can_access?
+    if UserAccessible.new(current_user, :reservation, :reserve).can_access?
       data = { 
         lot: @lot, 
         setting: @setting,

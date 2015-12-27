@@ -88,7 +88,7 @@ class CustomSaleEngine
         end
 
         result[:status] = 201
-        result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}. And had been updated to eversolf"
+        result[:message] = "Lot #{lot.name} has been reserved successfully for #{buyer.full_name}."
       else
         result[:status] = 400
         result[:buyer] = buyer
