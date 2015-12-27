@@ -67,29 +67,29 @@ class ReservationsController < ApplicationController
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-      render :text => @lot.name
+      # render :text => params
       # if current_user.company_id.to_i == 9
-        # result = CustomSaleEngine.reserve(data)
+        result = CustomSaleEngine.reserve(data)
       # else
         # result = SaleEngine.reserve(data)
       # end
-    #   case result[:status]
-    #   when 201
-    #     flash[:notice] = result[:message]
-    #     redirect_to reservation_path(@lot.product)
-    #   when 403
-    #     flash[:alert] = result[:message]
-    #     redirect_to reservation_path(@lot.product)
-    #   when 400
-    #     flash.now[:alert] = result[:message]
-    #     @buyer = result[:buyer]
-    #     @sale = result[:sale]
-    #     render action: 'buyer'
-    #   end
-    # else
-    #   flash[:alert] = "Sorry, you don't have the access right."
-    #   redirect_to reservation_path(@lot.product)
-    # end
+      case result[:status]
+      when 201
+        flash[:notice] = result[:message]
+        redirect_to reservation_path(@lot.product)
+      when 403
+        flash[:alert] = result[:message]
+        redirect_to reservation_path(@lot.product)
+      when 400
+        flash.now[:alert] = result[:message]
+        @buyer = result[:buyer]
+        @sale = result[:sale]
+        render action: 'buyer'
+      end
+    else
+      flash[:alert] = "Sorry, you don't have the access right."
+      redirect_to reservation_path(@lot.product)
+    end
   end
 
 

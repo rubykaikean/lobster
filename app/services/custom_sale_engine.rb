@@ -71,8 +71,8 @@ class CustomSaleEngine
               booking_fee: data[:buyer_data][:booking_fee],
               car_park_unit: data[:buyer_data][:car_park],
               payment_type: sale.payment_type,
-              lot_number: data[:lot],
-              # selling_price: data[:lot].selling_price,
+              lot_number: lot.name,
+              selling_price: lot.selling_price,
               cheque_number: data[:buyer_data][:cheque_number],
               transaction_number: data[:buyer_data][:transaction_number]
             }]
