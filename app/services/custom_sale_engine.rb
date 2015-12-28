@@ -76,6 +76,7 @@ class CustomSaleEngine
               cheque_number: data[:cheque_number],
               credit_card_number: data[:transaction_number]
             }]
+        binding.pry
         group_data = {:booking => ""}
         group_data[:booking] = record
         # http://117.53.153.87:8889/postprebook >> testing
