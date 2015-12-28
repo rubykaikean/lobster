@@ -67,7 +67,7 @@ class ReservationsController < ApplicationController
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-      # render :text => data[:lot][:name].to_json
+      # render :text => params.to_json
       # if current_user.company_id.to_i == 9
         result = CustomSaleEngine.reserve(data)
       # else

@@ -68,13 +68,13 @@ class CustomSaleEngine
               third_buyer_ic_number: data[:buyer_data][:third_ic_number],
               buyer_address: data[:buyer_data][:address],
               buyer_postcode: data[:buyer_data][:postcode],
-              booking_fee: data[:buyer_data][:booking_fee],
+              booking_fee: data[:booking_fee],
               car_park_unit: data[:buyer_data][:car_park],
               payment_type: sale.payment_type,
               lot_number: data[:lot][:name],
               selling_price: lot.selling_price,
-              cheque_number: data[:buyer_data][:cheque_number],
-              transaction_number: data[:buyer_data][:transaction_number]
+              cheque_number: data[:cheque_number],
+              credit_card_number: data[:transaction_number]
             }]
         group_data = {:booking => ""}
         group_data[:booking] = record
