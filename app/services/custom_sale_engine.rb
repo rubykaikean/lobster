@@ -72,7 +72,7 @@ class CustomSaleEngine
               car_park_unit: data[:buyer_data][:car_park],
               payment_type: sale.payment_type,
               lot_number: data[:lot][:name],
-              selling_price: lot.selling_price,
+              selling_price: lot.selling_price.to_s,
               cheque_number: data[:cheque_number],
               credit_card_number: data[:transaction_number]
             }]
