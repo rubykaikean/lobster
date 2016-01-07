@@ -46,10 +46,20 @@ class ReservationsController < ApplicationController
   # confirm booking and hide book unit button
   def confirm_reservation
     sale = Sale.find(params[:sale_id])
-    render :text => sale
-    # @lot = Lot.find(params[:])
-    # SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
-    # redirect_to sales_path
+    buyer_params = Buyer.find(sale.buyer_id)
+    setting = sale.lot.product.product_setting
+    # # render :text => sale.to_json
+    data = {
+      sale: sale,
+      lot: sale.lot,
+      setting: setting,
+      buyer_data: buyer_params
+    }
+    if current_user.company_id.to_i == 9
+      result = CustomSaleEngine.prebook(data)
+    end
+    SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
+    redirect_to sales_path
   end
 
   def create_lot
@@ -70,9 +80,7 @@ class ReservationsController < ApplicationController
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-      if current_user.company_id.to_i == 9
-        result = CustomSaleEngine.reserve(data)
-      else
+      unless current_user.company_id.to_i == 9
         result = SaleEngine.reserve(data)
       end
       case result[:status]
