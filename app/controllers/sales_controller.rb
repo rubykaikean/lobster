@@ -18,11 +18,11 @@ class SalesController < ApplicationController
       @q = current_user.sales.ransack(params[:q])
     end
     @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(10)
-    render :text => @sales
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   format.json { render json: @sales }
-    # end
+    # render :text => @sales
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @sales }
+    end
   end
 
   def export_purchaser_excel
