@@ -70,28 +70,21 @@
 							    <% lot_arry.each do |lot| %>
 							      <% if lot %>
 								      <td class="text-center <%= lot.background_css_name %>" id="autoload">
-								      <% if @setting.hide_detail_blocked_unit? %>
-								      	<% unless lot.status_id == Lot::BLOCKED %>
-								      		<%= render :partial => "/reservations/lot_detail", :locals => { :lot => lot } %>
+									      <% if @setting.hide_detail_blocked_unit? %>
+									      	<% unless lot.status_id == Lot::BLOCKED %>
+									      		<%= render :partial => "/reservations/lot_detail", :locals => { :lot => lot } %>
+									        <% end %>
+								        <% else %>
+								        		<%= render :partial => "/reservations/lot_detail", :locals => { :lot => lot } %>
 								        <% end %>
-							        <% else %>
-							        		<%= render :partial => "/reservations/lot_detail", :locals => { :lot => lot } %>
-							        <% end %>
 								      </td>
 								    <% else %>
 								       <td class="text-center">
 								        <div class="pad-btm"></div>
-								        <div>	
-								        	
-								        </div>
-								        <div>	
-								        	
-								        </div>
-								         <div>	
-								        	
-								        </div> 
-								        <div>
-								        </div>
+								        <div></div>
+								        <div></div>
+								        <div></div> 
+								        <div></div>
 								        <div class="pad-top"></div>
 								      </td>
 								    <% end %>

@@ -6,21 +6,21 @@ class CustomSaleEngine
     product = @sale.product
     @buyer = @sale.buyer
     @setting = product.product_setting
-    # @related_params = related_params
+    @related_params = related_params
   end
 
-  # def confirm
-  #   @sale.status_id = Sale::COMPLETED
-  #   @sale.confirm_date = Time.current if @sale.confirm_date.nil?
-  #   if @sale.update(@related_params)
-  #     if @sold_lot
-  #       @sold_lot.status_id = Lot::SOLD
-  #       if @sold_lot.save
-  #         reject_the_rest_of_sales_for_the_same_lot
-  #       end
-  #     end
-  #   end
-  # end
+  def confirm
+    @sale.status_id = Sale::COMPLETED
+    @sale.confirm_date = Time.current if @sale.confirm_date.nil?
+    if @sale.update(@related_params)
+      if @sold_lot
+        @sold_lot.status_id = Lot::SOLD
+        if @sold_lot.save
+          reject_the_rest_of_sales_for_the_same_lot
+        end
+      end
+    end
+  end
 
   def self.reserve(data)
     lot = data[:lot]
@@ -72,13 +72,14 @@ class CustomSaleEngine
               car_park_unit: data[:buyer_data][:car_park],
               payment_type: sale.payment_type,
               lot_number: data[:lot][:name],
-              selling_price: lot.selling_price,
+              selling_price: lot.selling_price.to_s,
               cheque_number: data[:cheque_number],
               credit_card_number: data[:transaction_number]
             }]
-        binding.pry
+        
         group_data = {:booking => ""}
         group_data[:booking] = record
+        # binding.pry
         # http://117.53.153.87:8889/postprebook >> testing
         # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "ddffdgd","buyer_third_name": "rteryey", "buyer_ic_number": "75675675","second_buyer_ic_number": "453453", "third_buyer_ic_number": "2342342","buyer_address": "asdasdafsdgger", "buyer_postcode": "4142342","booking_fee": "1241342", "car_park_unit": "1241","payment_type": "testing", "lot_number": "12qwedawq","selling_price": "124342", "cheque_number": "353453", "transaction_number": "qrqerqeadfad"}]}.to_json, :content_type => :json, :accept => :json
         result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", group_data.to_json, :content_type => :json, :accept => :json

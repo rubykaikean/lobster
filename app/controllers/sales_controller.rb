@@ -13,15 +13,16 @@ class SalesController < ApplicationController
       @agencies << current_user.company
       @agencies.flatten!
       @q = Sale.where("product_id IN(?)", current_user.company.product_ids).order("created_at DESC").ransack(params[:q])
+      
     else
       @q = current_user.sales.ransack(params[:q])
     end
     @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(10)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @sales }
-    end
+    render :text => @sales
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @sales }
+    # end
   end
 
   def export_purchaser_excel
