@@ -45,8 +45,11 @@ class ReservationsController < ApplicationController
 
   # confirm booking and hide book unit button
   def confirm_reservation
-    SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
-    redirect_to sales_path
+    sale = Sale.find(params[:sale_id])
+    render :text => sale
+    # @lot = Lot.find(params[:])
+    # SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
+    # redirect_to sales_path
   end
 
   def create_lot
