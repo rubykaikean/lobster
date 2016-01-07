@@ -53,12 +53,12 @@ Rails.application.configure do
   #   password: "Vusu3761"
   # }
 
-  # config.action_mailer.smtp_settings = {
-  #   :port           => 587,
-  #   :address        => 'smtp.mailgun.org',
-  #   :user_name      => 'postmaster@sandbox9ef4499b6cbb44b2a6a1f92f813be806.mailgun.org',
-  #   :password       => 'a1ad7c7d0832138060b4c8828649375e',
-  #   :domain         => 'estatekitkat.com',
-  #   :authentication => :plain
-  # }
+  config.action_mailer.smtp_settings = {
+    :port           => 587,
+    :address        => 'smtp.mailgun.org',
+    :user_name      => 'postmaster@sandbox9ef4499b6cbb44b2a6a1f92f813be806.mailgun.org',
+    :password       => 'a1ad7c7d0832138060b4c8828649375e',
+    :domain         => 'estatekitkat.com',
+    :authentication => :plain
+  }
 end

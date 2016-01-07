@@ -6,21 +6,21 @@ class CustomSaleEngine
     product = @sale.product
     @buyer = @sale.buyer
     @setting = product.product_setting
-    # @related_params = related_params
+    @related_params = related_params
   end
 
-  # def confirm
-  #   @sale.status_id = Sale::COMPLETED
-  #   @sale.confirm_date = Time.current if @sale.confirm_date.nil?
-  #   if @sale.update(@related_params)
-  #     if @sold_lot
-  #       @sold_lot.status_id = Lot::SOLD
-  #       if @sold_lot.save
-  #         reject_the_rest_of_sales_for_the_same_lot
-  #       end
-  #     end
-  #   end
-  # end
+  def confirm
+    @sale.status_id = Sale::COMPLETED
+    @sale.confirm_date = Time.current if @sale.confirm_date.nil?
+    if @sale.update(@related_params)
+      if @sold_lot
+        @sold_lot.status_id = Lot::SOLD
+        if @sold_lot.save
+          reject_the_rest_of_sales_for_the_same_lot
+        end
+      end
+    end
+  end
 
   def self.reserve(data)
     lot = data[:lot]
