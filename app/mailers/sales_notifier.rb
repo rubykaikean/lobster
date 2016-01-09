@@ -40,6 +40,6 @@ class SalesNotifier < ApplicationMailer
   def api_unit_not_found(sale_id)
     sale = Sale.find_by(id: sale_id)
     lot = sale.lot
-    mail(to: "leon@outsq.com", subject: "Lot No Not Found", from: "admin@llkproperties", body: "#{lot.name} unit not found!, Contact Admin. ")
+    mail(to: "leon@outsq.com", subject: "Lot No Not Found", from: "admin@llkproperties.com.my", body: "#{lot.name} unit not found!, Contact Admin. ")
   end
 end
