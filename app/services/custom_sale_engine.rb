@@ -47,12 +47,16 @@ class CustomSaleEngine
       group_data[:booking] = record
       
       # http://117.53.153.87:8889/postprebook >> testing
-      result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "ddffdgd","buyer_third_name": "rteryey", "buyer_ic_number": "75675675","second_buyer_ic_number": "453453", "third_buyer_ic_number": "2342342","buyer_address": "asdasdafsdgger", "buyer_postcode": "4142342","booking_fee": "1241342", "car_park_unit": "1241","payment_type": "testing", "lot_number": "12qwedawq","selling_price": "124342", "cheque_number": "353453", "transaction_number": "qrqerqeadfad"}]}.to_json, :content_type => :json, :accept => :json
+      # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "ddffdgd","buyer_third_name": "rteryey", "buyer_ic_number": "75675675","second_buyer_ic_number": "453453", "third_buyer_ic_number": "2342342","buyer_address": "asdasdafsdgger", "buyer_postcode": "4142342","booking_fee": "1241342", "car_park_unit": "1241","payment_type": "testing", "lot_number": "12qwedawq","selling_price": "124342", "cheque_number": "353453", "transaction_number": "qrqerqeadfad"}]}.to_json, :content_type => :json, :accept => :json
       result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", group_data.to_json, :content_type => :json, :accept => :json
       doc = JSON.parse result_respond
       # doc.class
       if doc["PostPrebook_response"]["Result"]["BOOKINGSUCCESS"].to_i == 0
-        SalesNotifier.inform_api_transfer_fail(sale.id).deliver_now
+        if doc["PostPrebook_response"]["Result"]["FAILEDREASON"] == "Unit No.  not found!"
+          SalesNotifier.api_unit_not_found(sale.id).deliver_now
+        else
+          SalesNotifier.inform_api_transfer_fail(sale.id).deliver_now  
+        end
       end
   end
 
