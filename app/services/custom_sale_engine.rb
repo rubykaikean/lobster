@@ -52,7 +52,11 @@ class CustomSaleEngine
       doc = JSON.parse result_respond
       # doc.class
       if doc["PostPrebook_response"]["Result"]["BOOKINGSUCCESS"].to_i == 0
-        SalesNotifier.inform_api_transfer_fail(sale.id).deliver_now
+        if doc["PostPrebook_response"]["Result"]["FAILEDREASON"] == "Unit No.  not found!"
+          SalesNotifier.api_unit_not_found(sale.id).deliver_now
+        else
+          SalesNotifier.inform_api_transfer_fail(sale.id).deliver_now  
+        end
       end
   end
 
