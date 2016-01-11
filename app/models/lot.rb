@@ -35,7 +35,7 @@ class Lot < ActiveRecord::Base
 	belongs_to :product
   belongs_to :product_type
 
-	# validates :name, presence: true, uniqueness: { scope: :product_id }
+	validates :name, presence: true, uniqueness: { scope: :product_id }
   # validates :product_type_id , presence: true
 
   AVAILABLE = 1
