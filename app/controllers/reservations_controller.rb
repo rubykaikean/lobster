@@ -80,9 +80,9 @@ class ReservationsController < ApplicationController
         payment_image: params[:payment_image],
         user_id: params[:user_id]
       }
-      unless current_user.company_id.to_i == 9
+      # unless current_user.company_id.to_i == 9
         result = SaleEngine.reserve(data)
-      end
+      # end
       case result[:status]
       when 201
         flash[:notice] = result[:message]
