@@ -105,7 +105,7 @@ class SalesController < ApplicationController
   end
 
   def add_payment
-    render :text => params[:payment_image]
+    # render :text => params[:payment_image]
     if @sale.user_id == current_user.id
       if params[:payment_image]
         params[:payment_image].each do |file|

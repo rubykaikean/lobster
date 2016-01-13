@@ -13,6 +13,7 @@ class SalesNotifier < ApplicationMailer
     mail(to: "#{@buyer.email}", subject: "#{email_template.subject}", from: "#{email_template.from}", body: "#{@text}")  #from: "Sasa <sasa@outsq.com>")
   end
 
+  # two way coming in
   def inform_admins(sale_id, payment)
     @sale = Sale.find_by(id: sale_id)
     lot = @sale.lot

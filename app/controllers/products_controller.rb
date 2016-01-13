@@ -191,7 +191,7 @@ class ProductsController < ApplicationController
     end
 
     def setting_params
-      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking, :notify_buyer_on_sale_confirmation, :notify_admin_on_sale_confirmation, :bumiputera_discount, :attach_payment_image, :hide_detail_blocked_unit, :notify_agent_on_booking_unit, :hide_price_of_sold_unit)
+      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking, :notify_buyer_on_sale_confirmation, :notify_admin_on_sale_confirmation, :bumiputera_discount, :attach_payment_image, :hide_detail_blocked_unit, :notify_agent_on_booking_unit, :hide_price_of_sold_unit, :notify_admin_on_payment_upload)
     end
 
     def setting_email_params
