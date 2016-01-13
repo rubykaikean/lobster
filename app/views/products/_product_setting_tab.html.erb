@@ -45,28 +45,36 @@
         </div>
         <hr>
         <div class="form-group">
-            <label class="col-md-3 control-label" for="setting_notify_buyer_on_sale_confirmation">Notify buyer on unit reservation</label>
-            <div class="col-md-9" style="padding-top: 5px;">
-              <input type="hidden" id="setting_notify_buyer_on_sale_confirmation_false" name="setting[notify_buyer_on_sale_confirmation]" value="0">
-              <input class="demo-switch" name="setting[notify_buyer_on_sale_confirmation]" type="checkbox" <%= @setting.notify_buyer_on_sale_confirmation? ? 'checked' : nil %> >
-            </div>
+          <label class="col-md-3 control-label" for="setting_notify_buyer_on_sale_confirmation">Notify buyer on unit reservation</label>
+          <div class="col-md-9" style="padding-top: 5px;">
+            <input type="hidden" id="setting_notify_buyer_on_sale_confirmation_false" name="setting[notify_buyer_on_sale_confirmation]" value="0">
+            <input class="demo-switch" name="setting[notify_buyer_on_sale_confirmation]" type="checkbox" <%= @setting.notify_buyer_on_sale_confirmation? ? 'checked' : nil %> >
           </div>
+        </div>
 
-          <div class="form-group">
-            <label class="col-md-3 control-label" for="setting_notify_admin_on_sale_confirmation">Notify admin on unit reservation</label>
-            <div class="col-md-9" style="padding-top: 5px;">
-              <input type="hidden" id="setting_notify_admin_on_sale_confirmation_false" name="setting[notify_admin_on_sale_confirmation]" value="0">
-              <input class="demo-switch" name="setting[notify_admin_on_sale_confirmation]" type="checkbox" <%= @setting.notify_admin_on_sale_confirmation? ? 'checked' : nil %> >
-            </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="setting_notify_admin_on_sale_confirmation">Notify admin on unit reservation</label>
+          <div class="col-md-9" style="padding-top: 5px;">
+            <input type="hidden" id="setting_notify_admin_on_sale_confirmation_false" name="setting[notify_admin_on_sale_confirmation]" value="0">
+            <input class="demo-switch" name="setting[notify_admin_on_sale_confirmation]" type="checkbox" <%= @setting.notify_admin_on_sale_confirmation? ? 'checked' : nil %> >
           </div>
+        </div>
 
-          <div class="form-group">
-            <label class="col-md-3 control-label" for="setting_notify_agent_on_booking_unit">Notify agent on unit get booked</label>
-            <div class="col-md-9" style="padding-top: 5px;">
-              <input type="hidden" id="setting_notify_agent_on_booking_unit_false" name="setting[notify_agent_on_booking_unit]" value="0">
-              <input class="demo-switch" name="setting[notify_agent_on_booking_unit]" type="checkbox" <%= @setting.notify_agent_on_booking_unit? ? 'checked' : nil %> >
-            </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="setting_notify_admin_on_sale_confirmation">Notify admin when payment upload</label>
+          <div class="col-md-9" style="padding-top: 5px;">
+            <input type="hidden" id="setting_notify_admin_on_sale_confirmation_false" name="setting[notify_admin_on_sale_confirmation]" value="0">
+            <input class="demo-switch" name="setting[notify_admin_on_sale_confirmation]" type="checkbox" <%= @setting.notify_admin_on_sale_confirmation? ? 'checked' : nil %> >
           </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="setting_notify_agent_on_booking_unit">Notify agent on unit get booked</label>
+          <div class="col-md-9" style="padding-top: 5px;">
+            <input type="hidden" id="setting_notify_agent_on_booking_unit_false" name="setting[notify_agent_on_booking_unit]" value="0">
+            <input class="demo-switch" name="setting[notify_agent_on_booking_unit]" type="checkbox" <%= @setting.notify_agent_on_booking_unit? ? 'checked' : nil %> >
+          </div>
+        </div>
         <br>
       <%= submit_tag "Update", :class=>"btn btn-primary pull-right" %>
 

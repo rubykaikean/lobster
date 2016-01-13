@@ -13,15 +13,20 @@ class SalesNotifier < ApplicationMailer
     mail(to: "#{@buyer.email}", subject: "#{email_template.subject}", from: "#{email_template.from}", body: "#{@text}")  #from: "Sasa <sasa@outsq.com>")
   end
 
-  def inform_admins(sale_id)
+  def inform_admins(sale_id, payment)
     @sale = Sale.find_by(id: sale_id)
     lot = @sale.lot
     @buyer = @sale.buyer
     @product = @sale.product
     email_template = @product.email_setting
     admin_emails = @sale.project.company.users.select {|user| user.is_admin? if (user.status_id == 1) }.map {|user| user.email }.join(", ")
-    mail(to: "#{admin_emails}", subject: "Inform Admin, New confirmed sale!", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
+    if payment?
+      mail(to: "#{admin_emails}", subject: "Inform Admin, New confirmed sale!", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
+    else
+      mail(to: "#{admin_emails}", subject: "Inform Admin, #{@buyer.full_name} upload a payment!", from: "#{}", boyd: "#{lot.name} unit had been upload a new payment, buyer name: #{@buyer.name}, Phone Number: #{@buyer.mobile_contact_number}")
+    end
   end
+
 
   def inform_agents(sale_id)
     @sale = Sale.find_by(id: sale_id)
