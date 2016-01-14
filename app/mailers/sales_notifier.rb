@@ -15,13 +15,14 @@ class SalesNotifier < ApplicationMailer
 
   # two way coming in
   def inform_admins(sale_id, payment)
+    payment = payment
     @sale = Sale.find_by(id: sale_id)
     lot = @sale.lot
     @buyer = @sale.buyer
     @product = @sale.product
     email_template = @product.email_setting
     admin_emails = @sale.project.company.users.select {|user| user.is_admin? if (user.status_id == 1) }.map {|user| user.email }.join(", ")
-    if payment?
+    if payment.present?
       mail(to: "#{admin_emails}", subject: "Inform Admin, New confirmed sale!", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
     else
       mail(to: "#{admin_emails}", subject: "Inform Admin, #{@buyer.full_name} upload a payment!", from: "#{}", boyd: "#{lot.name} unit had been upload a new payment, buyer name: #{@buyer.name}, Phone Number: #{@buyer.mobile_contact_number}")
