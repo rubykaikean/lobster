@@ -31,12 +31,14 @@
     </div>
   </div>
 
+  <% unless @user.new_record? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="user_type_id">Type</label>
     <div class="col-md-9">
       <label><%= @user.type %><label>
     </div>
   </div>
+  <% end %>
   
   <% if @user.new_record? %>
   <div class="form-group pad-ver">
