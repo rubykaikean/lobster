@@ -24,7 +24,7 @@ class SalesNotifier < ApplicationMailer
     if payment.present?
       mail(to: "#{admin_emails}", subject: "Inform Admin, New confirmed sale!", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
     else
-      mail(to: "#{admin_emails}", subject: "Inform Admin, #{@buyer.full_name} upload a payment!", from: "no-reply@estatekitkat.com", boyd: "#{lot.name} unit had been upload a new payment, buyer name: #{@buyer.name}, Phone Number: #{@buyer.mobile_contact_number}")
+      mail(to: "#{admin_emails}", subject: "Inform Admin, #{@buyer.full_name} upload a payment!", from: "#{email_template.from}", boyd: "#{lot.name} unit had been upload a new payment, buyer name: #{@buyer.name}, Phone Number: #{@buyer.mobile_contact_number}")
     end
   end
 
