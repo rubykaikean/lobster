@@ -21,7 +21,7 @@ class SalesNotifier < ApplicationMailer
     @product = @sale.product
     email_template = @product.email_setting
     admin_emails = @sale.project.company.users.select {|user| user.is_admin? if (user.status_id == User::ACTIVE) }.map {|user| user.email }.join(", ")
-    if payment.present?
+    unless payment.present?
       mail(to: "#{admin_emails}", subject: "Inform Admin, New confirmed sale!", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
     else
       mail(to: "#{admin_emails}", subject: "Inform Admin, #{@buyer.full_name} upload a payment!", from: "#{email_template.from}", boyd: "#{lot.name} unit had been upload a new payment, buyer name: #{@buyer.name}, Phone Number: #{@buyer.mobile_contact_number}")
