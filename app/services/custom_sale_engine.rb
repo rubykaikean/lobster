@@ -34,9 +34,23 @@ class CustomSaleEngine
               third_buyer_ic_number: data[:buyer_data][:third_ic_number],
               buyer_address: data[:buyer_data][:address],
               buyer_postcode: data[:buyer_data][:postcode].to_s,
+              
+              MailAddr1: "",
+              MailAddr2: "",
+              MailAddr3: "",
+              Legion: sale.buyer.region.region_code.to_s,
+              Country: "MYS",
+              Race: sale.buyer.race_name.to_s,
+              Email: data[:buyer_data][:email],
+              HP: data[:buyer_data][:mobile_contact_number].to_s,
+              officeTel: data[:buyer_data][:office_contact_number].to_s,
+              SalesPersonnel: sale.user.display_name.to_s,
+              
+              City: "",
+              PostCode: data[:buyer_data][:postcode].to_s,
               booking_fee: sale.booking_fee.to_s,
-              car_park_unit: data[:buyer_data][:car_park],
-              payment_type: sale.payment_type,
+              car_park_unit: data[:buyer_data][:car_park].to_s,
+              payment_type: sale.payment_type.to_s,
               lot_number: data[:lot][:name],
               selling_price: data[:lot][:selling_price].to_s,
               cheque_number: data[:sale][:cheque_number].to_s,
@@ -47,8 +61,9 @@ class CustomSaleEngine
       group_data[:booking] = record
       # binding.pry
       # http://117.53.153.87:8889/postprebook >> testing
-      # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "ddffdgd","buyer_third_name": "rteryey", "buyer_ic_number": "75675675","second_buyer_ic_number": "453453", "third_buyer_ic_number": "2342342","buyer_address": "asdasdafsdgger", "buyer_postcode": "4142342","booking_fee": "1241342", "car_park_unit": "1241","payment_type": "testing", "lot_number": "12qwedawq","selling_price": "124342", "cheque_number": "353453", "transaction_number": "qrqerqeadfad"}]}.to_json, :content_type => :json, :accept => :json
-      result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", group_data.to_json, :content_type => :json, :accept => :json
+      # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "","buyer_third_name": "", "buyer_ic_number": "8989898989","second_buyer_ic_number": "", "third_buyer_ic_number": "","buyer_address": "No.27 Jalan Tiang Seri U8/73G Bukit Jelutong 41050 Shah Alam Selangor", "buyer_postcode": "4142342","booking_fee": "", "car_park_unit": "","payment_type": "", "lot_number": "","selling_price": "", "cheque_number": "", "transaction_number": ""}]}.to_json, :content_type => :json, :accept => :json
+      
+      # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", group_data.to_json, :content_type => :json, :accept => :json
       doc = JSON.parse result_respond
       # doc.class
       if doc["PostPrebook_response"]["Result"]["BOOKINGSUCCESS"].to_i == 0

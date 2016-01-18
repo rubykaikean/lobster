@@ -22,7 +22,7 @@ class ReservationsController < ApplicationController
 
   def buyer
     # render :text => params
-    # logger.info {"testing by admin"}
+    # # logger.info {"testing by admin"}
     @lot = Lot.friendly.find(params[:id])
     if UserAccessible.new(current_user, :reservation, :reserve).can_access?
       @product = @lot.product
@@ -55,15 +55,15 @@ class ReservationsController < ApplicationController
       setting: setting,
       buyer_data: buyer_params
     }
-    if current_user.company_id.to_i == 9
+    # if current_user.company_id.to_i == 9.
       result = CustomSaleEngine.prebook(data)
-    end
-    SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
+    # end
+    # SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
     redirect_to sales_path
   end
 
   def create_lot
-    # render :text => params
+    # render :text => buyer_params
     @lot = Lot.find(params[:lot_id])
     @sourcestype = @lot.product.sources_types
     @region = @lot.product.regions

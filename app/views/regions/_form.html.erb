@@ -1,14 +1,5 @@
 <%= form_for(@region, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
-  <!-- <div class="form-group">
-    <label class="col-md-3 control-label" for="product_type_product_id">Product</label>
-    <div class="col-md-9">
-      <%#= Product.find(id).name %>
-      <input type="text" name="product_type[product_id]" value="<%#= id %>" style="display:none;"></input>
-      <input type="text" name="phase_id" value="<%#= params[:phase_id] %>" style="display:none;"></input>
-    </div>
-  </div> -->
   <%= f.hidden_field :product_id, value: @product.id  %>
-
 
   <div class="form-group">
     <label class="col-md-3 control-label" for="region_name">Name</label>
@@ -18,14 +9,21 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="region_region_code">Region Code</label>
+    <div class="col-md-9">
+      <input type="text" id="region_region_code" name="region[region_code]" class="form-control" placeholder="Region Code" value="<%= @region.region_code %>">
+    </div>
+  </div>
+
   <div class="panel-footer">
-      <div class="row">
-        <div class="col-sm-9 col-sm-offset-3">
-          <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
-          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg back_btn" type="reset">Back</button>
-        </div>
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
+        <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg back_btn" type="reset">Back</button>
       </div>
     </div>
+  </div>
 <% end %>
 
 <script type="text/javascript">

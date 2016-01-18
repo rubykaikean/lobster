@@ -139,6 +139,7 @@ class ProductsController < ApplicationController
     region_params.each do |id, content|
       region = Region.find id
       region.name = content[:name]
+      region.region_code = content[:region_code]
       region.save!
     end
     flash[:notice] = "Region has been saved."

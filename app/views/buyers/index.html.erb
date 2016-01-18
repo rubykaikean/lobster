@@ -1,35 +1,43 @@
-h1 Listing buyers
 
-table
-  thead
-    tr
-      th Full name
-      th Ic number
-      th Address
-      th Mobile contact number
-      th Home contact number
-      th Office contact number
-      th Email
-      th Status
-      th
-      th
-      th
+<p id="notice"><%= notice %></p>
 
-  tbody
-    - @buyers.each do |buyer|
-      tr
-        td = buyer.full_name
-        td = buyer.ic_number
-        td = buyer.address
-        td = buyer.mobile_contact_number
-        td = buyer.home_contact_number
-        td = buyer.office_contact_number
-        td = buyer.email
-        td = buyer.status_id
-        td = link_to 'Show', buyer
-        td = link_to 'Edit', edit_buyer_path(buyer)
-        td = link_to 'Destroy', buyer, data: {:confirm => 'Are you sure?'}, :method => :delete
+<h1>Listing Company Settings</h1>
 
-br
+<table>
+  <thead>
+    <tr>
+      <th>Full name</th>
+      <th>Ic number</th>
+      <th>Address</th>
+      <th>Mobile contact number</th>
+      <th>Home contact number</th>
+      <th>Office contact number</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-= link_to 'New Buyer', new_buyer_path
+  <tbody>
+    <% @buyers.each do |buyer| %>
+      <tr>
+        <td><%= buyer.full_name %></td>
+        <td><%= buyer.ic_number %></td>
+        <td><%= buyer.address %></td>
+        <td><%= buyer.mobile_contact_number %></td>
+        <td><%= buyer.home_contact_number %></td>
+        <td><%= buyer.office_contact_number %></td>
+        <td><%= buyer.email ></td>
+        <td><%= buyer.status_id %></td>
+        <td><%= link_to 'Show', buyer %></td>
+        <td><%= link_to 'Edit', edit_buyer_path(buyer) %></td>
+        <td><%= link_to 'Destroy', buyer, data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company setting', new_company_setting_path %>
+
