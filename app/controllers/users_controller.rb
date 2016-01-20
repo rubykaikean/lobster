@@ -66,8 +66,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update_member
+    # render :text => params
     @company = current_user.company
-    @user.type_id = params[:user_type_id]
+    # @user.type_id = params[:user_type_id]
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

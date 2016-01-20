@@ -105,6 +105,8 @@ class SalesController < ApplicationController
   end
 
   def add_payment
+    # render :text => params[:payment_image]
+    setting = @sale.product.product_setting
     if @sale.user_id == current_user.id
       if params[:payment_image]
         params[:payment_image].each do |file|
@@ -115,9 +117,11 @@ class SalesController < ApplicationController
           end
         end
       end
-    @sale.cheque_number = params[:payment][:cheque_number] if params[:payment][:cheque_number]
-    @sale.transaction_number = params[:payment][:transaction_number] if params[:payment][:transaction_number]
-    @sale.save
+      @sale.cheque_number = params[:payment][:cheque_number] if params[:payment][:cheque_number]
+      @sale.transaction_number = params[:payment][:transaction_number] if params[:payment][:transaction_number]
+      if @sale.save
+        SalesNotifier.inform_admins(@sale.id, params[:payment_image]).deliver_now if setting.notify_admin_on_payment_upload?
+      end
     else
       flash[:alert] = "Only the agent of the sale can edit."
     end

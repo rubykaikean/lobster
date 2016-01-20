@@ -48,9 +48,9 @@ class User < ActiveRecord::Base
   validates :display_name, uniqueness: { scope: :company_id }
   validates :username, presence: true, uniqueness: true
 
-  ADMIN = 1
-  SUPERVISOR = 2
-  STAFF = 3
+  ADMIN       = 1
+  SUPERVISOR  = 2
+  STAFF       = 3
 
   ACTIVE = 1
   INACTIVE = 2

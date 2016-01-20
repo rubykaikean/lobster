@@ -95,5 +95,6 @@ Lobster::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[ekDeveloper] ",
     :sender_address => %{"staging notifier" <no-reply@estatekitkat.com>},
-    :exception_recipients => %w{angmeng@gmail.com khongkk89@gmail.com}
+    :exception_recipients => %w{khongkk89@gmail.com}
+    # angmeng@gmail.com
   }
