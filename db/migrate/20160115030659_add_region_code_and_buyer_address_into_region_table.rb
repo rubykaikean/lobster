@@ -7,7 +7,7 @@ class AddRegionCodeAndBuyerAddressIntoRegionTable < ActiveRecord::Migration
 
   	add_column :buyers, :buyer_third_address, :string, :limit => 40		
 	
-  	change_column :buyers, :address, :string, :limit => 40
+  	change_column :buyers, :address, :string
 	end
 
 	def down
