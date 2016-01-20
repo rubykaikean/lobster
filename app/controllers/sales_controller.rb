@@ -120,7 +120,7 @@ class SalesController < ApplicationController
       @sale.cheque_number = params[:payment][:cheque_number] if params[:payment][:cheque_number]
       @sale.transaction_number = params[:payment][:transaction_number] if params[:payment][:transaction_number]
       if @sale.save
-        SalesNotifier.inform_admins(@sale.id, params[:payment_image]).deliver_now if setting.notify_admin_on_payment_upload?
+        SalesNotifier.inform_admins_payment(@sale.id).deliver_now if setting.notify_admin_on_payment_upload?
       end
     else
       flash[:alert] = "Only the agent of the sale can edit."
