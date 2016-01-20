@@ -32,12 +32,12 @@ class CustomSaleEngine
               buyer_ic_number: data[:buyer_data][:ic_number],
               second_buyer_ic_number: data[:buyer_data][:second_ic_number],
               third_buyer_ic_number: data[:buyer_data][:third_ic_number],
-              buyer_address: data[:buyer_data][:address],
+              # buyer_address: ,
               buyer_postcode: data[:buyer_data][:postcode].to_s,
               
-              MailAddr1: "",
-              MailAddr2: "",
-              MailAddr3: "",
+              MailAddr1: data[:buyer_data][:address],
+              MailAddr2: data[:buyer_data][:buyer_second_address],
+              MailAddr3: data[:buyer_data][:buyer_third_address],
               Legion: sale.buyer.region.region_code.to_s,
               Country: "MYS",
               Race: sale.buyer.race_name.to_s,
@@ -63,7 +63,7 @@ class CustomSaleEngine
       # http://117.53.153.87:8889/postprebook >> testing
       # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "","buyer_third_name": "", "buyer_ic_number": "8989898989","second_buyer_ic_number": "", "third_buyer_ic_number": "","buyer_address": "No.27 Jalan Tiang Seri U8/73G Bukit Jelutong 41050 Shah Alam Selangor", "buyer_postcode": "4142342","booking_fee": "", "car_park_unit": "","payment_type": "", "lot_number": "","selling_price": "", "cheque_number": "", "transaction_number": ""}]}.to_json, :content_type => :json, :accept => :json
       
-      # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", group_data.to_json, :content_type => :json, :accept => :json
+      result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", group_data.to_json, :content_type => :json, :accept => :json
       doc = JSON.parse result_respond
       # doc.class
       if doc["PostPrebook_response"]["Result"]["BOOKINGSUCCESS"].to_i == 0
