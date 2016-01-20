@@ -28,6 +28,10 @@ class SalesNotifier < ApplicationMailer
     # end
   end
 
+  def inform_admins_payment(sale_id)
+    
+  end
+
 
   def inform_agents(sale_id)
     @sale = Sale.find_by(id: sale_id)
