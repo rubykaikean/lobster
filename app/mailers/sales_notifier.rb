@@ -1,6 +1,10 @@
 class SalesNotifier < ApplicationMailer
   include  ActionView::Helpers::SanitizeHelper
 
+  # def initialize(sale_id)
+  #   @sale = Sale.find_by(id: sale_id)
+  # end
+
   def confirmation(sale_id)
     @sale = Sale.find_by(id: sale_id)
     @user = User.find_by(id: @sale.user_id)
@@ -53,4 +57,5 @@ class SalesNotifier < ApplicationMailer
     lot = sale.lot
     mail(to: "leon@outsq.com", subject: "Lot No Not Found", from: "admin@llkproperties.com.my", body: "#{lot.name} unit not found!, Contact Admin. ")
   end
+
 end

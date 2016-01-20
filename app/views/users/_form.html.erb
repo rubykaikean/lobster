@@ -41,7 +41,7 @@
   <% end %>
   
   <% if @user.new_record? %>
-  <div class="form-group pad-ver">
+    <div class="form-group pad-ver">
       <label class="col-md-3 control-label">Agency</label>
       <div class="col-md-9">
         <div class="select">
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-  <div class="form-group pad-ver">
+    <div class="form-group pad-ver">
       <label class="col-md-3 control-label">Type</label>
       <div class="col-md-9">
         <div class="radio">
@@ -75,23 +75,23 @@
       </div>
     </div>
 
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="user_password">Password</label>
-    <div class="col-md-9">
-      <input type="password" id="user_password" name="user[password]" class="form-control" placeholder="Minimum 8 characters" value="<%= @user.password %>">
-      <!-- <small class="help-block">This is a help text</small> -->
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="user_password">Password</label>
+      <div class="col-md-9">
+        <input type="password" id="user_password" name="user[password]" class="form-control" placeholder="Minimum 8 characters" value="<%= @user.password %>">
+        <!-- <small class="help-block">This is a help text</small> -->
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="user_confirmation">Password Confirmation</label>
-    <div class="col-md-9">
-      <input type="password" id="user_password_confirmation" name="user[password_confirmation]" class="form-control" placeholder="Retype password" value="<%= @user.password_confirmation %>">
-      <!-- <small class="help-block">This is a help text</small> -->
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="user_confirmation">Password Confirmation</label>
+      <div class="col-md-9">
+        <input type="password" id="user_password_confirmation" name="user[password_confirmation]" class="form-control" placeholder="Retype password" value="<%= @user.password_confirmation %>">
+        <!-- <small class="help-block">This is a help text</small> -->
+      </div>
     </div>
-  </div>
 
-<% end %>
+  <% end %>
 
   <div class="panel-footer">
       <div class="row">
