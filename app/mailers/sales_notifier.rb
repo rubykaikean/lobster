@@ -17,7 +17,6 @@ class SalesNotifier < ApplicationMailer
     mail(to: "#{@buyer.email}", subject: "#{email_template.subject}", from: "#{email_template.from}", body: "#{@text}")  #from: "Sasa <sasa@outsq.com>")
   end
 
-  # two way coming in
   def inform_admins(sale_id)
     @sale = Sale.find_by(id: sale_id)
     lot = @sale.lot
@@ -25,7 +24,7 @@ class SalesNotifier < ApplicationMailer
     @product = @sale.product
     email_template = @product.email_setting
     admin_emails = @sale.project.company.users.select {|user| user.is_admin? if (user.status_id == User::ACTIVE) }.map {|user| user.email }.join(", ")
-    mail(to: "#{admin_emails}", subject: "Inform Admin, New confirmed sale!", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
+    mail(to: "#{admin_emails}", subject: "Inform Admin, New confirmed sale!", from: "#{email_template.from}", body: "Unit #{lot.name} has been prebooked by #{@sale.user.company.name} / #{@sale.user.display_name}!")
   end
 
   def inform_admins_payment(sale_id)
@@ -35,7 +34,7 @@ class SalesNotifier < ApplicationMailer
     @product = @sale.product
     email_template = @product.email_setting
     admin_emails = @sale.project.company.users.select {|user| user.is_admin? if (user.status_id == User::ACTIVE) }.map {|user| user.email }.join(", ")
-    mail(to: "#{admin_emails}",  subject: "Inform Admin, Sale had been upload a payment!", from: "#{email_template.from}", body: "#{lot.name} unit had been upload a new payment, buyer name: #{@buyer.full_name}, Phone Number: #{@buyer.mobile_contact_number}")
+    mail(to: "#{admin_emails}",  subject: "Inform Admin, Sale had been upload a payment!", from: "#{email_template.from}", body: "#{@sale.user.company.name} / #{@sale.user.display_name} has collected and scanned booking fee payment for Unit #{lot.name} ")
   end
 
   def inform_agents(sale_id)
@@ -45,6 +44,9 @@ class SalesNotifier < ApplicationMailer
     agent_emails = @sale.project.company.users.map {|user| user.email if (user.status_id == 1)}.join(", ")
     mail(to: "#{agent_emails}", subject: "#{email_template.subject}", from: "#{email_template.from}", body: "#{lot.name} unit had been booked!")
   end
+
+
+  # inform admin when some thing goes wrong
 
   def inform_api_transfer_fail(sale_id)
     sale = Sale.find_by(id: sale_id)

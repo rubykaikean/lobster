@@ -81,7 +81,6 @@ class Project < ActiveRecord::Base
     else
       true
     end
-    
   end
 
 end
