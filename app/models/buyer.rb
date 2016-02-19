@@ -5,7 +5,7 @@
 #  id                    :integer          not null, primary key
 #  full_name             :string
 #  ic_number             :string
-#  address               :string(40)
+#  address               :string
 #  mobile_contact_number :string
 #  home_contact_number   :string
 #  office_contact_number :string
@@ -27,8 +27,8 @@
 #  postcode              :integer
 #  car_park              :string
 #  remark                :text
-#  buyer_second_address  :string(40)
-#  buyer_third_address   :string(40)
+#  buyer_second_address  :string
+#  buyer_third_address   :string
 #
 # Indexes
 #

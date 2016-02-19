@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115030659) do
+ActiveRecord::Schema.define(version: 20160219072130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,16 +41,16 @@ ActiveRecord::Schema.define(version: 20160115030659) do
   create_table "buyers", force: :cascade do |t|
     t.string   "full_name"
     t.string   "ic_number"
-    t.string   "address",               limit: 40
+    t.string   "address"
     t.string   "mobile_contact_number"
     t.string   "home_contact_number"
     t.string   "office_contact_number"
     t.string   "email"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "gender"
     t.string   "slug"
-    t.boolean  "is_bumi_putera",                   default: false
+    t.boolean  "is_bumi_putera",        default: false
     t.integer  "sources_type_id"
     t.integer  "race"
     t.integer  "age"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20160115030659) do
     t.integer  "postcode"
     t.string   "car_park"
     t.text     "remark"
-    t.string   "buyer_second_address",  limit: 40
-    t.string   "buyer_third_address",   limit: 40
+    t.string   "buyer_second_address"
+    t.string   "buyer_third_address"
   end
 
   add_index "buyers", ["nationality_id"], name: "index_buyers_on_nationality_id", using: :btree
