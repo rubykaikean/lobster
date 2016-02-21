@@ -149,6 +149,7 @@
     <div class="col-md-9">
       <%= radio_button_tag "buyer[gender]", 1, @buyer.gender == 1 %> Male
       <%= radio_button_tag "buyer[gender]", 2, @buyer.gender == 2 %> Female
+      <%= radio_button_tag "buyer[gender]", 3, @buyer.gender == 3 %> Other
       <% if @customization.gender_required?  %>
         <small class="help-block">Required field</small>
       <% end %>
@@ -168,6 +169,7 @@
       <option value="3" <%= @buyer.age == 3 ? 'selected' : nil %> >41-50</option>
       <option value="4" <%= @buyer.age == 4 ? 'selected' : nil %> >51-60</option>
       <option value="5" <%= @buyer.age == 5 ? 'selected' : nil %> >61 & above</option>
+      <option value="6" <%= @buyer.age == 6 ? 'selected' : nil %> >Others</option>
     </select>
     <% if @customization.age_required?  %>
       <small class="help-block">Required field</small>
