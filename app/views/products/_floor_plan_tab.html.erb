@@ -20,7 +20,7 @@
             <%= link_to 'Delete', [@product, floor_plan], method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-small btn-danger" %>
           </td>
           <td>
-            <%#= image_tag(floor_plan.image.url(:medium), class: "img-responsive thumbnail") %>
+            <%= image_tag(floor_plan.image.url(:medium), :class => "img-responsive thumbnail") %>
           </td>
         </tr>
         
