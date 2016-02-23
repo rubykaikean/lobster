@@ -4,12 +4,12 @@ class ReservationsController < ApplicationController
   def index
     company = current_user.company
     if company.is_developer?
-      @products = Product.where(company_id: current_user.company_id, is_published: true)
+      @products = Product.where(company_id: current_user.company_id, is_published: true).order(:name)
     else
       if company.parent_id.to_i > 0
-        @products = Product.where(company_id: current_user.company.parent_id, is_published: true)
+        @products = Product.where(company_id: current_user.company.parent_id, is_published: true).order(:name)
       else
-        @products = Product.where(company_id: current_user.company_id, is_published: true)
+        @products = Product.where(company_id: current_user.company_id, is_published: true).order(:name)
       end
     end
   end
