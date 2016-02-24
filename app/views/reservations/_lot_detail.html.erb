@@ -1,6 +1,10 @@
 <div class="pad-btm"></div>
 <div>
-	<%= lot.name %>
+  <% if lot.display_name.present? %>
+	  <%= lot.display_name %>
+  <% else %>
+    <%= lot.name %>
+  <% end %>  
 </div>
 <div>	
 	<%= lot.product_type.try(:name) %>

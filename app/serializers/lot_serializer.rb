@@ -20,6 +20,7 @@
 #  selling_price           :integer          default(0)
 #  row_key                 :integer          default(1)
 #  is_special_unit         :boolean          default(FALSE)
+#  display_name            :string
 #
 # Indexes
 #
