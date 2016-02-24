@@ -85,7 +85,7 @@
             </thead>
             
             <tbody>
-              <% @lots.order(:name).each do |lot| %>
+              <% @lots.order(:id).each do |lot| %>
                 <tr>
                   <td>
                     <%= text_field_tag "update_lot[#{lot.id}][name]", lot.name, :class=>"form-control" %>
