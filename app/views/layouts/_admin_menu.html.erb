@@ -95,7 +95,7 @@
 							</a>
 						<!--Submenu-->
 						<ul class="collapse">
-						  <% current_user.company.products.order(:name).each do |product| %>
+						  <% current_user.company.products.order(:name).where("status_id = ?", Product::AVAILABLE).each do |product| %>
 							  <li><a href="<%= product_path(product) %>"><%= product.name  %></a></li>
 							<% end %>
 						</ul>
