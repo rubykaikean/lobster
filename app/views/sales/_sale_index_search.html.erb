@@ -10,6 +10,13 @@
           </div>
         </div>
 
+        <!-- <div class="col-sm-6">
+          <div class="form-group">
+            <label class="control-label">Unit</label>
+            <input type="text" class="form-control" name="q[lot_product_lot_name_cont]" id="q_lot_product_lot_name_cont" >
+          </div>
+        </div> -->
+
         <div class="col-sm-6">
           <div class="form-group">
             <label class="control-label">Agency</label>
@@ -21,6 +28,7 @@
               </select>
           </div>
         </div>
+
       </div>
 
       <div class="row">
@@ -30,14 +38,16 @@
             <label class="control-label">Product</label>
             <select class="selectpicker form-control" name="q[product_id_eq]" id="q_product_id_eq">
                 <option value="">All Products</option>
-                <% current_user.company.products.each do |product| %>
+                <% current_user.company.products.where("status_id = ?", Product::AVAILABLE).each do |product| %>
                   <option value="<%= product.id %>"><%= product.name  %></option>
                 <% end %>
               </select>
           </div>
         </div>
 
-         <div class="col-sm-6">
+        
+
+        <div class="col-sm-6">
           <div class="form-group">
             <label class="control-label">Status</label>
             <select class="selectpicker form-control" name="q[status_id_eq]" id="q_status_id_eq">
@@ -48,7 +58,11 @@
               </select>
           </div>
         </div>
+
+
       </div>
+
+
 
       <% else %>
 
