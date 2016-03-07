@@ -28,7 +28,7 @@ class Product < ActiveRecord::Base
 
 	belongs_to :phase
 	belongs_to :company
-	has_many :lots
+	has_many :lots, dependent: :destroy
 	has_many :product_types
 	has_one  :email_setting
 	has_one  :product_setting

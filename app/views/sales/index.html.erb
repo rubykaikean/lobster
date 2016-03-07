@@ -18,8 +18,6 @@
         <thead>
           <tr>
             <th>Booking Date</th>
-            <th>SPA Date</th>
-            <th>Agency</th>
             <th class="text-center">Agent</th>
             <th class="text-left">Purchaser</th>
             <th class="text-center">Product</th>
@@ -35,8 +33,8 @@
           <% @sales.each do |sale| %>
           <tr>
             <td><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
-            <td><%= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td>
-            <td><%= sale.user.company.name rescue "Company not found" %></td>
+            <!-- <td><%#= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td> -->
+            <!-- <td><%#= sale.user.company.name rescue "Company not found" %></td> -->
             <td class="text-center"><%= sale.user.name rescue "User not found" %></td>
             <td class="text-left">
               <% if is_top_level_management? || (sale.user_id == current_user.id) %>
