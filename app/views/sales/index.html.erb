@@ -35,7 +35,9 @@
             <td><%= sale.created_at.strftime("%d-%m-%Y")  %></td>
             <!-- <td><%#= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td> -->
             <!-- <td><%#= sale.user.company.name rescue "Company not found" %></td> -->
-            <td class="text-center"><%= sale.user.name rescue "User not found" %></td>
+            <td class="text-center">
+              <%= sale.lot_unit_id %>
+              <%= sale.user.name rescue "User not found" %></td>
             <td class="text-left">
               <% if is_top_level_management? || (sale.user_id == current_user.id) %>
                 <a href="<%= edit_buyer_path(sale.buyer, sale_id: sale.id) rescue '#' %>"><button class="btn btn-primary btn-sm"><%= (sale.buyer.try(:full_name) || "Unknown").truncate(30, omission: '...') %></button>

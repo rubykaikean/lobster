@@ -41,7 +41,7 @@ class Sale < ActiveRecord::Base
   belongs_to :product
   belongs_to :project
   belongs_to :phase
-  belongs_to :lot_unit
+  belongs_to :lot_unit, :class_name => "Lot"
   has_many :payments
   has_one :molpay_transaction_history
 

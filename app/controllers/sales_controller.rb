@@ -12,13 +12,12 @@ class SalesController < ApplicationController
       @agencies << current_user.company.agencies
       @agencies << current_user.company
       @agencies.flatten!
-      @q = Sale.where("product_id IN(?)", current_user.company.product_ids).order("created_at DESC").ransack(params[:q])
-      
+      @q = Sale.where("sales.product_id IN(?)", current_user.company.product_ids).order("created_at DESC").ransack(params[:q])
     else
       @q = current_user.sales.ransack(params[:q])
     end
     @sales = @q.result(distinct: true).order("id ASC").page(params[:page]).per(10)
-    # render :text => @sales
+    # render :text => @sales.to_json
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sales }

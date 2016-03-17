@@ -28,13 +28,13 @@
 
   <div class="form-group pad-ver">
       <label class="col-md-3 control-label">Type</label>
-      <div class="col-md-9">
-        <select data-placeholder="Select a type", class="selectpicker" name="product[type_id]">
-          <option value="">Select an option.</option>
-          
-          <option value="1" <%= @product.type_id == Product::LANDED ? "selected='selected'" : nil %> >Landed</option>
-          <option value="2" <%= @product.type_id == Product::HIGHRISE ? "selected='selected'" : nil %> >Highrise</option>
-        </select>
+    <div class="col-md-9">
+      <select data-placeholder="Select a type", class="selectpicker" name="product[type_id]">
+        <option value="">Select an option.</option>
+        
+        <option value="1" <%= @product.type_id == Product::LANDED ? "selected='selected'" : nil %> >Landed</option>
+        <option value="2" <%= @product.type_id == Product::HIGHRISE ? "selected='selected'" : nil %> >Highrise</option>
+      </select>
     </div>
   </div>
 

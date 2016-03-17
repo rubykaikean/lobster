@@ -1,6 +1,16 @@
 <%= search_form_for(@q, :html => {class: "form-horizontal"}) do |f| %>
     <% if is_middle_level_management? %>
     <div class="panel-body">
+      
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="control-label">Unit</label>
+            <input type="text" class="form-control" name="q[lot_unit_name_cont]" id="q_lot_unit_name_cont">
+          </div>
+        </div>
+      </div>
+
       <div class="row">
 
         <div class="col-sm-6">
@@ -10,22 +20,15 @@
           </div>
         </div>
 
-        <!-- <div class="col-sm-6">
-          <div class="form-group">
-            <label class="control-label">Unit</label>
-            <input type="text" class="form-control" name="q[lot_product_lot_name_cont]" id="q_lot_product_lot_name_cont" >
-          </div>
-        </div> -->
-
         <div class="col-sm-6">
           <div class="form-group">
             <label class="control-label">Agency</label>
             <select class="selectpicker form-control" name="q[user_company_id_eq]" id="q_user_company_id_eq">
-                <option value="">All agencies</option>
-                <% @agencies.each do |agency| %>
-                  <option value="<%= agency.id %>"><%= agency.name  %></option>
-                <% end %>
-              </select>
+              <option value="">All agencies</option>
+              <% @agencies.each do |agency| %>
+                <option value="<%= agency.id %>"><%= agency.name  %></option>
+              <% end %>
+            </select>
           </div>
         </div>
 
@@ -58,7 +61,6 @@
               </select>
           </div>
         </div>
-
 
       </div>
 
