@@ -36,7 +36,7 @@
             <!-- <td><%#= sale.confirm_date.strftime("%d-%m-%Y") rescue ""  %></td> -->
             <!-- <td><%#= sale.user.company.name rescue "Company not found" %></td> -->
             <td class="text-center">
-              <%= sale.lot_unit_id %>
+              <%#= sale.id %>
               <%= sale.user.name rescue "User not found" %></td>
             <td class="text-left">
               <% if is_top_level_management? || (sale.user_id == current_user.id) %>
