@@ -100,7 +100,8 @@ class Sale < ActiveRecord::Base
 
   def actual_price
     original_price = lot.selling_price
-    if buyer.is_bumiputera? && lot.is_special_unit == false
+    # if buyer.is_bumiputera? && lot.is_special_unit == false
+    if buyer.is_bumiputera?
       rate_total = original_price * bumiputera_discount / 100
       original_price -= rate_total
     else
