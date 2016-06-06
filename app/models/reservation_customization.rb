@@ -77,6 +77,8 @@
 #  transaction_number              :boolean          default(FALSE)
 #  cheque_number_required          :boolean          default(FALSE)
 #  transaction_number_required     :boolean          default(FALSE)
+#  country                         :boolean          default(FALSE)
+#  country_required                :boolean          default(FALSE)
 #
 # Indexes
 #

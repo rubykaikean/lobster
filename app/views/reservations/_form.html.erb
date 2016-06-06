@@ -214,6 +214,20 @@
   </div>
   <% end %>
 
+  <% if @customization.country? %>
+    <div class="form-group">
+      <label class="col-md-3 control-label" for="buyer_country">
+        Country:
+      </label>
+      <div class="col-md-9">
+        <input type="text" id="buyer_country" name="buyer[country]" class="form-control" placeholder="Country" value="<%= @buyer.country %>" <%= @customization.country_required? ? 'required' : nil %> >
+        <small class="help-block">
+          <% if @customization.country_required? %>Required Field.<% end %>
+        </small>
+      </div>
+    </div>
+  <% end %>
+
   <% if @customization.mobile_contact_number? %>
   <div class="form-group">
     <label class="col-md-3 control-label" for="buyer_mobile_contact_number">Mobile Contact Number: </label>

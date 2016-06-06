@@ -47,7 +47,7 @@
 			    </div>
 
 			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_home_contact_number_required">Home Contact Number (Required?)</label>
+			      <label class="col-md-6 control-label" for="customize_home_contact_number_required">Home Contact Number(Required?)</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_home_contact_number_required_false" name="customize[home_contact_number_required]" value="0">
 			        <input class="demo-switch" name="customize[home_contact_number_required]" type="checkbox" <%= customize.home_contact_number_required? ? 'checked' : nil %> >
@@ -55,7 +55,7 @@
 			    </div>
 
 			    <div class="form-group">
-			      <label class="col-md-6 control-label" for="customize_mobile_contact_number_required">Mobile Contact Number (Required?)</label>
+			      <label class="col-md-6 control-label" for="customize_mobile_contact_number_required">Mobile Contact Number(Required?)</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_mobile_contact_number_required_false" name="customize[mobile_contact_number_required]" value="0">
 			        <input class="demo-switch" name="customize[mobile_contact_number_required]" type="checkbox" <%= customize.mobile_contact_number_required? ? 'checked' : nil %> >
@@ -123,6 +123,14 @@
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_gender_required_false" name="customize[gender_required]" value="0">
 			        <input class="demo-switch" name="customize[gender_required]" type="checkbox" <%= customize.gender_required? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_country_required">Country (Required?)</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_country_required_false" name="customize[country_required]" value="0">
+			        <input class="demo-switch" name="customize[country_required]" type="checkbox" <%= customize.country_required? ? 'checked' : nil %> >
 			      </div>
 			    </div>
 

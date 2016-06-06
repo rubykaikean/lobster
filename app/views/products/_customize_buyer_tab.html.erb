@@ -127,6 +127,14 @@
 			    </div>
 
 			    <div class="form-group">
+			      <label class="col-md-6 control-label" for="customize_country">Country</label>
+			      <div class="col-md-6" style="padding-top: 5px;">
+			        <input type="hidden" id="customize_country_false" name="customize[country]" value="0">
+			        <input class="demo-switch" name="customize[country]" type="checkbox" <%= customize.country? ? 'checked' : nil %> >
+			      </div>
+			    </div>
+
+			    <div class="form-group">
 			      <label class="col-md-6 control-label" for="customize_is_bumi_putera">Is Bumi Putera</label>
 			      <div class="col-md-6" style="padding-top: 5px;">
 			        <input type="hidden" id="customize_is_bumi_putera_false" name="customize[is_bumi_putera]" value="0">

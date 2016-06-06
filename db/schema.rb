@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224142202) do
+ActiveRecord::Schema.define(version: 20160606092722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160224142202) do
     t.text     "remark"
     t.string   "buyer_second_address"
     t.string   "buyer_third_address"
+    t.string   "country"
   end
 
   add_index "buyers", ["nationality_id"], name: "index_buyers_on_nationality_id", using: :btree
@@ -407,6 +408,8 @@ ActiveRecord::Schema.define(version: 20160224142202) do
     t.boolean  "transaction_number",              default: false
     t.boolean  "cheque_number_required",          default: false
     t.boolean  "transaction_number_required",     default: false
+    t.boolean  "country",                         default: false
+    t.boolean  "country_required",                default: false
   end
 
   add_index "reservation_customizations", ["product_id"], name: "index_reservation_customizations_on_product_id", using: :btree
