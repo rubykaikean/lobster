@@ -55,10 +55,10 @@ class ReservationsController < ApplicationController
       setting: setting,
       buyer_data: buyer_params
     }
-    if current_user.company_id.to_i == 9
+    # if current_user.company_id.to_i == 9
       CustomSaleEngine.prebook(data)
-    end
-    SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
+    # end
+    # SaleConfirmReservation.new(params[:sale_id]).sale_confirm_and_pending_reservation
     redirect_to sales_path
   end
 
