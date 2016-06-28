@@ -52,12 +52,13 @@ class CustomSaleEngine
               lot_number: data[:lot][:name],
               selling_price: data[:lot][:selling_price].to_s,
               cheque_number: data[:sale][:cheque_number].to_s,
-              credit_card_number: data[:sale][:transaction_number].to_s
+              credit_card_number: data[:sale][:transaction_number].to_s,
+              remark: data[:buyer_data][:remark].to_s
             }]
       
       group_data = {:booking => ""}
       group_data[:booking] = record
-
+      # binding.pry
       # http://117.53.153.87:8889/postprebook >> testing
       # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "","buyer_third_name": "", "buyer_ic_number": "8989898989","second_buyer_ic_number": "", "third_buyer_ic_number": "","buyer_address": "No.27 Jalan Tiang Seri U8/73G Bukit Jelutong 41050 Shah Alam Selangor", "buyer_postcode": "4142342","booking_fee": "", "car_park_unit": "","payment_type": "", "lot_number": "","selling_price": "", "cheque_number": "", "transaction_number": ""}]}.to_json, :content_type => :json, :accept => :json
       
