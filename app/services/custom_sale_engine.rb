@@ -62,15 +62,15 @@ class CustomSaleEngine
       # result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", {"booking": [{"transaction_id": "1231", "full_name": "asdasd","buyer_second_name": "","buyer_third_name": "", "buyer_ic_number": "8989898989","second_buyer_ic_number": "", "third_buyer_ic_number": "","buyer_address": "No.27 Jalan Tiang Seri U8/73G Bukit Jelutong 41050 Shah Alam Selangor", "buyer_postcode": "4142342","booking_fee": "", "car_park_unit": "","payment_type": "", "lot_number": "","selling_price": "", "cheque_number": "", "transaction_number": ""}]}.to_json, :content_type => :json, :accept => :json
       
       result_respond = RestClient.post "http://117.53.153.87:8800/postprebook", group_data.to_json, :content_type => :json, :accept => :json
-      doc = JSON.parse result_respond
-      # doc.class
-      if doc["PostPrebook_response"]["Result"]["BOOKINGSUCCESS"].to_i == 0
-        if doc["PostPrebook_response"]["Result"]["FAILEDREASON"] == "Unit No.  not found!"
-          SalesNotifier.api_unit_not_found(sale.id).deliver_now
-        else
-          SalesNotifier.inform_api_transfer_fail(sale.id).deliver_now  
-        end
-      end
+      # doc = JSON.parse result_respond
+      # # doc.class
+      # if doc["PostPrebook_response"]["Result"]["BOOKINGSUCCESS"].to_i == 0
+      #   if doc["PostPrebook_response"]["Result"]["FAILEDREASON"] == "Unit No.  not found!"
+      #     SalesNotifier.api_unit_not_found(sale.id).deliver_now
+      #   else
+      #     SalesNotifier.inform_api_transfer_fail(sale.id).deliver_now  
+      #   end
+      # end
   end
 
   def self.reserve(data)
