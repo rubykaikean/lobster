@@ -42,6 +42,7 @@ class CustomSaleEngine
               race: sale.buyer.race_name.to_s,
               email: data[:buyer_data][:email],
               hp: data[:buyer_data][:mobile_contact_number].to_s,
+              hometel: data[:buyer_data][:home_contact_number].to_s,
               officetel: data[:buyer_data][:office_contact_number].to_s,
               salespersonnel: sale.user.display_name.to_s,
 

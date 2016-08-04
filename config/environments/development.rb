@@ -46,11 +46,11 @@ Rails.application.configure do
   # config.action_mailer.smtp_settings = {
   #   address: "smtp.office365.com",
   #   port: 587,
-  #   # domain: "estatekitkat.com",
+  #   domain: "atlas.iqiglobal.com",
   #   authentication: :login,
   #   enable_starttls_auto: true,
-  #   user_name: "sasa@outsq.com",
-  #   password: "Vusu3761"
+  #   user_name: "leon@iqi-group.com",
+  #   password: "Kkk105201314"
   # }
 
   config.action_mailer.smtp_settings = {
