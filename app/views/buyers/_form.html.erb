@@ -118,6 +118,8 @@
       <input type="text" id="buyer_address" name="buyer[buyer_second_address]" class="form-control" value="<%= @buyer.buyer_second_address %>" <%= @customization.address_required? ? 'required' : nil %> placeholder="Second Buyer Address"></input>
       <br>
       <input type="text" id="buyer_address" name="buyer[buyer_third_address]" value="<%= @buyer.buyer_third_address %>" class="form-control" <%= @customization.address_required? ? 'required' : nil %> placeholder="Third Buyer Address"></input>
+      <br>
+      <input type="text" id="buyer_address" name="buyer[buyer_fouth_address]" value="<%= @buyer.buyer_fouth_address %>" class="form-control" <%= @customization.address_required? ? 'required' : nil %> placeholder="Fouth Buyer Address"></input>
       <% if @customization.address_required?  %>
         <small class="help-block">Required field</small>
       <% end %>

@@ -30,6 +30,7 @@
 #  buyer_second_address  :string
 #  buyer_third_address   :string
 #  country               :string
+#  buyer_fouth_address   :string
 #
 # Indexes
 #

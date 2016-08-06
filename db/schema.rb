@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606092722) do
+ActiveRecord::Schema.define(version: 20160806071333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160606092722) do
     t.string   "buyer_second_address"
     t.string   "buyer_third_address"
     t.string   "country"
+    t.string   "buyer_fouth_address"
   end
 
   add_index "buyers", ["nationality_id"], name: "index_buyers_on_nationality_id", using: :btree

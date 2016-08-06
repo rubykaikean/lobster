@@ -124,6 +124,8 @@
       <input type="text" id="buyer_address" name="buyer[buyer_second_address]" class="form-control" <%= @customization.address_required? ? 'required' : nil %> placeholder="Second Buyer Address"> <%= @buyer.buyer_second_address %></input>
       <br>
       <input type="text" id="buyer_address" name="buyer[buyer_third_address]" class="form-control" <%= @customization.address_required? ? 'required' : nil %> placeholder="Third Buyer Address"> <%= @buyer.buyer_third_address %></input>
+      <br>
+      <input type="text" id="buyer_address" name="buyer[buyer_fouth_address]" class="form-control" <%= @customization.address_required? ? 'required' : nil %> placeholder="Fouth Buyer Address"> <%= @buyer.buyer_fouth_address %></input>
       <% if @customization.address_required?  %>
         <small class="help-block">Required field</small>
       <% end %>

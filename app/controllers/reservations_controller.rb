@@ -104,7 +104,7 @@ class ReservationsController < ApplicationController
   private
 
   def llk_developer_params
-    params.require(:customize).permit(:transaction_id, :full_name, :buyer_second_name, :buyer_third_name, :buyer_ic_number, :second_buyer_ic_number, :third_buyer_ic_number, :buyer_address, :buyer_postcode, :booking_fee, :car_park_unit, :payment_type, :lot_number, :selling_price, :cheque_number, :credit_card_number)
+    params.require(:customize).permit(:transaction_id, :full_name, :buyer_second_name, :buyer_third_name, :buyer_ic_number, :second_buyer_ic_number, :third_buyer_ic_number, :buyer_address, :buyer_postcode, :booking_fee, :car_park_unit, :payment_type, :lot_number, :selling_price, :cheque_number, :credit_card_number, :buyer_fouth_address)
   end
 
   def buyer_params
