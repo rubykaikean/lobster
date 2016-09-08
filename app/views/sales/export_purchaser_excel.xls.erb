@@ -7,6 +7,7 @@
 		<th>Unit</th>
 		<th>Price</th>
 		<th>Purchaser</th>
+		<th>Contact Number</th>
 		<th>Remark</th>
 	</tr>
 	<% @sales.each do |p| %>
@@ -16,6 +17,7 @@
 		<td><%= p.lot.name rescue "Unit not found" %></td>
 		<td><%= number_with_precision(p.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %></td>
 		<td><%= p.buyer.try(:full_name) %></td>
+		<td><%= p.buyer.try(:mobile_contact_number) %></td>
 		<td><%= p.buyer.try(:remark) %></td>
 	</tr>
 	<% end %>
