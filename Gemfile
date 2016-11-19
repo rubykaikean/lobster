@@ -22,7 +22,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6', '>= 1.6.7'
 #gem 'ember-rails'
 #gem 'ember-source', '~> 1.11.1'
 gem 'devise'
