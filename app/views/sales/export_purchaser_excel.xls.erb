@@ -15,7 +15,7 @@
 		<td><%= p.user.name rescue "User not found" %></td>
 		<td><%= p.lot.product.name rescue "Lot not found" %></td>
 		<td><%= p.lot.name rescue "Unit not found" %></td>
-		<td><%= number_with_precision(p.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Lot not found" %></td>
+		<td><%= number_with_precision(p.actual_price, precision: 0, separator: ".", delimiter: ",") rescue "Price not found" %></td>
 		<td><%= p.buyer.try(:full_name) %></td>
 		<td><%= p.buyer.try(:mobile_contact_number) %></td>
 		<td><%= p.buyer.try(:remark) %></td>

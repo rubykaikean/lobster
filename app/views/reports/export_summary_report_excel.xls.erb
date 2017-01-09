@@ -26,8 +26,8 @@
               <td><%= p.buyer.try(:full_name) %></td>
               <td><%= p.buyer.try(:mobile_contact_number) %></td>
               <td>
-                <% lot = p.lot %>
-                <%= lot.actual_price %>
+                <%# lot = p.lot %>
+                <%= p.lot.try(:actual_price) %>
               </td>
               <td><%= ProductType.find_by_id(p.product_id).try(:name) %></td>
               <td><%= Lot.find_by_id(p.lot_unit_id).name %></td>
