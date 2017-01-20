@@ -27,7 +27,7 @@ development:
   encoding: unicode
   database: lobster_development
   pool: 5
-  username: postgresql
+  username: postgres
   password: deploy123123
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -72,7 +72,7 @@ test:
   encoding: unicode
   database: lobster_test
   pool: 5
-  username: postgresql
+  username: postgres
   password: deploy123123
 
 production:
@@ -80,6 +80,6 @@ production:
   encoding: unicode
   database: lobster_production
   pool: 5
-  username: postgresql
+  username: postgres
   password: deploy123123
 
