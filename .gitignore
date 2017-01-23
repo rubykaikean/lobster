@@ -15,6 +15,7 @@
 /public/assets
 /config/database.yml
 /config/secrets.yml
+/config/secrets2.yml
 /.ruby-gemset
 /.ruby-version
 /public/floor_plans

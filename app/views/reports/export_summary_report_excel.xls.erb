@@ -9,6 +9,7 @@
               <th>Price</th>
               <th>Type</th>
               <th>Lot</th>
+              <th>IC Number</th>
               <th>Age</th>
               <th>Race</th>
               <th>Region</th>
@@ -31,6 +32,7 @@
               </td>
               <td><%= ProductType.find_by_id(p.product_id).try(:name) %></td>
               <td><%= Lot.find_by_id(p.lot_unit_id).name %></td>
+              <td><%= p.buyer.try(:ic_number) %></td>
               <td>
                 <% if p.buyer.try(:age) == 1 %>
                   18-30
