@@ -1,43 +1,70 @@
+<!-- LOGIN FORM -->
+    <!--===================================================-->
+<div class="cls-content">
+  <% if flash[:alert] %>
+    <div style="margin-top:0px;">
+      <%= flash[:alert]  %>
+    </div>
+  <% end %>
+    
+  <div class="cls-content-sm panel">
+    <div class="panel-body">
+      <p class="pad-btm">Sign Up an account</p>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+            <input type="text" name="user[email]" class="form-control" placeholder="Email">
+          </div>
+        </div>
 
-<div class="form-horizontal">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-        <div class="panel-heading">
-            <h3 class="panel-title"><u>Sign Up</u></h3>
-        </div>
-        <div class="panel-body">
-          <%= render '/companies/form' %>
-          <hr>
-          <h3 class="page-header text-overflow"><u>Personal sign up</u></h3>
-          <div class="form-group">
-            <label for="demo-is-inputnormal" class="col-sm-3 control-label">Email</label>
-            <div class="col-sm-6">
-              <%= f.email_field :email, autofocus: true, :class=>"form-control", :placeholder => "Email" %>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Password</label>
-            <div class="col-sm-6">
-              <% if @validatable %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "off", :class=>"form-control", :placeholder => "Enter Password" %>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Password Confirmation</label>
-            <div class="col-sm-6">
-              <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"form-control", :placeholder => "Retype Password" %>
-            </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+            <input type="text" name="user[display_name]" class="form-control" placeholder="Display Name">
           </div>
         </div>
-        <div class="panel-footer">
-          <div class="row">
-            <div class="col-sm-9 col-sm-offset-3">
-              <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit" value="Submit" name="commit">Sign up and Login</button>
-              <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg" type="reset">Reset</button>
+
+        <hr>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+            <%= f.password_field :password, autocomplete: "off", :class=>"form-control", :placeholder => "Password" %>
+          </div>
+          <% if @validatable %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+            <input type="password" name="user[password_confirmation]" class="form-control" placeholder="Password Confirmation">
+              <%#= f.password_field :password_confirmation, autocomplete: "off", :class=>"form-control", :placeholder => "Password Confirmation" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-8 text-left checkbox">
+            <!-- <label class="form-checkbox form-icon">
+            <input type="checkbox"> Remember me
+            </label> -->
+          </div>
+          <div class="col-xs-4">
+            <div class="form-group pull-right">
+
+            <button class="btn btn-success text-uppercase" type="submit">Sign Up</button>
             </div>
           </div>
         </div>
+      </div>
     <% end %>
   </div>
+    
+  <div class="pad-ver">
+    <a href="<%= new_user_session_path %>" class="btn-link mar-rgt">Back to Sign In</a>
+  </div>
+</div>
+    <!--===================================================-->      
+
+
