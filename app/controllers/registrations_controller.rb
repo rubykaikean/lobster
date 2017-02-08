@@ -12,12 +12,14 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    # render :text => sign_up_params
+
     user = User.new(sign_up_params)
     user.status_id = User::INACTIVE
     user.type_id   = User::STAFF
     user.save!
     redirect_to new_user_session_path, :notice => "Thank for signed up"
-    # continue status id and type id 
+    
 		# @company = Company.new(company_params)
 		# @company.type_id = params[:type_id]
 
@@ -44,9 +46,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   # private
 
-  # def sign_up_params
-  #   params.require(:user).permit(:email, :display_name, :password, :password_confirmation)
-  # end
+  def sign_up_params
+    params.require(:user).permit(:email, :display_name, :username, :password, :password_confirmation)
+  end
   # def company_params
   #     params.require(:company).permit(:name, :registration_number, :address, :phone_number, :fax_number, :type_id, :slug)
   # end

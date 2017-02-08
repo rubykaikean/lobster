@@ -6,15 +6,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @company = current_user.company
-    @users = []
-    @users << @company.users
-    @company.agencies.each do |agency|
-      @users << agency.users
-    end
-    @users.flatten!
-    @users.sort_by! {|user| [user.company_id, user.name]}
-
+    return redirect_to root_path, alert: "Sorry, you don't have the access right." if is_low_level_staff?
+    
+    @q = User.order(:type_id).ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page]).per(10)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

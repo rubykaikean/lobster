@@ -78,10 +78,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :is_low_level_management?
-  def is_low_level_management?
-    is_low_level_admin? || is_low_level_staff?
-  end
+  # helper_method :is_low_level_management?
+  # def is_low_level_management?
+  #   is_low_level_admin? || is_low_level_staff?
+  # end
 
   def authenticate_admin_and_user!
     unless user_signed_in? || admin_signed_in?
