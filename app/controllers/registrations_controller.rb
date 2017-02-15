@@ -13,13 +13,19 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     # render :text => sign_up_params
-
     user = User.new(sign_up_params)
-    user.status_id = User::INACTIVE
-    user.type_id   = User::STAFF
-    user.save!
-    redirect_to new_user_session_path, :notice => "Thank for signed up"
-    
+    self.resource = user
+    if user.save 
+      user.status_id = User::INACTIVE
+      user.type_id   = User::STAFF      
+      sign_up(resource_name, resource)
+      redirect_to root_url, notice: "Successfully Created"
+    else
+      logger.info {resource.errors.full_messages}
+      flash[:alert] = "#{resource.errors.full_messages}"
+      render :action => "new"
+    end
+
 		# @company = Company.new(company_params)
 		# @company.type_id = params[:type_id]
 
