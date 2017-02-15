@@ -1,11 +1,9 @@
-<% if @company.is_developer? %>
-
 <div class="col-sm-12 col-md-4 col-lg-4">
 	<!--Projects-->
 	<a href="<%= projects_path %>">
 	<div class="panel panel-purple panel-colorful">
 		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%= @projects_count %></span>
+			<span class="text-5x text-thin"><%#= @projects_count %></span>
 			<p>Project</p>
 			<i class="fa fa-university"></i>
 		</div>
@@ -18,7 +16,7 @@
 	<!--Task-->
 	<div class="panel panel-success panel-colorful">
 		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%= @products_count  %></span>
+			<span class="text-5x text-thin"><%#= @products_count  %></span>
 			<p>Products</p>
 			<i class="fa fa-building"></i>
 		</div>
@@ -30,7 +28,7 @@
 		<a href="<%= companies_path %>">
 		<div class="panel panel-info panel-colorful">
 			<div class="pad-all text-center">
-				<span class="text-5x text-thin"><%= @agency_count  %></span>
+				<span class="text-5x text-thin"><%#= @agency_count  %></span>
 				<p>Agencies</p>
 				<i class="fa fa-users"></i>
 			</div>
@@ -43,7 +41,7 @@
 		<a href="<%= users_path %>">
 		<div class="panel panel-dark panel-colorful">
 			<div class="pad-all text-center">
-				<span class="text-5x text-thin"><%= @agent_count %></span>
+				<span class="text-5x text-thin"><%#= @agent_count %></span>
 				<p>Agents</p>
 				<i class="fa fa-user"></i>
 			</div>
@@ -56,7 +54,7 @@
 		<a href="<%= sales_path %>">
 		<div class="panel panel-primary panel-colorful">
 			<div class="pad-all text-center">
-				<span class="text-5x text-thin"><%= @sales_count %></span>
+				<span class="text-5x text-thin"><%#= @sales_count %></span>
 				<p>Sales</p>
 				<i class="fa fa-shopping-cart"></i>
 			</div>
@@ -69,66 +67,7 @@
 	<a href="<%= reports_path %>">
 	<div class="panel panel-warning panel-colorful">
 		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%= number_with_precision(@earnings, precision: 0, separator: ".", delimiter: ",") %></span>
-			<p>Revenue</p>
-			<i class="fa fa-money"></i>
-		</div>
-	</div>
-	</a>
-</div>
-
-<% else %>
-
-<div class="col-sm-12 col-md-4 col-lg-4">
-	<!--Projects-->
-	<div class="panel panel-purple panel-colorful">
-		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%= @projects_count %></span>
-			<p>Projects</p>
-			<i class="fa fa-university"></i>
-		</div>
-	</div>
-</div>
-
-<div class="col-sm-12 col-md-4 col-lg-4">
-	<!--Task-->
-	<div class="panel panel-success panel-colorful">
-		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%= @products_count  %></span>
-			<p>Products</p>
-			<i class="fa fa-building"></i>
-		</div>
-	</div>
-</div>
-
-<div class="col-sm-12 col-md-4 col-lg-4">				
-	<!--Reports-->
-	<div class="panel panel-dark panel-colorful">
-		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%= @saleman_count %></span>
-			<p>Agents</p>
-			<i class="fa fa-user"></i>
-		</div>
-	</div>
-</div>
-					
-<div class="col-sm-12 col-md-6 col-lg-6">					
-<!--Sales-->
-<div class="panel panel-primary panel-colorful">
-	<div class="pad-all text-center">
-		<span class="text-5x text-thin"><%= @sales_count %></span>
-		<p>Sales</p>
-		<i class="fa fa-shopping-cart"></i>
-	</div>
-</div>
-</div>
-<div class="col-sm-12 col-md-6 col-lg-6">
-
-	<!--Messages-->
-	<a href="<%= reports_path %>">
-	<div class="panel panel-warning panel-colorful">
-		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%= number_with_precision(@earnings, precision: 0, separator: ".", delimiter: ",") %></span>
+			<span class="text-5x text-thin"><%#= number_with_precision(@earnings, precision: 0, separator: ".", delimiter: ",") %></span>
 			<p>Revenue</p>
 			<i class="fa fa-money"></i>
 		</div>
@@ -137,5 +76,4 @@
 </div>
 
 
-<% end %>
 

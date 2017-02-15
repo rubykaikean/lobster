@@ -62,6 +62,9 @@
                     
                     </td>
                   <td class="text-center">
+                    <% if user.id == current_user.id %>
+                      <%= link_to 'Edit', edit_user_path(user), :class=>"btn btn-small btn-info" %>
+                    <% end %>
                     <%= link_to 'Show', user, :class=>"btn btn-small btn-warning #{user.id == current_user.id ? 'disabled' : nil}" %>
 
                     <% if user.is_active? %>

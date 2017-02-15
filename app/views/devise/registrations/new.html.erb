@@ -1,11 +1,11 @@
 <!-- LOGIN FORM -->
     <!--===================================================-->
 <div class="cls-content">
-  <% if flash[:alert] %>
     <div style="margin-top:0px;">
-      <%= flash[:alert]  %>
+      <% unless resource.errors.empty? %>
+        <%= flash.now[:alert] = resource.errors.full_messages.join(",") %>
+      <% end %>
     </div>
-  <% end %>
     
   <div class="cls-content-sm panel">
     <div class="panel-body">
