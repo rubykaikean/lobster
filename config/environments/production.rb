@@ -79,7 +79,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'dev.estatekitkat.com' }
+  config.action_mailer.default_url_options = { host: 'booking.twoacres.co' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
   #   address: "smtp.gmail.com",
@@ -107,7 +107,7 @@ end
 Lobster::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[ekDeveloper] ",
-    :sender_address => %{"production notifier" <no-reply@estatekitkat.com>},
+    :sender_address => %{"production notifier" <no-reply@twoacres.com>},
     :exception_recipients => %w{khongkk89@gmail.com}
   }
 # angmeng@gmail.com
