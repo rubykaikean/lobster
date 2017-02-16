@@ -1,9 +1,56 @@
+<% if @company.is_developer? %>
+
+	<div class="col-sm-12 col-md-6 col-lg-6">
+	<!--Projects-->
+	<div class="panel panel-purple panel-colorful">
+		<div class="pad-all text-center">
+			<span class="text-5x text-thin"><%= @projects_count %></span>
+			<p>Projects</p>
+			<i class="fa fa-university"></i>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-6 col-lg-6">
+	<!--Task-->
+	<div class="panel panel-success panel-colorful">
+		<div class="pad-all text-center">
+			<span class="text-5x text-thin"><%= @products_count  %></span>
+			<p>Products</p>
+			<i class="fa fa-building"></i>
+		</div>
+	</div>
+</div>
+
+	<div class="col-sm-12 col-md-6 col-lg-6">				
+		<!--New Items-->
+		<div class="panel panel-info panel-colorful">
+			<div class="pad-all text-center">
+				<span class="text-5x text-thin"><%= @agency_count  %></span>
+				<p>Agencies</p>
+				<i class="fa fa-users"></i>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12 col-md-6 col-lg-6">				
+		<!--Reports-->
+		<div class="panel panel-dark panel-colorful">
+			<div class="pad-all text-center">
+				<span class="text-5x text-thin"><%= @agent_count %></span>
+				<p>Agents</p>
+				<i class="fa fa-user"></i>
+			</div>
+		</div>
+	</div>
+					
+<% else %>
 
 <div class="col-sm-12 col-md-4 col-lg-4">
 	<!--Projects-->
 	<div class="panel panel-purple panel-colorful">
 		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%#= @projects_count %></span>
+			<span class="text-5x text-thin"><%= @projects_count %></span>
 			<p>Projects</p>
 			<i class="fa fa-university"></i>
 		</div>
@@ -14,7 +61,7 @@
 	<!--Task-->
 	<div class="panel panel-success panel-colorful">
 		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%#= @products_count  %></span>
+			<span class="text-5x text-thin"><%= @products_count  %></span>
 			<p>Products</p>
 			<i class="fa fa-building"></i>
 		</div>
@@ -25,7 +72,7 @@
 	<!--Reports-->
 	<div class="panel panel-dark panel-colorful">
 		<div class="pad-all text-center">
-			<span class="text-5x text-thin"><%#= @saleman_count %></span>
+			<span class="text-5x text-thin"><%= @saleman_count %></span>
 			<p>Agents</p>
 			<i class="fa fa-user"></i>
 		</div>
@@ -33,4 +80,5 @@
 </div>
 
 
+<% end %>
 

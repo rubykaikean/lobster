@@ -25,8 +25,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_top_level_admin?
   def is_top_level_admin?
-    # if current_user && current_user.company.parent_id.to_i == 0
-    if current_user
+    if current_user && current_user.company.parent_id.to_i == 0
       current_user.is_admin?
     else
       return false
@@ -35,8 +34,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_top_level_supervisor?
   def is_top_level_supervisor?
-    # if current_user && current_user.company.parent_id.to_i == 0
-    if current_user
+    if current_user && current_user.company.parent_id.to_i == 0
       current_user.is_supervisor?
     else
       return false
@@ -45,8 +43,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_top_level_staff?
   def is_top_level_staff?
-    # if current_user && current_user.company.parent_id.to_i == 0
-    if current_user
+    if current_user && current_user.company.parent_id.to_i == 0
       current_user.is_staff?
     else
       return false
@@ -65,8 +62,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_low_level_admin?
   def is_low_level_admin?
-    # if current_user && current_user.company.parent_id.to_i > 0
-    if current_user
+    if current_user && current_user.company.parent_id.to_i > 0
       current_user.is_admin?
     else
       return false
@@ -75,8 +71,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_low_level_staff?
   def is_low_level_staff?
-    # if current_user && current_user.company.parent_id.to_i > 0
-    if current_user
+    if current_user && current_user.company.parent_id.to_i > 0
       current_user.is_staff?
     else
       return false
