@@ -16,8 +16,9 @@ class RegistrationsController < Devise::RegistrationsController
     user = User.new(sign_up_params)
     self.resource = user
     if user.save 
-      user.status_id = User::INACTIVE
-      user.type_id   = User::STAFF      
+      user.status_id  = User::INACTIVE
+      user.type_id    = User::STAFF
+      user.company_id = Company.first.id      
       sign_up(resource_name, resource)
       redirect_to root_url, notice: "Successfully Created"
     else
