@@ -96,7 +96,7 @@ Rails.application.configure do
   # }
     address: "smtpout.asia.secureserver.net",
     port: 25,
-    domain: "estatekitkat.com",
+    domain: "twoacres.co",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "noreply@estatekitkat.com",
@@ -106,7 +106,7 @@ end
 
 Lobster::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
-    :email_prefix => "[ekDeveloper] ",
+    :email_prefix => "[Twoacres] ",
     :sender_address => %{"production notifier" <no-reply@twoacres.com>},
     :exception_recipients => %w{khongkk89@gmail.com}
   }
