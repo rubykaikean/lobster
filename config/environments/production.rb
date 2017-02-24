@@ -95,7 +95,7 @@ Rails.application.configure do
   #   # password: "Vusu3761"
   # }
     address: "smtpout.asia.secureserver.net",
-    port: 25,
+    # port: 25,
     domain: "twoacres.co",
     authentication: "plain",
     enable_starttls_auto: true,

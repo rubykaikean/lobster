@@ -9,21 +9,21 @@ class PasswordsController < Devise::PasswordsController
 
 	# POST /resource/password
   def create
-    # render :text => params
-    self.resource = resource_class.send_reset_password_instructions(resource_params)
-    yield resource if block_given?
+    # # render :text => params
+    # self.resource = resource_class.send_reset_password_instructions(resource_params)
+    # yield resource if block_given?
 
-    if successfully_sent?(resource)
-      respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
-    else
-      respond_to do |format|
-        format.html { 
-            flash.now[:alert] =  resource.errors.full_messages.join("<br>")
-            render action: 'new'
-          }
-        format.json { render json: resource.errors, status: :unprocessable_entity }
-      end
-    end
+    # if successfully_sent?(resource)
+    #   respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
+    # else
+    #   respond_to do |format|
+    #     format.html { 
+    #         flash.now[:alert] =  resource.errors.full_messages.join("<br>")
+    #         render action: 'new'
+    #       }
+    #     format.json { render json: resource.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef
