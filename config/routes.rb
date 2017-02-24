@@ -68,8 +68,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, :controllers => { :sessions => "super_admin/sessions", :registrations => "super_admin/registrations"  } # :skip => :registrations,
-  # devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions, :passwords => :passwords  }
-  devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions }
+  devise_for :users, :controllers => { :registrations => :registrations, :sessions => :sessions, :passwords => :passwords  }
+
   resources :users do
     collection do
       post "create_member"
