@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_project_owner!
   before_action :set_user, only: [:show, :edit, :update_member, :destroy, :suspend, :activate]
 
+  layout "application"
   # GET /users
   # GET /users.json
   def index

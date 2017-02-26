@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  layout "devise", only: [:new]
-  # layout "application"
+  # layout "devise", only: [:new]
+  layout "application", except: [:new]
 
 	def new
     # render :text => params
