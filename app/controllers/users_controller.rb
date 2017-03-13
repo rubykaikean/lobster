@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_project_owner!
-  before_action :set_user, only: [:show, :edit, :update_member, :destroy, :suspend, :activate]
+  before_action :set_user, only: [:show, :edit, :update_member, :destroy, :suspend, :activate, :remove_customize]
 
   layout "application"
   # GET /users
@@ -83,10 +83,23 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    # render :text => params
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+    end
+  end
+
+  def remove_customize
+    # render :text => params[:id].to_json
+    if params[:product_id]
+      record = AuthorizeProductUser.find_by(product_id: params[:product_id], user_id: @user.id)
+      if record.destroy
+        redirect_to :back, :notice => "User had been removed."
+      end
+    else
+      redirect_to :back, :notice => "Product id missing."
     end
   end
 
@@ -99,6 +112,16 @@ class UsersController < ApplicationController
   def activate
     @user.activate!
     flash[:notice] = "User has been activated successfully."
+    redirect_to :back
+  end
+
+  def create_user_access
+    params[:user_ids].each do |p|
+      user = AuthorizeProductUser.new
+      user.product_id = params[:product_id]
+      user.user_id = p
+      user.save!
+    end
     redirect_to :back
   end
 

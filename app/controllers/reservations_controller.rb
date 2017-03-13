@@ -1,18 +1,22 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_authorize, only: [:index, :show]
 
   def index
     company = current_user.company
     if company.is_developer?
-      @products = Product.where(company_id: current_user.company_id, is_published: true).order(:name)
+      
+      @products = Product.where(id: @authorize_product_id, company_id: current_user.company_id, is_published: true).order(:name)
     else
       if company.parent_id.to_i > 0
-        @products = Product.where(company_id: current_user.company.parent_id, is_published: true).order(:name)
+        @products = Product.where(id: @authorize_product_id, company_id: current_user.company.parent_id, is_published: true).order(:name)
       else
-        @products = Product.where(company_id: current_user.company_id, is_published: true).order(:name)
+        @products = Product.where(id: @authorize_product_id, company_id: current_user.company_id, is_published: true).order(:name)
       end
     end
   end
+
+
 
   def show
     @product = Product.friendly.find params[:id]
@@ -102,6 +106,14 @@ class ReservationsController < ApplicationController
 
 
   private
+
+  def check_authorize
+    @authorize_product_id = []
+    authorize = AuthorizeProductUser.where(user_id: current_user.id)
+    authorize.each do |p|
+      @authorize_product_id << p.product_id
+    end
+  end
 
   def llk_developer_params
     params.require(:customize).permit(:transaction_id, :full_name, :buyer_second_name, :buyer_third_name, :buyer_ic_number, :second_buyer_ic_number, :third_buyer_ic_number, :buyer_address, :buyer_postcode, :booking_fee, :car_park_unit, :payment_type, :lot_number, :selling_price, :cheque_number, :credit_card_number, :buyer_fouth_address)

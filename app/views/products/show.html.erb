@@ -53,6 +53,7 @@
       <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
       <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
       <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
+      <button data-target="#new_user_access" data-toggle="modal" class="btn btn-primary">New User Access</button>
     </div>
   </div>
 
@@ -87,6 +88,9 @@
       <li>
         <a data-toggle="tab" href="#product_customize-tab">Customize</a>
       </li>
+      <li>
+        <a data-toggle="tab" href="#user_access_customize-tab">User Access</a>
+      </li>
     </ul>
 
     <!--Tabs Content-->
@@ -100,6 +104,7 @@
         <%= render "/products/region_tab" %>
         <%= render "/products/sources_type_tab" %>
         <%= render "/products/customize_column_tab" %>
+        <%= render "/products/customize_user_access_tab" %>
      </div>
     </div>
               <!-- =================================================== -->
@@ -124,6 +129,26 @@
         <!--Modal body-->
         <div class="modal-body">
           <%= render "/products/generate_lot"  %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new_user_access" role="dialog" tabindex="-1" aria-labelledby="new_user_access" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">New User Access : <%= @product.name %></h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+          <%= render "/users/pending_user_list"  %>
         </div>
       </div>
     </div>

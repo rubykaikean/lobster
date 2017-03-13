@@ -1,0 +1,39 @@
+<% user = [] %>
+<% a = AuthorizeProductUser.where(product_id: @product.id) %>
+<% a.each do |p| %>
+	<% user << p.user_id %>
+<% end %>
+
+		<div class="panel">
+
+			<div class="panel-body">
+			<%= form_tag create_user_access_users_path, :class => 'panel-body form-horizontal form-padding' do %>
+			<%= hidden_field_tag "product_id", @product.id %>
+			<table class="table">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Action</th>
+				</tr>
+
+				<% User.where.not(id: user).each do |p| %>
+				<tr>
+					<td><%= p.id %></td>
+					<td><%= p.username %></td>
+					<td><%= p.email %></td>
+					<td><%= check_box_tag "user_ids[]" , p.id  %></td>
+			  </tr>
+			  <% end %>
+			</table>
+			  <div class="panel-footer">
+			    <div class="row">
+			      <div class="col-sm-9 col-sm-offset-3">
+			        <button class="btn btn-info btn-labeled fa fa-user fa-lg" name="commit" type="submit">Submit</button>
+			        <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg back_btn" type="reset">Back</button>
+			      </div>
+			    </div>
+			  </div>
+			<% end %>
+			</div>
+    </div>

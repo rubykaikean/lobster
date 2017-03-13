@@ -39,6 +39,7 @@ class Product < ActiveRecord::Base
   has_many :regions
   has_many :sources_types
   has_many :enquiries
+  has_and_belongs_to_many :users
   
 
   validates :company_id, presence: true, allow_nil: true

@@ -73,9 +73,11 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       post "create_member"
+      post "create_user_access"
     end
     member do
-      patch "update_member"
+      delete "remove_customize"
+      patch  "update_member"
       delete "suspend"
       get    "activate"
     end
