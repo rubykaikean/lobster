@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    
     @product_types = @product.product_types
 
     @product_type = ProductType.new
@@ -38,13 +39,15 @@ class ProductsController < ApplicationController
     # @customize = ReservationCustomization.new
     @customize = @product.reservation_customization
 
+    @user_ids = AuthorizeProductUser.where("product_id = ?", @product.id)
+    
     @q = @product.lots.ransack(params[:q])
     @lots = @q.result(distinct: true).page(params[:page]).per(10)
     
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @product }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @product }
+    # end
   end
 
   # GET /products/new
@@ -117,7 +120,6 @@ class ProductsController < ApplicationController
   def floor_plans
     @plans = @product.floor_plans
   end
-
 
   def create_lot
     # render :text => lot_params
