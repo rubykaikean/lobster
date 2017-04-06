@@ -45,6 +45,14 @@
                 <input class="demo-switch" name="setting[hide_detail_blocked_unit]" type="checkbox" <%= @setting.hide_detail_blocked_unit? ? 'checked' : nil %> >
               </div>
             </div>
+
+            <div class="form-group">
+              <label class="col-md-9 control-label" for="setting_hide_price_of_reserved_unit">Hide price of reserved unit</label>
+              <div class="col-md-3" style="padding-top: 5px;">
+                <input type="hidden" id="setting_hide_price_of_reserved_unit" name="setting[hide_price_of_reserved_unit]" value="0">
+                <input class="demo-switch" name="setting[hide_price_of_reserved_unit]" type="checkbox" <%= @setting.hide_price_of_reserved_unit? ? 'checked' : nil %> >
+              </div>
+            </div>
             </td>
 
             <td>

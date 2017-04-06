@@ -10,10 +10,13 @@
 	<%= lot.product_type.try(:name) %>
 </div>
  <div>
- 	<% unless @setting.hide_price_of_sold_unit? && lot.status_id == Lot::SOLD %>
+  <!-- pricing control -->
+ 	<% if @setting.hide_price_of_sold_unit? && lot.status_id == Lot::SOLD %>
+  RM 0
+  <% elsif @setting.hide_price_of_reserved_unit? && lot.status_id == Lot::RESERVED %>
+  RM 0
+  <% else %>
 	RM <%= number_with_precision(lot.selling_price, precision: 0, separator: ".", delimiter: ",") %>
-	<% else %>
-	RM 0
 	<% end %>
 </div> 
 <div>
