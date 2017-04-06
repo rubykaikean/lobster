@@ -16,6 +16,7 @@
 #  hide_price_of_sold_unit           :boolean          default(FALSE)
 #  notify_agent_on_booking_unit      :boolean          default(FALSE)
 #  notify_admin_on_payment_upload    :boolean          default(FALSE)
+#  hide_price_of_reserved_unit       :boolean          default(FALSE)
 #
 
 class ProductSetting < ActiveRecord::Base
