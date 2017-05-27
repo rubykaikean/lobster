@@ -25,5 +25,8 @@ class PagesController < ApplicationController
 
 	end
 
+	def tap
+
+	end
 
 end

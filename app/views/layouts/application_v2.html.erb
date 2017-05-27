@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= yield(:title) %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="js/v2/flash/css/css.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="css/common_v2.css">
+    <link rel="stylesheet" href="css/style_v2.css">
+
+    <!--[if lt IE 9]>
+        <script src="js/html5.min.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <%= render "/layouts/bar_v2" %>
+    </nav>
+
+
+
+    <div class="blank_top"></div>
+
+    <%= yield %>
+
+    <div class="blank_bottom"></div>
+    <footer class="myfooter">
+        COPYRIGHT RESERVED BY XYZ & NEXUS SDN BHD
+    </footer>
+
+
+    <!-- 弹窗 check_ok Start~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div id="mask"></div>
+
+    <div class="more_box" id="more_box" style="display: none;">
+            <h3>STAY CLOSE WITH US</h3>
+
+            <ul>
+                <li><input type="text" class="form_c_text f_text_small" placeholder="NAME"><input style="margin-left: 3%;" type="text" class="form_c_text f_text_small" placeholder="CONTACT"></li>
+                <li><input class="form_c_text" type="text" placeholder="EMAIL"></li>
+                <li style="height: 165px;"><textarea class="form_c_area" type="text" placeholder="MESSAGE"></textarea></li>
+                <li>
+                    <button type="submit">SEND</button>
+                    <button type="submit" id="ooBtn">CLOSE</button>
+
+                    <div class="blank20"></div>
+                </li>
+            </ul>
+
+    </div>
+    <!-- 弹窗 check_ok End~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/v2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/v2/bootstrap.min.js"></script>
+
+    <script>
+        /* 2 */
+        $(function(){
+            $(".home_list_txt").hover(
+                    function(){
+                        var that=this;
+                        item2Timer=setTimeout(function(){
+                            $(that).find('div.caption').slideDown(300);
+                            $(that).find('.item2-txt').fadeOut(200);
+                        },100);
+
+                    },
+                    function(){
+                        var that=this;
+                        clearTimeout(item2Timer);
+                        $(that).find('div.caption').slideUp(300);
+                        $(that).find('.item2-txt').fadeIn(200);
+                    }
+            );
+        });
+    </script>
+
+    <script type="text/javascript" src="js/v2/scrollto/jquery.scrollTo.js"></script>
+
+    <script type="text/javascript">
+
+        function mScroll(id){$("html,body").stop(true);$("html,body").animate({scrollTop: $("#"+id).offset().top}, 1000);}
+
+        $(function(){
+            $(".home-top-pic").click(function(){
+                mScroll('home_list');
+            });
+        });
+    </script>
+
+    <script>
+    $(function(){
+        $('#carousel-example-generic').carousel({
+            interval: 3000
+        })
+    });
+    </script>
+
+    <script src="js/v2/myjs.js"></script>
+
+</body>
+</html>
