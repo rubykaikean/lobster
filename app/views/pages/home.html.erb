@@ -1,0 +1,154 @@
+
+    <section>
+        <div class="home-top-pic">
+            <img src="img/v2/home-t-pic.png">
+        </div>
+    </section>
+
+    <section class="flash_box">
+
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="img/v2/flash.jpg" alt="...">
+                    <div class="carousel-caption">
+                        ...
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="img/v2/flash.jpg" alt="...">
+                    <div class="carousel-caption">
+                        ...
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="img/v2/flash.jpg" alt="...">
+                    <div class="carousel-caption">
+                        ...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </section>
+
+    <section class="home_list" id="home_list">
+        <ul>
+            <% @projects.each do |project| %>
+            <li class="home_list_txt">
+                <a>
+                    <img src="img/v2/homepage-1.png">
+
+                    <div class="caption">
+                        <h3><%= project.name %></h3>
+                        <p><%= project.description %></p>
+
+                        <a href="#" class="more">
+                            MORE
+                        </a>
+                    </div>
+                </a>
+            </li>
+           <% end %>
+        </ul>
+        <div class="f_cb"></div>
+    </section>
+
+    <section class="home_in">
+        <a onclick="openMask('more_box',1,'ooBtn');">Interested in Working Together ? We love working with new partners - drop us a line.<span>GET IN TOUCH</span></a>
+    </section>
+
+    <section class="home_info">
+        <div class="home_info_pic">
+            <img src="img/v2/home-left.png">
+        </div>
+        <div class="home_info_txt">
+            <h3>
+                WELCOME TO BE<br>
+                TWOACRES PARTNERS
+            </h3>
+            <h5>
+                WHERE REAL ESTATE & TECHNOLOGY COLLIDES
+            </h5>
+            <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<br>
+                do eiusmod tempor incididunt ut labore et dolore magna<br>
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation<br>
+                ullamco laboris nisi ut aliquip ex ea commodo consequat.<br>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse<br>
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint<br>
+                occaecat cupidatat non proident, sunt in culpa qui officia<br>
+                deserunt mollit anim id est laborum."
+
+                TwoAcres capitalise on technology to transform the ,roperty<br>
+                landscape using Big Data and Machine learning,with the<br>
+                goal of making all property reseller life easier and allow to<br>
+                find the right property. With this we have the further shorten the<br>
+                whole sales and marketing process in property indus
+            </p>
+        </div>
+        <div class="f_cb"></div>
+    </section>
+
+    <section class="parner_flash">
+        <h3>OUR PARTNERS</h3>
+        <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-captions" data-slide-to="1"></li>
+                <li data-target="#carousel-example-captions" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="img/v2/home-parner.png" alt="...">
+                    <div class="carousel-caption">
+                        ...
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="img/v2/home-parner.png" alt="...">
+                    <div class="carousel-caption">
+                        ...
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="img/v2/home-parner.png" alt="...">
+                    <div class="carousel-caption">
+                        ...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-captions" role="button" data-slide="prev">
+                <span><img src="img/v2/ico-left.png"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-captions" role="button" data-slide="next">
+                <span><img src="img/v2/ico-right.png"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </section>
