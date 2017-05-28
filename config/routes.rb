@@ -158,16 +158,16 @@ Rails.application.routes.draw do
   match 'molpay/return_url' => "molpay#return_url", via: [:post, :get]
   match 'molpay/molpay' => "molpay#molpay", via: [:get, :post]
   
-  get 'about_us' => "pages#about_us"
-  get 'ibrochure' => "pages#ibrochure"
-  get 'news' => "pages#news"
-  get 'project_details' => "pages#project_details"
-  get 'tap' => "pages#tap"
+  # get 'about_us' => "pages#about_us"
+  # get 'ibrochure' => "pages#ibrochure"
+  # get 'news' => "pages#news"
+  # get 'project_details' => "pages#project_details"
+  # get 'tap' => "pages#tap"
 
   get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   
-  # root 'dashboard#index'
-  root 'pages#home'
+  root 'dashboard#index'
+  # root 'pages#home'
   # root 'companies#profile'
   
   # The priority is based upon order of creation: first created -> highest priority.
