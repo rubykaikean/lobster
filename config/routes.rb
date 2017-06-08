@@ -158,12 +158,11 @@ Rails.application.routes.draw do
   match 'molpay/return_url' => "molpay#return_url", via: [:post, :get]
   match 'molpay/molpay' => "molpay#molpay", via: [:get, :post]
   
-  get 'about_us' => "pages#about_us"
-  get 'ibrochure' => "pages#ibrochure"
-  get 'news' => "pages#news"
-  get 'project_details' => "pages#project_details"
-  get 'tap' => "pages#tap"
   get 'home' => "pages#home"
+  get 'listings' => "pages#listings"
+  get 'listing_details' => "pages#listing_details"
+  get 'blog' => "pages#blog"
+  get 'blog_details' => "pages#blog_details"
 
   get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   
