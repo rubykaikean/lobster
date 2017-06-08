@@ -5,27 +5,19 @@ class PagesController < ApplicationController
 		@projects = Project.all
 	end
 
-	def ibrochure
+	def listings
 
 	end
 
-	def about_us
+	def listing_details
 
 	end
 
-	def contact_us
+	def blog
 
 	end
 
-	def news
-
-	end
-
-	def project_details
-
-	end
-
-	def tap
+	def contact
 
 	end
 

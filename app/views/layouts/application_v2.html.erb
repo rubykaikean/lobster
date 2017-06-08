@@ -1,115 +1,111 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= yield(:title) %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<html lang="en-US" class="scheme_original">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="format-detection" content="telephone=no">
+      <link rel="icon" type="image/x-icon" href="img/v2/favicon.png" />
+      <title><%= yield(:title) %></title>
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif%3A400%2C700%7CRaleway%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%7COpen+Sans%3A300%2C400%2C600%2C700%2C800%7CMontserrat%3A700%2C400&amp;subset=cyrillic%2Ccyrillic-ext%2Clatin%2Cgreek-ext%2Cgreek%2Clatin-ext%2Cvietnamese&amp;ver=1.6.11" type="text/css" media="all">
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link rel='stylesheet' href='/js/v2/vendor/booked/font-awesome.min.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/js/v2/vendor/booked/styles.css' type='text/css' media='all' />
 
-    <link href="js/v2/flash/css/css.css" rel="stylesheet" type="text/css" />
+      <link rel='stylesheet' href='/js/v2/vendor/essgrid/tooltipster.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/js/v2/vendor/essgrid/tooltipster-light.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/js/v2/vendor/revslider/settings.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/js/v2/vendor/swiper/swiper.css' type='text/css' media='all' />
 
-    <link rel="stylesheet" href="css/common_v2.css">
-    <link rel="stylesheet" href="css/style_v2.css">
+      <link rel='stylesheet' href='/css/v2/fontello/css/fontello.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/style.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/_animation.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/shortcodes.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/skin.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/custom-style.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/colors.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/responsive.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/skin.responsive.css' type='text/css' media='all' />
+      <link rel='stylesheet' href='/css/v2/custom/_messages.css' type='text/css' media='all' />
+   </head>
 
-    <!--[if lt IE 9]>
-        <script src="js/html5.min.js"></script>
-        <script src="js/respond.min.js"></script>
-    <![endif]-->
+<body class="body_style_wide responsive_menu scheme_original top_panel_show top_panel_over sidebar_hide">
 
-</head>
-<body>
+<div class="body_wrap">
+   <div class="page_wrap">
 
-    <nav class="navbar navbar-default  navbar-fixed-top" role="navigation">
-        <%= render "/layouts/bar_v2" %>
-    </nav>
+      <%= render "layouts/v2/bar_v2" %>
+      <br><br><br><br>
+      <% if params[:action] == "listings" %>
+         <div class="top_panel_title top_panel_style_1  title_present scheme_original">
+            <div class="top_panel_title_inner top_panel_inner_style_1 breadcrumbs_present_inner">
+               <div class="content_wrap">
+                  <h1 class="page_title">All property</h1>
+                  <div class="breadcrumbs"><a class="breadcrumbs_item home" href="index.html">Home</a><span class="breadcrumbs_delimiter"></span><span class="breadcrumbs_item current">All property</span></div>
+               </div>
+            </div>
+         </div>
+         <% elsif params[:action] == "listing_details" %>
+         <div class="top_panel_title top_panel_style_1 title_present breadcrumbs_present scheme_original">
+            <div class="top_panel_title_inner top_panel_inner_style_1 breadcrumbs_present_inner">
+               <div class="content_wrap">
+                  <h1 class="page_title">87 Mishaum Point Rd, Dartmouth, MA 02748</h1>
+                  <div class="breadcrumbs">
+                     <a class="breadcrumbs_item home" href="index.html">Home</a>
+                     <span class="breadcrumbs_delimiter"></span><a class="breadcrumbs_item all" href="#">All property</a>
+                     <span class="breadcrumbs_delimiter"></span><a class="breadcrumbs_item cat_post" href="#">For Sale</a>
+                     <span class="breadcrumbs_delimiter"></span>
+                     <span class="breadcrumbs_item current">87 Mishaum Point Rd, Dartmouth, MA 02748</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <% elsif params[:action] == "contact" %>
+         <div class="top_panel_title top_panel_style_1  title_present scheme_original">
+            <div class="top_panel_title_inner top_panel_inner_style_1 breadcrumbs_present_inner">
+               <div class="content_wrap">
+                  <h1 class="page_title">Contacts</h1>
+                  <div class="breadcrumbs"><a class="breadcrumbs_item home" href="index.html">Home</a><span class="breadcrumbs_delimiter"></span><span class="breadcrumbs_item current">Contacts</span></div>
+               </div>
+            </div>
+         </div>
+         <% end %>
+      </div>
+      <%= yield %>     
 
+      <%= render "layouts/v2/footer" %>
 
+   </div>
+</div>
+      <a href="#" class="scroll_to_top icon-up"></a>
 
-    <div class="blank_top"></div>
-
-    <%= yield %>
-
-    <div class="blank_bottom"></div>
-    <footer class="myfooter">
-        COPYRIGHT RESERVED BY XYZ & NEXUS SDN BHD
-    </footer>
-
-
-    <!-- 弹窗 check_ok Start~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-    <div id="mask"></div>
-
-    <div class="more_box" id="more_box" style="display: none;">
-            <h3>STAY CLOSE WITH US</h3>
-
-            <ul>
-                <li><input type="text" class="form_c_text f_text_small" placeholder="NAME"><input style="margin-left: 3%;" type="text" class="form_c_text f_text_small" placeholder="CONTACT"></li>
-                <li><input class="form_c_text" type="text" placeholder="EMAIL"></li>
-                <li style="height: 165px;"><textarea class="form_c_area" type="text" placeholder="MESSAGE"></textarea></li>
-                <li>
-                    <button type="submit">SEND</button>
-                    <button type="submit" id="ooBtn">CLOSE</button>
-
-                    <div class="blank20"></div>
-                </li>
-            </ul>
-
-    </div>
-    <!-- 弹窗 check_ok End~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/v2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/v2/bootstrap.min.js"></script>
-
-    <script>
-        /* 2 */
-        $(function(){
-            $(".home_list_txt").hover(
-                    function(){
-                        var that=this;
-                        item2Timer=setTimeout(function(){
-                            $(that).find('div.caption').slideDown(300);
-                            $(that).find('.item2-txt').fadeOut(200);
-                        },100);
-
-                    },
-                    function(){
-                        var that=this;
-                        clearTimeout(item2Timer);
-                        $(that).find('div.caption').slideUp(300);
-                        $(that).find('.item2-txt').fadeIn(200);
-                    }
-            );
-        });
-    </script>
-
-    <script type="text/javascript" src="js/v2/scrollto/jquery.scrollTo.js"></script>
-
-    <script type="text/javascript">
-
-        function mScroll(id){$("html,body").stop(true);$("html,body").animate({scrollTop: $("#"+id).offset().top}, 1000);}
-
-        $(function(){
-            $(".home-top-pic").click(function(){
-                mScroll('home_list');
-            });
-        });
-    </script>
-
-    <script>
-    $(function(){
-        $('#carousel-example-generic').carousel({
-            interval: 3000
-        })
-    });
-    </script>
-
-    <script src="js/v2/myjs.js"></script>
-
-</body>
+      <script type='text/javascript' src='/js/v2/vendor/jquery.js'>
+      </script>
+      <script type='text/javascript' src='/js/v2/vendor/jquery-migrate.min.js'>
+      </script>
+      <script type='text/javascript' src='/js/v2/vendor/essgrid/lightbox.js'>
+      </script>
+      <script type='text/javascript' src='/js/v2/vendor/essgrid/jquery.themepunch.tools.min.js'>
+      </script>
+      <script type='text/javascript' src='/js/v2/vendor/revslider/jquery.themepunch.revolution.min.js'>
+      </script>
+      <script type='text/javascript' src='/js/v2/vendor/modernizr.min.js'>
+      </script>
+      <script type='text/javascript' src='/js/v2/vendor/ui/jquery-ui.min.js'>
+      </script>
+      <script type='text/javascript' src='/js/v2/custom/plugins.js'></script>
+      <script type='text/javascript' src='/js/v2/custom/messages.js'></script>
+      <script type="text/javascript" src="/js/v2/vendor/revslider/revolution.extension.slideanims.min.js">
+      </script>
+      <script type="text/javascript" src="/js/v2/vendor/revslider/revolution.extension.layeranimation.min.js">
+      </script>
+      <script type="text/javascript" src="/js/v2/vendor/revslider/revolution.extension.navigation.min.js">
+      </script>
+      <script type='text/javascript' src='/js/v2/vendor/superfish.js'></script>
+      <script type='text/javascript' src='/js/v2/vendor/parallax.js'></script>
+      <script type='text/javascript' src='/js/v2/vendor/skrollr.min.js'></script>
+      <script type='text/javascript' src='/js/v2/vendor/swiper/swiper.min.js'></script>
+      <script type='text/javascript' src='/js/v2/custom/_utils.js'></script>
+      <script type='text/javascript' src='/js/v2/custom/_init.js'></script>
+      <script type='text/javascript' src='/js/v2/custom/_shortcodes.js'></script>
+   </body>
 </html>
