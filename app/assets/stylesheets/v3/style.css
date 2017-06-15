@@ -550,7 +550,7 @@ select::-ms-expand {
     display: none;
 }
 select {
-    background: url(img/v2/selectw.png) 97% 55% no-repeat #fff;
+    background: url(../images/selectw.png) 97% 55% no-repeat #fff;
     margin: 0;
 }
 .scheme_dark input[type="text"],
@@ -632,7 +632,7 @@ select {
     top: 0;
     width: 3em;
     height: 3em;
-    background-image: url(img/v2/sticky.png);
+    background-image: url(../images/sticky.png);
     background-repeat: no-repeat;
     background-position: right top;
     background-size: 3em 3em;
@@ -1729,7 +1729,7 @@ select {
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 3;
-    background-image: url(img/v2/bg/texture_7.png);
+    background-image: url(../images/bg/texture_7.png);
 }
 /* 7. Section's decorations
 -------------------------------------------------------------- */
@@ -1742,7 +1742,7 @@ select {
 }
 .top_panel_wrap {
     position: relative;
-    color: #ffffff;
+    color: #fff;
     background-color: rgba(32, 36, 43, 1);
     background-position: center top;
     background-repeat: no-repeat;
@@ -1919,7 +1919,7 @@ x:-moz-any-link {
     z-index: 10000;
 }
 .top_panel_wrap.top_panel_style_1 {
-    background-image: url(/img/v2//1920x977.jpg);
+    background-image: url(../images/1920x977.jpg);
 }
 .top_panel_style_1 .top_panel_middle,
 .top_panel_style_2 .top_panel_middle,
@@ -4512,7 +4512,7 @@ blockquote > .sc_quote_title {
     height: 7.375em;
     padding: 0;
     overflow: hidden;
-    background-image: url(img/v2/rating_summary_bg.png);
+    background-image: url(../images/rating_summary_bg.png);
     background-position: right top;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -6115,14 +6115,14 @@ h6 .wpb_text_column p {
 
 .texture_bg_green,
 .texture_bg_dark {
-    background-image: url(img/v2/bg_dark.jpg);
+    background-image: url(../images/bg_dark.jpg);
 }
 .texture_bg_blue,
 .texture_bg_light {
-    background-image: url(img/v2/bg_light.jpg);
+    background-image: url(../images/bg_light.jpg);
 }
 .texture_bg_yellow {
-    background-image: url(img/v2/bg_yellow.jpg);
+    background-image: url(../images/bg_yellow.jpg);
 }
 .texture_bg_slider:after,
 .texture_bg_slider_full:after {
@@ -6133,48 +6133,48 @@ h6 .wpb_text_column p {
     bottom: 0;
     top: 0;
     z-index: 1;
-    background: url(img/v2/texture_top.png) center top repeat-x, url(img/v2/texture_slider.png) left top repeat;
+    background: url(../images/texture_top.png) center top repeat-x, url(../images/texture_slider.png) left top repeat;
 }
 .texture_bg_slider_full:after {
-    background: url(img/v2/texture_center.png) center center no-repeat, url(img/v2/texture_top.png) center top repeat-x, url(img/v2/texture_slider.png) left top repeat;
+    background: url(../images/texture_center.png) center center no-repeat, url(../images/texture_top.png) center top repeat-x, url(../images/texture_slider.png) left top repeat;
 }
 /* Predefined classes for the background texture and/or image */
 
 .texture_bg_1 {
-    background-image: url(img/v2/bg/texture_1.png);
+    background-image: url(../images/bg/texture_1.png);
 }
 .texture_bg_2 {
-    background-image: url(img/v2/bg/texture_2.png);
+    background-image: url(../images/bg/texture_2.png);
 }
 .texture_bg_3 {
-    background-image: url(img/v2/bg/texture_3.png);
+    background-image: url(../images/bg/texture_3.png);
 }
 .texture_bg_4 {
-    background-image: url(img/v2/bg/texture_4.png);
+    background-image: url(../images/bg/texture_4.png);
 }
 .texture_bg_5 {
-    background-image: url(img/v2/bg/texture_5.png);
+    background-image: url(../images/bg/texture_5.png);
 }
 .texture_bg_6 {
-    background-image: url(img/v2/bg/texture_6.png);
+    background-image: url(../images/bg/texture_6.png);
 }
 .texture_bg_7 {
-    background-image: url(img/v2/bg/texture_7.png);
+    background-image: url(../images/bg/texture_7.png);
 }
 .texture_bg_8 {
-    background-image: url(img/v2/bg/texture_8.png);
+    background-image: url(../images/bg/texture_8.png);
 }
 .texture_bg_9 {
-    background-image: url(img/v2/bg/texture_9.png);
+    background-image: url(../images/bg/texture_9.png);
 }
 .texture_bg_10 {
-    background-image: url(img/v2/bg/texture_10.png);
+    background-image: url(../images/bg/texture_10.png);
 }
 .texture_bg_11 {
-    background-image: url(img/v2/bg/texture_11.png);
+    background-image: url(../images/bg/texture_11.png);
 }
 .texture_bg_12 {
-    background-image: url(img/v2/bg/texture_12.png);
+    background-image: url(../images/bg/texture_12.png);
 }
 .overlay_bg_1:after {
     content: ' ';
@@ -6183,7 +6183,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_1.png);
+    background-image: url(../images/bg/texture_1.png);
 }
 .overlay_bg_2:after {
     content: ' ';
@@ -6192,7 +6192,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_2.png);
+    background-image: url(../images/bg/texture_2.png);
 }
 .overlay_bg_3:after {
     content: ' ';
@@ -6201,7 +6201,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_3.png);
+    background-image: url(../images/bg/texture_3.png);
 }
 .overlay_bg_4:after {
     content: ' ';
@@ -6210,7 +6210,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_4.png);
+    background-image: url(../images/bg/texture_4.png);
 }
 .overlay_bg_5:after {
     content: ' ';
@@ -6219,7 +6219,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_5.png);
+    background-image: url(../images/bg/texture_5.png);
 }
 .overlay_bg_6:after {
     content: ' ';
@@ -6228,7 +6228,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_6.png);
+    background-image: url(../images/bg/texture_6.png);
 }
 .overlay_bg_7:after {
     content: ' ';
@@ -6237,7 +6237,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_7.png);
+    background-image: url(../images/bg/texture_7.png);
 }
 .overlay_bg_8:after {
     content: ' ';
@@ -6246,7 +6246,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_8.png);
+    background-image: url(../images/bg/texture_8.png);
 }
 .overlay_bg_9:after {
     content: ' ';
@@ -6255,7 +6255,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_9.png);
+    background-image: url(../images/bg/texture_9.png);
 }
 .overlay_bg_10:after {
     content: ' ';
@@ -6264,7 +6264,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_10.png);
+    background-image: url(../images/bg/texture_10.png);
 }
 .overlay_bg_11:after {
     content: ' ';
@@ -6273,7 +6273,7 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_11.png);
+    background-image: url(../images/bg/texture_11.png);
 }
 .overlay_bg_12:after {
     content: ' ';
@@ -6282,31 +6282,31 @@ h6 .wpb_text_column p {
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url(img/v2/bg/texture_12.png);
+    background-image: url(../images/bg/texture_12.png);
 }
 .bg_pattern_1 {
-    background: url(img/v2/bg/pattern_1.jpg) 50% 50% repeat fixed ;
+    background: url(../images/bg/pattern_1.jpg) 50% 50% repeat fixed ;
 }
 .bg_pattern_2 {
-    background: url(img/v2/bg/pattern_2.jpg) 50% 50% repeat fixed ;
+    background: url(../images/bg/pattern_2.jpg) 50% 50% repeat fixed ;
 }
 .bg_pattern_3 {
-    background: url(img/v2/bg/pattern_3.jpg) 50% 50% repeat fixed ;
+    background: url(../images/bg/pattern_3.jpg) 50% 50% repeat fixed ;
 }
 .bg_pattern_4 {
-    background: url(img/v2/bg/pattern_4.jpg) 50% 50% repeat fixed ;
+    background: url(../images/bg/pattern_4.jpg) 50% 50% repeat fixed ;
 }
 .bg_pattern_5 {
-    background: url(img/v2/bg/pattern_5.jpg) 50% 50% repeat fixed ;
+    background: url(../images/bg/pattern_5.jpg) 50% 50% repeat fixed ;
 }
 .bg_image_1 {
-    background: url(img/v2/bg/image_1.jpg) 50% 0% repeat-y fixed ;
+    background: url(../images/bg/image_1.jpg) 50% 0% repeat-y fixed ;
 }
 .bg_image_2 {
-    background: url(img/v2/bg/image_2.jpg) 50% 0% repeat-y fixed ;
+    background: url(../images/bg/image_2.jpg) 50% 0% repeat-y fixed ;
 }
 .bg_image_3 {
-    background: url(img/v2/bg/image_3.jpg) 50% 0% repeat-y fixed ;
+    background: url(../images/bg/image_3.jpg) 50% 0% repeat-y fixed ;
 }
 .bg_image_1,
 .bg_image_2,
@@ -6407,7 +6407,7 @@ columns_wrap,
 .custom_box_form {
     padding: 5.000em 0 4.700em 6.000em;
     max-width: 501px;
-    background-image: url(img/v2/bg_img1.png);
+    background-image: url(../images/bg_img1.png);
     background-repeat: no-repeat;
     background-position: 23px 26px;
 }
@@ -7102,19 +7102,19 @@ h6.margin_bottom_large {
     padding-bottom: 70px ;
 }
 .back_image_1 {
-    background-image: url(img/v2/img_bg01.png?id=837) ;
+    background-image: url(../images/img_bg01.png?id=837) ;
     background-position: center ;
     background-repeat: no-repeat ;
     background-size: cover ;
 }
 .back_image_2 {
-    background-image: url(img/v2/1170x659.jpg?id=204) ;
+    background-image: url(../images/1170x659.jpg?id=204) ;
     background-position: center ;
     background-repeat: no-repeat ;
     background-size: cover ;
 }
 .back_image_3 {
-    background-image: url(img/v2/img_hello.png?id=592) ;
+    background-image: url(../images/img_hello.png?id=592) ;
     background-position: 0 0 ;
     background-repeat: no-repeat ;
 }

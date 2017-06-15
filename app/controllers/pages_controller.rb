@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	layout "application_v2"
+	layout "application_v3"
 
 	def home
 		@projects = Project.all
