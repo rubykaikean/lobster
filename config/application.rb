@@ -20,6 +20,8 @@ module Lobster
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.assets.enabled = false
+
     config.active_job.queue_adapter = :sidekiq
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
