@@ -1,3 +1,5 @@
+<%= content_for(:title, "Project Details") %>
+
 <% content_for :breadcrumb do %>
   <ol class="breadcrumb">
     <li><a href="/projects">Projects</a></li>
@@ -14,35 +16,17 @@
         <h3 class="panel-title">Product detail</h3>
       </div>
       <div class="panel-body">
-  
-      <p>
-        <strong>Name:</strong>
-        <%= @product.name %>
-      </p>
+      <div class="col-md-12">
 
-      <p>
-        <strong>i-Brochure URL:</strong>
-        <%= @product.e_brochure_url %>
-      </p>
+        <%= render :partial => "product_top_details", :locals => { :product => @product } %>
 
-      <p>
-        <strong>Description:</strong>
-        <%= @product.description %>
-      </p>
-      <p>
-        <strong>Type:</strong>
-        <%= @product.type %>
-      </p>
-
-      <p>
-        <strong>Status:</strong>
-        <%= @product.status %>
-      </p>
+      </div>
 
       <br>
       <a href="<%= edit_product_path(@product) %>"><button class="btn btn-primary">Edit</button></a>
-
-    <%#= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
+      <button data-target="#photo_list" data-toggle="modal" class="btn btn-info">Photo List</button>
+      
+      <%#= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
     <% if @product_types.any? %>
       <button data-target="#generate_lot" data-toggle="modal" class="btn btn-primary">Generate Unit</button>
     <% else %>
@@ -112,7 +96,26 @@
     
   </div>
 </div>
- 
+
+<div class="modal fade" id="photo_list" role="dialog" tabindex="-1" aria-labelledby="photo_list" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!--Modal header-->
+        <div class="modal-header">
+          <button data-dismiss="modal" class="close" type="button">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Generate Unit (<%= @product.title %>)</h4>
+        </div>
+
+        <!--Modal body-->
+        <div class="modal-body">
+         <%= render :partial => "/products/photo_list", :locals => { :product => @product } %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class="modal fade" id="generate_lot" role="dialog" tabindex="-1" aria-labelledby="generate_lot" aria-hidden="true">
     <div class="modal-dialog">

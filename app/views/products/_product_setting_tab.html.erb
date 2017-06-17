@@ -53,9 +53,31 @@
                 <input class="demo-switch" name="setting[hide_price_of_reserved_unit]" type="checkbox" <%= @setting.hide_price_of_reserved_unit? ? 'checked' : nil %> >
               </div>
             </div>
-            </td>
+            <% if is_top_level_admin? %>
+            <div class="form-group">
+              <label class="col-md-9 control-label" for="setting_is_feature_product">is features project</label>
+              <div class="col-md-3" style="padding-top: 5px;">
+                <input type="hidden" id="setting_is_feature_product" name="setting[is_feature_product]" value="0">
+                <input class="demo-switch" name="setting[is_feature_product]" type="checkbox" <%= @setting.is_feature_product? ? 'checked' : nil %> >
+              </div>
+            </div>
 
-            <td>
+            <div class="form-group">
+              <label class="col-md-9 control-label" for="setting_is_star_product">is stars product</label>
+              <div class="col-md-3" style="padding-top: 5px;">
+                <input type="hidden" id="setting_is_features" name="setting[is_star_product]" value="0">
+              <%# setting = ProductSetting.find_by(is_star_product: true) %>
+                <%# %>
+                <input class="demo-switch" name="setting[is_star_product]" type="checkbox" <%= @setting.is_star_product? ? 'checked' : nil %> >
+                <%# else %>
+
+                <%# end %>
+              </div>
+            </div>
+            <% end %>
+          </td>
+
+          <td>
               <div class="form-group">
               <label class="col-md-9 control-label" for="setting_notify_buyer_on_sale_confirmation">Notify buyer on unit reservation</label>
               <div class="col-md-3" style="padding-top: 5px;">

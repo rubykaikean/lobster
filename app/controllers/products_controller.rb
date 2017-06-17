@@ -83,6 +83,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    # render :text => product_params
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -186,7 +187,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :type_id, :description, :status_id, :phase_id, :e_brochure_url)
+      params.require(:product).permit(:name, :type_id, :description, :status_id, :phase_id, :e_brochure_url, :address, :location, :display_price, :display_sqft, :currency, :completion_date, :details_description, :nearby_location_description, :background_image, :second_background_image, :map_image)
     end
 
     def lot_params
@@ -194,7 +195,7 @@ class ProductsController < ApplicationController
     end
 
     def setting_params
-      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking, :notify_buyer_on_sale_confirmation, :notify_admin_on_sale_confirmation, :bumiputera_discount, :attach_payment_image, :hide_detail_blocked_unit, :notify_agent_on_booking_unit, :hide_price_of_sold_unit, :notify_admin_on_payment_upload, :hide_price_of_reserved_unit)
+      params.require(:setting).permit(:unit_per_row, :allow_multiple_booking, :notify_buyer_on_sale_confirmation, :notify_admin_on_sale_confirmation, :bumiputera_discount, :attach_payment_image, :hide_detail_blocked_unit, :notify_agent_on_booking_unit, :hide_price_of_sold_unit, :notify_admin_on_payment_upload, :hide_price_of_reserved_unit, :is_feature_product, :is_star_product)
     end
 
     def setting_email_params

@@ -6,8 +6,10 @@
    <div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
       <div id="rev_slider_4_1" class="rev_slider fullwidthabanner" data-version="5.1">
          <ul>
-            <li data-index="rs-8" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="img/v2/slider1h1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
-               <img src="img/v2/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+            <li data-index="rs-8" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="img/v3/slider1h1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+
+               <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+
                <div class="tp-caption Estate tp-resizeme" id="slide-8-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
                   <div class="sc_property_wrap">
                      <div class="sc_property sc_property_style_property-6" data-interval="7176" data-slides-min-width="250">
@@ -16,14 +18,14 @@
                               <div class="sc_pr_h2">House for sale</div>
                            </div>
                            <div class="sc_pr_t1">
-                              <a href="single-post.html">87 Mishaum Point Rd</a> 
+                              <a href="single-post.html"><%= @product.address %></a> 
                            </div>
-                           <div class="sc_pr_t2">Dartmouth, MA 02748</div>
+                           <div class="sc_pr_t2"><%= @product.location %></div>
                            <div class="sc_pr_f1">
                               <div class="sc_pr_f11">
                                  <div class="sc_pr_f111"><span>House for sale</span></div>
                               </div>
-                              <div class="sc_pr_f12"><span>$</span>1,249,000</div>
+                              <div class="sc_pr_f12"><span><%= @product.currency %></span><%= number_with_precision(@product.display_price, :precision => 2, :delimiter=> ',') %></div>
                            </div>
                         </div>
                      </div>
@@ -31,7 +33,7 @@
                </div>
             </li>
             <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="images/slider1h2-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
-               <img src="img/v2/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+               <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                <div class="tp-caption Estate tp-resizeme" id="slide-12-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
                   <div class="sc_property_wrap">
                      <div class="sc_property sc_property_style_property-6 " data-interval="7743" data-slides-min-width="250">
@@ -55,7 +57,7 @@
                </div>
             </li>
             <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="images/slider1h3-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
-               <img src="img/v2/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>                             
+               <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>                             
                <div class="tp-caption Estate tp-resizeme" id="slide-13-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
                   <div class="sc_property_wrap">
                      <div class="sc_property sc_property_style_property-6 " data-interval="5718" data-slides-min-width="250">
@@ -206,8 +208,8 @@
                <h2 class="sc_title sc_title_iconed ind2 margin_top_null margin_bottom_xmedium">
                   <span class="sc_title_icon sc_title_icon_left sc_title_icon_small icon-map-pointer18 sc_left"></span>
                   <span class="sc_title_box">
-                  <a href="#">87 Mishaum Point Rd,</a>
-                  <span class="sc_title_subtitle">Dartmouth, MA 02748</span>
+                  <a href="#"><%#= @features_property.address %></a>
+                  <span class="sc_title_subtitle"><%#= @features_property.location %></span>
                   </span>
                </h2>
                <div class="sc_section margin_bottom_xmedium section_style_1">
@@ -262,13 +264,18 @@
             </div>
             <div class="column-1_2">
                <figure class="sc_image ">
-                  <a href="#"><img src="img/v2/570x414.jpg" alt="" /></a>
+                  <a href="#"><img src="img/v3/570x414.jpg" alt="" /></a>
                </figure>
             </div>
          </div>
       </div>
    </div>
    <!-- End of second stage -->
+
+   <% array = [] %>
+   <% ProductSetting.where("is_feature_product = true").find_each do |setting| %>
+   <% array << setting.product_id %>
+   <% end %>
 
    <!-- Start Third stage -->
    <div class="sc_section overflow_hidden bg_color_1">
@@ -277,12 +284,14 @@
          <div class="sc_property_wrap">
             <div class="sc_property sc_property_style_property-1">
                <div class="sc_columns columns_wrap">
+
+                  <% Product.where("id IN ") %>
                   <div class="column-1_3 column_padding_bottom">
                      <div class="sc_property_item">
                         <div class="sc_property_image">
                            <a href="single-post.html">
                               <div class="property_price_box"><span class="property_price_box_sign">$</span><span class="property_price_box_price">1,249,000</span></div>
-                              <img alt="" src="img/v2/770x460.jpg">
+                              <img alt="" src="img/v3/770x460.jpg">
                            </a>
                         </div>
                         <div class="sc_property_info">
@@ -305,12 +314,14 @@
                         </div>
                      </div>
                   </div>
-                  <div class="column-1_3 column_padding_bottom">
+
+
+                  <!-- <div class="column-1_3 column_padding_bottom">
                      <div class="sc_property_item">
                         <div class="sc_property_image">
                            <a href="single-post.html">
                               <div class="property_price_box"><span class="property_price_box_sign">$</span><span class="property_price_box_price">2,189,000</span></div>
-                              <img alt="" src="img/v2/770x460.jpg">
+                              <img alt="" src="img/v3/770x460.jpg">
                            </a>
                         </div>
                         <div class="sc_property_info">
@@ -332,13 +343,13 @@
                            <span class="icon-building113">1,286 sqft</span><span class="icon-bed">2</span><span class="icon-bath">3</span><span class="icon-warehouse">3</span>
                         </div>
                      </div>
-                  </div>
-                  <div class="column-1_3 column_padding_bottom">
+                  </div> -->
+                  <!-- <div class="column-1_3 column_padding_bottom">
                      <div class="sc_property_item">
                         <div class="sc_property_image">
                            <a href="single-post.html">
                               <div class="property_price_box"><span class="property_price_box_sign">$</span><span class="property_price_box_price">3,449</span><span class="property_price_box_per">/year</span></div>
-                              <img alt="" src="img/v2/770x460.jpg">
+                              <img alt="" src="img/v3/770x460.jpg">
                            </a>
                         </div>
                         <div class="sc_property_info">
@@ -360,7 +371,7 @@
                            <span class="icon-building113">886 sqft</span><span class="icon-bed">2</span><span class="icon-bath">3</span><span class="icon-warehouse">2</span>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </div>
@@ -370,7 +381,7 @@
 
 
    <!-- Start Fourth Stage -->
-   <div class="sc_parallax" data-vc-parallax="1.5" data-vc-parallax-image="img/v2/1920x1068.jpg">
+   <div class="sc_parallax" data-vc-parallax="1.5" data-vc-parallax-image="img/v3/1920x1068.jpg">
       <div class="content_wrap">
          <div class="sc_section scheme_dark">
             <div class="sc_section_inner">
@@ -446,16 +457,16 @@
                <div class="sc_section">
                   <div class="sc_section_inner">
                      <figure class="sc_image alignleft margin_bottom_small">
-                        <a href="#"><img src="img/v2/img_b1.png" alt="" /></a>
+                        <a href="#"><img src="img/v3/img_b1.png" alt="" /></a>
                      </figure>
                      <figure class="sc_image alignleft margin_bottom_large">
-                        <a href="#"><img src="img/v2/img_b2.png" alt="" /></a>
+                        <a href="#"><img src="img/v3/img_b2.png" alt="" /></a>
                      </figure>
                   </div>
                </div>
             </div>
             <div class="column-1_2 sc_column_item">
-               <figure class="sc_image customImgHome1"><img src="img/v2/img_mobile.png" alt="" /></figure>
+               <figure class="sc_image customImgHome1"><img src="img/v3/img_mobile.png" alt="" /></figure>
             </div>
          </div>
       </div>
