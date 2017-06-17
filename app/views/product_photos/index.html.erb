@@ -1,0 +1,32 @@
+<p id="notice"></p>
+
+<h3>Listing Product Photos</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Is Primary</th>
+      <th style="text-align:center">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_photos.each do |product_photo| %>
+      <tr>
+        <td><%= image_tag product_photo.photo.path(:medium) %></td>
+        <td><%= product_photo.is_primary %></td>
+        <td>
+          <%= link_to 'Show', product_photo, class: "btn btn-info" %>
+          <%= link_to 'Edit', edit_product_photo_path(product_photo), class: "btn btn-warning" %>
+          <%= link_to 'Destroy', product_photo, class: "btn btn-danger", 
+            method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product Photo', new_product_photo_path, class: "btn btn-success" %>

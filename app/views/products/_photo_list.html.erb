@@ -1,0 +1,27 @@
+
+<div id="product_photo_list" class="tab-pane">
+    <div class="panel">
+    <div class="panel-body">
+      <div class="col-md-6">
+          <p>
+            <strong>Background Image:</strong>
+            <%= image_tag @product.background_image.url(:medium) %>
+          </p>
+
+          <p>
+          	<strong>Second Background Image:</strong>
+          	<%= image_tag @product.second_background_image.url(:medium) %>
+          </p>
+
+          <p>
+            <strong>Map Image:</strong>
+            <%= image_tag @product.map_image.url(:medium) %>
+          </p>
+        </div>
+    </div>
+
+    <div class="panel-footer">
+      <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg back_btn" type="reset">Back</button>
+    </div>
+  </div>
+</div>
