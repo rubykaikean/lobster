@@ -1,0 +1,45 @@
+<%= form_for(@product_photo, html: { multipart: true, class: "panel-body form-horizontal form-padding" }) do |f| %>
+  <% if @product_photo.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@product_photo.errors.count, "error") %> 
+        prohibited this product_photo from being saved:
+      </h2>
+
+      <ul>
+      <% @product_photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# if @product %>
+    <%#= f.hidden_field :project_id, value: @project.id  %>
+  <%# else %>
+    <%#= f.hidden_field :project_id, value: @subsale.id  %>
+    <%#= f.hidden_field :is_subsale, value: true %>
+  <%# end %>
+
+  <div class="form-group">
+    <%= f.label :photo, class: "col-md-3 control-label" %>
+    <div class="col-md-9">
+      <%= f.file_field :photo %>
+    </div>
+  </div>
+
+ <!--  <div class="form-group">
+    <%#= f.label :is_primary, class: "col-md-3 control-label" %>
+    <div class="col-md-9">
+      <%#= f.check_box :is_primary, {}, true, false %>
+    </div>
+  </div> -->
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
+        <%= f.submit "Upload Photo", class: "btn btn-info btn-labeled fa fa-user fa-lg" %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -19,13 +19,6 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label class="col-md-3 control-label" for="product_description">Description:</label>
-    <div class="col-md-9">
-      <textarea id="product_description" name="product[description]" class="form-control" placeholder="Product Description" value="<%= @product.description %>"></textarea>
-    </div>
-  </div>
-
   <div class="form-group pad-ver">
       <label class="col-md-3 control-label">Type</label>
     <div class="col-md-9">
@@ -37,6 +30,119 @@
       </select>
     </div>
   </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_address">Address:</label>
+    <div class="col-md-9">
+      <input id="product_address" name="product[address]" class="form-control" placeholder="Product Address" value="<%= @product.address %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_location">Location:</label>
+    <div class="col-md-9">
+      <input id="product_location" name="product[location]" class="form-control" placeholder="Product Location" value="<%= @product.location %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_display_price">Display Price:</label>
+    <div class="col-md-9">
+      <input type="number" id="product_display_price" name="product[display_price]" class="form-control" placeholder="Product Display Price" value="<%= @product.display_price %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_display_sqft">Display sq.ft:</label>
+    <div class="col-md-9">
+      <input type="number" id="product_display_sqft" name="product[display_sqft]" class="form-control" placeholder="Product Display sqft" value="<%= @product.display_sqft %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_curreny">Currency:</label>
+    <div class="col-md-9">
+      <input id="product_currency" name="product[currency]" class="form-control" placeholder="Product Currency" value="<%= @product.currency %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_completion_date">Completion Date:</label>
+    <div class="col-md-9">
+      <div class="input-group date">
+        <input id="product_completion_date" name="product[completion_date]" class="form-control" value="<%= @project.completion_date.strftime("%d-%m-%Y") rescue'Select a date.' %>" required>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_description">Description:</label>
+    <div class="col-md-9">
+      <textarea id="product_description" name="product[description]" class="form-control" placeholder="Product Description"><%= @product.description %></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_details_description">Details Description:</label>
+    <div class="col-md-9">
+      <textarea id="product_details_description" name="product[details_description]" class="form-control" placeholder="Details Description"><%= @product.details_description %></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_nearby_location_description">Nearby Location Description:</label>
+    <div class="col-md-9">
+      <textarea id="product_nearby_location_description" name="product[nearby_location_description]" class="form-control" placeholder="Nearby Location Description"><%= @product.nearby_location_description %></textarea>
+    </div>
+  </div>
+  <hr>
+
+  <%= hidden_field_tag 'product[background_image]', nil %>
+    <div class="form-group">
+      <%= label_tag "Background Image:", nil ,class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <% if @product.new_record? %>
+          <%= f.file_field :background_image %>
+          <small class="help-block">Required Field</small>
+        <% else %>
+          <%= image_tag @product.background_image.url(:medium) %>
+          <%= f.file_field :background_image %>
+          <small>Required Field, Upload large picture for home page.</small>
+        <% end %>
+      </div>
+    </div>
+
+    <%= hidden_field_tag 'product[second_background_image]', nil %>
+    <div class="form-group">
+      <%= label_tag "Second Background Image:", nil ,class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.file_field :second_background_image %>
+        <!-- <%# if @product.new_record? %>
+          <input type="file" name="product[second_background_image]">
+          <small class="help-block">Required Field</small>
+        <%# else %>
+          <%#= image_tag @product.second_background_image.url(:medium) %>
+          <input type="file" name="product[second_background_image]">
+          <small>Required Field, Upload large picture for home page.</small>
+        <%# end %> -->
+      </div>
+    </div>
+
+    <%= hidden_field_tag 'product[map_image]', nil %>
+    <div class="form-group">
+      <%= label_tag "Product Map Image:", nil ,class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <% if @product.new_record? %>
+          <%= f.file_field :map_image %>
+          <small class="help-block">Required Field</small>
+        <% else %>
+          <%= image_tag @product.map_image.url(:medium) %>
+          <%= f.file_field :map_image %>
+          <small>Required Field</small>
+        <% end %>
+      </div>
+    </div>
 
   <div class="panel-footer">
     <div class="row">

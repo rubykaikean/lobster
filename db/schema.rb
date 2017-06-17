@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406112647) do
+ActiveRecord::Schema.define(version: 20170616162506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,6 +253,19 @@ ActiveRecord::Schema.define(version: 20170406112647) do
   add_index "phases", ["project_id"], name: "index_phases_on_project_id", using: :btree
   add_index "phases", ["slug"], name: "index_phases_on_slug", unique: true, using: :btree
 
+  create_table "product_photos", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "is_primary"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "product_photos", ["product_id"], name: "index_product_photos_on_product_id", using: :btree
+
   create_table "product_settings", force: :cascade do |t|
     t.integer  "product_id"
     t.boolean  "allow_multiple_booking",            default: false
@@ -268,6 +281,8 @@ ActiveRecord::Schema.define(version: 20170406112647) do
     t.boolean  "notify_agent_on_booking_unit",      default: false
     t.boolean  "notify_admin_on_payment_upload",    default: false
     t.boolean  "hide_price_of_reserved_unit",       default: false
+    t.boolean  "is_feature_product",                default: false
+    t.boolean  "is_star_product",                   default: false
   end
 
   create_table "product_types", force: :cascade do |t|
@@ -294,11 +309,31 @@ ActiveRecord::Schema.define(version: 20170406112647) do
     t.integer  "status_id"
     t.integer  "phase_id"
     t.string   "slug"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.boolean  "is_published",   default: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.boolean  "is_published",                         default: false
     t.integer  "company_id"
     t.string   "e_brochure_url"
+    t.string   "address"
+    t.string   "location"
+    t.integer  "display_price"
+    t.integer  "display_sqft"
+    t.string   "currency"
+    t.datetime "completion_date"
+    t.text     "details_description"
+    t.text     "nearby_location_description"
+    t.string   "background_image_file_name"
+    t.string   "background_image_content_type"
+    t.integer  "background_image_file_size"
+    t.datetime "background_image_updated_at"
+    t.string   "second_background_image_file_name"
+    t.string   "second_background_image_content_type"
+    t.integer  "second_background_image_file_size"
+    t.datetime "second_background_image_updated_at"
+    t.string   "map_image_file_name"
+    t.string   "map_image_content_type"
+    t.integer  "map_image_file_size"
+    t.datetime "map_image_updated_at"
   end
 
   add_index "products", ["company_id"], name: "index_products_on_company_id", using: :btree

@@ -17,6 +17,8 @@
 #  notify_agent_on_booking_unit      :boolean          default(FALSE)
 #  notify_admin_on_payment_upload    :boolean          default(FALSE)
 #  hide_price_of_reserved_unit       :boolean          default(FALSE)
+#  is_feature_product                :boolean          default(FALSE)
+#  is_star_product                   :boolean          default(FALSE)
 #
 
 # Read about fixtures at

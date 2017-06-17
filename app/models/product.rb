@@ -2,18 +2,38 @@
 #
 # Table name: products
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  type_id        :integer
-#  description    :text
-#  status_id      :integer
-#  phase_id       :integer
-#  slug           :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  is_published   :boolean          default(FALSE)
-#  company_id     :integer
-#  e_brochure_url :string
+#  id                                   :integer          not null, primary key
+#  name                                 :string
+#  type_id                              :integer
+#  description                          :text
+#  status_id                            :integer
+#  phase_id                             :integer
+#  slug                                 :string
+#  created_at                           :datetime         not null
+#  updated_at                           :datetime         not null
+#  is_published                         :boolean          default(FALSE)
+#  company_id                           :integer
+#  e_brochure_url                       :string
+#  address                              :string
+#  location                             :string
+#  display_price                        :integer
+#  display_sqft                         :integer
+#  currency                             :string
+#  completion_date                      :datetime
+#  details_description                  :text
+#  nearby_location_description          :text
+#  background_image_file_name           :string
+#  background_image_content_type        :string
+#  background_image_file_size           :integer
+#  background_image_updated_at          :datetime
+#  second_background_image_file_name    :string
+#  second_background_image_content_type :string
+#  second_background_image_file_size    :integer
+#  second_background_image_updated_at   :datetime
+#  map_image_file_name                  :string
+#  map_image_content_type               :string
+#  map_image_file_size                  :integer
+#  map_image_updated_at                 :datetime
 #
 # Indexes
 #
@@ -39,6 +59,7 @@ class Product < ActiveRecord::Base
   has_many :regions
   has_many :sources_types
   has_many :enquiries
+  has_many :product_photos
   has_and_belongs_to_many :users
   
 
@@ -46,6 +67,24 @@ class Product < ActiveRecord::Base
 	# validates :name, presence: true, uniqueness: { scope: :phase_id }
 	after_create :generate_setting
   after_find :generate_setting
+
+  has_attached_file :background_image,
+                  :styles => {:large => "1920x1080>", :medium => "500x500>", :thumb => "100x100>" },
+                  :path => "images/background_image/:id/:style/:filename"  
+  
+  has_attached_file :second_background_image,
+                  :styles => {:large => "1920x1080>", :medium => "500x500>", :thumb => "100x100>" },
+                  :path => "images/background_image/:id/:style/:filename"  
+
+
+  has_attached_file :map_image,
+                    :styles => {:large => "500x500>", :medium => "300x300>", :thumb => "100x100>" },
+                    :path => "images/map_image/:id/:style/:filename"  
+
+  validates_attachment :background_image, :second_background_image, :map_image, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpg"] }
+  validates_attachment_size :background_image, :second_background_image, :map_image, :less_than => 5.megabytes
+
+
 
   scope :published, -> { where(is_published: true) }
 
