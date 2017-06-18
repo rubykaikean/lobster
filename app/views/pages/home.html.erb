@@ -221,7 +221,7 @@
                <h2 class="sc_title sc_title_iconed ind2 margin_top_null margin_bottom_xmedium">
                   <span class="sc_title_icon sc_title_icon_left sc_title_icon_small icon-map-pointer18 sc_left"></span>
                   <span class="sc_title_box">
-                  <a href="#"><%= @star_product.address %></a>
+                  <a href="<%= listing_details_path(:product => @star_product) %>"><%= @star_product.address %></a>
                   <span class="sc_title_subtitle"><%= @star_product.location %></span>
                   </span>
                </h2>
@@ -318,7 +318,7 @@
    <!-- Start Third stage -->
    <div class="sc_section overflow_hidden bg_color_1">
       <div class="content_wrap margin_top_large margin_bottom_medium">
-         <h4 class="sc_title margin_top_null margin_bottom_medium">recent properties</h4>
+         <h4 class="sc_title margin_top_null margin_bottom_medium">Recent Properties</h4>
          <div class="sc_property_wrap">
             <div class="sc_property sc_property_style_property-1">
                <div class="sc_columns columns_wrap">
@@ -327,7 +327,7 @@
                   <div class="column-1_3 column_padding_bottom">
                      <div class="sc_property_item">
                         <div class="sc_property_image">
-                           <a href="#">
+                           <a href="<%= listing_details_path(:product => feature_property) %>">
                               <div class="property_price_box"><span class="property_price_box_sign"><%= feature_property.currency %></span><span class="property_price_box_price"><%= feature_property.display_sqft %></span></div>
                               <img alt="<%= feature_property.background_image %>" src="<%= feature_property.background_image %>" height="770" width="460" >
                            </a>
@@ -429,7 +429,7 @@
                      <div class="sc_columns columns_wrap">
                         <div class="column-1_4 column_padding_bottom">
                            <div class="sc_services_item">
-                              <a href="single-service.html"><span class="sc_icon icon-house263"></span></a>
+                              <a href="#"><span class="sc_icon icon-house263"></span></a>
                               <div class="sc_services_item_content">
                                  <h4 class="sc_services_item_title"><a href="single-service.html">Best property lists</a></h4>
                                  <div class="sc_services_item_description">
@@ -440,7 +440,7 @@
                         </div>
                         <div class="column-1_4 column_padding_bottom">
                            <div class="sc_services_item">
-                              <a href="single-service.html"><span class="sc_icon icon-thumbs4"></span></a>
+                              <a href="#"><span class="sc_icon icon-thumbs4"></span></a>
                               <div class="sc_services_item_content">
                                  <h4 class="sc_services_item_title"><a href="single-service.html">Best price in market</a></h4>
                                  <div class="sc_services_item_description">
@@ -451,7 +451,7 @@
                         </div>
                         <div class="column-1_4 column_padding_bottom">
                            <div class="sc_services_item">
-                              <a href="single-service.html"><span class="sc_icon icon-badges3"></span></a>
+                              <a href="#"><span class="sc_icon icon-badges3"></span></a>
                               <div class="sc_services_item_content">
                                  <h4 class="sc_services_item_title"><a href="single-service.html">Guaranteed services</a></h4>
                                  <div class="sc_services_item_description">
@@ -462,7 +462,7 @@
                         </div>
                         <div class="column-1_4 column_padding_bottom">
                            <div class="sc_services_item">
-                              <a href="single-service.html"><span class="sc_icon icon-line-graphic6"></span></a>
+                              <a href="#"><span class="sc_icon icon-line-graphic6"></span></a>
                               <div class="sc_services_item_content">
                                  <h4 class="sc_services_item_title"><a href="single-service.html">Marketing research</a></h4>
                                  <div class="sc_services_item_description">
