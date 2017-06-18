@@ -21,6 +21,9 @@
 #  last_sign_in_ip        :inet
 #  username               :string
 #  status_id              :integer          default(1)
+#  mobile_contact_number  :string
+#  work_contact_number    :string
+#  home_contact_number    :string
 #
 # Indexes
 #

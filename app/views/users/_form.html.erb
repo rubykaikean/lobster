@@ -24,6 +24,30 @@
   </div>
 
   <div class="form-group">
+    <label class="col-md-3 control-label" for="user_mobile_contact_number">Mobile Contact Number</label>
+    <div class="col-md-9">
+      <input type="number" id="user_mobile_contact_number" name="user[mobile_contact_number]" class="form-control" placeholder="Mobile Contact Number" value="<%= @user.mobile_contact_number %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="user_home_contact_number">Home Contact Number</label>
+    <div class="col-md-9">
+      <input type="number" id="user_name" name="user[home_contact_number]" class="form-control" placeholder="Home Contact Number" value="<%= @user.home_contact_number %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="user_work_contact_number">Work Contact Number</label>
+    <div class="col-md-9">
+      <input type="text" id="user_work_contact_number" name="user[work_contact_number]" class="form-control" placeholder="Work Contact Number" value="<%= @user.work_contact_number %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+  <div class="form-group">
     <label class="col-md-3 control-label" for="user_email">Email</label>
     <div class="col-md-9">
       <input type="text" id="user_email" name="user[email]" class="form-control" placeholder="Email" value="<%= @user.email %>">

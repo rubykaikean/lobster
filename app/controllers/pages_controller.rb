@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+	# default from: "noreply@gmail.com"
 	layout "application_v3"
 
 	def home
@@ -17,7 +18,13 @@ class PagesController < ApplicationController
 	end
 
 	def listing_details
+		
+		@product = Product.friendly.find(params[:product])
 
+		@other_product = Product.where.not("id = ?", @product.id)
+
+		@users = User.take(2)
+	
 	end
 
 	def blog
@@ -26,6 +33,13 @@ class PagesController < ApplicationController
 
 	def contact
 
+	end
+
+	def sign_up_email
+		# render :text => params[:email]
+		ApplicationMailer.notice_sign_up(params[:email]).deliver_now
+		redirect_to :back, notice: "Thank you sign up."
+		# render :text => params
 	end
 
 end

@@ -5,47 +5,65 @@
       <div class="content">
          <section class="post_featured">
             <div class="post_thumb">
-               <a class="hover_icon hover_icon_view" href="img/v3/1170x659.jpg" title="87 Mishaum Point Rd, Dartmouth, MA 02748">
+               <!-- <a class="hover_icon hover_icon_view" href="img/v3/1170x659.jpg" title="87 Mishaum Point Rd, Dartmouth, MA 02748"> -->
                <span class="ps_single_status">sale</span>
-               <img alt="" src="img/v3/1170x659.jpg"></a>
+               <img alt="<%= @product.background_image %>" src="<%= @product.background_image %>" height="770" width="460" >
             </div>
          </section>
          <section class="post_content">
             <div class="post_info">
                <span class="post_info_item">in <a class="property_group_link" href="#">For Sale</a>, 
-               <a class="property_group_link" href="#">Lux Property</a></span>
-               <span class="post_info_item">Started <a href="single-post.html" class="post_info_date date updated">February 5, 2016</a></span>
+               <a class="property_group_link" href="#"><%= @product.name %></a></span>
+               <!-- <span class="post_info_item">Started <a href="single-post.html" class="post_info_date date updated">February 5, 2016</a></span>
                <span class="post_info_item post_info_counters">
-               <a class="post_counters_item" href="#"><span>0</span> Comments</a>
+               <a class="post_counters_item" href="#"><span>0</span> Comments</a> -->
                </span>
             </div>
-            <h3 class="post_title">87 Mishaum Point Rd, Dartmouth, MA 02748</h3>
+            <h3 class="post_title"><%= @product.address %></h3>
             <div class="ps_single_info">
                <div class="ps_single_info_descr">
-                  Property ID: 20055, House. 
+                  <%= @product.location %>
                </div>
-               <div class="property_price_box"><span class="property_price_box_sign">$</span><span class="property_price_box_price">1,249,000</span></div>
+               <div class="property_price_box"><span class="property_price_box_sign"><%= @product.currency %></span><span class="property_price_box_price"><%= number_with_precision(@product.display_price, :precision => 2, :delimiter => ',') %></span></div>
                <div class="sc_property_info_list">
-                  <span class="icon-area_2">1,286 sqft</span><span class="icon-floor_plan">8</span><span class="icon-bed">2</span>
-                  <span class="icon-bath">3</span><span class="icon-warehouse">2</span><span class="icon-crane">2001</span> 
+                  <span class="icon-area_2"><%= number_with_precision(@product.display_sqft, :delimiter => ',') %> sqft</span>
+                  <!-- <span class="icon-floor_plan">8</span> -->
+                  <span class="icon-bed"><%= @product.bedroom %></span>
+                  <span class="icon-bath"><%= @product.bathroom %></span>
+                  <!-- <span class="icon-warehouse">2</span>
+                  <span class="icon-crane">2001</span> --> 
                </div>
                <div class="cL"></div>
             </div>
             <div class="sc_section">
-               <p>The Moana Residence is situated on the best lot at Kohanaiki and is a 5 bedroom, 5 1/2 bath home of approximately 8,000 interior sq. ft. It features Ipe hardwood flooring on the interior and granite stone flooring on the lanais, granite countertops, vaulted cedar ceilings, clerestory windows for lots of light.</p>
-               <p>mahogany cabinetry, mahogany trim and pocketing doors throughout. The beautifully landscaped grounds include a large lap pool, spa and separate Pool.</p>
+               <%= @product.description %>
+               <!-- <p>The Moana Residence is situated on the best lot at Kohanaiki and is a 5 bedroom, 5 1/2 bath home of approximately 8,000 interior sq. ft. It features Ipe hardwood flooring on the interior and granite stone flooring on the lanais, granite countertops, vaulted cedar ceilings, clerestory windows for lots of light.</p>
+               <p>mahogany cabinetry, mahogany trim and pocketing doors throughout. The beautifully landscaped grounds include a large lap pool, spa and separate Pool.</p> -->
                <div class="sc_line sc_line_position_center_center sc_line_style_solid margin_top_medium margin_bottom_medium"></div>
                <h4 class="sc_title">Features &amp; Amenities</h4>
                <div class="columns_wrap sc_columns">
+                  
                   <div class="column-1_2 sc_column_item">
                      <ul class="sc_list sc_list_style_iconed color_1">
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Quiet Neighbourhood</p>
+                           <p>
+                              <% unless @product.product_features.first == nil %>
+                                 <%= @product.product_features.first.name %>
+                              <% else %>
+                                 Blank 1
+                              <% end %>
+                           </p>
                         </li>
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Great Local Community</p>
+                           <p>
+                              <% unless @product.product_features[1] == nil %>
+                                 <%= @product.product_features[1].name %>
+                              <% else %>
+                                 Blank 2
+                              <% end %>
+                           </p>
                         </li>
                      </ul>
                   </div>
@@ -53,11 +71,23 @@
                      <ul class="sc_list sc_list_style_iconed color_1">
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Fabulous Views</p>
+                           <p>
+                              <% unless @product.product_features[2] == nil %>
+                                 <%= @product.product_features[2].name %>
+                              <% else %>
+                                 Blank 3
+                              <% end %>
+                           </p>
                         </li>
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Large Play Center In Yard</p>
+                           <p>
+                              <% unless @product.product_features[3] == nil %>
+                                 <%= @product.product_features[3].name %>
+                              <% else %>
+                                 Blank 4
+                              <% end %>
+                           </p>
                         </li>
                      </ul>
                   </div>
@@ -65,25 +95,28 @@
                <div class="sc_line sc_line_position_center_center sc_line_style_solid margin_top_medium margin_bottom_medium"></div>
                <h4 class="sc_title">Additional Details</h4>
                <div class="property_text_1">
-                  <p>AC: Ceiling Fan(s), Central<br /> ACRES: 0.16<br /> ACRES SOURCE: Assessor<br /> AP #: 374-493-13<br /> APPLIANCES: Dishwasher, Freestanding Gas Range, Garbage Disposal, Microwave<br /> BATHROOM DESCRIPTION: Stall Shower<br /> BEDROOM FEATURES: Main Floor Master Bedroom<br /> CROSS STREETS: Lincoln and Anchor<br /> DINING AREA: Family Kitchen</p>
+                  <%= @product.details_description %>
+                  <!-- <p>AC: Ceiling Fan(s), Central<br /> ACRES: 0.16<br /> ACRES SOURCE: Assessor<br /> AP #: 374-493-13<br /> APPLIANCES: Dishwasher, Freestanding Gas Range, Garbage Disposal, Microwave<br /> BATHROOM DESCRIPTION: Stall Shower<br /> BEDROOM FEATURES: Main Floor Master Bedroom<br /> CROSS STREETS: Lincoln and Anchor<br /> DINING AREA: Family Kitchen</p> -->
                </div>
                <div class="sc_line sc_line_position_center_center sc_line_style_solid margin_top_medium margin_bottom_medium"></div>
                <h4 class="sc_title">Nearby Public places and transportion</h4>
                <div class="property_text_1">
-                  <p>Subway (line 1E): 0.12 mi – 18th St (18th St and 7th Ave)<br /> Market: 0.15 mi – 14th St (16th St and 8th Ave)<br /> Kindergarden: 0.26 mi – 23rd St (23rd St and 8th Ave)<br /> School: 0.15 mi – 14th St (16th St and 8th Ave)</p>
+                  <%= @product.nearby_location_description %>
+                  <!-- <p>Subway (line 1E): 0.12 mi – 18th St (18th St and 7th Ave)<br /> Market: 0.15 mi – 14th St (16th St and 8th Ave)<br /> Kindergarden: 0.26 mi – 23rd St (23rd St and 8th Ave)<br /> School: 0.15 mi – 14th St (16th St and 8th Ave)</p> -->
                </div>
                <div class="sc_line sc_line_position_center_center sc_line_style_solid margin_top_medium margin_bottom_medium"></div>
                <h4 class="sc_title">Contacts Us</h4>
                <div  class="sc_team_wrap">
                   <div class="sc_team sc_team_style_team-2">
                      <div class="sc_columns columns_wrap">
+                        <% @users.each do |user| %>
                         <div class="column-1_2 column_padding_bottom">
                            <div  class="sc_team_item columns_wrap">
                               <div class="sc_team_item_avatar">
                                  <img alt="" src="img/v3/370x370.jpg"> 
                               </div>
                               <div class="sc_team_item_info">
-                                 <div class="sc_team_item_title"><a href="single-team.html">Sarah Doe</a></div>
+                                 <div class="sc_team_item_title"><a href="single-team.html"><%= user.display_name %></a></div>
                                  <div class="sc_team_item_position">Agent</div>
                                  <div class="sc_socials sc_socials_type_icons sc_socials_size_tiny">
                                     <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-facebook"></span></a></div>
@@ -93,11 +126,12 @@
                                  </div>
                               </div>
                               <div class="cL"></div>
-                              <div class="sc_team_item_phone"><span class="icon-mobile29"></span>800 123 45 67</div>
-                              <div class="sc_team_item_email"><span class="icon-message106"></span>email@company.com</div>
+                              <div class="sc_team_item_phone"><span class="icon-mobile29"></span><%= user.mobile_contact_number %></div>
+                              <div class="sc_team_item_email"><span class="icon-message106"></span><%= user.email %></div>
                            </div>
                         </div>
-                        <div class="column-1_2 column_padding_bottom">
+                        <% end %>
+                        <!-- <div class="column-1_2 column_padding_bottom">
                            <div class="sc_team_item even columns_wrap">
                               <div class="sc_team_item_avatar">
                                  <img alt="" src="img/v3/370x370.jpg"> 
@@ -116,7 +150,7 @@
                               <div class="sc_team_item_phone"><span class="icon-mobile29"></span>800 123 45 67</div>
                               <div class="sc_team_item_email"><span class="icon-message106"></span>email@company.com</div>
                            </div>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </div>
@@ -317,35 +351,46 @@
       <div class="sc_property_wrap">
          <div class="sc_property sc_property_style_property-1 " data-interval="5446" data-slides-per-view="3">
             <div class="sc_columns columns_wrap">
+
+               <% @other_product.each do |product| %>
                <div class="column-1_3 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-post.html">
-                           <div class="property_price_box"><span class="property_price_box_sign">$</span><span class="property_price_box_price">3,449</span><span class="property_price_box_per">/year</span></div>
-                           <img alt="" src="img/v3/770x460.jpg">
+                           <div class="property_price_box"><span class="property_price_box_sign"><%= product.currency %></span><span class="property_price_box_price">3,449</span><span class="property_price_box_per">/year</span></div>
+                           <img alt="<%= product.second_background_image %>" src="<%= product.second_background_image %>" height="770" width="460" >
                         </a>
                      </div>
                      <div class="sc_property_info">
-                        <div class="sc_property_description">House for rent</div>
+                        <div class="sc_property_description">House for sale</div>
                         <div>
                            <div class="sc_property_icon">
                               <span class="icon-location"></span>
                            </div>
                            <div class="sc_property_title">
                               <div class="sc_property_title_address_1">
-                                 <a href="single-post.html">80646 Via Pessaro</a> 
+                                 <a href="#"><%= product.address %></a> 
                               </div>
-                              <div class="sc_property_title_address_2">La Quinta, CA 32453</div>
+                              <div class="sc_property_title_address_2"><%= product.location %></div>
                            </div>
                            <div class="cL"></div>
                         </div>
                      </div>
                      <div class="sc_property_info_list">
-                        <span class="icon-building113">886 sqft</span><span class="icon-bed">2</span><span class="icon-bath">3</span><span class="icon-warehouse">2</span>
+                        <span class="icon-building113"><%= number_with_precision(product.display_sqft, :limiter => ',') %>sqft
+                        </span>
+                        <span class="icon-bed">
+                           <%= product.bedroom %>
+                        </span>
+                        <span class="icon-bath">
+                           <%= product.bathroom %>
+                        </span>
+                        <!-- <span class="icon-warehouse">2</span> -->
                      </div>
                   </div>
                </div>
-               <div class="column-1_3 column_padding_bottom">
+               <% end %>
+               <!-- <div class="column-1_3 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-post.html">
@@ -400,7 +445,7 @@
                         <span class="icon-building113">1,286 sqft</span><span class="icon-bed">2</span><span class="icon-bath">3</span><span class="icon-warehouse">3</span>
                      </div>
                   </div>
-               </div>
+               </div> -->
             </div>
          </div>
       </div>

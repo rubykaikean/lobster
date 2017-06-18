@@ -238,10 +238,11 @@
                            <span class="sc_list_icon icon-stop color_2"></span>
                            <p>
                            <% unless @star_product.product_features.first == nil %>
-                           <%= @star_product.product_features[2].name %>
+                           <%= @star_product.product_features.first.name %>
                            <% else %>
                               Blank 1
-                           <% end %></p>
+                           <% end %>
+                        </p>
                         </li>
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
@@ -419,7 +420,7 @@
 
 
    <!-- Start Fourth Stage -->
-   <div class="sc_parallax" data-vc-parallax="1.5" data-vc-parallax-image="img/v3/1920x1068.jpg">
+   <div class="sc_parallax" data-vc-parallax="1.5" data-vc-parallax-image="img/v3/banner_section4.jpg">
       <div class="content_wrap">
          <div class="sc_section scheme_dark">
             <div class="sc_section_inner">

@@ -10,13 +10,12 @@
                <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
-                        <a href="single-post.html">
+                        <a href="<%= listing_details_path(:product => product) %>">
                            <div class="property_price_box">
                               <span class="property_price_box_sign">
                               <%= product.currency %>
                               </span><span class="property_price_box_price"><%= number_with_precision(product.display_price, :precision => 2, :delimiter => ',') %></span>
                            </div>
-                           <!-- <img alt="" src="img/v3/770x460.jpg"> -->
                            <img alt="<%= product.background_image %>" src="<%= product.background_image %>" height="770" width="570" >
                         </a>
                      </div>
@@ -28,7 +27,7 @@
                            </div>
                            <div class="sc_property_title">
                               <div class="sc_property_title_address_1">
-                                 <a href="single-post.html">
+                                 <a href="<%= listing_details_path(:product => product) %>">
                                     <%= product.address %>
                                  </a> 
                               </div>
