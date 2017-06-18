@@ -131,11 +131,11 @@ class ProductsController < ApplicationController
   end
 
   def update_setting
-    render :text => params
-    # setting = ProductSetting.find(params[:id])
-    # setting.update(setting_params)
-    # flash[:notice] = "Setting has been saved."
-    # redirect_to "#{product_path(setting.product)}#product_setting-tab"
+    # render :text => params
+    setting = ProductSetting.find(params[:id])
+    setting.update(setting_params)
+    flash[:notice] = "Setting has been saved."
+    redirect_to "#{product_path(setting.product)}#product_setting-tab"
   end
 
   def update_region
