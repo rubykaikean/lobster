@@ -25,7 +25,7 @@
       <br>
       <a href="<%= edit_product_path(@product) %>"><button class="btn btn-primary">Edit</button></a>
       <button data-target="#photo_list" data-toggle="modal" class="btn btn-info">Photo List</button>
-      
+      <%= link_to "Product features", product_index_product_features_path(:product_id => @product.id), :class=>"btn btn-warning" %>
       <%#= link_to "Lot List", lots_path(:product_id => @product.id), :class=>"btn btn-default" %>
     <% if @product_types.any? %>
       <button data-target="#generate_lot" data-toggle="modal" class="btn btn-primary">Generate Unit</button>
@@ -34,7 +34,7 @@
     <% end %>
       <button data-target="#new_product_type" data-toggle="modal" class="btn btn-primary">New Type</button>
       <button data-target="#new_region" data-toggle="modal" class="btn btn-primary">New Region</button>
-      <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button>
+      <!-- <button data-target="#new_sources_type" data-toggle="modal" class="btn btn-primary">New Sources Type</button> -->
       <button data-target="#new_site_plan" data-toggle="modal" class="btn btn-primary">Upload Site Plan</button>
       <button data-target="#new_floor_plan" data-toggle="modal" class="btn btn-primary">Upload Floor Plan</button>
       <button data-target="#new_user_access" data-toggle="modal" class="btn btn-primary">New User Access</button>

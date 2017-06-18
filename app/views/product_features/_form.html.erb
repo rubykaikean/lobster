@@ -1,0 +1,31 @@
+<%= form_for(@product_feature, html: {class: "panel-body form-horizontal form-padding"}) do |f| %>
+
+  <%= f.hidden_field :product_id, value: @product.id  %>
+
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_features_name">Name</label>
+    <div class="col-md-9">
+      <input type="text" id="product_feature_name" name="product_feature[name]" class="form-control" placeholder="Product feature name" value="<%= @product_feature.name %>">
+      <!-- <small class="help-block">This is a help text</small> -->
+    </div>
+  </div>
+
+
+  <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info btn-labeled fa fa-user fa-lg" type="submit">Submit</button>
+          <button class="btn btn-warning btn-labeled fa fa-repeat fa-lg back_btn" type="reset">Back</button>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+  
+  $(".back_btn").click(function(e){
+    e.preventDefault();
+    window.location.href='<%#= product_path(@product) %>';
+  });
+</script>

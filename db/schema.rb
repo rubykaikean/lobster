@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616162506) do
+ActiveRecord::Schema.define(version: 20170617144142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,6 +253,15 @@ ActiveRecord::Schema.define(version: 20170616162506) do
   add_index "phases", ["project_id"], name: "index_phases_on_project_id", using: :btree
   add_index "phases", ["slug"], name: "index_phases_on_slug", unique: true, using: :btree
 
+  create_table "product_features", force: :cascade do |t|
+    t.integer  "product_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "product_features", ["product_id"], name: "index_product_features_on_product_id", using: :btree
+
   create_table "product_photos", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "is_primary"
@@ -334,6 +343,8 @@ ActiveRecord::Schema.define(version: 20170616162506) do
     t.string   "map_image_content_type"
     t.integer  "map_image_file_size"
     t.datetime "map_image_updated_at"
+    t.integer  "bedroom"
+    t.integer  "bathroom"
   end
 
   add_index "products", ["company_id"], name: "index_products_on_company_id", using: :btree

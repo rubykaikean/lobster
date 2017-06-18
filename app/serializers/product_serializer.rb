@@ -34,6 +34,8 @@
 #  map_image_content_type               :string
 #  map_image_file_size                  :integer
 #  map_image_updated_at                 :datetime
+#  bedroom                              :integer
+#  bathroom                             :integer
 #
 # Indexes
 #

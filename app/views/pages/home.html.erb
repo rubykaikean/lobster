@@ -1,36 +1,50 @@
 <%= content_for(:title, "Home") %>
 
+<% array_id = [] %>
+<% setting = ProductSetting.where("is_feature_product = true") %>
+
+<% setting.each do |p| %>
+   <% array_id << p.product_id %>
+<% end %>
+
+<% features_product = Product.where(id: array_id) %>
+
 
 <section class="slider_wrap slider_fullwide slider_engine_revo slider_alias_revsliderHome1">
    <!-- REVOLUTION SLIDER -->
    <div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
       <div id="rev_slider_4_1" class="rev_slider fullwidthabanner" data-version="5.1">
          <ul>
-            <li data-index="rs-8" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="img/v3/slider1h1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
-               <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-               <div class="tp-caption Estate tp-resizeme" id="slide-8-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
+            <% features_product.each_with_index do |p, index| %>
+            <li data-index="rs-<%= index + 1 %>" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="img/v3/slider1h1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+
+               <!-- <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina> -->
+               <img alt="<%= p.background_image %>" src="<%= p.background_image %>" height="770" width="460" >
+
+               <div class="tp-caption Estate tp-resizeme" id="slide-<%= index + 1 %>-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
                   <div class="sc_property_wrap">
-                     <div class="sc_property sc_property_style_property-6" data-interval="7176" data-slides-min-width="250">
+                     <div class="sc_property sc_property_style_property-6" data-interval="<%= rand(9) %>" data-slides-min-width="250">
                         <div class="sc_property_item">
                            <div class="sc_pr_h1">
                               <div class="sc_pr_h2">House for sale</div>
                            </div>
                            <div class="sc_pr_t1">
-                              <a href="single-post.html"><%= @product.address %></a> 
+                              <a href="#"><%= p.address %></a> 
                            </div>
-                           <div class="sc_pr_t2"><%= @product.location %></div>
+                           <div class="sc_pr_t2"><%= p.location %></div>
                            <div class="sc_pr_f1">
                               <div class="sc_pr_f11">
                                  <div class="sc_pr_f111"><span>House for sale</span></div>
                               </div>
-                              <div class="sc_pr_f12"><span><%= @product.currency %></span><%= number_with_precision(@product.display_price, :precision => 2, :delimiter=> ',') %></div>
+                              <div class="sc_pr_f12"><span><%= p.currency %></span><%= number_with_precision(p.display_price, :precision => 2, :delimiter=> ',') %></div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </li>
-            <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="images/slider1h2-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+            <% end %>
+            <!-- <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="images/slider1h2-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
                <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                <div class="tp-caption Estate tp-resizeme" id="slide-12-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
                   <div class="sc_property_wrap">
@@ -78,6 +92,7 @@
                   </div>
                </div>
             </li>
+ -->
          </ul>
          <div class="tp-bannertimer tp-bottom"></div>
       </div>
@@ -206,53 +221,78 @@
                <h2 class="sc_title sc_title_iconed ind2 margin_top_null margin_bottom_xmedium">
                   <span class="sc_title_icon sc_title_icon_left sc_title_icon_small icon-map-pointer18 sc_left"></span>
                   <span class="sc_title_box">
-                  <a href="#"><%#= @features_property.address %></a>
-                  <span class="sc_title_subtitle"><%#= @features_property.location %></span>
+                  <a href="#"><%= @star_product.address %></a>
+                  <span class="sc_title_subtitle"><%= @star_product.location %></span>
                   </span>
                </h2>
                <div class="sc_section margin_bottom_xmedium section_style_1">
                   <div class="sc_section_inner">
-                     <p>On the best lot at Phuket is situated the Kailua Residence. It features Ipe hardwood flooring on the interior and granite stone flooring on the lanais, high vaulted cedar ceilings.</p>
+                     <p><%= @star_product.description %></p>
                   </div>
                </div>
                <div class="columns_wrap sc_columns margin_bottom_medium">
+                  
                   <div class="column-1_2 sc_column_item">
                      <ul class="sc_list sc_list_style_iconed color_1">
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Quiet Neighbourhood</p>
+                           <p>
+                           <% unless @star_product.product_features.first == nil %>
+                           <%= @star_product.product_features[2].name %>
+                           <% else %>
+                              Blank 1
+                           <% end %></p>
                         </li>
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Great Local Community</p>
+                           <p>
+                           <% unless @star_product.product_features[1] == nil %>
+                           <%= @star_product.product_features[1].name %>
+                           <% else %>
+                              Blank 2
+                           <% end %></p>
                         </li>
                      </ul>
                   </div>
+
                   <div class="column-1_2 sc_column_item">
                      <ul class="sc_list sc_list_style_iconed color_1">
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Fabulous Views</p>
+                           <p>
+                           <% unless @star_product.product_features[2] == nil %>
+                              <%= @star_product.product_features[2].name %>
+                           <% else %>
+                              Blank 3
+                           <% end %>
+                           </p>
                         </li>
                         <li class="sc_list_item">
                            <span class="sc_list_icon icon-stop color_2"></span>
-                           <p>Large Play Center In Yard</p>
+                           <p>
+                           <% unless @star_product.product_features[3] == nil %>
+                              <%= @star_product.product_features[3].name %>
+                           <% else %>
+                              Blank 4
+                           <% end %>
+                           </p>
                         </li>
                      </ul>
                   </div>
+
                </div>
                <div class="sc_property_wrap">
                   <div class="sc_property sc_property_style_property-2">
                      <div class="sc_property_item">
                         <div class="ps_single_info">
                            <div class="property_price_box">
-                              <span class="property_price_box_sign">$</span><span class="property_price_box_price">1,249,000</span>
+                              <span class="property_price_box_sign">$</span><span class="property_price_box_price"><%= number_with_precision(@star_product.display_price, :precision => 2, :delimiter => ',') %></span>
                            </div>
                            <div class="sc_property_info_list">
-                              <span class="icon-area_2">1,286 sqft</span>
-                              <span class="icon-bed">2</span>
-                              <span class="icon-bath">3</span>
-                              <span class="icon-warehouse">2</span>
+                              <span class="icon-area_2"><%= @star_product.display_sqft %> sqft</span>
+                              <span class="icon-bed"><%= @star_product.bedroom %></span>
+                              <span class="icon-bath"><%= @star_product.bathroom %></span>
+                              <!-- <span class="icon-warehouse">2</span> -->
                            </div>
                            <div class="cL"></div>
                         </div>
@@ -262,7 +302,8 @@
             </div>
             <div class="column-1_2">
                <figure class="sc_image ">
-                  <a href="#"><img src="img/v3/570x414.jpg" alt="" /></a>
+                  <!-- <a href="#"><img src="img/v3/570x414.jpg" alt="" /></a> -->
+                  <img alt="<%= @star_product.second_background_image %>" src="<%= @star_product.second_background_image %>" height="700" width="700" >
                </figure>
             </div>
          </div>
@@ -270,14 +311,7 @@
    </div>
    <!-- End of second stage -->
 
-   <% array_id = [] %>
-   <% setting = ProductSetting.where("is_feature_product = true") %>
    
-   <% setting.each do |p| %>
-      <% array_id << p.product_id %>
-   <% end %>
-
-   <% features_product = Product.where(id: array_id) %>
    
 
    <!-- Start Third stage -->
@@ -292,9 +326,9 @@
                   <div class="column-1_3 column_padding_bottom">
                      <div class="sc_property_item">
                         <div class="sc_property_image">
-                           <a href="single-post.html">
+                           <a href="#">
                               <div class="property_price_box"><span class="property_price_box_sign"><%= feature_property.currency %></span><span class="property_price_box_price"><%= feature_property.display_sqft %></span></div>
-                              <img alt="" src="img/v3/770x460.jpg">
+                              <img alt="<%= feature_property.background_image %>" src="<%= feature_property.background_image %>" height="770" width="460" >
                            </a>
                         </div>
                         <div class="sc_property_info">
@@ -305,7 +339,7 @@
                               </div>
                               <div class="sc_property_title">
                                  <div class="sc_property_title_address_1">
-                                    <a href="single-post.html"><%= feature_property.address %></a> 
+                                    <a href="#"><%= feature_property.address %></a> 
                                  </div>
                                  <div class="sc_property_title_address_2"><%= feature_property.location %></div>
                               </div>
@@ -313,7 +347,7 @@
                            </div>
                         </div>
                         <div class="sc_property_info_list">
-                           <span class="icon-building113"><%#= display_sqft %> sqft</span><span class="icon-bed">2</span><span class="icon-bath">3</span><span class="icon-warehouse">2</span>
+                           <span class="icon-building113"><%= feature_property.display_sqft %> sqft</span><span class="icon-bed"><%= feature_property.bedroom %></span><span class="icon-bath"><%= feature_property.bathroom %></span><!-- <span class="icon-warehouse">2</span> -->
                         </div>
                      </div>
                   </div>
@@ -470,7 +504,7 @@
                </div>
             </div>
             <div class="column-1_2 sc_column_item">
-               <figure class="sc_image customImgHome1"><img src="img/v3/img_mobile.png" alt="" /></figure>
+               <figure class="sc_image customImgHome1"><img src="img/v3/imgmobile.png" alt="" /></figure>
             </div>
          </div>
       </div>

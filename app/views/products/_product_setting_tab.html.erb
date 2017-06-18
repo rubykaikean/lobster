@@ -67,10 +67,10 @@
               <div class="col-md-3" style="padding-top: 5px;">
                 <input type="hidden" id="setting_is_features" name="setting[is_star_product]" value="0">
               <%# setting = ProductSetting.find_by(is_star_product: true) %>
-                <%# %>
+                <%# if setting.present? || @setting.is_star_product == true %>
                 <input class="demo-switch" name="setting[is_star_product]" type="checkbox" <%= @setting.is_star_product? ? 'checked' : nil %> >
                 <%# else %>
-
+                <!-- Only one star product avaiable -->
                 <%# end %>
               </div>
             </div>

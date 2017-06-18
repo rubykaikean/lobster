@@ -1,0 +1,43 @@
+
+<div class="row" id="content_div">
+  <div class="col-lg-12">
+
+      <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-control">
+                <a class="fa fa-question-circle fa-lg fa-fw unselectable add-tooltip" href="#" data-original-title="<h4 class='text-thin'>Information</h4><p style='width:150px'>Click on the project name for more detail.</p>" data-html="true" title=""></a>
+              </div>
+              <h3 class="panel-title">Projects</h3>
+        </div>
+        
+        <div class="panel-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @product_features.each do |product_feature| %>
+                <tr>
+                  <td><%= product_feature.project %></td>
+                  <td><%= product_feature.name %></td>
+                  <td><%= link_to 'Show', product_feature %></td>
+                  <td><%= link_to 'Edit', edit_product_feature_path(product_feature) %></td>
+                  <td><%= link_to 'Destroy', product_feature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :product_features do
+    collection do 
+      get "product_index"
+    end
+  end
   resources :product_photos
   resources :molpay_transaction_histories do
     collection do 

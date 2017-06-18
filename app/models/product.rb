@@ -34,6 +34,8 @@
 #  map_image_content_type               :string
 #  map_image_file_size                  :integer
 #  map_image_updated_at                 :datetime
+#  bedroom                              :integer
+#  bathroom                             :integer
 #
 # Indexes
 #
@@ -60,6 +62,7 @@ class Product < ActiveRecord::Base
   has_many :sources_types
   has_many :enquiries
   has_many :product_photos
+  has_many :product_features
   has_and_belongs_to_many :users
   
 
@@ -69,11 +72,11 @@ class Product < ActiveRecord::Base
   after_find :generate_setting
 
   has_attached_file :background_image,
-                  :styles => {:large => "1920x1080>", :medium => "500x500>", :thumb => "100x100>" },
+                  :styles => {:large => "1920x1080>", :medium => "500x500>", :home_page_medium => "770x460", :thumb => "100x100>" },
                   :path => "images/background_image/:id/:style/:filename"  
   
   has_attached_file :second_background_image,
-                  :styles => {:large => "1920x1080>", :medium => "500x500>", :thumb => "100x100>" },
+                  :styles => {:large => "1920x1080>", :medium => "500x500>", :home_page_medium => "570x414", :thumb => "100x100>" },
                   :path => "images/background_image/:id/:style/:filename"  
 
 

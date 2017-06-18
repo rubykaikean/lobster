@@ -75,6 +75,20 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_bathroom">Bathroom:</label>
+    <div class="col-md-9">
+      <input type="number" id="product_currency" name="product[bathroom]" class="form-control" placeholder="Product Bathroom" value="<%= @product.bathroom %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="product_bedroom">Bedroom:</label>
+    <div class="col-md-9">
+      <input id="product_bedroom" name="product[bedroom]" class="form-control" placeholder="Product Bedroom" value="<%= @product.bedroom %>">
+    </div>
+  </div>
+
   <hr>
   <div class="form-group">
     <label class="col-md-3 control-label" for="product_description">Description:</label>
@@ -117,15 +131,14 @@
     <div class="form-group">
       <%= label_tag "Second Background Image:", nil ,class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.file_field :second_background_image %>
-        <!-- <%# if @product.new_record? %>
-          <input type="file" name="product[second_background_image]">
+        <% if @product.new_record? %>
+          <%= f.file_field :second_background_image %>
           <small class="help-block">Required Field</small>
-        <%# else %>
-          <%#= image_tag @product.second_background_image.url(:medium) %>
-          <input type="file" name="product[second_background_image]">
-          <small>Required Field, Upload large picture for home page.</small>
-        <%# end %> -->
+        <% else %>
+          <%= image_tag @product.second_background_image.url(:medium) %>
+          <%= f.file_field :second_background_image %>
+          <small>Required Field</small>
+        <% end %>
       </div>
     </div>
 

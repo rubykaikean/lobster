@@ -5,14 +5,19 @@
       <div class="content">
          <div class="sc_property sc_property_style_property-1">
             <div class="columns_wrap ">
+               
+               <% @products.each do |product| %>
                <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-post.html">
                            <div class="property_price_box">
-                              <span class="property_price_box_sign">$</span><span class="property_price_box_price">1,249,000</span>
+                              <span class="property_price_box_sign">
+                              <%= product.currency %>
+                              </span><span class="property_price_box_price"><%= number_with_precision(product.display_price, :precision => 2, :delimiter => ',') %></span>
                            </div>
-                           <img alt="" src="img/v3/770x460.jpg">
+                           <!-- <img alt="" src="img/v3/770x460.jpg"> -->
+                           <img alt="<%= product.background_image %>" src="<%= product.background_image %>" height="770" width="570" >
                         </a>
                      </div>
                      <div class="sc_property_info">
@@ -23,22 +28,27 @@
                            </div>
                            <div class="sc_property_title">
                               <div class="sc_property_title_address_1">
-                                 <a href="single-post.html">87 Mishaum Point Rd</a> 
+                                 <a href="single-post.html">
+                                    <%= product.address %>
+                                 </a> 
                               </div>
-                              <div class="sc_property_title_address_2">Dartmouth, MA 02748</div>
+                              <div class="sc_property_title_address_2">
+                                 <%= product.location %>
+                              </div>
                            </div>
                            <div class="cL"></div>
                         </div>
                      </div>
                      <div class="sc_property_info_list">
-                        <span class="icon-building113">1,286 sqft</span>
-                        <span class="icon-bed">2</span>
-                        <span class="icon-bath">3</span>
-                        <span class="icon-warehouse">2</span>
+                        <span class="icon-building113"><%= product.display_sqft %> sqft</span>
+                        <span class="icon-bed"><%= product.bedroom %></span>
+                        <span class="icon-bath"><%= product.bathroom %></span>
+                        <!-- <span class="icon-warehouse">2</span> -->
                      </div>
                   </div>
                </div>
-               <div class="column-1_2 column_padding_bottom">
+               <% end %>
+               <!-- <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-post.html">
@@ -70,8 +80,9 @@
                         <span class="icon-warehouse">3</span>
                      </div>
                   </div>
-               </div>
-               <div class="column-1_2 column_padding_bottom">
+               </div> -->
+
+               <!-- <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-post.html">
@@ -103,8 +114,9 @@
                         <span class="icon-warehouse">2</span>
                      </div>
                   </div>
-               </div>
-               <div class="column-1_2 column_padding_bottom">
+               </div> -->
+
+               <!-- <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-property.html">
@@ -136,8 +148,9 @@
                         <span class="icon-warehouse">2</span>
                      </div>
                   </div>
-               </div>
-               <div class="column-1_2 column_padding_bottom">
+               </div> -->
+
+               <!-- <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-post.html">
@@ -169,8 +182,9 @@
                         <span class="icon-warehouse">1</span>
                      </div>
                   </div>
-               </div>
-               <div class="column-1_2 column_padding_bottom">
+               </div> -->
+
+               <!-- <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-property.html">
@@ -202,8 +216,9 @@
                         <span class="icon-warehouse">3</span>
                      </div>
                   </div>
-               </div>
-               <div class="column-1_2 column_padding_bottom">
+               </div> -->
+
+               <!-- <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-property.html">
@@ -235,8 +250,9 @@
                         <span class="icon-warehouse">1</span>
                      </div>
                   </div>
-               </div>
-               <div class="column-1_2 column_padding_bottom">
+               </div> -->
+
+               <!-- <div class="column-1_2 column_padding_bottom">
                   <div class="sc_property_item">
                      <div class="sc_property_image">
                         <a href="single-property.html">
@@ -268,15 +284,16 @@
                         <span class="icon-warehouse">2</span>
                      </div>
                   </div>
-               </div>
+               </div> -->
+
             </div>
          </div>
-         <nav id="pagination" class="pagination_wrap pagination_pages">
+         <!-- <nav id="pagination" class="pagination_wrap pagination_pages">
             <span class="pager_current active">1</span>
             <a href="#" class="">2</a>
             <a href="#" class="pager_next"></a>
             <a href="#" class="pager_last"></a>
-         </nav>
+         </nav> -->
       </div>
       <!-- <div class="sidebar widget_area scheme_original">
          <div class="sidebar_inner widget_area_inner">
