@@ -1,21 +1,20 @@
 <% unless params[:action] == "listings" %>
    <%= form_tag("/pages/sign_up_email", method: "get") do %>
 
-<!--    <div class="contacts_emailer_wrap">
+   <div class="contacts_emailer_wrap">
       <div class="content_wrap">
          <div class="sc_emailer">
             
             <div class="sc_emailer_title">Sign up for updates</div>
             <div class="sc_emailer_content">
-               
-                 <%#= text_field_tag(:email) %>
-                 <%#= submit_tag("Subscribe", :class=>"sc_button sc_button_box sc_button_style_style3") %>
+                 <%= text_field_tag(:email) %>
+                 <%= submit_tag("Subscribe", :class=>"sc_button sc_button_box sc_button_style_style3") %>
             </div>
             
             <div class="cL"></div>
          </div>
       </div>
-   </div> -->
+   </div>
    <% end %>
 <% end %>
    <footer class="footer_wrap widget_area scheme_original">
