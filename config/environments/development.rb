@@ -43,15 +43,22 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.smtp_settings = {
-    address: "smtpout.asia.secureserver.net",
-    port: 25,
-    domain: "twoacres.co",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "noreply@estatekitkat.com",
-    password: "ContactEK8888"
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.mailgun.org",
+  #   port: 25,
+  #   domain: "booking.twoacres.co",
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: "khongkk89@gmail.com",
+  #   password: "kkk105201314"
+  #   # address: "smtp.office365.com",
+  #   # port: 587,
+  #   # domain: "atlas.iqiglobal.com",
+  #   # authentication: :login,
+  #   # enable_starttls_auto: true,
+  #   # user_name: "leon@iqi-group.com",
+  #   # password: "Kkk105201314"
+  # }
 
   config.action_mailer.smtp_settings = {
     :port           => 587,
