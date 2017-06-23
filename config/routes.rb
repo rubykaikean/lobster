@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :blogs do 
+    collection do
+      get "blog_index"
+    end
+  end
+
   resources :product_features do
     collection do 
       get "product_index"

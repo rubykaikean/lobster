@@ -63,6 +63,7 @@ class Product < ActiveRecord::Base
   has_many :enquiries
   has_many :product_photos
   has_many :product_features
+  has_many :blogs
   has_and_belongs_to_many :users
   
 
@@ -77,7 +78,7 @@ class Product < ActiveRecord::Base
   
   has_attached_file :second_background_image,
                   :styles => {:large => "1920x1080>", :medium => "500x500>", :home_page_medium => "570x414", :thumb => "100x100>" },
-                  :path => "images/background_image/:id/:style/:filename"  
+                  :path => "images/second_background_image/:id/:style/:filename"  
 
 
   has_attached_file :map_image,

@@ -28,7 +28,12 @@ class PagesController < ApplicationController
 	end
 
 	def blog
+		@blogs = Blog.all
+	end
 
+	def blog_details
+		@blog_detail = Blog.find(params[:blog_id])
+		
 	end
 
 	def contact

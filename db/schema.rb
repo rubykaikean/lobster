@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618092334) do
+ActiveRecord::Schema.define(version: 20170623100416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,20 @@ ActiveRecord::Schema.define(version: 20170618092334) do
 
   add_index "authorize_product_users", ["product_id"], name: "index_authorize_product_users_on_product_id", using: :btree
   add_index "authorize_product_users", ["user_id"], name: "index_authorize_product_users_on_user_id", using: :btree
+
+  create_table "blogs", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "product_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "blog_background_image_file_name"
+    t.string   "blog_background_image_content_type"
+    t.integer  "blog_background_image_file_size"
+    t.datetime "blog_background_image_updated_at"
+  end
+
+  add_index "blogs", ["product_id"], name: "index_blogs_on_product_id", using: :btree
 
   create_table "buyers", force: :cascade do |t|
     t.string   "full_name"
