@@ -171,6 +171,9 @@ Rails.application.routes.draw do
   match 'molpay/molpay' => "molpay#molpay", via: [:get, :post]
   
   get 'home' => "pages#home"
+  get 'team' => "pages#team"
+  get 'service' => "pages#service"
+  get 'about_us' => "pages#about_us"
   get 'listings' => "pages#listings"
   get 'listing_details' => "pages#listing_details"
   get 'blog' => "pages#blog"

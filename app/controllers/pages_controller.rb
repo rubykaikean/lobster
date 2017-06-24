@@ -40,6 +40,18 @@ class PagesController < ApplicationController
 
 	end
 
+	def team
+
+	end
+
+	def service
+
+	end
+
+	def about_us
+
+	end
+
 	def sign_up_email
 		# render :text => params[:email]
 		ApplicationMailer.notice_sign_up(params[:email]).deliver_now
