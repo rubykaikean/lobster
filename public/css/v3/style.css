@@ -550,7 +550,7 @@ select::-ms-expand {
     display: none;
 }
 select {
-    background: url(../images/selectw.png) 97% 55% no-repeat #fff;
+    background: url(v3/images/selectw.png) 97% 55% no-repeat #fff;
     margin: 0;
 }
 .scheme_dark input[type="text"],
@@ -564,7 +564,7 @@ select {
     background-color: #4e4a59;
 }
 .scheme_dark select {
-    background: url(images/selectd.png) 97% 55% no-repeat #4e4a59;
+    background: url(v3/images/selectd.png) 97% 55% no-repeat #4e4a59;
     margin: 0;
 }
 /* 4. WP styles and Screen readers
@@ -632,7 +632,7 @@ select {
     top: 0;
     width: 3em;
     height: 3em;
-    background-image: url(../images/sticky.png);
+    background-image: url(../v3/images/sticky.png);
     background-repeat: no-repeat;
     background-position: right top;
     background-size: 3em 3em;
@@ -1919,7 +1919,7 @@ x:-moz-any-link {
     z-index: 10000;
 }
 .top_panel_wrap.top_panel_style_1 {
-    background-image: url(../images/1920x977.jpg);
+    background-image: url(img/v3/1920x977.jpg);
 }
 .top_panel_style_1 .top_panel_middle,
 .top_panel_style_2 .top_panel_middle,

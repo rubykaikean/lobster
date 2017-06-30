@@ -37,22 +37,20 @@
       <br><br><br><br>
       <% if params[:action] == "listings" %>
          
-         <% elsif params[:action] == "contact" %>
-         <div class="top_panel_title top_panel_style_1  title_present scheme_original">
-            <div class="top_panel_title_inner top_panel_inner_style_1 breadcrumbs_present_inner">
-               <div class="content_wrap">
-                  <h1 class="page_title">Contacts</h1>
-                  <div class="breadcrumbs"><a class="breadcrumbs_item home" href="index.html">Home</a><span class="breadcrumbs_delimiter"></span><span class="breadcrumbs_item current">Contacts</span></div>
-               </div>
+      <% elsif params[:action] == "contact" %>
+      <div class="top_panel_title top_panel_style_1  title_present scheme_original">
+         <div class="top_panel_title_inner top_panel_inner_style_1 breadcrumbs_present_inner">
+            <div class="content_wrap">
+               <h1 class="page_title">Contacts</h1>
+               <div class="breadcrumbs"><a class="breadcrumbs_item home" href="index.html">Home</a><span class="breadcrumbs_delimiter"></span><span class="breadcrumbs_item current">Contacts</span></div>
             </div>
          </div>
-         <% end %>
       </div>
+      <% end %>
+   </div>
       <%= yield %>     
 
       <%= render "layouts/v3/footer" %>
-
-   </div>
 </div>
       <a href="#" class="scroll_to_top icon-up"></a>
 
