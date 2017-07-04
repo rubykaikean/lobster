@@ -24,7 +24,7 @@
          <section class="post_featured">
             <div class="post_thumb">
                <!-- <a class="hover_icon hover_icon_view" href="img/v3/1170x659.jpg" title="87 Mishaum Point Rd, Dartmouth, MA 02748"> -->
-               <span class="ps_single_status">sale</span>
+               <!-- <span class="ps_single_status">sale</span> -->
                <img alt="<%= @product.background_image %>" src="<%= @product.background_image %>" height="770" width="460" >
             </div>
          </section>
@@ -127,14 +127,14 @@
                <div  class="sc_team_wrap">
                   <div class="sc_team sc_team_style_team-2">
                      <div class="sc_columns columns_wrap">
-                        <% @users.each do |user| %>
+                        <!-- <%# @users.each do |user| %>
                         <div class="column-1_2 column_padding_bottom">
                            <div  class="sc_team_item columns_wrap">
                               <div class="sc_team_item_avatar">
                                  <img alt="" src="img/v3/370x370.jpg"> 
                               </div>
                               <div class="sc_team_item_info">
-                                 <div class="sc_team_item_title"><a href="single-team.html"><%= user.display_name %></a></div>
+                                 <div class="sc_team_item_title"><a href="single-team.html"><%#= user.display_name %></a></div>
                                  <div class="sc_team_item_position">Agent</div>
                                  <div class="sc_socials sc_socials_type_icons sc_socials_size_tiny">
                                     <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-facebook"></span></a></div>
@@ -144,31 +144,53 @@
                                  </div>
                               </div>
                               <div class="cL"></div>
-                              <div class="sc_team_item_phone"><span class="icon-mobile29"></span><%= user.mobile_contact_number %></div>
-                              <div class="sc_team_item_email"><span class="icon-message106"></span><%= user.email %></div>
+                              <div class="sc_team_item_phone"><span class="icon-mobile29"></span><%#= user.mobile_contact_number %></div>
+                              <div class="sc_team_item_email"><span class="icon-message106"></span><%#= user.email %></div>
                            </div>
                         </div>
-                        <% end %>
-                        <!-- <div class="column-1_2 column_padding_bottom">
+                        <%# end %> -->
+                        <div class="column-1_2 column_padding_bottom">
                            <div class="sc_team_item even columns_wrap">
                               <div class="sc_team_item_avatar">
                                  <img alt="" src="img/v3/370x370.jpg"> 
                               </div>
                               <div class="sc_team_item_info">
-                                 <div class="sc_team_item_title"><a href="single-team.html">Sebastian Jones</a></div>
-                                 <div class="sc_team_item_position">Sales manager</div>
-                                 <div class="sc_socials sc_socials_type_icons sc_socials_size_tiny">
+                                 <div class="sc_team_item_title"><a href="single-team.html">Marcus Yeoh</a></div>
+                                 <!-- <div class="sc_team_item_position">Sales manager</div> -->
+                                 <!-- <div class="sc_socials sc_socials_type_icons sc_socials_size_tiny">
                                     <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-facebook"></span></a></div>
                                     <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-twitter"></span></a></div>
                                     <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-instagramm"></span></a></div>
                                     <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-linkedin"></span></a></div>
-                                 </div>
+                                 </div> -->
                               </div>
                               <div class="cL"></div>
-                              <div class="sc_team_item_phone"><span class="icon-mobile29"></span>800 123 45 67</div>
-                              <div class="sc_team_item_email"><span class="icon-message106"></span>email@company.com</div>
+                              <div class="sc_team_item_phone"><span class="icon-mobile29"></span>017-9191774</div>
+                              <div class="sc_team_item_email"><span class="icon-message106"></span>Marcus@twoacres.co</div>
                            </div>
-                        </div> -->
+                        </div>
+
+                        <div class="column-1_2 column_padding_bottom">
+                           <div class="sc_team_item even columns_wrap">
+                              <div class="sc_team_item_avatar">
+                                 <img alt="" src="img/v3/370x370.jpg"> 
+                              </div>
+                              <div class="sc_team_item_info">
+                                 <div class="sc_team_item_title"><a href="single-team.html">Alexis</a></div>
+                                 <!-- <div class="sc_team_item_position">Sales manager</div> -->
+                                 <!-- <div class="sc_socials sc_socials_type_icons sc_socials_size_tiny">
+                                    <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-facebook"></span></a></div>
+                                    <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-twitter"></span></a></div>
+                                    <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-instagramm"></span></a></div>
+                                    <div class="sc_socials_item"><a href="#" target="_blank" class="social_icons"><span class="icon-linkedin"></span></a></div>
+                                 </div> -->
+                              </div>
+                              <div class="cL"></div>
+                              <div class="sc_team_item_phone"><span class="icon-mobile29"></span>017-6666430</div>
+                              <div class="sc_team_item_email"><span class="icon-message106"></span>Alexis@twoacres.co</div>
+                           </div>
+                        </div>
+
                      </div>
                   </div>
                </div>
@@ -363,9 +385,55 @@
       <!-- search end -->
    </div>
 </div>
+         
+
+<%= form_tag("/pages/personal_detail_email", method: "get") do %>
+<div class="sc_section bg_color_3">
+   <div class="columns_wrap sc_columns">
+      <div class="column-1_2 sc_column_item">
+         <div class="sc_section custom_box_form ">
+            <div class="sc_section_inner">
+               <h4 class="sc_title margin_top_null margin_bottom_xmedium">get in touch</h4>
+               <div class="sc_form_wrap">
+                  <div class="sc_form">
+                        <div class="sc_form_info">
+                           <div class="sc_form_item sc_form_field">
+                              <%= text_field_tag(:name, nil, :id => "sc_form_username") %>
+                              <!-- <input id="sc_form_username" type="text" name="username" placeholder="Name *"> -->
+                           </div>
+                           <div class="sc_form_item sc_form_field">
+                              <%= text_field_tag(:email, nil, :id => "sc_form_email", :placeholder => "Email") %>
+                              <!-- <input id="sc_form_email" type="text" name="email" placeholder="E-mail *"> -->
+                           </div>
+                        </div>
+                        <div class="sc_form_item sc_form_message">
+                           <%= text_field_tag(:message, nil, :id => "sc_form_message", :placeholder => "Message") %>
+                           <!-- <textarea id="sc_form_message" name="message" placeholder="Message"></textarea> -->
+                        </div>
+                        <div class="sc_form_item sc_form_button">
+                           <!-- <input type="submit" name="commit" value="Submit" class="sc_button sc_button_box sc_button_style_style3"> -->
+                           <%= submit_tag("submit") %>
+                        </div>
+                        <div class="result sc_infobox"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+<% end %>
+      <div class="column-1_2 sc_column_item">
+         <figure class="sc_image customImgHome1"><img src="img/v3/imgmobile.png" alt="" /></figure>
+      </div>
+   </div>
+</div>
+
+
+
+                     
+
 <div class="custom_shortcode_box">
    <div class="content_wrap">
-      <h4 class="sc_title">Lux properties</h4>
+      <h4 class="sc_title">More Properties</h4>
       <div class="sc_property_wrap">
          <div class="sc_property sc_property_style_property-1 " data-interval="5446" data-slides-per-view="3">
             <div class="sc_columns columns_wrap">

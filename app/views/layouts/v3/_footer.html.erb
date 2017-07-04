@@ -1,4 +1,4 @@
-<% unless params[:action] == "listings" %>
+<% if params[:action] == "listings" %>
    <%= form_tag("/pages/sign_up_email", method: "get") do %>
 
    <div class="contacts_emailer_wrap">
