@@ -59,4 +59,10 @@ class PagesController < ApplicationController
 		# render :text => params
 	end
 
+	def personal_detail_email
+		# render :text => params
+		ApplicationMailer.notice_personal_detail(params[:name], params[:email], params[:message]).deliver_now
+		redirect_to :back, notice: "Thanks"
+	end
+
 end

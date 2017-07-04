@@ -11,43 +11,42 @@
 
 
 <section class="slider_wrap slider_fullwide slider_engine_revo slider_alias_revsliderHome1">
-   <!-- REVOLUTION SLIDER -->
+   <!-- REVOLUTION SLIDER section 1 -->
    <div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
       <div id="rev_slider_4_1" class="rev_slider fullwidthabanner" data-version="5.1">
          <ul>
-            <% features_product.each_with_index do |p, index| %>
-            <li data-index="rs-<%= index + 1 %>" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="img/v3/slider1h1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+            <%# features_product.each_with_index do |p, index| %>
+            <!-- <li data-index="rs-<%#= index + 1 %>" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1000" data-thumb="img/v3/slider1h1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
 
-               <!-- <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina> -->
-               <img alt="<%= p.background_image %>" src="<%= p.background_image %>" height="770" width="460" >
+               <img alt="<%#= p.background_image %>" src="<%#= p.background_image %>" height="770" width="460" >
 
-               <div class="tp-caption Estate tp-resizeme" id="slide-<%= index + 1 %>-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
+               <div class="tp-caption Estate tp-resizeme" id="slide-<%#= index + 1 %>-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
                   <div class="sc_property_wrap">
-                     <div class="sc_property sc_property_style_property-6" data-interval="<%= rand(9) %>" data-slides-min-width="250">
+                     <div class="sc_property sc_property_style_property-6" data-interval="<%#= rand(9) %>" data-slides-min-width="250">
                         <div class="sc_property_item">
                            <div class="sc_pr_h1">
                               <div class="sc_pr_h2">House for sale</div>
                            </div>
                            <div class="sc_pr_t1">
-                              <a href="#"><%= p.address %></a> 
+                              <a href="#"><%#= p.address %></a> 
                            </div>
-                           <div class="sc_pr_t2"><%= p.location %></div>
+                           <div class="sc_pr_t2"><%#= p.location %></div>
                            <div class="sc_pr_f1">
                               <div class="sc_pr_f11">
                                  <div class="sc_pr_f111"><span>House for sale</span></div>
                               </div>
-                              <div class="sc_pr_f12"><span><%= p.currency %></span><%= number_with_precision(p.display_price, :precision => 2, :delimiter=> ',') %></div>
+                              <div class="sc_pr_f12"><span><%#= p.currency %></span><%#= number_with_precision(p.display_price, :precision => 2, :delimiter=> ',') %></div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-            </li>
-            <% end %>
-            <!-- <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="images/slider1h2-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
-               <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+            </li> -->
+            <%# end %>
+            <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="img/v3/banner_1.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+               <img src="img/v3/banner_1.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                <div class="tp-caption Estate tp-resizeme" id="slide-12-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                  <div class="sc_property_wrap">
+                  <!-- <div class="sc_property_wrap">
                      <div class="sc_property sc_property_style_property-6 " data-interval="7743" data-slides-min-width="250">
                         <div class="sc_property_item">
                            <div class="sc_pr_h1">
@@ -65,13 +64,14 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                </div>
             </li>
-            <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="images/slider1h3-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
-               <img src="img/v3/1920x1068.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>                             
+
+            <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="img/v3/banner_2.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+               <img src="img/v3/banner_2.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>                             
                <div class="tp-caption Estate tp-resizeme" id="slide-13-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                  <div class="sc_property_wrap">
+                  <!-- <div class="sc_property_wrap">
                      <div class="sc_property sc_property_style_property-6 " data-interval="5718" data-slides-min-width="250">
                         <div class="sc_property_item">
                            <div class="sc_pr_h1">
@@ -89,10 +89,35 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                </div>
             </li>
- -->
+
+            <li data-index="rs-14" data-transition="fade" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="1500" data-thumb="img/v3/banner_3.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+               <img src="img/v3/banner_3.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>                             
+               <div class="tp-caption Estate tp-resizeme" id="slide-13-layer-1" data-x="center" data-hoffset="" data-y="center" data-voffset="" data-width="['auto']" data-height="['auto']" data-transform_idle="o:1;" data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="1500" data-splitin="none" data-splitout="none" data-responsive_offset="on">
+                  <!-- <div class="sc_property_wrap">
+                     <div class="sc_property sc_property_style_property-6 " data-interval="5718" data-slides-min-width="250">
+                        <div class="sc_property_item">
+                           <div class="sc_pr_h1">
+                              <div class="sc_pr_h2">House for rent</div>
+                           </div>
+                           <div class="sc_pr_t1">
+                              <a href="single-post.html">80646 Via Pessaro</a> 
+                           </div>
+                           <div class="sc_pr_t2">La Quinta, CA 32453</div>
+                           <div class="sc_pr_f1">
+                              <div class="sc_pr_f11">
+                                 <div class="sc_pr_f111"><span>House for rent</span></div>
+                              </div>
+                              <div class="sc_pr_f12"><span>$</span>3,449<span>/year</span></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div> -->
+               </div>
+            </li>
+
          </ul>
          <div class="tp-bannertimer tp-bottom"></div>
       </div>
@@ -496,10 +521,10 @@
                <div class="sc_section">
                   <div class="sc_section_inner">
                      <figure class="sc_image alignleft margin_bottom_small">
-                        <a href="#"><img src="img/v3/img_b1.png" alt="" /></a>
+                        <a href="http://twoacres.co"><img src="img/v3/ibrochure.png" alt="" /></a>
                      </figure>
                      <figure class="sc_image alignleft margin_bottom_large">
-                        <a href="#"><img src="img/v3/img_b2.png" alt="" /></a>
+                        <a href="http://booking.twoacres.co/users/sign_in"><img src="img/v3/bookingsystem.png" alt="" /></a>
                      </figure>
                   </div>
                </div>

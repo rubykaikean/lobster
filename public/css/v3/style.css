@@ -6407,7 +6407,7 @@ columns_wrap,
 .custom_box_form {
     padding: 5.000em 0 4.700em 6.000em;
     max-width: 501px;
-    background-image: url(../images/bg_img1.png);
+    /*background-image: url(../img/v3/bg_img1.png);*/
     background-repeat: no-repeat;
     background-position: 23px 26px;
 }

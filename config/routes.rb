@@ -179,6 +179,7 @@ Rails.application.routes.draw do
   get 'blog' => "pages#blog"
   get 'blog_details' => "pages#blog_details"
   match 'pages/sign_up_email' => "pages#sign_up_email", via: [:get, :post]
+  match 'pages/personal_detail_email' => "pages#personal_detail_email", via: [:get, :post]
 
   get 'supermin_board' => 'super_admin/dashboard#index', as: :supermin_board
   
