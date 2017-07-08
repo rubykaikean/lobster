@@ -351,7 +351,7 @@ body,
 /* 7.1 Top panel
 -------------------------------------------------------------- */
 .top_panel_wrap_inner {
-	/*background-color: #ffffff;*/
+	background-color: #ffffff;
 }
 
 .scheme_original .top_panel_wrap_inner {
@@ -362,6 +362,10 @@ body,
 }
 .scheme_red .top_panel_wrap_inner {
 	background-color: rgba(239, 89, 90, 1);
+}
+
+.scheme_orange .top_panel_wrap_inner {
+	background-color: #ff4500;
 }
 
 .top_panel_fixed .top_panel_position_over.top_panel_wrap_inner {

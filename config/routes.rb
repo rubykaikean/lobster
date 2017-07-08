@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :blogs do 
-    collection do
-      get "blog_index"
-    end
-  end
-
+  resources :blogs 
   resources :product_features do
     collection do 
       get "product_index"
@@ -173,6 +168,7 @@ Rails.application.routes.draw do
   get 'home' => "pages#home"
   get 'team' => "pages#team"
   get 'service' => "pages#service"
+  get 'contact' => "pages#contact"
   get 'about_us' => "pages#about_us"
   get 'listings' => "pages#listings"
   get 'listing_details' => "pages#listing_details"

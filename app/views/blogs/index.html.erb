@@ -29,7 +29,6 @@
               <tr>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Product Name</th>
                 <th>Images</th>
                 <th class="text-center">Action</th>
               </tr>
@@ -40,7 +39,7 @@
                 <tr>
                   <td><%= blog.name %></td>
                   <td><%= blog.description %></td>
-                  <td><%= blog.product.name %></td>
+                  <!-- <td><%#= blog.product.name %></td> -->
                   <td><%= image_tag blog.blog_background_image.url(:medium_thumb) %></td>
                   <td class="text-center">
                     <%= link_to 'Show', blog, :class=>"btn btn-small btn-warning" %>
@@ -58,9 +57,9 @@
 
 <script type="text/javascript">
   
-//   $("#add_client_btn").click(function() {
-//     window.location.href='<%#= new_blog_path(:product_id => @product.id) %>';
-//   });
+  $("#add_client_btn").click(function() {
+    window.location.href='<%= new_blog_path %>';
+  });
 </script>
 
 

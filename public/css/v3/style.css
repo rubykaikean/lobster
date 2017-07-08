@@ -1861,6 +1861,11 @@ select {
 .scheme_red .top_panel_contacts_right {
     color: #fff;
 }
+
+.scheme_orange .top_panel_wrap_inner {
+    color: #FF4500;
+}
+
 .scheme_red .top_panel_contacts_right strong {
     color: #fff;
 }

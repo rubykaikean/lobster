@@ -9,6 +9,8 @@ class SessionsController < Devise::SessionsController
   	#render :text => sign_in_params
     super do |resource|
       # do some other job
+
+      
       if resource.is_suspended?
         sign_out(resource)
       end

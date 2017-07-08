@@ -72,11 +72,11 @@ class BlogsController < ApplicationController
     end
   end
 
-  def blog_index
-    @product = Product.find(params[:product_id])
-    @blogs = Blog.where(product_id: params[:product_id])
-    @blog = Blog.new
-  end
+  # def blog_index
+  #   @product = Product.find(params[:product_id])
+  #   @blogs = Blog.where(product_id: params[:product_id])
+  #   @blog = Blog.new
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
